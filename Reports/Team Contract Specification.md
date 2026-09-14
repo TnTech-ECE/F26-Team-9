@@ -1,109 +1,62 @@
 # **Teamwork Contract**
 
-**Team X**  
-**Team Members:** [List all student names here]   
+**Team 9**  
+**Team Members:** Jocelyn Smith, Kendall Arnold, Skyler Raines, Dani Wolford   
 *Electrical and Computer Engineering Department*  
 *Tennessee Technological University*
 
-The following are suggestions for items to include in your team contract. You get to customize this document as you see fit. Note that your final contract, must be approved by your instructor.
 
-## **Introduction**
+### **1. Expectations**
 
-*This teamwork contract outlines the agreed-upon expectations, responsibilities, and guidelines for effective collaboration among the members of Team X. By adhering to this contract, we aim to foster a productive, respectful, and supportive team environment conducive to the success of our project.*
-
-
-## **Team Expectations**
-
-In this section, the team will discuss and clearly define their collective expectations in various key areas. Be specific to ensure mutual understanding.
-
-### **1. Participation** *(Engagement and Effort in the Project)*
-
-- **Expectation:** Each team member is expected to:
-  - Actively participate in all team meetings and discussions.
-  - Engage fully in project activities and contribute ideas.
-  - Notify the team in advance if unable to attend a meeting or meet an obligation.
-
-### **2. Contribution** *(Progress on the Project)*
-
-- **Expectation:** Each team member is expected to:
-  - Complete assigned tasks diligently and on time.
-  - Contribute equal effort to the project's progress.
-  - Share expertise and assist others when needed.
-
-### **3. Communication**
-
-- **Expectation:** Team communication should be:
-  - Professional, respectful, and considerate.
-  - Conducted through agreed-upon channels (e.g., email, Slack, Microsoft Teams).
-  - Responsive, with replies to inquiries within 24 hours on weekdays.
-
-### **4. Meetings**
-
-- **Expectation:** Regarding team meetings:
-  - **Frequency:** The team will meet [specify frequency, e.g., twice a week on Mondays and Thursdays at 4 PM].
-  - **Attendance:** Members are expected to attend all meetings; absences should be communicated in advance.
-  - **Preparation:** Members should come prepared, having completed any agreed-upon tasks or research.
-
-### **5. Conduct**
-
-- **Expectation:** Team members will:
-  - Treat each other with respect and courtesy.
-  - Listen actively and allow others to express their ideas without interruption.
-  - Address disagreements professionally and constructively.
-
-### **6. Conflict Resolution**
-
-- **Expectation:** The team will:
-  - Address conflicts promptly through open dialogue.
-  - Use a step-by-step approach to resolve issues:
-    1. Discuss the issue privately between involved parties.
-    2. If unresolved, bring the issue to the team for discussion.
-    3. Seek input from the instructor if necessary.
-  - Focus on finding mutually acceptable solutions.
-
-### **7. Deadlines**
-
-- **Expectation:** Regarding deadlines:
-  - All team-set and instructor-set deadlines are to be met.
-  - If a member anticipates difficulty meeting a deadline, they must inform the team as soon as possible.
-  - The team will collaboratively adjust workloads to ensure project timelines are maintained.
+## **Work Distribution to be Even**
+  -	Distribute all work evenly between each team member
+  -	Work as efficiently as possible
+  -	Unless needed, avoid working super late and avoid working weekends
+  -	Unless needed, avoid breaks and holidays
+  -	Respect Deadlines
+  -	Give updated progress on any work that has been or currently being done
+  -	Each member is responsible for completing their portion of their work, so the workload does         not fall on other team members
+    
+## **Communication**
+  -	Clear and respectful communication will be a priority throughout the project
+  -	Communication of availability is expected and advanced notice when unable to attend a meeting
+  -	Every team member is expected to communicate honestly and truthfully about their progress 
+  -	We will communicate openly about any concerns, delays, or challenges that may affect the team       or project deadlines. 
 
 
-## **Unique Roles**
 
-Assigning specific roles can help streamline team operations. Below, define any unique roles, their responsibilities, the powers granted, and any changes to expectations.
+### **2. Meetings** 
 
-**a. Team Leader/Coordinator: (Required)** [Name of student who will fill this role]
-
-- **Responsibilities:**
-  - Schedule and coordinate team meetings.
-  - Facilitate meetings to ensure all voices are heard.
-  - Monitor project timelines and milestones.
-- **Powers Granted:**
-  - Authority to make minor decisions to keep the project on track after team consultation.
-- **Expectation Changes:**
-  - In addition to regular duties, the Team Leader will handle organizational tasks but remains equally responsible for project work.
-
-**b. Recorder/Secretary: (Optional)** [Name of student who will fill this role]
-
-- **Responsibilities:**
-  - Take detailed notes during meetings.
-  - Distribute meeting minutes to all team members within 24 hours.
-- **Powers Granted:**
-  - May request clarifications during meetings to ensure accurate record-keeping.
-- **Expectation Changes:**
-  - Ensures documentation is maintained without reducing their responsibility in other project areas.
-
-*(Add or modify roles based on your team's needs.)*
+   - Our group will use meetings to stay organized, communicate efficiently, and make exceptional progress on our project. Meetings are expected to be attended unless there is a reason that prevents one of the team members from attending. If one of the group members isn’t able to attend, they should communicate with the rest of the group as soon as possible and give any updates or work that the group needs to be aware of.
+    - The length and number of our meetings will depend on how much we have going on with the project. If everyone is prepared, communicating well, and getting their assigned work done, our meetings should be quick and focused. If we have a specific deadline, need to make a group decision, or are having issues with a part of the project, we may need to meet more often or for a longer amount of time.
+    - Everyone is expected to come to meetings prepared to give an update on what they’ve been working on and speak up if there are any questions or problems they are having. We will use our meeting times to review our progress, figure out what is remaining to do, divide up tasks, and make sure everyone knows what they are responsible for before the next meeting time.
+    - If any disagreements or conflicts arise, we will address them as soon as possible and keep the conversation respectful and professional. We understand that disagreements can happen when working in a group, but we do not want small issues to build up and turn into bigger problems. Everyone should be able to bring up concerns openly so we can work through them and find a solution.
+    - Overall, we want our meetings to be productive and help us move the project forward. If everyone communicates, com prepared, and stays responsible for their part of the project, we should be able to work together effectively and keep the capstone on track. 
 
 
-## **Additional Agreements**
 
-Include any other important agreements the team decides upon.
+### **3. Deadlines**
+  Deadlines are non-negotiable
+  **Group Deadlines**
+    - These deadlines are established to have ample time to edit anything that is needed before         class deadlines.
+	  - If someone knows they are going to have trouble meeting a deadline, they should communicate        that with the group as soon as possible rather than wait until the last minute.
+    **Class Deadlines**
+      - These deadlines are set in stone
+      - No adjustments
+      - Please respect them
+
+
+### 4. Summary**
+  - In summary, our group members will contribute evenly to the project, respect everyone’s time, and maintain an acceptable level of professionalism while working on this project. We will honor this contract and refer to it when problems arise. Our goal is to succeed as a team and share the load when necessary. 
+
 
 
 ## **Team Member Signatures**
 
 By typing our names below, we acknowledge that we have read, understand, and agree to abide by the terms of this Teamwork Contract.
 
-[List all student names here]
+  Kendall Arnold
+  Danielle Wolford
+  Jocelyn Smith
+  Skyler Raines
+
