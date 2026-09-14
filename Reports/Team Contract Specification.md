@@ -35,14 +35,16 @@
 
 
 ### **3. Deadlines**
-##**Deadlines are non-negotiable**
-##**Group Deadlines**
+
+  **Group Deadline**
+  
 - These deadlines are established to have ample time to edit anything that is needed before         class deadlines.
  - If someone knows they are going to have trouble meeting a deadline, they should communicate        that with the group as soon as possible rather than wait until the last minute.
-    **Class Deadlines**
-      - These deadlines are set in stone
-      - No adjustments
-      - Please respect them
+   
+ **Class Deadlines**
+  - These deadlines are set in stone
+  - No adjustments
+  - Please respect them
 
 
 ### **4. Summary**
