@@ -65,9 +65,9 @@ a.Team Leader: Kendall Arnold
  - Ensure all voices are being heard in the meetings
  - Record notes for every meeting
 
-b. Co-Leader: Jocelyn Smith
+ b.Co-Leader: Jocelyn Smith
 
-The Co-Leader will support the team Leader and help maintain project organization and progress.
+ The Co-Leader will support the team Leader and help maintain project organization and progress.
 
 **Responsibilities**
 - Assist with coordinating and scheduling meetings
