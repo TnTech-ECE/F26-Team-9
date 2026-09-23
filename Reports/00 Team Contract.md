@@ -55,6 +55,7 @@
 This section identifies key roles and responsibilities that will help strengthen our team and improve overall performance.
 
 a.Team Leader: Kendall Arnold
+
  The team leader is responsible for helping organize the team and ensuring that project deadlines remain on track.
  
  **Responsibilites**
@@ -65,6 +66,7 @@ a.Team Leader: Kendall Arnold
  - Record notes for every meeting
 
 b. Co-Leader: Jocelyn Smith
+
 The Co-Leader will support the team Leader and help maintain project organization and progress.
 
 **Responsibilities**
