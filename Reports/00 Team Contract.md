@@ -39,7 +39,7 @@ In this section, the team will discuss and clearly define their collective expec
 ### **4. Meetings**
 
 - **Expectation:** Regarding team meetings:
-  - **Frequency:** The team will meet Tuesdays @ 11-1 and Fridays @ 1
+  - **Frequency:** The team will meet Tuesdays @ 11-1 and Fridays @ 1 - goals met
   - Tuesdays will be dedicated to organizing documentation and questions
   - Fridays will be dedicated to being proactive with specific tasks of upcoming deadlines
   - If behind schedule team members will be open to adding more meetings that week
