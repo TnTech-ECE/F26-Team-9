@@ -53,20 +53,21 @@
 
 ## **Unique Roles**
 This section identifies key roles and responsibilities that will help strengthen our team and improve overall performance.
- a.Team Leader: Kendall Arnold
+
+a.Team Leader: Kendall Arnold
  The team leader is responsible for helping organize the team and ensuring that project deadlines remain on track.
  
- *Responsibilites
+ **Responsibilites**
  - Coordinate and schedule team meetings
  - Help establish goals, deadlines, and priorities
  - Monitor overall project progess and communicate project deadlines
  - Ensure all voices are being heard in the meetings
  - Record notes for every meeting
-   
+
 b. Co-Leader: Jocelyn Smith
 The Co-Leader will support the team Leader and help maintain project organization and progress.
 
-*Responsibilities
+**Responsibilities**
 - Assist with coordinating and scheduling meetings
 - Step in for the team Leader when unavailable
 - Help identify potential problems, delays, or areas where the team may need additional support
