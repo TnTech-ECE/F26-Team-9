@@ -39,7 +39,10 @@ In this section, the team will discuss and clearly define their collective expec
 ### **4. Meetings**
 
 - **Expectation:** Regarding team meetings:
-  - **Frequency:** The team will meet Tuesdays @ 11 and Fridays @ 1
+  - **Frequency:** The team will meet Tuesdays @ 11-1 and Fridays @ 1
+  - Tuesdays will be dedicated to organizing documentation and questions
+  - Fridays will be dedicated to being proactive with specific tasks of upcoming deadlines
+  - If behind schedule team members will be open to adding more meetings that week
   - **Attendance:** Members are expected to attend all meetings; absences should be communicated in advance.
   - **Preparation:** Members should come prepared, having completed any agreed-upon tasks or research.
 
@@ -59,6 +62,7 @@ In this section, the team will discuss and clearly define their collective expec
     2. If unresolved, bring the issue to the team for discussion.
     3. Seek input from the instructor if necessary.
   - Focus on finding mutually acceptable solutions.
+  - Contradicting opinions will be decided by majority vote
 
 ### **7. Deadlines**
 
@@ -100,11 +104,11 @@ Assigning specific roles can help streamline team operations. Below, define any 
 
 ## **Additional Agreements**
 
-Include any other important agreements the team decides upon.
+our group members will contribute evenly to the project, respect everyone’s time, and maintain an acceptable level of professionalism while working on this project. We will honor this contract and refer to it when problems arise. Our goal is to succeed as a team and share the load when necessary. 
 
 
 ## **Team Member Signatures**
 
 By typing our names below, we acknowledge that we have read, understand, and agree to abide by the terms of this Teamwork Contract.
 
-[List all student names here]
+[Jocelyn Smith, Kendall Arnold, Skyler Raines, Dani Wolford ]
