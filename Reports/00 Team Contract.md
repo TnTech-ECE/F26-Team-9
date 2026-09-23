@@ -51,7 +51,26 @@
   - In summary, our group members will contribute evenly to the project, respect everyone’s time, and maintain an acceptable level of professionalism while working on this project. We will honor this contract and refer to it when problems arise. Our goal is to succeed as a team and share the load when necessary. 
 
 
-
+## **Unique Roles**
+This section identifies key roles and responsibilities that will help strengthen our team and improve overall performance.
+ a.Team Leader: Kendall Arnold
+ The team leader is responsible for helping organize the team and ensuring that project deadlines remain on track. 
+ *Responsibilites
+ - Coordinate and schedule team meetings
+ - Help establish goals, deadlines, and priorities
+ - Monitor overall project progess and communicate project deadlines
+ - Ensure all voices are being heard in the meetings
+ - Record notes for every meeting
+   
+b. Co-Leader: Jocelyn Smith
+The Co-Leader will support the team Leader and help maintain project organization and progress
+*Responsibilities
+- Assist with coordinating and scheduling meetings
+- Step in for the team Leader when unavailable
+- Help identify potential problems, delays, or areas where the team may need additional support
+- Provide an additional point of accountability to help keep the team on schedule
+- Assist with communication between team members and help ensure important information is shared
+  
 ## **Team Member Signatures**
 
 By typing our names below, we acknowledge that we have read, understand, and agree to abide by the terms of this Teamwork Contract.
