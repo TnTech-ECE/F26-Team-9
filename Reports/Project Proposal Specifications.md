@@ -39,6 +39,15 @@ Questions to consider:
 
 Provide context and details necessary to define the problem clearly and delineate its boundaries.
 
+Domestic hot water (DHW) systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other fixtures. Commercial DHW systems must be capable of responding to varying levels of hot-water demand while maintaining the required water temperature and flow.
+Some systems use Instantaneous water heating which is the process of using a tankless water heater that will heat up the water only when you need it. The process starts with cold water entering the unit to be heated by a heating element then delivered at the desired temperature of the customer.
+
+Regent Commercial Instantaneous water heater is the target system being investigated in the project. The regent is designed for 
+
+
+
+
+
 ### Specifications and Constraints
 
 Specifications and constraints define the system's requirements. They can be positive (do this) or negative (don't do that). They can be mandatory (shall or must) or optional (may). They can cover performance, accuracy, interfaces, or limitations. Regardless of their origin, they must be unambiguous and impose measurable requirements.
