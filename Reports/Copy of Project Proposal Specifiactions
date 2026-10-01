@@ -31,9 +31,40 @@ Formulating the problem or objective involves clearly defining it through backgr
 
 Questions to consider:
 - Who does the problem affect (i.e. who is your customer)?
+
+The primary customer for this project is Lochinvar, specifically the engineering team is responsible 
+for the design, testing, and in control of their commerical water heating systems. The main product
+that could benefit from the results of this project is the Regent Commercial Instantaneous Water
+Heater. Even though the Regent is the intended application, the equipment currently available for 
+testing at the Tennessee Tech lab consists of Lochinvar Knight KHB085 and WHB199 fire tube boilers.
+Lochinvar also pointed out that a recirculation loop, pump, flow sensor, and temperature sensors can
+be provided if testing on Lochinvar hardware is needed. 
+
+The problem also affects the people and facilities that use commerical domestic hot water systems. 
+The systems need to supply hot water accurately despte if demand changes. From an engineering stand-
+point, Lochinvar is interested in determining whteher the circulation pump can work at a lower speed 
+when circulation isn't needed. Rather than treating the pump as a component that always needs to work 
+at a constant, unneeded high speed, the project looks into if the pump can be more equivalent to the 
+demands of the water heating system. The project proposal from Lochinvar specifically wants our team
+to run the internal circulation pump at different speeds while changing the flow rate/inlet water
+temperature and then measuring how the changes affect the performance of the system. 
+
+Therefore, our Lochinvar needs engineering data and a control strategy that can demonstrate how and 
+when the circulation pump speed can be reduced without sacrificing the predicted performance of the 
+water heater. The results from our project could help Lochinvar decide if variable speed circulation 
+control will benefit them for the Regent system and how that control could be implemented. 
+
+
 - Why do we need this solution?
+
+
+
 - What challenges necessitate a dedicated, multi-person engineering team?
+
+
 - Why aren’t off-the-shelf solutions sufficient?
+
+
 
 ### Background
 
