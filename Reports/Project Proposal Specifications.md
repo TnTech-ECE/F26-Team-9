@@ -57,6 +57,7 @@ Flow rate describes the amount of water moving through the system over a given p
 $$
 Q_V = \frac{V}{t}
 $$
+
 Where Qv is the volumetric flow rate 
 V is the volume of water
 T is the time
@@ -65,6 +66,7 @@ While it can also be expressed as mass flow rate, which describes the mass of wa
 $$
 m_V = \frac{m}{t}
 $$
+
 Where mV is the mass flow rate
 m is the mass
 t is the time
