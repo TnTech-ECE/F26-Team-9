@@ -74,7 +74,7 @@ t is the time
 The relationship between volumetric and mass flow rate is 
 
 $$
-\dot{m} = \rho Q_V
+m_V = \rho Q_V
 $$
 
 Where ρ is the density of water.
