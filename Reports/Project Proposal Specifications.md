@@ -47,7 +47,7 @@ The Regent Commercial Instantaneous Water Heater is the target system being inve
 The purpose of a heat exchanger is to be able to transfer thermal energy to the water, creating the desired supply of hot water without the two ever coming in direct contact.To understand heat exchangers better and how to reach desired temperatures, its good to understand the relationship when a system at a higher temperature is in contact with a system at a lower temperature
 
 $$
-Q_h = c \, m_V \, \Delta T 
+Q_h = c \ m_V \ \Delta T 
 $$
 
 where Qh represents the rate of heat transferred to the water, mv represents the mass flow rate, c is the specific heat capacity of water, and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes. This relationship will be used as a foundation for modeling the thermal response of the system.
