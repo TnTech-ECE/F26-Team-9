@@ -53,6 +53,7 @@ $$
 where Qh represents the rate of heat transferred to the water, mv represents the mass flow rate, c is the specific heat capacity of water, and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes. This relationship will be used as a foundation for modeling the thermal response of the system.
 
 Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate,
+
 $$
 Q_V = \frac{V}{t}
 $$
@@ -60,6 +61,7 @@ Where Qv is the volumetric flow rate
 V is the volume of water
 T is the time
 While it can also be expressed as mass flow rate, which describes the mass of water moving through the system over a given period
+
 $$
 m_V = \frac{m}{t}
 $$
