@@ -50,7 +50,7 @@ The purpose of a heat exchanger is to be able to transfer thermal energy to the 
 Q_h=cm_V ∆T
 where Qh represents the rate of heat transferred to the water, mv represents the mass flow rate, c is the specific heat capacity of water, and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes. This relationship will be used as a foundation for modeling the thermal response of the system.
 
-	Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate,
+Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate,
 Q_V=V/t
 Where Qvis the volumetric flow rate 
 V is the volume of water
