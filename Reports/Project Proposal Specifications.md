@@ -44,13 +44,13 @@ Some systems use Instantaneous water heating which is the process of using a tan
 
 The Regent Commercial Instantaneous Water Heater is the target system being investigated in this project. The Regent is designed as a tankless water heater that heats water as it passes through the system rather than storing hot water in a tank. Cold water, referred to as the inlet water, enters the system and flows through the heat exchanger. This is where thermal energy is transferred from the heating system to the water. The heated water, referred to as the outlet water, then exits the unit at the required temperature. If additional heating is needed, water can be recirculated through the heat exchanger to increase its temperature before being delivered to the system.
 
-The purpose of a heat exchanger is to be able to transfer thermal energy to the water, creating the desired supply of hot water without the two ever coming in direct contact.To understand heat exchangers better and how to reach desired temperatures, its good to understand the relationship when a system at a higher temperature is in contact with a system at a lower temperature
+The purpose of a heat exchanger is to be able to transfer thermal energy to the water, creating the desired supply of hot water without the two ever coming in direct contact. To understand heat exchangers better and how to reach desired temperatures, it's good to understand the relationship when a system at a higher temperature is in contact with a system at a lower temperature. The rate of heat transferred to the water can be described by:
 
 $$
 Q_h = c \ m_V \ \Delta T 
 $$
 
-where Q_h represents the rate of heat transferred to the water, mv represents the mass flow rate, c is the specific heat capacity of water, and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes. This relationship will be used as a foundation for modeling the thermal response of the system.
+where Q_h represents the rate of heat transferred to the water, m_V represents the mass flow rate, c is the specific heat capacity of water(constant), and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes. This relationship will be used as a foundation for modeling the thermal response of the system.
 
 Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate,
 
@@ -58,30 +58,27 @@ $$
 Q_V = \frac{V}{t}
 $$
 
-Where Q_V is the volumetric flow rate 
-V is the volume of water
-T is the time
-While it can also be expressed as mass flow rate, which describes the mass of water moving through the system over a given period
+Where Q_V is the volumetric flow rate, V is the volume of water, and t is the time.
+
+Flow rate can also be expressed as mass flow rate, which describes the mass of water moving through the system over a given period:
 
 $$
 m_V = \frac{m}{t}
 $$
 
-Where m_V is the mass flow rate
-m is the mass
-t is the time
+Where m_V is the mass flow rate, m is the mass, and t is the time.
 
-The relationship between volumetric and mass flow rate is 
+The relationship between volumetric and mass flow rate is: 
 
 $$
 m_V = \rho Q_V
 $$
 
-Where ρ is the density of water.
+Where ρ is the density of water.These relationships allow changes in the volumetric flow rate of water to be related to the mass flow rate used in the heat transfer equation.
 
 Hot-water demand can change as the number of fixtures and their water usage changes. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable-speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
 
-electrical power is the rate at which electrical energy is used by a system. Power can be expressed as 
+Electrical power is the rate at which electrical energy is used by a system. Power can be expressed as: 
 
 $$
 P = VI
@@ -89,16 +86,15 @@ $$
 
 where P is electrical power, V is voltage, and I is current. 
 
-The total electrical energy consumed depends on both power and operating time
+The total electrical energy consumed depends on both power and operating time:
 
 $$
 E = Pt
 $$
 
-A circulation pump operating at a higher speed generally requires more electrical power. If the pump operates at maximum capacity when the system does not require maximum flow, unnecessary energy can be consumed. A variable-speed pump can adjust its operation based on the required flow rate, potentially reducing power consumption during periods of lower demand.
-For the proposed system, monitoring and controlling pump operation can therefore help maintain the required hot-water performance while reducing unnecessary electrical energy consumption.
+A circulation pump operating at a higher speed generally requires more electrical power. If the pump operates at maximum capacity when the system does not require maximum flow, unnecessary energy can be consumed. A variable-speed pump can adjust its operation based on the required flow rate, potentially reducing power consumption during periods of lower demand. For the proposed system, monitoring and controlling pump operation can therefore help maintain the required hot-water performance while reducing unnecessary electrical energy consumption.
 
-Energy efficiency involves meeting the required system performance while using as little energy as practical. In a domestic hot-water system, the circulation pump does not necessarily need to operate at maximum speed under all operating conditions. Reducing pump speed when demand is lower can reduce unnecessary electrical power consumption.
+Energy efficiency involves meeting the required system performance while using as little energy as possible. In a commercial DHW system, the circulation pump does not necessarily need to operate at maximum speed under all operating conditions. Reducing pump speed when demand is lower can reduce unnecessary electrical power consumption.
 
 However, reducing pump speed too much can also affect system performance by decreasing flow and potentially increasing the time required to reach or maintain the desired temperature. Therefore, the goal is not simply to minimize pump speed, but to find a balance between energy consumption and system performance.
 
