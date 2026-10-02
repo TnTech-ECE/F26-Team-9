@@ -40,9 +40,20 @@ Questions to consider:
 Provide context and details necessary to define the problem clearly and delineate its boundaries.
 
 Domestic hot water (DHW) systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other fixtures. Commercial DHW systems must be capable of responding to varying levels of hot-water demand while maintaining the required water temperature and flow.
+
 Some systems use Instantaneous water heating which is the process of using a tankless water heater that will heat up the water only when you need it. The process starts with cold water entering the unit to be heated by a heating element then delivered at the desired temperature of the customer.
 
-Regent Commercial Instantaneous water heater is the target system being investigated in the project. The regent is designed for 
+The Regent Commercial Instantaneous Water Heater is the target system being investigated in this project. The Regent is designed as a tankless water heater that heats water as it passes through the system rather than storing hot water in a tank. Cold water, referred to as the inlet water, enters the system and flows through the heat exchanger. This is where thermal energy is transferred from the heating system to the water. The heated water, referred to as the outlet water, then exits the unit at the required temperature. If additional heating is needed, water can be recirculated through the heat exchanger to increase its temperature before being delivered to the system.
+
+The purpose of a heat exchanger is to be able to transfer thermal energy to the water, creating the desired supply of hot water without the two ever coming in direct contact.To understand heat exchangers better and how to reach desired temperatures, its good to understand the relationship when a system at a higher temperature is in contact with a system at a lower temperature
+Q_h=cm_V ∆T
+Where, 
+Qh is the rate of heat transferred to the water
+m is the mass flow rate (kg/s) -> sensor
+c is the specific heat of water (4180 J/(kg *K)) approximate value ( temperature dependent?)
+∆T is the temperature change (Tout-Tin)
+
+
 
 
 
