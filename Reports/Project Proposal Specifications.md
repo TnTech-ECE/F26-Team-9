@@ -72,16 +72,27 @@ m is the mass
 t is the time
 
 The relationship between volumetric and mass flow rate is 
-m_V=ρQ_v
+
+$$
+\dot{m} = \rho Q_V
+$$
+
 Where ρ is the density of water.
 
 Hot-water demand can change as the number of fixtures and their water usage changes. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable-speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
 
 electrical power is the rate at which electrical energy is used by a system. Power can be expressed as 
-P=VI
+
+$$
+P = VI
+$$
 
 where P is electrical power, V is voltage, and I is current. The total electrical energy consumed depends on both power and operating time
-E=Pt
+
+$$
+E = Pt
+$$
+
 A circulation pump operating at a higher speed generally requires more electrical power. If the pump operates at maximum capacity when the system does not require maximum flow, unnecessary energy can be consumed. A variable-speed pump can adjust its operation based on the required flow rate, potentially reducing power consumption during periods of lower demand.
 For the proposed system, monitoring and controlling pump operation can therefore help maintain the required hot-water performance while reducing unnecessary electrical energy consumption.
 
