@@ -121,7 +121,14 @@ Questions to consider:
 
 ## Survey of Existing Solutions
 
-Research existing solutions, whether in literature, on the market, or within the industry. Present these findings in a coherent, organized manner. Remember to cite all information that is not common knowledge.
+There is a wide variety of available circulation pumps in the current market. These include 3 main types: multi-speed circulator pumps, electronically commutated motor pumps, and automatic recirculation pumps.
+	Multi-speed circulator pumps are manual variable speed pumps but can have 3+ speeds instead of just 2. They can be budget friendly but work best for small to medium sized water systems. 
+	Electronically commutated motor pumps can be automatic or have manually selectable speeds. They are energy efficient and reduce mechanical stress but work better for residential water systems.
+	Automatic recirculation pumps are the best fit for this project. They are sensor-driven and programmable, reduce energy wastage, and can be used for tankless water heaters. To be more specific though, there are 4 types of automatic recirculation pumps: Constant temperature, demand-controlled, temperature modulation, and hybrids. 
+	Constant temperature pumps adjust their speed to maintain a set temperature. Demand-controlled pumps use flow and temperature sensors to start or stop the pump. Temperature modulation pumps adjust temperature based on demand. Finally, Hybrid pumps typically combine constant temperature pumps and demand-controlled pumps. 
+	For this project, demand-controlled pumps fit the best. For the system to start, a user will trigger the system, or the controller senses a drop in temperature. The system will adjust to the trigger and return to resting state when the temperature sensor has confirmed the hot water has reached the designated point in the loop. The “resting state” helps to save energy as well as extending the equipment’s lifespan.
+  
+ Remember to cite all information that is not common knowledge.
 
 
 ## Measures of Success
