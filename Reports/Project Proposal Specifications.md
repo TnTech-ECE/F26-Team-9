@@ -32,38 +32,29 @@ Formulating the problem or objective involves clearly defining it through backgr
 Questions to consider:
 - Who does the problem affect (i.e. who is your customer)?
 
-  The primary customer for this project is Lochinvar, specifically the engineering team is responsible 
-for the design, testing, and in control of their commerical water heating systems. The main product
-that could benefit from the results of this project is the Regent Commercial Instantaneous Water
-Heater. Even though the Regent is the intended application, the equipment currently available for 
-testing at the Tennessee Tech lab consists of Lochinvar Knight KHB085 and WHB199 fire tube boilers.
-Lochinvar also pointed out that a recirculation loop, pump, flow sensor, and temperature sensors can
+    The primary customer for this project is Lochinvar, specifically the engineering team is responsible for the design, testing, and in control of their commerical water heating systems. The main product that could benefit from the results of this project is the Regent Commercial Instantaneous Water Heater. Even though the Regent is the intended application, the equipment currently available for testing at the Tennessee Tech lab consists of Lochinvar Knight KHB085 and WHB199 fire tube boilers. Lochinvar also pointed out that a recirculation loop, pump, flow sensor, and temperature sensors can
 be provided if testing on Lochinvar hardware is needed. 
-
-The problem also affects the people and facilities that use commerical domestic hot water systems. 
-The systems need to supply hot water accurately despite if demand changes. From an engineering stand-
-point, Lochinvar is interested in determining whteher the circulation pump can work at a lower speed 
-when circulation isn't needed. Rather than treating the pump as a component that always needs to work 
-at a constant, unneeded high speed, the project looks into if the pump can be more equivalent to the 
-demands of the water heating system. The project proposal from Lochinvar specifically wants our team
-to run the internal circulation pump at different speeds while changing the flow rate/inlet water
-temperature and then measuring how the changes affect the performance of the system. 
-
-Therefore, our Lochinvar needs engineering data and a control strategy that can demonstrate how and 
-when the circulation pump speed can be reduced without sacrificing the predicted performance of the 
-water heater. The results from our project could help Lochinvar decide if variable speed circulation 
-control will benefit them for the Regent system and how that control could be implemented. 
+    The problem also affects the people and facilities that use commerical domestic hot water systems. The systems need to supply hot water accurately despite if demand changes. From an engineering stand-point, Lochinvar is interested in determining whether the circulation pump can work at a lower speed when circulation isn't needed. Rather than treating the pump as a component that always needs to work at a constant, unneeded high speed, the project looks into if the pump can be more equivalent to the 
+demands of the water heating system. The project proposal from Lochinvar specifically wants our team to run the internal circulation pump at different speeds while changing the flow rate/inlet water temperature and then measuring how the changes affect the performance of the system. 
+    Therefore, our Lochinvar needs engineering data and a control strategy that can demonstrate how and when the circulation pump speed can be reduced without sacrificing the predicted performance of the water heater. The results from our project could help Lochinvar decide if variable speed circulation control will benefit them for the Regent system and how that control could be implemented. 
 
 - Why do we need this solution?
 
+    This solution is needed because the amount of hot water being used in a commercial water heating system is not always the same. The demand can change throughout the day, which means that the pump may not need to run at the same speed under every state or situation. If the system doesn't need as much flow at a specific time, running the pump at a higher speed could just be wasting power.
+    At the same time, we can't just lower the pump speed and assume everything will still work efficiently. There still needs to be enough flow through the heat exchanger, and the system still needs to reach and maintain the needed water temperature. One of the main main goals of the project is to find a way to lower the speed of the pump when possible without hurting the overall execution of the system.
+    A variable speed pump controller would allow the pump to adjust based on what is happening in the system. When the demand is lower, the pump could run at lower speeds and potentially use less power. When the demand goes high, the controller could increase the speed of the pump to make sure there is enough water running through the system. The main objective is to find the most efficient pump speed while still meeting all of the requirements of the water heating system. 
   
 - What challenges necessitate a dedicated, multi-person engineering team?
-
-
+  
+    This project needs a team because there are many different parts that have to work together for the system to operate efficiently and correctly. The project involves things like water flow, temperature, sensors, physical hardware, microcontroller programming, pump control, and testing. Changing one part of the system could also affect another part.
+    Another challenge is figuring out how the controller should decide what speed the pump needs to run at. The controller will need to look at the flow rate, modulation, and temperature and then use that information to adjust the the speed of the pump. We will also need to make sure the pump stays within the correct working range and doesn't constantly change speeds due to small changes in sensor readings.
+    There are also challenges with getting all of the hardware to work together. The sensors, microcontroller, pump, and current Lochinvar system will all need to communicate efficiently. We will have to make sure that the signals and sensors we use are compatible with the system under different working conditions to see how well the controller reacts. Having multiple people working on the project allows us to divide up the programming, hardware, testing, research, and documenation while still working toward the same overall goal. 
   
 - Why aren’t off-the-shelf solutions sufficient?
   
-
+    There are already variable speed pumps and controllers obtainable, but they may not completely solve the problem that Lochinvar is trying to solve. A normal pump controller might adjust the the pump depending on one measurement, such as temperature, pressure, or flow. For this project, we want the controller to deliberate multiple things happening in the system before deciding what speed the pump should run at.
+    Our controller could use the flow rate, modulation, and water temperature to determine the speed of the pump. It also has to make sure that the system still has enough flow, maintains the correct temperature, and stays within the limits of the pump and the rest of the system. These needs are more precise to Lochinvar's application.
+    Because of this, the main part of our project is not just finding a variable speed pump that already exists. The engineering part is developing the control approach that decides when the pump needs to speed up or slow down based on the current state of the system. We will then have to test the controller to make sure that reducing the pump's energy usage doesn't negatively affect the execution of the water heating system. 
 
 ### Background
 
