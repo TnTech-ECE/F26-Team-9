@@ -2,7 +2,7 @@
 
 This document provides a comprehensive explanation of what a project proposal should encompass. The content here is detailed and is intended to highlight the guiding principles rather than merely listing expectations. The sections that follow contain all the necessary information to understand the requirements for creating a project proposal.
 
-TESRT 
+
 ## General Requirements for the Document
 - All submissions must be composed in markdown format.
 - All sources must be cited unless the information is common knowledge for the target audience.
