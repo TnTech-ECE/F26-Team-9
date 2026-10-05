@@ -41,7 +41,7 @@ Lochinvar also pointed out that a recirculation loop, pump, flow sensor, and tem
 be provided if testing on Lochinvar hardware is needed. 
 
 The problem also affects the people and facilities that use commerical domestic hot water systems. 
-The systems need to supply hot water accurately despte if demand changes. From an engineering stand-
+The systems need to supply hot water accurately despite if demand changes. From an engineering stand-
 point, Lochinvar is interested in determining whteher the circulation pump can work at a lower speed 
 when circulation isn't needed. Rather than treating the pump as a component that always needs to work 
 at a constant, unneeded high speed, the project looks into if the pump can be more equivalent to the 
