@@ -158,7 +158,8 @@ State who your instrucotr is and what role you expect them to play in the projec
 
 ### Timeline
 
-Provide a detailed timeline, including all major deadlines and tasks. This should be illustrated with a professional Gantt chart.
+![Alt Text](<img width="1487" height="597" alt="image" src="https://github.com/user-attachments/assets/f5531d7d-e73e-413f-943a-abcbc1e83626" />)
+
 
 
 ## Specific Implications
