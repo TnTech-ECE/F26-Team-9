@@ -199,7 +199,10 @@ Besides the team, also state who you choose to be you supervisor and why.
 
 State who your instructor is and what role you expect them to play in the project.
 
-* Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB
+* Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB, VHDL, Circuit Analysis, Control System Analysis, LT Spice
+Danielle Wolford: C/C++, Assembly, Circuit Analysis, PLC Coding, HMI Formatting, Control System Analysis, LT Spice, KiCad
+Kendall Arnold: C/C++, Assembly, AUTOCAD, Controls Systems, Circuit Analysis
+Skyler Raines: C/C++, Assembly, Circuit Analysis, AUTOCAD, Revit, PLC, Ladder Logic, Control Systems, Troubleshooting
 
 ### Timeline
 
