@@ -189,6 +189,9 @@ Each project proposal must include a comprehensive description of the necessary 
 Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
 <img width="773" height="197" alt="image" src="https://github.com/user-attachments/assets/60f14c90-7f94-4488-af62-af302226a655" />
 
+The estimated budget for the project is approximately $1,500–$2,000. The primary expenses will be associated with the variable-speed pump, flow measurement, temperature measurement, and control components required to develop and test the proposed system. The KEYENCE FD-Q50C clamp-on flow sensor is estimated at $580 and will be used to measure water flow without requiring significant modification to the existing plumbing. A variable-speed pump, estimated at $500, will allow the team to investigate how adjusting pump speed affects flow rate, temperature, and overall system performance. A microcontroller, estimated at $20, will be used to control or communicate with the pump and sensors during testing.
+
+Temperature measurements will be obtained using Cooper-Atkins 4005MK Type-K pipe clamp sensors, estimated at $79 each, to measure the water temperature at the inlet and outlet of the system. These measurements will allow the team to determine the temperature change across the water heater and evaluate thermal performance. The current estimated cost of the primary components is $1,179. An additional $300–$800 is 
 
 
 ### Personel
@@ -201,6 +204,10 @@ State who your instructor is and what role you expect them to play in the projec
 
 * Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB
 * Kendall Arnold: C/C++, Assembly, AUTOCAD, Controls Systems, Circuit Analysis
+
+
+
+
 
 ### Timeline
 
