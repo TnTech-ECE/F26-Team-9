@@ -187,7 +187,8 @@ Each project proposal must include a comprehensive description of the necessary 
 ### Budget
 
 Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
-<img width="777" height="172" alt="image" src="https://github.com/user-attachments/assets/55bb4a9d-ac31-44a4-8262-f89f37cffb46" />
+<img width="773" height="197" alt="image" src="https://github.com/user-attachments/assets/60f14c90-7f94-4488-af62-af302226a655" />
+
 
 
 ### Personel
