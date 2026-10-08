@@ -20,11 +20,11 @@ This document provides a comprehensive explanation of what a project proposal sh
 
 ## Introduction
 
-Hot water systems are expected to supply hot water while also responding to changing levels of demand. Tankless water heaters accomplish this by heating water as it passes through the system rather than storing a large volume of heated water. As demand changes the system must adjust to provide the required water temperature and flow. The Lochinvar Regent Commercial Tankless Water Heater is designed to meet these demands. However, operating the system at maximum all the time can result in unnecessary energy consumption. Improving how the system responds to changing water demand could provide an opportunity to reduce energy use while maintaining system performance.
+The introduction must be the opening section of the proposal. It acts as the "elevator pitch" of the project, briefly introducing the objective, its importance, and the proposed solution. Because readers may only read this section, it should effectively capture their attention and encourage them to read further.
 
-The objective of this project is to investigate a method of improving the energy efficiency of the Regent water heater by controlling the circulation pump according to the system's operating conditions. The proposed approach will investigate the use of a variable speed pump and flow sensor to regulate water flow based on the heating requirements of the system. By adjusting pump speed rather than continuously operating at a maximum condition, the system may be able to provide the required hot water while reducing unnecessary electrical power consumption.
+Toward the end of the introduction, include a subsection that outlines what the proposal will cover. This helps set reader expectations for the ensuing sections.
 
-This proposal will provide background information on the Regent water heater and present measurements that will help establish a better understanding of how water heating systems operate. It will also examine existing solutions and technologies that may be applicable to the project. The proposal will explain the need for the project and identify the specifications and constraints that will guide the design process. In addition, it will provide an overview of the project resources, a detailed budget, the skills and responsibilities of each team member, the expected project timeline, and the potential impacts and implications of the proposed solution.
+
 ## Formulating the Problem
 
 Formulating the problem or objective involves clearly defining it through background information, specifications, and constraints. Think of it as "fencing in" the objective to make it unambiguously clear what is and is not being addressed and why.
@@ -130,7 +130,7 @@ Specifications and constraints define the system's requirements. They can be pos
 Specifications are requirements imposed by **stakeholders** to meet their needs. If a specification seems unattainable, it is necessary to discuss and negotiate with the stakeholders.
 
   The main goal of this project is to control the speed of the circulation pump in a way that improves the efficiency of the water heating system without negatively affecting how the system controls the temperature already. The pump needs to be able to run at different speeds depending on the present demand of the system. This demand can changed based on the water flow or the inlet water temperature. 
-  Another important specification is that the controller needs to be able to maintain the minimum amount of flow needed for the system to run correctly. The goal is to lower the speed of the pump when possible to reduce power consumption, but not that it causes problems with the system. Changing the speed of the pump shouldn't increase the amount of time it takes the water to reach its temperature set point significantly. The system also needs to stay stable and maintain the temperature within 4 degrees F.
+  Another important specification is that the controller needs to be able to maintain the minimum amount of flow needed for the system to run correctly. The goal is to lower the speed of the pump when possible to reduce power consumption, but not that it causes problems with the system. Changing the speed of the pump shouldn't increase the amount of time it takes the water to reach its temperature set point significantly. The system also needs to stay stable and maintain the temperature within +-4 degrees F.
   The controller will also need to use the information already given from the existing system to determine how the pump should operate. The Knight boiler has a firing rate output from 0-10 V, which signifies a firing rate of 0-100%. The Regent system also uses a Keyence flow sensor to measure the amount of water that is flowing through the system. The flow sensor uses a pulse output frequency that gets converted into a flow measurement in GPM. These signals can provide information to the controller about that the system is doing in real time and help decide what speed the pump needs to run at. 
   The system will also need to be tested under different operating conditions. We will need to change the circulation rate and water demand to identify how different pump speeds affect power consumption and the amount of time it takes the system to reach the temperature set point. Lochinvar currently uses a flow tree to create constant changes in flow rate, which can help us to simulate the different levels of hot water demand that the system could encounter while it is running. 
 
@@ -142,17 +142,22 @@ Constraints often stem from governing bodies, standards organizations, and broad
 Questions to consider:
 - Do governing bodies regulate the solution in any way?
   
-At this point, the information that Lochinvar provided doesn't list a specific governing body or regulation that our project is required to follow. However, because the project includes a commercial water heating system, electrical components, hot water, and a circulation pump, safety still needs to be considered when designing and testing the controller. The controller shouldn't intrude on any of the existing safety features of the boiler. Before the final design is in the process of being implemented into an actual Lochinvar product, any mandatory regulations would need to be identified and followed.
+    At this point, the information that Lochinvar provided doesn't list a specific governing body or regulation that our project is required to follow. However, because the project includes a commercial water heating system, electrical components, hot water, and a circulation pump, safety still needs to be considered when designing and testing the controller. The controller shouldn't intrude on any of the existing safety features of the boiler. Before the final design is in the process of being implemented into an actual Lochinvar product, any mandatory regulations would need to be identified and followed.
 
 - Are there industrial standards that need to be considered and followed?
 
-The project details provided by Lochinvar doesn't give our team any specific industry standards that we are required to follow.. Because of this, we shouldn't assume or list a certain standard unless Lochinvar tells us that it applies to the project. 
+    The project details provided by Lochinvar doesn't give our team any specific industry standards that we are required to follow.. Because of this, we shouldn't assume or list a certain standard unless Lochinvar tells us that it applies to the project. For our work at this point in time, the main requirement is making sure that the controller works with the existing Lochinvar equipment and doesn't negatively affect the current temperature control. The controller also needs to keep the minimum required flow rate and keep the system temperature steady within +-4 degrees F.
   
 - What impact will the engineering, manufacturing, or final product have on public health, safety, and welfare?
 
-  
+    Safety is important for this project because the system deals with hot water, boiler equipment, electrical components, and a circulation pump. If the pump is running at too low of a speed, there is a possibility that there isn't enough water flowing through the system for it to run correctly and efficiently. Because of this, our controller needs to keep the minimum needed flow rate while adjusting the speed of the pump. It also can't negatively affect how quickly the system attains its temperature set point. or causes the water temperature to be unstable. 
+    The final design should also work with the current temperature and safety controls rather than replacing or meddling with them. Because of the main purpose of the controller is to improve the efficiency, any energy savings would not be worth it if they caused the water to run incorrectly or unsafely. 
+
 - Are there global, cultural, social, environmental, or economic factors that must be considered?
 
+The biggest influence for our project are environmental and economic. The main goal of the project is to improve the efficiency of the system overall by controlling the circulation pump speed. If the pump is able to run at a lower speed when the full pump is not needed, the system could possibly use less electrical power. This could reduce the amount of energy used while it's running, which would have both an environmental and economical advantage.
+    There is also an economic deliberations when it comes to implementing the controller. Any improvement in efficiency would need to be worth the extra hardware, sensors, programming, and controls needed to make the system work. Our team would need to consider if the amount of energy saved by modifying the pump speed is enough to validate adding the control system. 
+    
 
 ## Survey of Existing Solutions
 
