@@ -194,7 +194,9 @@ Identify the skills present in the team and compare them to those required to co
 
 Besides the team, also state who you choose to be you supervisor and why.
 
-State who your instrucotr is and what role you expect them to play in the project.
+State who your instructor is and what role you expect them to play in the project.
+
+* Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB
 
 ### Timeline
 
