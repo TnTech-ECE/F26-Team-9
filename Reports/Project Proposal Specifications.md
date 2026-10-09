@@ -174,7 +174,6 @@ Constant temperature pumps adjust their speed to maintain a set temperature. Dem
 
 For this project, demand-controlled pumps fit the best. For the system to start, a user will trigger the system, or the controller senses a drop in temperature. The system will then adjust to the trigger and return to resting state when the temperature sensor has confirmed the hot water has reached the designated point in the loop. The “resting state” helps to save energy as well as extending the equipment’s lifespan.
 
-Remember to cite all information that is not common knowledge.
 
 
 ## Measures of Success
