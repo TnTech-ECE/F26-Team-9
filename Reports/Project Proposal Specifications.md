@@ -188,8 +188,8 @@ Each project proposal must include a comprehensive description of the necessary 
 
 ### Budget
 
-Provide a budget proposal with justifications for expenses such as software, equipment, components, testing machinery, and prototyping costs. This should be an estimate, not a detailed bill of materials.
 <img width="773" height="197" alt="image" src="https://github.com/user-attachments/assets/60f14c90-7f94-4488-af62-af302226a655" />
+
 
 The estimated budget for the project is approximately $1,179. The primary expenses include the variable-speed pump, flow measurement, temperature measurement, and control components required to develop and test the proposed system. The KEYENCE FD-Q50C clamp-on flow sensor, estimated at $580, will measure water flow without requiring significant modifications to the existing plumbing. A variable-speed pump, estimated at $500, will allow the team to investigate how adjusting pump speed affects flow rate, water temperature, and overall system performance. A microcontroller, estimated at $20, will be used to facilitate communication between the sensors and control system during testing.
 
