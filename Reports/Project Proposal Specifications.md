@@ -184,7 +184,6 @@ Define how the project’s success will be measured. This involves explaining th
 
 ## Resources
 
-Each project proposal must include a comprehensive description of the necessary resources.
 
 ### Budget
 
