@@ -260,7 +260,6 @@ In conclusion, as engineers, upholding public safety remains our primary directi
 
 Each team member must contribute meaningfully to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
-* Kendall Arnold- Introduction, Background, Budget
-* Skyler Raines- Timeline, Broader Implications, Ethics and Responsibility as Engineers
-
+* Kendall Arnold - Introduction, Background, Budget
+* Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personel
 
