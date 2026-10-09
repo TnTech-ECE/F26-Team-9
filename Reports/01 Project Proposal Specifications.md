@@ -178,7 +178,19 @@ For this project, demand-controlled pumps fit the best. For the system to start,
 
 ## Measures of Success
 
-Define how the project’s success will be measured. This involves explaining the experiments and methodologies to verify that the system meets its specifications and constraints.
+Our goal is to form a fully functional variable circulation pump, but there are some checkpoints along the way to determine and measure our success. There are also some measurements based on the specifications of this project. 
+
+The first is performance metrics. The accuracy and stability of the flow and flow sensor, as well as response time. 
+
+The next measurement for success is energy efficiency. Essentially, asking if the energy savings are enough to justify the higher cost. 
+
+After that, the next consideration is reliability. Is the mechanical stress reduced and by how much? What is the average time between failures? 
+
+Our next measurements are economic and environmental measures. What is the return on investment? What about the life cycle cost versus the operating cost reduction? For environmental, does this new pump maintain water quality and system integrity?
+
+We also need to measure the flow rates versus the demand and decide if this pump is in fact more efficient. Additionally, we need to maintain the temperature during the different flow speeds. 
+
+If we can meet or exceed these measurements for our final product, then we will have succeeded in creating a functional and efficient variable circulation pump.
 
 
 ## Resources
