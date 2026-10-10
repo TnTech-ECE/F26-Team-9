@@ -30,6 +30,10 @@ With these guidelines, each team is expected to create a suitable document to ac
 
 The introduction is intended to reintroduce the fully formulated problem. 
 
+Commercial water heating systems must provide consistent hot water while responding to changing flow demands. The Regent Commercial Tankless Water Heater uses an electric heating system to heat water as it passes through the unit. However, the current system's operation at high or maximum capacity may result in unnecessary energy consumption when full heating output is not required. This creates an opportunity to improve the system's energy efficiency while maintaining the required outlet water temperature and flow rate.
+
+The objective of this project is to investigate a control system that adjusts water flow and heating operation based on real-time temperature and demand measurements. By evaluating components such as variable-speed pumps, flow sensors, and temperature sensors, the team aims to develop a solution that reduces unnecessary energy use without compromising the water heater's performance. The proposed design will be evaluated through calculations, simulation, and testing to determine its feasibility and effectiveness.
+
 
 ## Restating the Fully Formulated Problem
 
