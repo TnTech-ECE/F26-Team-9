@@ -278,6 +278,8 @@ In conclusion, as engineers, upholding public safety remains our primary directi
 
 \(8\) ASHRAE, “Design and Application of Controls,” 2023 ASHRAE Handbook—HVAC Applications, ch. 48, 2023. \(Online\). Available: [https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch48/A23_Ch48_ip.aspx]. \(Accessed: Oct. 9, 2026\).
 
+\(9\) OpenAI, “ChatGPT,” [Online]. Available: https://chatgpt.com/. [Accessed: Oct. 9, 2026].
+
 ## Statement of Contributions
 
 Each team member must contribute meaningfully to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
