@@ -287,4 +287,5 @@ Each team member must contribute meaningfully to the project proposal. In this s
 * Kendall Arnold - Introduction, Background, Budget
 * Skyler Raines- Timeline, Broader Implications, Ethics and Responsibility as Engineers
 * Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personel
+* Danielle Wolford - Survey of Existing Solutions, Measures of Success
 
