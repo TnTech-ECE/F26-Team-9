@@ -29,7 +29,6 @@ This proposal will provide background information on the Regent water heater and
 
 ## Formulating the Problem
 
-Formulating the problem or objective involves clearly defining it through background information, specifications, and constraints. Think of it as "fencing in" the objective to make it unambiguously clear what is and is not being addressed and why.
 
 Questions to consider:
 - Who does the problem affect (i.e. who is your customer)?
