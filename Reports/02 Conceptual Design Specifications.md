@@ -38,6 +38,42 @@ The objective of this project is to develop and evaluate a control strategy that
 
 The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
+The primary objective of this project is to develop and evaluate a control strategy for adjusting the pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater based on changing operating conditions. Lochinvar is interested in determining whether reducing pump speed can decrease electrical energy consumption without compromising the performance of the water heating system when full circulation is unnecessary. Because hot water demand varies throughout the day, the pump may not need to operate at a constant speed under every condition. However, reducing pump speed must be carefully evaluated to ensure sufficient water flow through the heat exchanger and the ability to maintain the required water temperature.
+
+The project will investigate the relationship between pump speed, water flow rate, inlet water temperature, and heater operation to determine how these variables affect system performance. The team will develop and evaluate a proposed control strategy that uses operating measurements to determine an appropriate pump speed under different conditions. Although the Regent is the intended application, testing may use the Lochinvar equipment available in the Tennessee Tech laboratory or additional equipment provided by Lochinvar, depending on hardware compatibility and availability. The boilers available at Tennessee Tech are also being used by other capstone teams, which may limit our access to the equipment. As a result, testing may need to rely on simulations and available operating data to identify operating conditions under which pump speed can be reduced while maintaining acceptable water heating performance.
+
+The proposed design shall meet the following requirements:
+
+1. Pump speed control: The pump shall be able to run at different speeds based on the system's needs.
+*	Variable-speed control is the main focus of this project. Adjusting pump speed may help reduce unnecessary electrical energy use while maintaining proper water flow through the system.
+  
+2. Operating measurements: The system shall measure or collect water flow rate, inlet water temperature, and other available data about the water heater.
+*	These measurements will help the team understand how changes in water flow and temperature affect the heater's performance and determine how the pump should be controlled.
+  
+3. Performance evaluation: The team shall study how pump speed, water flow, inlet water temperature, and heater operation affect system performance.
+*	Evaluating these factors will help determine whether changing pump speed can improve energy efficiency without negatively affecting the water heater's operation.
+  
+4. Minimum flow requirements: The pump shall maintain enough water flow through the heat exchanger to meet the manufacturer's requirements.
+*	Maintaining sufficient flow is necessary to help prevent overheating and ensure the equipment operates within its specified limits.
+
+5. Water temperature requirements: The proposed control strategy shall allow the water heater to reach and maintain the required water temperature.
+*	The control strategy must consider water temperature so that energy savings do not come at the expense of the heater's intended performance.
+
+6. Energy efficiency: The team shall evaluate whether running the pump at lower speeds can reduce electrical energy use.
+* Comparing pump energy consumption at different speeds will help determine whether variable-speed control offers potential energy savings.
+
+7. Equipment compatibility: All components shall work together properly with the equipment used for testing.
+*	The team may use the Regent water heater, other compatible Lochinvar equipment, or laboratory simulations, depending on equipment availability.
+
+8. Testing and validation: The team shall evaluate the proposed control strategy using calculations, simulations, and laboratory testing when possible.
+*	These methods will help determine whether the proposed strategy is technically feasible and whether additional testing is needed.
+
+9. Project feasibility: The proposed design shall fit within the available budget, equipment, schedule, and team resources.
+*	These limits will help the team develop a realistic solution that can be completed within the capstone project timeline.
+
+In summary, this project will investigate whether adjusting the internal circulation pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater can reduce electrical energy consumption while maintaining reliable water heating performance. By evaluating pump speed, water flow rate, inlet water temperature, and heater operation, the team will develop and assess a proposed control strategy. Calculations, simulations, and laboratory testing, when available, will be used to compare energy consumption and system performance under different operating conditions. The final goal is to determine the feasibility of variable-speed pump control and identify opportunities to improve energy efficiency without compromising the water heater's operation.
+
+
 
 ## Comparative Analysis of Potential Solutions
 
