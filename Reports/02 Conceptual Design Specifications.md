@@ -100,6 +100,7 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 
 
 ## Atomic Subsystem Specifications
+### 1) Sensor and Data Acquisition Subsystem
 
 Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
 
