@@ -102,7 +102,20 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 ## Atomic Subsystem Specifications
 ### 1) Sensor and Data Acquisition Subsystem
   Overview
+  
     The Sensor and Data Acquisition Subsystem will provide real-time and high-fidelity monitoring of all the critical hydraulic and thermal parameters within the heating loop. It shall ensure the pump microcontroller maintains a continuous stream of accurate measurements. These measurements will be the flow rate, outlet temperature, and boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. The design should emphasize signal control and sensor responsiveness.
+
+  Functional Description
+
+    This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
+
+    *	Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load
+    
+    * Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read
+
+    *	Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature
+    
+    
     
 
 Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
