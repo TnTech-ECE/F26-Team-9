@@ -85,6 +85,16 @@ In this section, various potential solutions are hypothesized, design considerat
 This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
 
 
+
+   The proposed solution is to develop a variable speed pump controller that is able to reduce unneeded use of electrical energy while maintaining the performance of Lochinvar's water heating system. Rather than having the circulation pump run at a constant speed, the controller will adjust the speed of the pump based on the system's running conditions. Measurements such as the water flow rate, inlet and outlet water temperatures, and boiler firing rate will help determine when the speed of the pump can be reduced without affecting the system's ability to deliver hot water. The overall design will consist of six subsystems: Sensor and Data Acquisition, Microcontroller and Control Logic, Pump and Motor Control, Water Heating and Hydraulic, Monitoring and Performance Evaluation, and Data Logging and Simulation. Each subsystem will have a certain role in helping the controller run properly and meet the project's requirements.
+
+   The Sensor and Data Acquisition subsystem will collect measurements from the water-heating system and send them to the controller. The Microcontroller and Control Logic subsystem will process this information and determine the appropriate pump speed based on the control algorithm and established operating limits. The Pump and Motor Control subsystem will acquire the command and adjust the speed of the pump using hardware that is compatible.
+The Water Heating and Hydraulic subsystem will include the physical equipment involved in the system, such as the pump, piping, circulation loop, boiler, and heat exchanger. Because the changes in pump speed can affect the water flow and heat transfer, the system's response will need to be observed cautiously. The Monitoring and Performance Evaluation subsystem will help decide how well the controller performs by analyzing the electrical power use, water flow, temperature stability, and the time required to reach the wanted temperature. The Data Logging and Simulation subsystem will log measurements and help the team compare results from different running conditions. If enough information is available from the system, simulation software such as Dymola may also be used to study how the system is expected to react.
+
+   All six subsystems will work together to help the controller react to changes in hot water demand. The sensors will give updated measurements, the controller will use those measurements to decide the speed of the pump, and the pump control hardware will make the needed adjustment. The resulting changes in the flow and temperature will then be observed to gauge the system's performance.
+
+   The main focus is to reduce the pump energy consumption without negatively affecting the water heater's process. The pump must have the ability to maintain the minimum flow necessary by the manufacturer, and the system must still reach and maintain the required water temperature. The team will use calculations, simulations, and lab testing when possible to gauge the proposed design. Although the Regent Commercial Instantaneous Water Heater is the planned application, the equipment used for testing will depend strictly on availability and compatibility. The results will help determine whether the variable speed pump control is a realistic way to improve energy efficiency while keeping trustworthy hot water performance.
+
 ### Hardware Block Diagram
 
 Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
@@ -105,9 +115,113 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 
 Overview
   
+### 2) Microcontroller and Control Logic Subsystem
 
+Overview: 
+
+   The Microcontroller and Control Logic subsystem will act as the decision-making part of the variable-speed pump controller. Its main job will be to use the measurements collected from the water-heating system to determine an appropriate pump speed. The controller will consider available information, such as water flow rate, water temperature, and boiler firing rate, to help determine when the pump can operate at a lower speed.
+   The control algorithm must balance energy savings with the system's operating requirements. For example, reducing pump speed too much could cause the water flow to fall below the manufacturer's minimum requirement or affect the system's ability to maintain the desired temperature. Because of this, the controller will need to follow established operating limits when determining the pump-speed command.
+   The microcontroller will receive measurements from the Sensor and Data Acquisition subsystem, process the information, and send a command to the Pump and Motor Control subsystem. After the pump speed changes, updated measurements will help the team evaluate how the system responds. This process will be used to test and improve the control algorithm. The specific microcontroller, control algorithm, and communication methods will be chosen after the team confirms which hardware is available and compatible with Lochinvar's equipment.
 	
-    
+
+Inputs:
+
+* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
+* Inlet and outlet water temperature measurements, when they are available.
+* Boiling firing rate information, when it is available and compatible with the controller.
+* Manufacturer running limits, in which includes the minimum required water flow.
+* Target the running conditions and control settings created during testing.
+
+Outputs:
+
+* Pump speed commands that are sent to the Pump and Motor subsystem.
+* Related running information sent to the Data Logging and Simulation subsystem.
+* Controller status or fault information, if supported by the chosen hardware.
+  
+
+Interfaces and Procedure:
+
+   The subsystem will get measurements from the Sensor and Data Acquisition subsystem. Depending on the chosen sensors and hardware, these measurements may be provided through analog voltage signals, digital signals, or digital communication. The microcontroller will process the new information and use the control algorithm to decide the suitable pump speed command. The command sent to the pump-control hardware must use a signal or communication approaches supported by the chosen equipment. The exact interface will be decided during detailed design after the team verify the pump's control requirements.
+   During the procedure, the controller will read the accessible measurements, evaluate the current state, and calculate a pump speed command. The pump control hardware will then adjust the pump as instructed. The updated measurements will help determine whether the adjustment creates the expected results. If the measurements suggest an unsafe or unacceptable operating procedure, the controller will need to follow a response created during the design process with Lochinvar.
+
+
+Specifications:
+
+1. The subsystem shall process the accessible flow rate, temperature, and boiler running measurements needed by the control algorithm.
+
+2. The subsystem shall determine pump speed commands depending on the current running conditions and created control logic.
+
+3. The subsystem shall prevent pump speed commands from falling below the minimum permitted running level created from manufacturer requirements and hardware limitations.
+
+4. The subsystem shall sustain changes in pump speed as system demand changes, while staying within the created operating limits.
+
+5. The subsystem shall send pump speed commands through an interface compatible with the selected pump control hardware.
+
+6. The subsystem shall provide applicable operating information to the Data Logging and Simulation subsystem for analysis.
+
+7. The subsystem shall be tested to determine whether the control algorithm can reduce pump energy consumption while still maintaining acceptable flow and temperature performance.
+
+8. The subsystem shall define how it responds to null sensor measurements or operating conditions outside the permitted limits before implementation.
+
+9. The subsystem shall run within the processing, memory, electrical, and communication limits of the chosen microcontroller.
+
+
+### 6) Data Logging and Simulation Subsystem
+
+Overview:
+
+   The Data Logging and Simulation subsystem will help the team to collect data, analyze the system's performance, and evaluate the proposed pump control strategy. Its main purpose will be to record measurements from testing so the team can compare how the system performs at different pump speeds and under different running conditions. Depending on the available equipment, the recorded data may include the speed of the pump, water flow rate, inlet and outlet water temperatures, boiler firing rate, and pump electrical power. The team will use this information to create graphs, identify direction, and compare the system's energy consumption and water heating performance. These results will help the team to decide whether reducing the speed of the pump can save energy without negatively affecting water flow or temperature.
+   Simulation may also be used to learn how the system responds to changes in pump speed and hot water demand. If enough system information is available, the team may use Dymola or another appropriate simulation application to model the system's performance. The simulation results can then be compared with labo measurements or data provided by Lochinvar, when it's available. This comparison will help the team decide whether the model relatively represents the actual system. This subsystem will mainly support testing, analysis, and design improvements. Unless additional hardware and software are chosen for real time integration, the logging and simulation software will not directly control the actual pump during normal procedure.
+
+
+Inputs:
+
+* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
+* Inlet and outlet water temperature measurements, when it's available.
+* Pump speed measurements or commanded pump speed values.
+* Boiler firing rate information, when it's available.
+* Pump electrical power measurements, if appropriate measurement equipment is available.
+* Test conditions and target procedure values.
+* System parameters and measured data needed to develop/evaluate a simulation model.
+  
+Outputs:
+
+* Organized records of procedure measurements.
+* Graphs and comparisons of pump speed, flow rate, temperature, and electrical power.
+* Calculated performance results, including energy use and time to reach the desired temperature when enough data is available.
+* Simulation results showing predicted system performance under chosen running conditions.
+* Analysis that helps the team evaluate and improve the proposed control strategy.
+  
+
+Interfaces and Procedure:
+
+   The subsystem will get data from the sensors, controller, and performance monitoring equipment. Depending on the chosen hardware and software, information may be handed over through digital communication, stored files, or manual data export. The exact methods and data formats will be decided during detailed design.
+During lab testing, the team will take note of measurements while the pump runs under different conditions. The measurements will be organized so that results from different pump speeds and demand levels can be compared.          For simulation, the team will use available system information to decide whether an appropriate model can be developed. The model may help examine running conditions that are difficult to reproduce in the lab. When measured data is available, the team will compare the simulation results with the actual results to recognize the differences and decide whether the model needs further adjustments.
+   The results from this subsystem will help the team decide whether the proposed control strategy will meet the project's requirements. If the data shows that certain pump speeds cause problems with flow or temperature, that information can be used to make changes to the control algorithm and testing in the future.
+
+
+Specifications:
+
+1. The subsystem shall record the available running measurements needed to assess the variable speed pump controller.
+
+2. The subsystem shall correlate recorded measurements with the corresponding test conditions when that information is available.
+
+3. The subsystem shall organize recorded data in a format appropriate for analysis, graphing, and comparison.
+
+4. The subsystem shall assist comparisons of electrical energy consumption at different pump running conditions when appropriate power measurements are available.
+
+5. The subsystem shall sustain the assessment of water flow, temperature stability, and time to reach the wanted temperature using available test data.
+
+6. The subsystem shall sustain the development/use of a simulation model if adequate system information and appropriate software is available.
+
+7. The subsystem shall sustain comparisons between simulation results and measured data when appropriate measurements are available.
+
+8. The subsystem shall document the assumptions, limitations, and data sources used in its analysis and simulations.
+
+9. The subsystem shall deliver results that can be used to assess and improve the proposed control strategy.
+
+10. The subsystem shall document test conditions and data processing methods so that the results can be analyzed and compared consistently.
+
     
     
 
