@@ -116,10 +116,92 @@ Similar to a block diagram, the flow chart aims to specify the system, but from 
 
 ## Atomic Subsystem Specifications
 
+
 ### 1) Sensor and Data Acquisition Subsystem
 
-Overview
-  
+
+Overview:
+
+The Sensor and Data Acquisition Subsystem will provide real-time and high-fidelity monitoring of all the critical hydraulic and thermal parameters within the heating loop. It shall ensure the pump microcontroller maintains a continuous stream of accurate measurements. These measurements will be the flow rate, outlet temperature, and boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. The design should emphasize signal control and sensor responsiveness.
+
+
+Functional Description:
+
+This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
+	
+* Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load
+* Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read
+* Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature
+
+  In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
+
+
+Subsystem Interface:
+
+1) Enviromental Input
+   * Connected to: Water heating and hydraulic subsystem
+   * Description: Gathers raw physical fluid velocity and thermal energy changes directly from 	the piping by sensors
+2) Boiler Load Input
+   * Connected to: Water Heating and Hydraulic Subsystem
+   * Description: Intercepts the boiler firing rate signal and captures the active heating demand
+3) Condition Data Output
+   * Connected to: Microcontroller and Control Logic Subsystem
+   * Description: Transmits filtered, scaled analog voltages and digital pulses to the processing pins of the microcontroller
+4) Data Output
+   * Connected to: Monitoring and performance evaluation subsystem
+   * Description: Gives real-time flow rates and temperature measurements for diagnostic checking
+
+
+Subsystem Operation:
+
+1) Initialization Phase
+	* On system start-up, the microcontroller will establish connection loops and verify stable reference points
+	* If any sensors are broken or out of bounds, a fault will be triggered to prevent the pump from running dry
+2) Data Ingestion Phase
+	* The subsystem will start capturing raw inputs from the sensors on the heating loop
+3) Filtering and Calibration Phase
+	* Capture the raw data from the analog and digital signals 
+	* Filter out any high-frequency noise
+	* Take the raw data and convert it into values to read
+4) Transmission phase
+	* Verified output data will be sent to the display screen
+
+
+Expected User Interaction:
+
+1)Installation and Commissioning Phase
+	* Physically mount the flow meter and temperature sensor
+	* Wire the sensors and boiler to the microcontroller
+2) Calibration Phase
+	* Check the sensors against already calibrated sensors to make sure they are accurate readings
+3) Passive Monitoring Phase
+	* Observe the continuous readings from the sensors 
+4) Maintenance and Diagnostics Phase
+	* If there is a fault, use diagnostic skills to help with troubleshooting any faults
+
+No direct user control of the raw voltage scaling, filtering or sensor calibration frequency
+
+
+Functional FLow Chart:
+
+<img width="935" height="366" alt="image" src="https://github.com/user-attachments/assets/1d422674-58c5-4f15-a3fe-b2fc78f5dcf9" />
+
+
+Specifications:
+
+1) This subsystem shall read data from the temperature sensor.
+
+2)	This subsystem shall read data from the flow meter.
+   
+3)	This subsystem shall update all data every how many seconds we choose.
+   
+4)	This subsystem shall send a fault error if there is any out-of-bounds data or if there is a broken connection.
+   
+5)	This subsystem shall send data to the microcontroller .
+
+
+
+
 ### 2) Microcontroller and Control Logic Subsystem
 
 Overview: 
