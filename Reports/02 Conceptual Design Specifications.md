@@ -390,7 +390,8 @@ The team will use this subsystem during laboratory testing to evaluate the syste
 
 **Functional Flow Chart:**
 
-%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20parent%3D%221%22%20style%3D%22shape%3DsingleArrow%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3BarrowWidth%3D0.4%3BarrowSize%3D0.4%3Brotation%3D-180%3B%22%20value%3D%22%22%20vertex%3D%221%22%3E%3CmxGeometry%20height%3D%2230%22%20width%3D%2260%22%20x%3D%22440%22%20y%3D%22435%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E
+<img width="893" height="386" alt="image" src="https://github.com/user-attachments/assets/7416277d-d8d2-48d2-a255-e9a05958411a" />
+
 
 **Specifications:**
 
