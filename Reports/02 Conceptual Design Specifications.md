@@ -135,7 +135,7 @@ This subsystem's core function is to capture continuous live operating data of t
   
 * Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature.
 
-  In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
+In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
 
 
 Subsystem Interface:
