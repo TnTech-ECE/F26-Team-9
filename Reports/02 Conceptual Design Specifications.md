@@ -497,4 +497,4 @@ All sources utilized in the conceptual design that are not considered common kno
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
-Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystem 1 and 3
+Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Sensor and Data Acquisition Subsystem, and  Pump and Motor Control Subsystem
