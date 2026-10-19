@@ -380,7 +380,7 @@ The primary function of this subsystem is to evaluate the system's response to c
 
 1. **Receive Operating Results:** Obtain measurements and system operating results during pump testing.
 2. **Evaluate System Performance:** Assess the effects of pump speed changes on water flow rate, temperature, and available electrical power measurements.
-3. **Compare Test Conditions:** Compare performance at different pump speeds against baseline operation and applicable manufacturer requirements.
+3. **Compare Test Conditions:** Compare performance at different pump speeds against baseline operation.
 4. **Determine Effectiveness:** Evaluate whether the control strategy reduces pump energy consumption while maintaining acceptable flow and temperature performance.
 5. **Transfer Results:** Send the performance results to the Data Logging and Simulation Subsystem for documentation and further analysis.
 
