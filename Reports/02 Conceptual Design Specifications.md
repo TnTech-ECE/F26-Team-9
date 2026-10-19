@@ -350,7 +350,56 @@ Specifications:
 4) This subsystem shall keep the pump speed so the heat exchanger keeps the desired water temperature.
 	
 
+### 5) Monitoring and Performance Evaluation Subsystem
 
+**Overview:**
+
+The Monitoring and Performance Evaluation Subsystem will evaluate the performance of the proposed variable speed pump control strategy during testing. It will use system operating results, including available flow rate, water temperature, and pump operating measurements, to determine how changes in pump speed affect the water heating system. The subsystem will assess whether reducing pump speed can decrease electrical energy consumption while maintaining the required water flow and temperature. The resulting performance information will be sent to the Data Logging and Simulation Subsystem for further analysis.
+
+**Functional Description:**
+
+The primary function of this subsystem is to evaluate the system's response to changes in pump speed. It will use the results to assess the effectiveness of the control strategy.
+
+1. **Flow and Temperature Evaluation:** Evaluate changes in water flow rate and temperature to determine whether the system is functioning correctly.
+2. **Energy Performance Evaluation:** Compare energy consumption at different pump speeds when measurements are available.
+3. **Operating Requirements:** Determine whether the system maintains minimum flow and temperature requirements.
+4. **Control Strategy Assessment:** Evaluate whether the proposed control strategy achieves potential energy savings without compromising the performance of the water heater.
+5. **Performance Feedback:** Send evaluation results to the Data Logging and Simulation Subsystem to support further analysis.
+
+**Subsystem Interfaces:**
+
+1. **System Running Results Input**
+   - Connected to: Water Heating and Hydraulic Subsystem.
+   - Description: Receives the system's operating results. 
+
+2. **Performance Results Output**
+   - Connected to: Data Logging and Simulation Subsystem.
+   - Description: Sends performance evaluation results for data recording, comparison, and further analysis.
+
+**Subsystem Operation:**
+
+1. **Receive Operating Results:** Obtain measurements and system operating results during pump testing.
+2. **Evaluate System Performance:** Assess the effects of pump speed changes on water flow rate, temperature, and available electrical power measurements.
+3. **Compare Test Conditions:** Compare performance at different pump speeds against baseline operation and applicable manufacturer requirements.
+4. **Determine Effectiveness:** Evaluate whether the control strategy reduces pump energy consumption while maintaining acceptable flow and temperature performance.
+5. **Transfer Results:** Send the performance results to the Data Logging and Simulation Subsystem for documentation and further analysis.
+
+**Expected User Interaction:**
+
+The team will use this subsystem during laboratory testing to evaluate the system's performance under different operating conditions. The results will help determine whether the proposed control strategy meets the project objectives and identify potential improvements. The subsystem will support performance evaluation only.
+
+**Functional Flow Chart:**
+
+
+
+**Specifications:**
+
+1. This subsystem shall evaluate available flow rate and temperature measurements during testing.
+2. This subsystem shall evaluate energy consumption when suitable measurement equipment is available.
+3. This subsystem shall compare system performance under different pump speeds and operating conditions.
+4. This subsystem shall evaluate whether the system maintains minimum flow and temperature requirements.
+5. This subsystem shall provide performance results to the Data Logging and Simulation Subsystem for further analysis.
+6. This subsystem shall help identify performance issues found during testing that may require adjustments to the proposed control strategy.
 
 ### 6) Data Logging and Simulation Subsystem
 
