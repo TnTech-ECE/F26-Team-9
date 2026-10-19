@@ -79,6 +79,24 @@ In summary, this project will investigate whether adjusting the internal circula
 
 In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
 
+Several potential solutions were considered for this project. Each solution uses different operating parameters to determine the appropriate pump speed, including boiler firing rate, water flow rate, outlet temperature, and predefined operating states. The selection of a final solution depends on several factors, which will be reviewed in this section.
+
+The first potential solution involves adjusting pump speed based on the boiler's firing rate. This approach uses the boiler's existing 0–10 V signal, which represents its firing rate from 0% to 100%, to determine the appropriate pump speed. This solution does not require an additional sensor, and it could increase energy efficiency; however, firing rate alone may not accurately represent the system's circulation requirements because water demand and inlet-water temperature can vary independently of boiler output.
+
+The second solution that was considered is based on controlling pump speed according to water flowrate. This approach adjusts circulation based on actual hot-water demand, allowing the pump to increase or decrease its speed as water usage changes. This solution also increased energy efficiency, but flow rate alone does not account for changes in inlet-water temperature or boiler firing rate, which may affect the amount of heat required to maintain the desired outlet temperature. 
+
+The third potential solution uses a temperature-based feedback controller to regulate pump speed. This sensor will continuously measure the outlet-water temperature, which is then compared to the desired temperature. Then, the controller adjusts pump speed based on the difference between the measured and desired temperatures. This solution offers the advantage of directly monitoring temperature performance rather than relying solely on indirect indicators of system demand; however, the relationship between pump speed and outlet temperature must be determined experimentally, and the controller must be tuned carefully to prevent unstable operation or interference with the boiler's existing temperature-control system.
+
+The fourth solution is state-based and divides the system operation into multiple states, such as startup, normal operation, increased demand, temperature recovery, and fault protection. Each state would have a corresponding pump-speed strategy based on the system's current operating conditions. This solution allows organization, and multiple operating conditions can be handled separately. This solution also can be less effective if the states are too broad. This can depend on selected pump speeds for each condition, transition conditions, and operating thresholds. 
+
+The fifth solution is the one selected by our team, as it is the most comprehensive solution. This solution combines water flow rate, boiler firing rate, and outlet-temperature feedback. The flow rate and firing rate provide current conditions and will be used to determine the initial pump-speed command. The temperature feedback will monitor performance, and the system will make adjustments to keep the temperature at the desired point. By combining demand-based control with temperature feedback, this solution could respond to changes in hot-water usage while maintaining the required temperature performance. It also has the potential to reduce unnecessary pump operation more effectively than a strategy relying on a single input. However, this approach requires more extensive programming, sensor integration, experimental testing, and controller tuning.
+
+The sixth and final potential solution our team proposed is simulation based, using a computer model of the boiler system. It would represent the relationships between pump speed and flow, as well as heat transfer, boiler firing rate, and outlet-water temperature. Different solutions could then be considered before being implemented physically.  This solution could help identify opportunities to reduce pump energy consumption while maintaining acceptable temperature performance. However, the accuracy of the simulation depends on how closely the model represents the actual system. 
+
+Several factors influence the selection of the final design, including the energy savings, the ability to maintain the desired outlet temperature, responsiveness to changing water demand, implementation difficulty, and reliability during operation. Combining these inputs could therefore provide a more complete representation of the system's operating conditions, although it also increases development and testing requirements. Based on these requirements, solution five is our selected and preferred solution. This design offers the strongest overall potential to balance energy efficiency and temperature regulation because it incorporates information about both system demand and actual thermal performance. Although this solution is more complex than the alternatives, its additional inputs provide a more comprehensive basis for controlling pump operation under changing conditions. Finally, the selected design must be validated through physical testing to determine whether it actually reduces pump energy consumption while maintaining acceptable outlet-temperature performance and stable operation.
+
+
+
 
 ## High-Level Solution
 
@@ -546,8 +564,10 @@ All sources utilized in the conceptual design that are not considered common kno
 
 Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
-Jocelyn Smith - High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem)
+Jocelyn Smith: High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem)
 
 Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystems - Sensor and Data Acquisition Subsystem and Pump and Motor Control Subsystem
 
 Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsytems)
+
+Danielle Wolford: Comparative analysis of potential solutions, Budget
