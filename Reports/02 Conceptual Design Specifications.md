@@ -177,9 +177,9 @@ Subsystem Operation:
 
 Expected User Interaction:
 
-1)Installation and Commissioning Phase
-	* Physically mount the flow meter and temperature sensor.
-	* Wire the sensors and boiler to the microcontroller.
+1) Installation and Commissioning Phase
+   * Physically mount the flow meter and temperature sensor.
+   * Wire the sensors and boiler to the microcontroller.
 
 2) Calibration Phase
 	* Check the sensors against already calibrated sensors to make sure they are accurate readings.
