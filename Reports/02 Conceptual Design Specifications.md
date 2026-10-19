@@ -129,9 +129,11 @@ Functional Description:
 
 This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
 	
-* Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load
-* Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read
-* Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature
+* Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load.
+  
+* Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read.
+  
+* Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature.
 
   In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
 
@@ -139,52 +141,62 @@ This subsystem's core function is to capture continuous live operating data of t
 Subsystem Interface:
 
 1) Enviromental Input
-   * Connected to: Water heating and hydraulic subsystem
-   * Description: Gathers raw physical fluid velocity and thermal energy changes directly from 	the piping by sensors
+   * Connected to: Water heating and hydraulic subsystem.
+   * Description: Gathers raw physical fluid velocity and thermal energy changes directly from 	the piping by sensors.
+     
 2) Boiler Load Input
-   * Connected to: Water Heating and Hydraulic Subsystem
-   * Description: Intercepts the boiler firing rate signal and captures the active heating demand
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Intercepts the boiler firing rate signal and captures the active heating demand.
+     
 3) Condition Data Output
-   * Connected to: Microcontroller and Control Logic Subsystem
-   * Description: Transmits filtered, scaled analog voltages and digital pulses to the processing pins of the microcontroller
+   * Connected to: Microcontroller and Control Logic Subsystem.
+   * Description: Transmits filtered, scaled analog voltages and digital pulses to the processing pins of the microcontroller.
+     
 4) Data Output
-   * Connected to: Monitoring and performance evaluation subsystem
-   * Description: Gives real-time flow rates and temperature measurements for diagnostic checking
-
+   * Connected to: Monitoring and performance evaluation subsystem.
+   * Description: Gives real-time flow rates and temperature measurements for diagnostic checking.
+     
 
 Subsystem Operation:
 
 1) Initialization Phase
-	* On system start-up, the microcontroller will establish connection loops and verify stable reference points
-	* If any sensors are broken or out of bounds, a fault will be triggered to prevent the pump from running dry
+   * The microcontroller will establish connection loops and verify stable reference points.
+   * If any sensors are broken or out of bounds, a fault will be triggered to prevent the pump from running dry.
+     
 2) Data Ingestion Phase
-	* The subsystem will start capturing raw inputs from the sensors on the heating loop
+   * The subsystem will start capturing raw inputs from the sensors on the heating loop.
+     
 3) Filtering and Calibration Phase
-	* Capture the raw data from the analog and digital signals 
-	* Filter out any high-frequency noise
-	* Take the raw data and convert it into values to read
+   * Capture the raw data from the analog and digital signals.
+   * Filter out any high-frequency noise.
+   * Take the raw data and convert it into values to read.
+     
 4) Transmission phase
-	* Verified output data will be sent to the display screen
+   * Verified output data will be sent to the display screen.
 
 
 Expected User Interaction:
 
 1)Installation and Commissioning Phase
-	* Physically mount the flow meter and temperature sensor
-	* Wire the sensors and boiler to the microcontroller
-2) Calibration Phase
-	* Check the sensors against already calibrated sensors to make sure they are accurate readings
-3) Passive Monitoring Phase
-	* Observe the continuous readings from the sensors 
-4) Maintenance and Diagnostics Phase
-	* If there is a fault, use diagnostic skills to help with troubleshooting any faults
+	* Physically mount the flow meter and temperature sensor.
+	* Wire the sensors and boiler to the microcontroller.
 
-No direct user control of the raw voltage scaling, filtering or sensor calibration frequency
+2) Calibration Phase
+	* Check the sensors against already calibrated sensors to make sure they are accurate readings.
+
+3) Passive Monitoring Phase
+	* Observe the continuous readings from the sensors.
+
+4) Maintenance and Diagnostics Phase
+	* If there is a fault, use diagnostic skills to help with troubleshooting any faults.
+
+No direct user control of the raw voltage scaling, filtering or sensor calibration frequency.
 
 
 Functional FLow Chart:
 
-<img width="935" height="366" alt="image" src="https://github.com/user-attachments/assets/1d422674-58c5-4f15-a3fe-b2fc78f5dcf9" />
+<img width="902" height="398" alt="image" src="https://github.com/user-attachments/assets/c7d8ce99-d4ac-42b1-9b6d-15a99f1c3480" />
+
 
 
 Specifications:
@@ -251,6 +263,93 @@ Specifications:
 8. The subsystem shall define how it responds to null sensor measurements or operating conditions outside the permitted limits before implementation.
 
 9. The subsystem shall run within the processing, memory, electrical, and communication limits of the chosen microcontroller.
+
+
+
+
+### 3) Pump and Motor Control Subsystem
+
+Overview:
+The pump and motor control subsystem will take the controller's command and change the circulation pump speed to meet that demand. It will ensure the system adjusts the pump speeds based on the control command and demand. The design should emphasize operating within the pump's allowable speed, prevent motor strain, and provide the correct circulation needed to maintain the desirable water temperature.
+
+
+Functional Description:
+This subsystem's core function is to receive the calculated speed instructions from the pump's controller and use that to vary the circulation pump during different demand situations and maintain the desired water temperature. This will prepare digital signals for high-efficiency mechanical work.
+
+1) Speed Modulation
+   * Responds directly to incoming signals by altering the voltage or frequency line to the pump. This will allow the pump to adjust the speed based on the control command.
+     
+2) Operational Range Control
+   * This makes sure the pump's motor is operating within the pump's allowable range.
+   * Protects the motor from spinning too fast or stalling below its limit.
+     
+3) Thermal System Balancing
+   * Regulates flow velocity to provide the circulation needed by the heat exchanger to keep the desired temperature under fluctuating demands.
+
+In addition, the subsystem should provide running data for evaluations. This will share motor speed based on flow speeds and temperature readings for lab testing.
+
+
+Subsystem Interface:
+
+1) Control Logic Input
+   * Connected To: Microcontroller and Control Logic Subsystem.
+   * Description: Receives the low-voltage speed commands and safety faults calculated by the microcontroller.
+
+2) Mains Power Input
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Connects to the 120VAC to supply the pump with power.
+     
+3) Mechanical Circulation Output
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Delivers control signals and power to the pump to control the motor's speed.
+     
+4) Operational Data Outpu
+   * Connected to: Monitoring and Performance Evaluations Subsystem.
+   * Description: Transmits real-time data to observe the motor speed.
+
+
+Subsystem Operation:
+
+1) Initialization Phase
+   * During system startup, the pump controller will establish safe boundaries.
+   * Verifies that the pump is operational and no faults have occurred.
+     
+2) Demand Activation Phase
+   * Delivers 120 VAC to the pump.
+
+3) Modulation Phase
+   * During run time, raw data for the speed commands is captured.
+   * System will continuously adjust pump speeds based on control command, water flow, and the water temperature.
+
+4) Shutdown and Failsafe Phase
+   * If there is a control logic fault or a communication fault, the subsystem will go into action and make sure the water will not overheat.
+   * It will make sure there are safety measures put into effect in case of a fault.
+
+Expected User Interaction:
+
+1) Monitoring the active speed.
+2) Monitor if the pump is operating within a safe boundary.
+3) Could have an override program for maintenance.
+
+No direct user control of frequency, pump speed, voltage scaling, or safety switching loops. Pumps' minimum and maximum speed can be programmed through the microcontroller's interface.
+
+
+Functional Flow Chart:
+
+<img width="938" height="413" alt="image" src="https://github.com/user-attachments/assets/fd6183a5-1590-4aad-a969-2af56a5a9838" />
+
+
+Specifications:
+
+1) This subsystem shall capture the microcontroller's command and change the circulation pump speed dynamically.
+   
+2) The subsystem shall operate within the pump's allowable speed range.
+
+3) The subsystem shall transmit live motor speeds to the microcontroller's display.
+   
+4) This subsystem shall keep the pump speed so the heat exchanger keeps the desired water temperature.
+	
+
 
 
 ### 6) Data Logging and Simulation Subsystem
