@@ -549,3 +549,5 @@ Each team member is required to make a meaningful contribution to the project pr
 Jocelyn Smith - High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem)
 
 Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystems - Sensor and Data Acquisition Subsystem and Pump and Motor Control Subsystem
+
+Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsytems)
