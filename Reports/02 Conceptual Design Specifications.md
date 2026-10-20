@@ -366,7 +366,61 @@ Specifications:
 3) The subsystem shall transmit live motor speeds to the microcontroller's display.
    
 4) This subsystem shall keep the pump speed so the heat exchanger keeps the desired water temperature.
-	
+
+
+
+
+### 4) Water Heater and Hydraulic Subsystem
+
+**Overview:**
+
+The Water Heating and Hydraulic Subsystem will provide the physical environment needed to test the variable-speed pump controller. Its main purpose is to heat and circulate water through the existing water-heating system while allowing the team to observe how changes in pump speed affect water flow, inlet and outlet temperatures, and overall heating performance. This subsystem is expected to use the available Lochinvar water heater and circulation pump, along with the existing piping and any additional hydraulic components required for testing. Depending on the condition and configuration of the existing equipment, additional materials may be needed to establish reliable hydraulic connections.
+
+**Functional Description:**
+
+* **Water Heating:** use the existing water heater to provide thermal energy and heat the water according to its established operating settings.
+* **Water Circulation:**  use the circulation pump to move water through the connected hydraulic components and establish the flow conditions required for testing.
+* **Pump Speed Adjustment:** accommodate changes in pump speed commanded by the Pump and Motor Control Subsystem based on instructions from the Microcontroller and Control Logic Subsystem.
+* **Flow and Temperature Response:** allow the team to observe how changes in pump speed affect water flow rate, heat transfer, and outlet-water temperature.
+* **Sensor Integration:** provide appropriate installation points for flow and temperature sensors so that operating measurements can be collected by the Sensor and Data Acquisition Subsystem.
+
+**Inputs**
+* Heated or partially heated water supplied by the existing water-heating equipment.
+* Pump-speed commands from the Pump and Motor Control Subsystem.
+* Water-flow and temperature measurements from the Sensor and Data Acquisition Subsystem for monitoring and evaluation.
+* Electrical power supplied to the water heater and circulation pump through their existing electrical systems.
+* Test conditions, including target outlet temperature, pump operating speed, and water-demand conditions.
+* Hydraulic connections and operating settings established for each laboratory test.
+
+**Outputs**
+* Circulated water supplied through the hydraulic system.
+* Heated water at the system outlet under the operating conditions established for testing.
+* Water-flow conditions that can be measured and compared at different pump speeds.
+* Inlet and outlet water temperatures for evaluating heat transfer and temperature stability.
+* A physical test environment for assessing the performance of the variable-speed pump controller.
+* Hydraulic operating data that can be used by the Monitoring and Performance Evaluation Subsystem and the Data Logging and Simulation Subsystem.
+
+**Interfaces and Procedure**
+
+The Water Heating and Hydraulic Subsystem receives pump-speed commands from the Pump and Motor Control Subsystem and the Microcontroller and Control Logic Subsystem. Flow-rate and temperature measurements are collected through the Sensor and Data Acquisition Subsystem and shared with the monitoring and data logging subsystems for performance evaluation.
+
+Before testing, the water heater, circulation pump, piping, and connections shall be inspected for safe operation and leaks. The system is then operated, pump speed is adjusted under different conditions, and flowrate and temperature data are recorded. After testing, the system shall be shut down according to the manufacturer's procedures.
+
+**Specifications**
+
+1. The subsystem shall maintain water circulation within the water heater and pump manufacturer's operating limits.
+2. All piping, fittings, and seals shall withstand the system's operating temperature and pressure without leakage.
+3. The subsystem shall provide suitable locations for flow-rate and temperature sensors.
+4. The subsystem shall support pump-speed adjustments through the Pump and Motor Control Subsystem.
+5. The subsystem shall retain the water heater's existing safety controls and protection mechanisms.
+
+**Functional Flowchart:**
+
+<img width="744" height="778" alt="image" src="https://github.com/user-attachments/assets/39d0dbbd-962f-4884-a966-5f227efddb57" />
+
+
+
+
 
 ### 5) Monitoring and Performance Evaluation Subsystem
 
