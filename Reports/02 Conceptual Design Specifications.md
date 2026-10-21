@@ -354,7 +354,8 @@ No direct user control of frequency, pump speed, voltage scaling, or safety swit
 
 Functional Flow Chart:
 
-<img width="938" height="413" alt="image" src="https://github.com/user-attachments/assets/fd6183a5-1590-4aad-a969-2af56a5a9838" />
+<img width="825" height="242" alt="image" src="https://github.com/user-attachments/assets/97c8f6ae-c530-4c08-8fbd-bd51574dd9e2" />
+
 
 
 Specifications:
