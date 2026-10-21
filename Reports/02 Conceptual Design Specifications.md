@@ -462,7 +462,9 @@ The team will use this subsystem during laboratory testing to evaluate the syste
 
 **Functional Flow Chart:**
 
-<img width="827" height="335" alt="image" src="https://github.com/user-attachments/assets/b97ad218-d649-4818-86fe-2eecd5979eae" />
+<img width="455" height="168" alt="image" src="https://github.com/user-attachments/assets/a5cbd779-ad76-486f-a6b7-4c7ed8f2db7f" />
+
+
 
 **Specifications:**
 
