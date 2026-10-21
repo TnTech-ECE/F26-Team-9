@@ -416,8 +416,7 @@ Before testing, the water heater, circulation pump, piping, and connections shal
 
 **Functional Flowchart:**
 
-<img width="744" height="778" alt="image" src="https://github.com/user-attachments/assets/39d0dbbd-962f-4884-a966-5f227efddb57" />
-
+<img width="431" height="273" alt="image" src="https://github.com/user-attachments/assets/3830704c-444d-49e2-8881-834f89bec4f3" />
 
 
 
