@@ -1,5 +1,19 @@
-# Conceptual Design
+<div align="center">
 
+# Variable Speed Circulation Pump Controller
+# Conceptual Design Document
+
+---
+
+---
+
+### Jocelyn Smith, Danielle Wolford, Kendall Arnold, Skyler Raines
+
+Department of Electrical and Computer Engineering
+
+Tennessee Technological University
+
+</div>
 
 
 ## Introduction
