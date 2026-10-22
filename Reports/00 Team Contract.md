@@ -1,9 +1,19 @@
-# **Teamwork Contract**
+<div align="center">
 
-**Team 9**  
-**Team Members:** [Jocelyn Smith, Kendall Arnold, Skyler Raines, Dani Wolford ]   
-*Electrical and Computer Engineering Department*  
-*Tennessee Technological University*
+# Teamwork Contract
+
+---
+
+### Team 9
+
+### Jocelyn Smith, Kendall Arnold, Skyler Raines, Danielle Wolford
+
+Department of Electrical and Computer Engineering  
+Tennessee Technological University
+
+</div>
+
+<br>
 
 
 ## **Introduction**
