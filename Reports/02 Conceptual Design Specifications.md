@@ -211,9 +211,9 @@ Expected User Interaction:
 No direct user control of the raw voltage scaling, filtering or sensor calibration frequency.
 
 
-Functional FLow Chart:
+Functional Flow Chart:
 
-<img width="902" height="398" alt="image" src="https://github.com/user-attachments/assets/c7d8ce99-d4ac-42b1-9b6d-15a99f1c3480" />
+<img width="534" height="178" alt="image" src="https://github.com/user-attachments/assets/c16677ed-42c8-48d4-8e17-1cb589b570aa" />
 
 
 
