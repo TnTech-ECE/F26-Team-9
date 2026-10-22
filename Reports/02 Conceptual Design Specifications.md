@@ -633,7 +633,6 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 
 ### Division of Labor
 
-First, conduct a thorough analysis of the skills currently available within the team, and then compare these skills to the specific requirements of each subsystem. Based on this analysis, appoint a team member to take the specifications for each subsystem and generate a corresponding solution (i.e. detailed design). If there are more team members than subsystems, consider further subdividing the solutions into smaller tasks or components, thereby allowing each team member the opportunity to design a subsystem.
 
 * High-Level Solution - Jocelyn Smith
 	* Requirements: Develop an overall solution for the variable-speed pump controller, identify how the six subsystems will work together, 	create a hardware block diagram, and develop an operational flowchart showing how the system will respond to changing operating 			conditions.
@@ -644,6 +643,9 @@ First, conduct a thorough analysis of the skills currently available within the 
 * Atomic Subsystem (Data Logic and Simulation Subsystem) - Jocelyn Smith
 	* Requirements: Developing a method for collecting and organizing operating data, including water flow rate, temperature, pump speed, 		and electrical power when available. Use MATLAB or other available software to analyze the collected measurements, develop simulations 		when sufficient information is available, and compare different running conditions to evaluate potential energy savings and system 			performance.
 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with MATLAB, Python, and 			control system analysis. These skills will help her organize experimental data, develop simulations, and analyze how changes in pump 		speed affect the water heating system. Because this subsystem works closely with the Microcontroller and Control Logic subsystem, 			assigning both to the same team member will also help maintain consistency between the controller design and performance analysis.
+ * Atomic Subsystems(Monitoring and Performance Evaluation Subsystem)- Kendall Arnold
+	 * Requirements: 
+     * Responsible team member and rationale: Kendall was assigned this subsystem due to her  
   
 ### Timeline
 
@@ -676,6 +678,6 @@ Jocelyn Smith: High Level Solution, Atomic Subsystem (Microcontroller and Contro
 
 Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystems(Sensor and Data Acquisition Subsystem and Pump and Motor Control Subsystem)
 
-Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsytems)
+Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsytem)
 
 Danielle Wolford: Comparative analysis of potential solutions, Budget, Atomic Subsystems (Water Heating and Hydraulic Subsystem)
