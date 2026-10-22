@@ -60,11 +60,8 @@ Because of this, the main part of our project is not just finding a variable spe
 ### Background
 
 Hot water systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other units. These systems must be capable of responding to frequent changes in hot water demands while maintaining the required water temperature and flow.
-
 Some systems use Instantaneous water heating which is the process of using a tankless water heater that will heat up the water only when you need it. The process starts with cold water entering the unit to be heated by a heating element then delivered at the desired temperature of the customer.
-
 The Regent Commercial Tankless Water Heater is the target system being investigated in this project. The Regent is designed as a tankless water heater that heats water as it passes through the system rather than storing hot water in a tank. Cold water, referred to as the inlet water, enters the system and flows through the heat exchanger. This is where thermal energy is transferred from the heating system to the water. The heated water, referred to as the outlet water, then exits the unit at the required temperature. If additional heating is needed, water can be recirculated through the heat exchanger to increase its temperature before being delivered to the system.
-
 The purpose of a heat exchanger is to be able to transfer thermal energy to the water, creating the desired supply of hot water without the two ever coming in direct contact. To understand heat exchangers better and how to reach desired temperatures, it's good to understand the relationship when a system at a higher temperature is in contact with a system at a lower temperature. The rate of heat transferred to the water can be described by:
 
 $$
@@ -96,7 +93,6 @@ m_V = \rho Q_V
 $$
 
 Where ρ is the density of water.These relationships allow changes in the volumetric flow rate of water to be related to the mass flow rate used in the heat transfer equation.
-
 The demand for hot water is never stagnant, it is constantly changing. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
 
 Electrical power is the rate at which electrical energy is used by a system. Power can be expressed as: 
@@ -114,11 +110,8 @@ E = Pt
 $$
 
 A circulation pump operating at a higher speed generally requires more electrical power. If the pump operates at maximum capacity when the system does not require maximum flow, unnecessary energy can be consumed. A variable speed pump can adjust its operation based on the required flow rate, potentially reducing power consumption during periods of lower demand. For the proposed system, monitoring and controlling pump operation can therefore help maintain the required hot water performance while reducing unnecessary electrical energy consumption.
-
 Energy efficiency involves meeting the required system performance while using as little energy as possible. In a hot water system, the circulation pump does not necessarily need to operate at maximum speed under all operating conditions. Reducing pump speed when demand is lower can reduce unnecessary electrical power consumption.
-
 However, reducing pump speed too much can also affect system performance by decreasing flow and potentially increasing the time required to reach or maintain the desired temperature. Therefore, the goal is to not just minimize pump speed, but to find a balance between energy consumption and system performance.
-
 A variable speed pump provides a way to adjust flow according to system demand. By supplying only the flow needed for the current operating condition, the system can potentially reduce unnecessary energy use while still meeting the required temperature and response time requirements. This balance between efficiency and performance is a key consideration in the proposed system.
 
 ### Specifications and Constraints
@@ -133,44 +126,29 @@ The system will also need to be tested under different operating conditions. We 
 #### Constraints
   
 At this point, the information that Lochinvar provided doesn't list a specific governing body or regulation that our project is required to follow. However, because the project includes a commercial water heating system, electrical components, hot water, and a circulation pump, safety still needs to be considered when designing and testing the controller. The controller shouldn't intrude on any of the existing safety features of the boiler. Before the final design is in the process of being implemented into an actual Lochinvar product, any mandatory regulations would need to be identified and followed.
-
 The project details provided by Lochinvar doesn't give our team any specific industry standards that we are required to follow.. Because of this, we shouldn't assume or list a certain standard unless Lochinvar tells us that it applies to the project. For our work at this point in time, the main requirement is making sure that the controller works with the existing Lochinvar equipment and doesn't negatively affect the current temperature control. The controller also needs to keep the minimum required flow rate and keep the system temperature steady within +-4 degrees F.
-  
 Safety is important for this project because the system deals with hot water, boiler equipment, electrical components, and a circulation pump. If the pump is running at too low of a speed, there is a possibility that there isn't enough water flowing through the system for it to run correctly and efficiently. Because of this, our controller needs to keep the minimum needed flow rate while adjusting the speed of the pump. It also can't negatively affect how quickly the system attains its temperature set point. or causes the water temperature to be unstable. 
 The final design should also work with the current temperature and safety controls rather than replacing or meddling with them. Because of the main purpose of the controller is to improve the efficiency, any energy savings would not be worth it if they caused the water to run incorrectly or unsafely. 
-
 The biggest influence for our project are environmental and economic. The main goal of the project is to improve the efficiency of the system overall by controlling the circulation pump speed. If the pump is able to run at a lower speed when the full pump is not needed, the system could possibly use less electrical power. This could reduce the amount of energy used while it's running, which would have both an environmental and economical advantage.
 There is also an economic deliberations when it comes to implementing the controller. Any improvement in efficiency would need to be worth the extra hardware, sensors, programming, and controls needed to make the system work. Our team would need to consider if the amount of energy saved by modifying the pump speed is enough to validate adding the control system. 
 
 ## Survey of Existing Solutions
 
 There is a wide variety of available circulation pumps in the current market. These include 3 main types: multi-speed circulator pumps, electronically commutated motor pumps, and automatic recirculation pumps.
-
 Multi-speed circulator pumps are manual variable speed pumps but can have 3+ speeds instead of just 2. They can be budget friendly but work best for small to medium sized water systems. 
 Electronically commutated motor pumps can be automatic or have manually selectable speeds. They are energy efficient and reduce mechanical stress but work better for residential water systems.
-
 Automatic recirculation pumps are the best fit for this project. They are sensor-driven and programmable, reduce energy wastage, and can be used for tankless water heaters. To be more specific though, there are 4 types of automatic recirculation pumps: Constant temperature, demand-controlled, temperature modulation, and hybrids. 
-
 Constant temperature pumps adjust their speed to maintain a set temperature. Demand-controlled pumps use flow and temperature sensors to start or stop the pump. Temperature modulation pumps adjust temperature based on demand. Finally, Hybrid pumps typically combine constant temperature pumps and demand-controlled pumps. 
-
 For this project, demand-controlled pumps fit the best. For the system to start, a user will trigger the system, or the controller senses a drop in temperature. The system will then adjust to the trigger and return to resting state when the temperature sensor has confirmed the hot water has reached the designated point in the loop. The “resting state” helps to save energy as well as extending the equipment’s lifespan.
-
-
 
 ## Measures of Success
 
 Our goal is to form a fully functional variable circulation pump, but there are some checkpoints along the way to determine and measure our success. There are also some measurements based on the specifications of this project. 
-
 The first is performance metrics. The accuracy and stability of the flow and flow sensor, as well as response time. 
-
 The next measurement for success is energy efficiency. Essentially, asking if the energy savings are enough to justify the higher cost. 
-
 After that, the next consideration is reliability. Is the mechanical stress reduced and by how much? What is the average time between failures? 
-
 Our next measurements are economic and environmental measures. What is the return on investment? What about the life cycle cost versus the operating cost reduction? For environmental, does this new pump maintain water quality and system integrity?
-
 We also need to measure the flow rates versus the demand and decide if this pump is in fact more efficient. Additionally, we need to maintain the temperature during the different flow speeds. 
-
 If we can meet or exceed these measurements for our final product, then we will have succeeded in creating a functional and efficient variable circulation pump.
 
 
@@ -194,13 +172,9 @@ Temperature measurements will be obtained using two Cooper-Atkins 4005MK Type-K 
 * Skyler Raines: C/C++, Assembly, Circuit Analysis, AUTOCAD, Revit, PLC, Ladder Logic, Control Systems, Troubleshooting
 
 The capstone team consists of four members: Jocelyn Smith, Danielle Wolford, Kendall Arnold, and Skyler Raines. Each member of the team has experience with different programming languages, engineering software, and electrical engineering concepts that will be useful throughout the project. Developing a variable speed pump controller will need knowledge of programming, circuit analysis, control systems, hardware integration, and testing. The team has experience in some of these areas, which will let the work be divided depending on each member's strengths. However, there are also areas where further research and learning will be needed before the project can be completed.
-
 Although the team has experience in programming, circuit analysis, and control systems, there are still some areas that will require further knowledge. One of the biggest challenges will be to understand how the circulation pump affects the water flow and temperature inside the heat exchanger. The team will also need to learn more about the specific pump, sensors, and boiler signals given by Lochinvar. This contains understanding how the 0–10 V firing rate signal and flow sensor assessments can be used when developing the controller. Another area that may need further research is deciding how to alter the pump speed without causing the system to be unstable or negatively affecting the time required to reach the wanted temperature.
-
 To achieve the knowledge needed for these areas, the team plans to research the equipment being used, go over technical documentation provided by Lochinvar, and communicate with Lochinvar's engineers when questions come up. The team may also need to become more familiar with simulation software such as Dymola if modeling is included in the project. Testing and evaluating results will also help the team better understand how the system responds when different running conditions occur. By combining the skills the members already have with further research and guidance, the team should be able to work through the challenges that come up during the project.
-
 The team has chosen Dr. Storm as the project supervisor. The supervisor will help guide the team through the engineering and technical parts of the project. This will include giving feedback on the proposed control approach, helping the team understand the equipment being used, and answering questions that may come up during development and testing. Having a supervisor with knowledge of the project will be important because the team is working with commercial water heating equipment and needs to make sure the proposed controller meets the requirements supplied by Lochinvar.
-
 The instructor for this capstone project is Dr. Storm. The instructor will be able to give the team guidance throughout the project and to make sure the team is meeting the expectations and requirements of the capstone. This contains reviewing project documentation, providing feedback on assignments and presentations, and helping the team stay on track with the project timeline. The instructor will also help evaluate the team's progress and make sure the work being completed meets the academic and engineering expectations of capstone.
 
 ### Timeline
@@ -257,6 +231,6 @@ Each team member must contribute meaningfully to the project proposal. In this s
 
 * Kendall Arnold - Introduction, Background, Budget
 * Skyler Raines- Timeline, Broader Implications, Ethics and Responsibility as Engineers
-* Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personel
+* Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personel, Specific Implications
 * Danielle Wolford - Survey of Existing Solutions, Measures of Success
 
