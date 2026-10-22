@@ -1,42 +1,14 @@
 # Conceptual Design
 
-This document outlines the objectives of a conceptual design. After reading your conceptual design, the reader should understand:
-
-- The fully formulated problem.
-- The fully decomposed conceptual solution.
-- Specifications for each of the atomic pieces of the solution.
-- Any additional constraints and their origins.
-- How the team will accomplish their goals given the available resources.
-
-With these guidelines, each team is expected to create a suitable document to achieve the intended objectives and effectively inform their stakeholders.
-
-
-## General Requirements for the Document
-- Submissions must be composed in Markdown format. Submitting PDFs or Word documents is not permitted.
-- All information that is not considered common knowledge among the audience must be properly cited.
-- The document should be written in the third person.
-- An introduction section should be included.
-- The latest fully formulated problem must be clearly articulated using explicit "shall" statements.
-- A comparative analysis of potential solutions must be performed
-- The document must present a comprehensive, well-specified high-level solution.
-- The solution must contain a hardware block diagram.
-- The solution must contain an operational flowchart.
-- For every atomic subsystem, a detailed functional description, inputs, outputs, and specifications must be provided.
-- The document should include an acknowledgment of ethical, professional, and standards considerations, explaining the specific constraints imposed.
-- The solution must include a refined estimate of the resources needed, including: costs, allocation of responsibilities for each subsystem, and a Gantt chart.
 
 
 ## Introduction
-
-The introduction is intended to reintroduce the fully formulated problem. 
 
 Commercial water heating systems play an important role in providing reliable hot water for applications such as apartments, hotels, restaurants, and other commercial facilities. These systems must be capable of meeting varying hot water demands while maintaining a consistent outlet temperature and sufficient flow rate. The Regent Commercial Tankless Water Heater is designed to heat water as it passes through the system rather than storing a large volume of heated water in a tank. Although this design allows the unit to provide hot water on demand, the system must respond to changes in water flow and temperature to maintain the desired performance. As hot water demand changes, the amount of energy required to heat the incoming water also changes. This creates an opportunity to investigate how the system can adjust its operation to meet actual demand without using its maximum operating capacity.
 
 The objective of this project is to develop and evaluate a control strategy that adjusts water flow and heating operation based on real-time temperature and demand measurements. The proposed strategy will use components such as a variable-speed pump, flow sensor, and inlet and outlet temperature sensors to monitor system conditions and determine when adjustments are needed. By using this feedback, the control system will aim to regulate water flow and coordinate heating operation to provide the required outlet temperature while minimizing unnecessary energy consumption. As hot water demand changes, the system will respond by adjusting its operating conditions rather than continuously relying on maximum capacity when it may not be necessary. The team will investigate how changes in flow rate affect heat transfer, temperature regulation, and electrical power consumption to determine the most effective control approach. Engineering calculations, computer simulations, and testing will be used to evaluate the proposed strategy under different operating conditions and assess its ability to balance energy efficiency with consistent hot water delivery. Ultimately, the goal is to establish an algorithm that improves the energy efficiency of the Regent Commercial Tankless Water Heater without compromising its performance or reliability.
 
 ## Restating the Fully Formulated Problem
-
-The fully formulated problem is the overall objective and scope complete with the set of shall statements. This was part of the project proposal. However, it may be that the scope has changed. So, state the fully formulated problem in the introduction of the conceptual design and planning document. For each of the constraints, explain the origin of the constraint (customer specification, standards, ethical concern, broader implication concern, etc).
 
 The primary objective of this project is to develop and evaluate a control strategy for adjusting the pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater based on changing operating conditions. Lochinvar is interested in determining whether reducing pump speed can decrease electrical energy consumption without compromising the performance of the water heating system when full circulation is unnecessary. Because hot water demand varies throughout the day, the pump may not need to operate at a constant speed under every condition. However, reducing pump speed must be carefully evaluated to ensure sufficient water flow through the heat exchanger and the ability to maintain the required water temperature.
 
@@ -77,8 +49,6 @@ In summary, this project will investigate whether adjusting the internal circula
 
 ## Comparative Analysis of Potential Solutions
 
-In this section, various potential solutions are hypothesized, design considerations are discussed, and factors influencing the selection of a solution are outlined. The chosen solution is then identified with justifications for its selection.
-
 Several potential solutions were considered for this project. Each solution uses different operating parameters to determine the appropriate pump speed, including boiler firing rate, water flow rate, outlet temperature, and predefined operating states. The selection of a final solution depends on several factors, which will be reviewed in this section.
 
 The first potential solution involves adjusting pump speed based on the boiler's firing rate. This approach uses the boiler's existing 0–10 V signal, which represents its firing rate from 0% to 100%, to determine the appropriate pump speed. This solution does not require an additional sensor, and it could increase energy efficiency; however, firing rate alone may not accurately represent the system's circulation requirements because water demand and inlet-water temperature can vary independently of boiler output.
@@ -97,11 +67,7 @@ Several factors influence the selection of the final design, including the energ
 
 
 
-
 ## High-Level Solution
-
-This section presents a comprehensive, high-level solution aimed at efficiently fulfilling all specified requirements and constraints. The solution is designed to maximize stakeholder goal attainment, adhere to established constraints, minimize risks, and optimize resource utilization. Please elaborate on how your design accomplishes these objectives.
-
 
 
    The proposed solution is to develop a variable speed pump controller that is able to reduce unneeded use of electrical energy while maintaining the performance of Lochinvar's water heating system. Rather than having the circulation pump run at a constant speed, the controller will adjust the speed of the pump based on the system's running conditions. Measurements such as the water flow rate, inlet and outlet water temperatures, and boiler firing rate will help determine when the speed of the pump can be reduced without affecting the system's ability to deliver hot water. The overall design will consist of six subsystems: Sensor and Data Acquisition, Microcontroller and Control Logic, Pump and Motor Control, Water Heating and Hydraulic, Monitoring and Performance Evaluation, and Data Logging and Simulation. Each subsystem will have a certain role in helping the controller run properly and meet the project's requirements.
@@ -115,18 +81,12 @@ The Water Heating and Hydraulic subsystem will include the physical equipment in
 
 ### Hardware Block Diagram
 
-Block diagrams are an excellent way to provide an overarching understanding of a system and the relationships among its individual components. Generally, block diagrams draw from visual modeling languages like the Universal Modeling Language (UML). Each block represents a subsystem, and each connection indicates a relationship between the connected blocks. Typically, the relationship in a system diagram denotes an input-output interaction.
-
-In the block diagram, each subsystem should be depicted by a single block. For each block, there should be a brief explanation of its functional expectations and associated constraints. Similarly, each connection should have a concise description of the relationship it represents, including the nature of the connection (such as power, analog signal, serial communication, or wireless communication) and any relevant constraints.
-
-The end result should present a comprehensive view of a well-defined system, delegating all atomic responsibilities necessary to accomplish the project scope to their respective subsystems.
 
 <img width="874" height="1104" alt="block-diagram-capstone" src="https://github.com/user-attachments/assets/565693de-2806-4bfb-9ca7-e67828a2532c" />
 
 
 ### Operational Flow Chart
 
-Similar to a block diagram, the flow chart aims to specify the system, but from the user's point of view rather than illustrating the arrangement of each subsystem. It outlines the steps a user needs to perform to use the device and the screens/interfaces they will encounter. A diagram should be drawn to represent this process. Each step should be represented in the diagram to visually depict the sequence of actions and corresponding screens/interfaces the user will encounter while using the device.
 
 
 <img width="1044" height="780" alt="flowchart-capstone" src="https://github.com/user-attachments/assets/edd6917d-b1f9-4489-a623-1d80af3193c1" />
@@ -573,16 +533,8 @@ These considerations will influence the design constraints, specifications, and 
 In conclusion, upholding public safety remains a primary responsibility throughout this project. The development of the variable circulation pump controller must maintain reliable temperature stability under fluctuating loads in commercial facilities while improving energy efficiency and overall system performance. Achieving these goals will require each team member to complete their contributions with technical diligence, professional integrity, and attention to the environmental, societal, cultural, and economic impacts of the design. Team members must also remain mindful that this controller may be used in future products developed by Lochinvar. By following applicable engineering standards, validating system performance, and maintaining ethical responsibilities, the team can work toward delivering a safe, reliable, and efficient controller that benefits both Lochinvar and the public while reducing potential operational risks and liabilities.
 
 
-
-
-
-
-
-
-
 ## Resources
 
-You have already estimated the resources needed to complete the solution. Now, let's refine those estimates.
 
 ### Budget
 
@@ -649,15 +601,12 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
   
 ### Timeline
 
-Revise the detailed timeline (Gantt chart) you created in the project proposal. Ensure that the timeline is optimized for detailed design. Address critical unknowns early and determine if a prototype needs to be constructed before the final build to validate a subsystem. Additionally, if subsystem $A$ imposes constraints on subsystem $B$, generally, subsystem $A$ should be designed first.
 
 <img width="1262" height="665" alt="image" src="https://github.com/user-attachments/assets/40428e21-fbbf-461b-a409-2e50152ccd55" />
 
 
 
 ## References
-
-All sources utilized in the conceptual design that are not considered common knowledge must be properly cited. Multiple references should be included.
 
 [1] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N,” Lochinvar. [Online]. Available: https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html. [Accessed: Oct. 16, 2026]
 
@@ -672,7 +621,6 @@ All sources utilized in the conceptual design that are not considered common kno
 
 ## Statement of Contributions
 
-Each team member is required to make a meaningful contribution to the project proposal. In this section, each team member is required to document their individual contributions to the report. One team member may not record another member's contributions on their behalf. By submitting, the team certifies that each member's statement of contributions is accurate.
 
 Jocelyn Smith: High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem)
 
