@@ -118,28 +118,80 @@ A variable speed pump provides a way to adjust flow according to system demand. 
 
 #### Specifications
 
-The main goal of this project is to control the speed of the circulation pump in a way that improves the efficiency of the water heating system without negatively affecting how the system controls the temperature already. The pump needs to be able to run at different speeds depending on the present demand of the system. This demand can changed based on the water flow or the inlet water temperature. 
-Another important specification is that the controller needs to be able to maintain the minimum amount of flow needed for the system to run correctly. The goal is to lower the speed of the pump when possible to reduce power consumption, but not that it causes problems with the system. Changing the speed of the pump shouldn't increase the amount of time it takes the water to reach its temperature set point significantly. The system also needs to stay stable and maintain the temperature within +-4 degrees F.
-The controller will also need to use the information already given from the existing system to determine how the pump should operate. The Knight boiler has a firing rate output from 0-10 V, which signifies a firing rate of 0-100%. The Regent system also uses a Keyence flow sensor to measure the amount of water that is flowing through the system. The flow sensor uses a pulse output frequency that gets converted into a flow measurement in GPM. These signals can provide information to the controller about that the system is doing in real time and help decide what speed the pump needs to run at. 
-The system will also need to be tested under different operating conditions. We will need to change the circulation rate and water demand to identify how different pump speeds affect power consumption and the amount of time it takes the system to reach the temperature set point. Lochinvar currently uses a flow tree to create constant changes in flow rate, which can help us to simulate the different levels of hot water demand that the system could encounter while it is running. 
+The main goal of this project is to develop a control strategy that adjusts the circulation pump speed based on the running conditions of the water heating system. The controller is intended to reduce unnecessary electrical power consumption while sustaining the required water flow, temperature stability, and overall system execution. The following specifications will be used to guide the design and evaluate the controller during testing.
+
+* 1 – Temperature Stability: The system shall maintain the outlet water temperature within ±4 °F of the desired temperature setpoint during defined steady state operating conditions. This will be verified by recording the outlet temperature and comparing it with the desired value.
+
+* 2 – Minimum Flow Rate: The controller shall maintain a circulation flow rate equal to or greater than the minimum required by Lochinvar, measured in gallons per minute (GPM). The minimum allowable flow rate will be determined from the manufacturer's requirements for the equipment being tested. This will be verified using the flow sensor.
+
+* 3 – Pump Speed Control: The controller shall adjust the circulation pump speed when changes are made in system running conditions. The allowable pump speed range will be decided from the selected pump's specifications. This will be confirmed by recording the pump control signal and measured pump response during testing.
+
+* 4 – Firing Rate Monitoring: The controller shall accept a 0–10 V firing rate signal from the compatible Lochinvar boiler, representing a firing rate of 0–100%. This will be verified by applying known input voltages and confirming that the controller read them correctly.
+
+* 5 – Flow Rate Monitoring: The controller shall convert the pulse frequency output from the KEYENCE flow sensor into a water flow measurement in GPM. This will be confirmed by comparing the calculated flow rate with the sensor's measured output over its relevant running range.
+
+* 6 – Temperature Response Time: The system shall reach and maintain the desired outlet temperature within a reasonable response time after a change in water demand. The maximum acceptable response time, measured in seconds, will be established using Lochinvar's requirements or approved standard measurements. This will be verified through timed testing at different flow rates.
+
+* 7 – Electrical Power Reduction: The controller shall demonstrate a reduction in circulation pump electrical power consumption compared with baseline operation under equivalent operating conditions. The target reduction will be established before final testing. Electrical power will be measured in watts, and the percentage reduction will be calculated from the recorded measurements.
+
+* 8 – Controller Stability: The controller shall maintain stable operation without excessive pump-speed oscillations during changes in water demand. Acceptable limits for speed fluctuations and settling time will be established before testing. Stability will be verified by recording pump speed, flow rate, and outlet temperature during controlled demand changes.
+
+* 9 – Existing System Compatibility: The controller shall operate without bypassing or interfering with the existing Lochinvar temperature regulation and safety controls. This will be verified by reviewing the electrical and control interfaces and conducting approved functional tests.
+
+* 10 – Operating Condition Testing: The team shall evaluate the controller at a minimum of three defined running conditions representing low, medium, and high water demand, dependant on the available test equipment. During each test, the team will record pump running conditions, water flow rate, inlet and outlet temperatures, firing rate, and electrical power consumption.
+
+These specifications will be used to determine whether the proposed controller can improve pump efficiency while maintaining the running requirements of the water heating system. Any numerical limits not yet provided by Lochinvar will be established and documented before final performance testing.
 
 #### Constraints
   
-At this point, the information that Lochinvar provided doesn't list a specific governing body or regulation that our project is required to follow. However, because the project includes a commercial water heating system, electrical components, hot water, and a circulation pump, safety still needs to be considered when designing and testing the controller. The controller shouldn't intrude on any of the existing safety features of the boiler. Before the final design is in the process of being implemented into an actual Lochinvar product, any mandatory regulations would need to be identified and followed.
-The project details provided by Lochinvar doesn't give our team any specific industry standards that we are required to follow.. Because of this, we shouldn't assume or list a certain standard unless Lochinvar tells us that it applies to the project. For our work at this point in time, the main requirement is making sure that the controller works with the existing Lochinvar equipment and doesn't negatively affect the current temperature control. The controller also needs to keep the minimum required flow rate and keep the system temperature steady within +-4 degrees F.
-Safety is important for this project because the system deals with hot water, boiler equipment, electrical components, and a circulation pump. If the pump is running at too low of a speed, there is a possibility that there isn't enough water flowing through the system for it to run correctly and efficiently. Because of this, our controller needs to keep the minimum needed flow rate while adjusting the speed of the pump. It also can't negatively affect how quickly the system attains its temperature set point. or causes the water temperature to be unstable. 
-The final design should also work with the current temperature and safety controls rather than replacing or meddling with them. Because of the main purpose of the controller is to improve the efficiency, any energy savings would not be worth it if they caused the water to run incorrectly or unsafely. 
-The biggest influence for our project are environmental and economic. The main goal of the project is to improve the efficiency of the system overall by controlling the circulation pump speed. If the pump is able to run at a lower speed when the full pump is not needed, the system could possibly use less electrical power. This could reduce the amount of energy used while it's running, which would have both an environmental and economical advantage.
-There is also an economic deliberations when it comes to implementing the controller. Any improvement in efficiency would need to be worth the extra hardware, sensors, programming, and controls needed to make the system work. Our team would need to consider if the amount of energy saved by modifying the pump speed is enough to validate adding the control system. 
+The proposed variable speed circulation pump controller must run within the electrical, mechanical, thermal, and safety limitations of the existing Lochinvar equipment. Because the project involves commercial water heating equipment, electrical components, and circulating hot water, the design must consider relevant engineering standards and manufacturer requirements. The following constraints will guide the development and testing of the controller.
+
+Electrical and Safety Constraints
+
+* 1 – Electrical Installation: Electrical wiring, grounding, and protection associated with the controller shall follow applicable requirements of NFPA 70, the National Electrical Code (NEC), where those requirements apply to the installation. The team will review the relevant NEC provisions before connecting the controller to the pump or boiler equipment [14].
+
+* 2 – Electrical Compatibility: The controller shall operate within the voltage and current ratings of the selected microcontroller, sensors, and pump control interfaces. The existing boiler's 0–10 V firing rate signal must be connected through an appropriate signal-conditioning or input circuit compatible with the controller.
+
+* 3 – Hazardous Energy Control: When servicing or modifying equipment, the team shall follow applicable laboratory safety procedures and hazardous energy control requirements. OSHA 29 CFR 1910.147 provides requirements for controlling hazardous energy during servicing and maintenance in covered workplaces. Its applicability to the specific testing environment must be confirmed [6].
+
+* 4 – Existing Safety Controls: The proposed controller shall not bypass or disable the boiler's existing temperature limits, flow protections, or other manufacturer installed safety functions. Any proposed connection to the existing system must be reviewed before testing.
+
+Plumbing and Mechanical Constraints
+
+* 5 – Plumbing Requirements: Any modifications to the water circulation system shall be evaluated against the applicable locally adopted plumbing code, including requirements for piping materials, fittings, pressure protection, and safe hot water operation. The International Plumbing Code provides a reference for identifying relevant plumbing requirements, subject to local adoption and applicability [15].
+
+* 6 – Pipe and Fitting Compatibility: Pipes, fittings, valves, and flow measurement equipment shall be compatible with the running temperature, pressure, and flow conditions of the test system. Component ratings will be verified using manufacturer documentation before installation.
+
+* 7 – Minimum Circulation Flow: The pump shall not operate below the minimum circulation flow required by the equipment manufacturer during conditions requiring circulation. This constraint is necessary to avoid operating the heat exchanger outside its approved flow limits.
+
+* 8 – Pump Operating Limits: The controller shall not command pump procedure outside the allowable speed, flow, pressure, or electrical limits established by the selected pump manufacturer.
+
+System and Project Constraints
+
+* 9 – Equipment Compatibility: The design must remain compatible with the available Lochinvar test equipment, including the Knight boilers and any pump, flow sensor, temperature sensors, or circulation loop components supplied for testing. Because the Regent is the intended application, differences between the test equipment and Regent system must be identified before applying the results to the Regent.
+
+* 10 – Temperature Performance: Changes to pump speed shall not cause the system to violate the ±4 °F outlet temperature tolerance under the defined steady state test conditions.
+
+* 11 – Budget and Resources: The design shall remain within the project budget approved by the team and its stakeholders. The current proposal estimates approximately $1,179 for the primary components, although additional materials, signal conditioning hardware, and testing equipment may affect the final cost.
+
+* 12 – Project Timeline: The team must complete the research, requirements, and proposed design during Capstone 1, with implementation and testing planned for Capstone 2, according to the approved course schedule.
+
+Environmental and Economic Considerations
+
+Environmental and economic factors are also important considerations for this project. Reducing circulation pump speed when full prodecure is unneeded may reduce electrical energy consumption and operating costs. However, the controller must maintain the required water heating execution, and the potential savings must be evaluated against the additional cost of the control hardware and system integration.
+
+The team will compare measured electrical power consumption during origianl and controlled procedure to estimate potential energy savings. The cost of implementing the proposed controller will also be considered when determining whether the system provides a practical improvement for Lochinvar. Research on variable speed pumping shows that matching pump output to system requirements can reduce unnecessary energy consumption, although the actual savings depend on the application and running conditions [5], [10].
+
+Before the controller is considered for implementation in a commercial Lochinvar product, the team and Lochinvar would need to confirm the applicable product certification, electrical, plumbing, and safety requirements. The final design must not compromise equipment reliability in order to achieve energy savings.
 
 ## Survey of Existing Solutions
 
 There is a wide variety of available circulation pumps in the current market. These include 3 main types: multi-speed circulator pumps, electronically commutated motor pumps, and automatic recirculation pumps.
-Multi-speed circulator pumps are manual variable speed pumps but can have 3+ speeds instead of just 2. They can be budget friendly but work best for small to medium sized water systems. 
+Multi speed circulator pumps are manual variable speed pumps but can have 3+ speeds instead of just 2. They can be budget friendly but work best for small to medium sized water systems. 
 Electronically commutated motor pumps can be automatic or have manually selectable speeds. They are energy efficient and reduce mechanical stress but work better for residential water systems.
-Automatic recirculation pumps are the best fit for this project. They are sensor-driven and programmable, reduce energy wastage, and can be used for tankless water heaters. To be more specific though, there are 4 types of automatic recirculation pumps: Constant temperature, demand-controlled, temperature modulation, and hybrids. 
-Constant temperature pumps adjust their speed to maintain a set temperature. Demand-controlled pumps use flow and temperature sensors to start or stop the pump. Temperature modulation pumps adjust temperature based on demand. Finally, Hybrid pumps typically combine constant temperature pumps and demand-controlled pumps. 
-For this project, demand-controlled pumps fit the best. For the system to start, a user will trigger the system, or the controller senses a drop in temperature. The system will then adjust to the trigger and return to resting state when the temperature sensor has confirmed the hot water has reached the designated point in the loop. The “resting state” helps to save energy as well as extending the equipment’s lifespan.
+Automatic recirculation pumps are the best fit for this project. They are sensor driven and programmable, reduce energy that is wasted, and can be used for tankless water heaters. To be more specific though, there are 4 types of automatic recirculation pumps: Constant temperature, demand controlled, temperature modulation, and hybrids. 
+Constant temperature pumps adjust their speed to maintain a set temperature. Demand-controlled pumps use flow and temperature sensors to start or stop the pump. Temperature modulation pumps adjust temperature based on demand. Finally, Hybrid pumps typically combine constant temperature pumps and demand controlled pumps. 
+For this project, demand controlled pumps fit the best. For the system to start, a user will trigger the system, or the controller senses a drop in temperature. The system will then adjust to the trigger and return to resting state when the temperature sensor has confirmed the hot water has reached the designated point in the loop. The “resting state” helps to save energy as well as extending the equipment’s lifespan.
 
 ## Measures of Success
 
