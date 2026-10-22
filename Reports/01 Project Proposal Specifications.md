@@ -247,19 +247,19 @@ The success of this project will be determined by how well the proposed variable
 
 The following measures will be used to evaluate the success of the project:
 
-* M1 – Temperature Stability: The system shall maintain the outlet water temperature within ±4 °F of the desired temperature setpoint. This will be verified by recording the outlet water temperature during testing at different pump speeds and water flow rates. The measured temperature will be compared to the desired setpoint to decide whether the controller maintains acceptable temperature stability under the exact test conditions.
+* 1 – Temperature Stability: The system shall maintain the outlet water temperature within ±4 °F of the desired temperature setpoint. This will be verified by recording the outlet water temperature during testing at different pump speeds and water flow rates. The measured temperature will be compared to the desired setpoint to decide whether the controller maintains acceptable temperature stability under the exact test conditions.
 
-* M2 – Minimum Flow Rate: The controller shall maintain the minimum circulation flow rate required by Lochinvar. The flow sensor will measure the amount of water moving through the system in gallons per minute (GPM). The recorded flow rate will be compared with the minimum operating flow defined by Lochinvar to verify that reducing pump speed does not cause deficient circulation through the heat exchanger.
+* 2 – Minimum Flow Rate: The controller shall maintain the minimum circulation flow rate required by Lochinvar. The flow sensor will measure the amount of water moving through the system in gallons per minute (GPM). The recorded flow rate will be compared with the minimum operating flow defined by Lochinvar to verify that reducing pump speed does not cause deficient circulation through the heat exchanger.
 
-* M3 – Electrical Power Consumption: The controller shall demonstrate a measurable reduction in pump electrical power consumption when running conditions allow the pump to run at a lower speed. Electrical power will be measured in watts during both baseline operation and variable speed run. The results will be compared under equivalent running conditions to determine the percentage of power saved.
+* 3 – Electrical Power Consumption: The controller shall demonstrate a measurable reduction in pump electrical power consumption when running conditions allow the pump to run at a lower speed. Electrical power will be measured in watts during both baseline operation and variable speed run. The results will be compared under equivalent running conditions to determine the percentage of power saved.
 
-* M4 – System Response Time: The controller shall respond to changes in water demand without significantly increasing the time required for the system to reach the desired temperature setpoint. Response time will be measured in seconds following changes in flow rate or inlet water temperature. The results will be compared with the original system to determine whether the proposed controller negatively affects temperature recuperation.
+* 4 – System Response Time: The controller shall respond to changes in water demand without significantly increasing the time required for the system to reach the desired temperature setpoint. Response time will be measured in seconds following changes in flow rate or inlet water temperature. The results will be compared with the original system to determine whether the proposed controller negatively affects temperature recuperation.
 
-* M5 – Controller Stability: The controller shall adjust pump speed without producing excessive oscillations or unstable operating circumstances. During testing, the team will analyze pump speed, water flow, and outlet temperature to decide whether the controller responds smoothly to changes in demand. The controller will be evaluated for repeated speed changes or temperature fluctuations that could affect system execution.
+* 5 – Controller Stability: The controller shall adjust pump speed without producing excessive oscillations or unstable operating circumstances. During testing, the team will analyze pump speed, water flow, and outlet temperature to decide whether the controller responds smoothly to changes in demand. The controller will be evaluated for repeated speed changes or temperature fluctuations that could affect system execution.
 
-* M6 – System Compatibility and Safety: The proposed controller shall run with the existing Lochinvar equipment without interfering with the system's temperature regulation or safety controls. This will be verified by testing the controller within the manufacturer's running limits and confirming that the existing safety functions remain operational.
+* 6 – System Compatibility and Safety: The proposed controller shall run with the existing Lochinvar equipment without interfering with the system's temperature regulation or safety controls. This will be verified by testing the controller within the manufacturer's running limits and confirming that the existing safety functions remain operational.
 
-* M7 – Economic Feasibility: The team shall evaluate whether the potential energy savings justify the additional cost of implementing the controller. The estimated cost of the required hardware will be compared with the projected reduction in electrical energy consumption. This information will be used to estimate potential operating cost savings and determine whether the proposed system could provide a functional benefit to Lochinvar.
+* 7 – Economic Feasibility: The team shall evaluate whether the potential energy savings justify the additional cost of implementing the controller. The estimated cost of the required hardware will be compared with the projected reduction in electrical energy consumption. This information will be used to estimate potential operating cost savings and determine whether the proposed system could provide a functional benefit to Lochinvar.
 
 To determine the percentage of electrical power savings, the following equation will be used:
 
@@ -357,6 +357,10 @@ In conclusion, as engineers, upholding public safety remains our primary directi
 \(12\) Armstrong Fluid Technology, “Design Envelope 4300 Pumps.” \(Online\). Available: [https://armstrongfluidtechnology.com/products/design-envelope-4300-pumps]. \(Accessed: Oct. 22, 2026\).
 
 \(13\) Armstrong Fluid Technology, “Armstrong Design Envelope Pumping with Integrated Sensorless Control,” white paper. \(Online\). Available: [https://armstrongfluidtechnology.com/~/media/documents/sales-and-marketing/white-papers/90_601_pspc_whitepaper.pdf?la=es-us]. \(Accessed: Oct. 22, 2026\).
+
+\(14\) National Fire Protection Association, “NFPA 70: National Electrical Code,” 2026. \(Online\). Available: [https://www.nfpa.org/codes-and-standards/nfpa-70-development/70]. \(Accessed: Oct. 22, 2026\).
+
+\(15\) International Code Council, “2024 International Plumbing Code,” 2024. \(Online\). Available: [https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html]. \(Accessed: Oct. 22, 2026\).
 
 ## Statement of Contributions
 
