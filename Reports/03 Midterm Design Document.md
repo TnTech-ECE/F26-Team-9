@@ -854,7 +854,7 @@ During lab testing, the team will take note of measurements while the pump runs 
 
 **Functional Flowchart:**
 <p align="center">
-<img width="426" height="35" alt="image" src="https://github.com/user-attachments/assets/62120015-03cd-48d1-bb63-ea6ebcf9c9cd" />
+<img width="1100" alt="Data Logging and Simulation Flowchart" src="https://github.com/user-attachments/assets/62120015-03cd-48d1-bb63-ea6ebcf9c9cd" />
 </p>
 **Specifications:**
 
