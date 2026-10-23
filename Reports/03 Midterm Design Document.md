@@ -1011,7 +1011,7 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 
 ## References
 
-[1] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N,” Lochinvar. [Online]. Available: https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html. [Accessed: Oct. 16, 2026]
+[1] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N,” Lochinvar. [Online]. Available: [https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html]. [Accessed: Oct. 16, 2026]
 
 [2] Lochinvar, Regent Commercial Tankless Water Heater Installation and Operation Manual, Rev. D, document no. 100399794/2000857139. [Online]. Available: Lochinvar Regent Manual (PDF). [Accessed: Oct. 16, 2026]
 
