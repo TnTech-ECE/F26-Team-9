@@ -266,9 +266,9 @@ The project will be considered successful if the controller can reduce pump elec
 
 
 ### Budget
-
+<p align="center">
 <img width="773" height="197" alt="image" src="https://github.com/user-attachments/assets/60f14c90-7f94-4488-af62-af302226a655" />
-
+</p>
 
 The estimated budget for the project is approximately $1,179. The primary expenses include the variable-speed pump, flow measurement, temperature measurement, and control components required to develop and test the proposed system. The KEYENCE FD-Q50C clamp-on flow sensor, estimated at $580, will measure water flow without requiring significant modifications to the existing plumbing. A variable-speed pump, estimated at $500, will allow the team to investigate how adjusting pump speed affects flow rate, water temperature, and overall system performance. A microcontroller, estimated at $20, will be used to facilitate communication between the sensors and control system during testing.
 
@@ -296,9 +296,9 @@ Dr. Elfouly is another academic stakeholder involved in the project who can prov
 
 ### Timeline
 
-
+<p align="center">
 <img width="1487" height="597" alt="image" src="https://github.com/user-attachments/assets/f5531d7d-e73e-413f-943a-abcbc1e83626" />
-
+</p>
 
 
 ## Specific Implications
@@ -469,16 +469,16 @@ The Water Heating and Hydraulic subsystem will include the physical equipment in
 
 ### Hardware Block Diagram
 
-
+<p align="center">
 <img width="874" height="1104" alt="block-diagram-capstone" src="https://github.com/user-attachments/assets/565693de-2806-4bfb-9ca7-e67828a2532c" />
-
+</p>
 
 ### Operational Flow Chart
 
 
-
+<p align="center">
 <img width="1044" height="780" alt="flowchart-capstone" src="https://github.com/user-attachments/assets/edd6917d-b1f9-4489-a623-1d80af3193c1" />
-
+</p>
 
 ## Atomic Subsystem Specifications
 
@@ -560,9 +560,9 @@ No direct user control of the raw voltage scaling, filtering or sensor calibrati
 
 
 **Functional Flowchart:**
-
+<p align="center">
 <img width="534" height="178" alt="image" src="https://github.com/user-attachments/assets/c16677ed-42c8-48d4-8e17-1cb589b570aa" />
-
+</p>
 
 **Specifications**
 
@@ -607,9 +607,9 @@ The subsystem will get measurements from the Sensor and Data Acquisition subsyst
 During the procedure, the controller will read the accessible measurements, evaluate the current state, and calculate a pump speed command. The pump control hardware will then adjust the pump as instructed. The updated measurements will help determine whether the adjustment creates the expected results. If the measurements suggest an unsafe or unacceptable operating procedure, the controller will need to follow a response created during the design process with Lochinvar.
 
 **Functional Flowchart:**
-
+<p align="center">
 <img width="981" height="93" alt="image" src="https://github.com/user-attachments/assets/70949a81-fe63-4c40-ade3-aa1d8565058e" />
-
+</p>
 
 **Specifications**
 
@@ -702,9 +702,9 @@ No direct user control of frequency, pump speed, voltage scaling, or safety swit
 
 
 **Functional Flowchart:**
-
+<p align="center">
 <img width="825" height="242" alt="image" src="https://github.com/user-attachments/assets/97c8f6ae-c530-4c08-8fbd-bd51574dd9e2" />
-
+</p>
 
 **Specifications:**
 
@@ -754,9 +754,9 @@ The Water Heating and Hydraulic Subsystem receives pump-speed commands from the 
 Before testing, the water heater, circulation pump, piping, and connections shall be inspected for safe operation and leaks. The system is then operated, pump speed is adjusted under different conditions, and flowrate and temperature data are recorded. After testing, the system shall be shut down according to the manufacturer's procedures.
 
 **Functional Flowchart:**
-
+<p align="center">
 <img width="431" height="273" alt="image" src="https://github.com/user-attachments/assets/3830704c-444d-49e2-8881-834f89bec4f3" />
-
+</p>
 **Specifications:**
 
 1. The subsystem shall maintain water circulation within the water heater and pump manufacturer's operating limits.
@@ -805,9 +805,9 @@ The primary function of this subsystem is to evaluate the system's response to c
 The team will use this subsystem during laboratory testing to evaluate the system's performance under different operating conditions. The results will help determine whether the proposed control strategy meets the project objectives and identify potential improvements. The subsystem will support performance evaluation only.
 
 **Functional Flow Chart:**
-
+<p align="center">
 <img width="455" height="168" alt="image" src="https://github.com/user-attachments/assets/a5cbd779-ad76-486f-a6b7-4c7ed8f2db7f" />
-
+</p>
 
 **Specifications:**
 
@@ -853,9 +853,9 @@ During lab testing, the team will take note of measurements while the pump runs 
    The results from this subsystem will help the team decide whether the proposed control strategy will meet the project's requirements. If the data shows that certain pump speeds cause problems with flow or temperature, that information can be used to make changes to the control algorithm and testing in the future.
 
 **Functional Flowchart:**
-
+<p align="center">
 <img width="426" height="35" alt="image" src="https://github.com/user-attachments/assets/62120015-03cd-48d1-bb63-ea6ebcf9c9cd" />
-
+</p>
 **Specifications:**
 
 1. The subsystem shall record the available running measurements needed to assess the variable speed pump controller.
@@ -931,45 +931,45 @@ The proposed budget covers all six subsystems required to develop and evaluate t
 The budget includes sensing and data acquisition, control hardware and programming, pump-speed control equipment, hydraulic components, performance-monitoring instruments, and data-logging and simulation resources. The estimates are preliminary allowances and assume that the existing Lochinvar water heater, circulation pump, and Keyence flow sensor can be reused where compatible. Existing laboratory equipment and available software are also assumed to be available at no additional cost.
 
 **1. Sensor and Data Acquisition Subsystem**
-
+<p align="center">
 <img width="930" height="290" alt="image" src="https://github.com/user-attachments/assets/5b57a5b0-8418-431c-8efe-411c7938d2df" />
-
+</p>
 Justification: The flow sensor measures hot-water demand, while the temperature sensors measure system thermal performance. Signal-conditioning components and wiring provide reliable connections to the controller, and the data acquisition interface allows sensor measurements to be read and recorded. The budget assumes the existing flow sensor is compatible with the selected control hardware.
 
 **2. Microcontroller and Control Logic Subsystem**
-
+<p align="center">
 <img width="922" height="350" alt="image" src="https://github.com/user-attachments/assets/ceb87af1-52ad-4600-83e7-ed0697139abc" />
-
+</p>
 Justification: The microcontroller executes the control logic and processes the flowrate, firing-rate, and temperature measurements. The analog input interface is needed to read the boiler's 0–10 V firing-rate signal, while the analog output interface generates the appropriate command for the pump-speed control equipment. The connection hardware helps protect and organize the electronics. Final component selection must account for signal ranges, electrical isolation, and compatibility with the existing boiler and drive.
 
 **3. Pump and Motor Control Subsystem**
-
+<p align="center">
 <img width="916" height="266" alt="image" src="https://github.com/user-attachments/assets/1311b881-9dbe-4518-85d0-45c9e92654bb" />
-
+</p>
 Justification: The speed controller adjusts pump operation based on the command from the microcontroller. The VFD is a preliminary option for an appropriately compatible AC motor; the existing pump and motor specifications must be checked before selecting the drive. Wiring and electrical protection components support safe integration. If the existing pump uses a different motor type or has an integrated electronic controller, a different compatible speed-control solution may be required.
 
 **4. Water Heating and Hydraulic Subsystem**
-
+<p align="center">
 <img width="928" height="414" alt="image" src="https://github.com/user-attachments/assets/980f4cd6-dc09-4630-a1bd-6dc61566811c" />
-
+</p>
 Justification: The water heater and circulation pump provide the existing test platform. Fittings and connectors support proper hydraulic connections, while valves allow the system to be configured for testing and insulation helps reduce heat loss. Seals and leak-prevention materials support safe, reliable operation. The estimate assumes that the existing equipment is functional and that major plumbing modifications are unnecessary.
 
 **5. Monitoring and Performance Evaluation Subsystem**
-
+<p align="center">
 <img width="916" height="264" alt="image" src="https://github.com/user-attachments/assets/fbc19844-e9e7-49d8-9760-4bc164dbd20a" />
-
+</p>
 Justification: Electrical power measurements allow the team to compare pump energy consumption under fixed-speed and variable-speed operation. An independent temperature instrument provides a way to verify the installed sensors, while measurement accessories support data collection during testing. These measurements are necessary to determine whether the proposed controller reduces energy use without negatively affecting outlet-temperature performance.
 
 **6. Data Logging and Simulation Subsystem**
-
+<p align="center">
 <img width="918" height="272" alt="image" src="https://github.com/user-attachments/assets/f7282957-da67-4ab6-af13-652bc6a57889" />
-
+</p>
 Justification: Data logging software records flow rate, firing rate, outlet temperature, pump speed, and electrical power measurements for later analysis. Simulation software can help evaluate control strategies before hardware implementation. The budget assumes access to an existing computer and a suitable software license or free simulation tool. If a paid MATLAB/Simulink or Dymola license must be purchased, the project budget will need to be revised.
 
 **7. Comprehensive Project Budget**
-
+<p align="center">
 <img width="778" height="342" alt="image" src="https://github.com/user-attachments/assets/cf2bb408-17c0-472a-bb89-265b29597eb6" />
-
+</p>
 
 ### Division of Labor
 
@@ -1004,9 +1004,9 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
   
 ### Timeline
 
-
+<p align="center">
 <img width="1262" height="665" alt="image" src="https://github.com/user-attachments/assets/40428e21-fbbf-461b-a409-2e50152ccd55" />
-
+</p>
 
 
 ## References
