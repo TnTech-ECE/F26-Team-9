@@ -13,20 +13,6 @@ Tennessee Technological University
 
 <br>
 
-## General Requirements for the Document
-- All submissions must be composed in markdown format.
-- All sources must be cited unless the information is common knowledge for the target audience.
-- The document must be written in third person.
-- The document must identify all stakeholders including the instuctor, supervisor, and customer.
-- The problem must be clearly defined using "shall" statements.
-- Existing solutions or technologies that enable novel solutions must be identified.
-- Success criteria must be explicitly stated.
-- An estimate of required skills, costs, and time to implement the solution must be provided.
-- The document must explain how the customer will benefit from the solution.
-- Broader implications, including ethical considerations and responsibilities as engineers, must be explored.
-- A list of references must be included.
-- A statement detailing the contributions of each team member must be provided.
-
 
 ## Introduction
 
