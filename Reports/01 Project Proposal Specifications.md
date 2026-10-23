@@ -255,7 +255,7 @@ $$
 {P_{\text{base}}} \times 100
 $$
 
-where $P_{\text{base}}$ represents the electrical power consumed during original pump procedure and (P_{\text{controlled}}) represents the electrical power consumed while using the proposed variable speed controller.
+where $P_{\text{base}}$ represents the electrical power consumed during original pump procedure and $(P_{\text{controlled}})$ represents the electrical power consumed while using the proposed variable speed controller.
 
 The team will also compare the results from different running conditions to determine how changes in pump speed affect the flow rate, temperature stability, and power consumption. Research from the U.S. Department of Energy explains that variable speed pumping can reduce energy consumption when pump output is adjusted to match system requirements [10]. However, the actual savings for Lochinvar's equipment will need to be decidied through testing.
 
