@@ -1021,6 +1021,19 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 
 [5] T. C. Hayes and P. Horowitz, The Art of Electronics Student Manual. Cambridge, U.K.: Cambridge University Press, 1989. [Online]. Available: The Art of Electronics Student Manual (PDF). [Accessed: Oct. 16, 2026]
 
+[6] U.S. Department of Energy and Hydraulic Institute, “Improving Pumping System Performance: A Sourcebook for Industry,” 2nd ed., May 2006. [Online]. Available: [https://www.energy.gov/sites/default/files/2014/05/f16/pump.pdf]. [Accessed: Oct. 22, 2026].
+
+[7] ASHRAE, “Design and Application of Controls,” 2023 ASHRAE Handbook—HVAC Applications, ch. 48, 2023. [Online]. Available: [https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch48/A23_Ch48_ip.aspx]. [Accessed: Oct. 9, 2026].
+
+[8] National Fire Protection Association, “NFPA 70: National Electrical Code.” [Online]. Available: [https://www.nfpa.org/codes-and-standards/nfpa-70-development/70]. [Accessed: Oct. 22, 2026].
+
+[9] Occupational Safety and Health Administration, “1910.147—The Control of Hazardous Energy (Lockout/Tagout).” [Online]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147]. [Accessed: Oct. 9, 2026].
+
+[10] International Code Council, “2024 International Plumbing Code,” 2024. [Online]. Available: [https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html]. [Accessed: Oct. 22, 2026].
+
+[11] V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. [Online]. Available: [https://escholarship.org/uc/item/4691d71q]. [Accessed: Oct. 9, 2026].
+
+
 
 ## Statement of Contributions
 
