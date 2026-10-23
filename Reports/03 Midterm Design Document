@@ -368,3 +368,667 @@ In conclusion, as engineers, upholding public safety remains our primary directi
 * Danielle Wolford - Survey of Existing Solutions, Measures of Success
 
 
+
+
+
+
+<div align="center">
+
+# Variable Speed Circulation Pump Controller
+# Conceptual Design Document
+
+---
+
+---
+
+### Jocelyn Smith, Danielle Wolford, Kendall Arnold, Skyler Raines
+
+Department of Electrical and Computer Engineering
+
+Tennessee Technological University
+
+</div>
+
+
+## Introduction
+
+Commercial water heating systems play an important role in providing reliable hot water for applications such as apartments, hotels, restaurants, and other commercial facilities. These systems must be capable of meeting varying hot water demands while maintaining a consistent outlet temperature and sufficient flow rate. The Regent Commercial Tankless Water Heater is designed to heat water as it passes through the system rather than storing a large volume of heated water in a tank. Although this design allows the unit to provide hot water on demand, the system must respond to changes in water flow and temperature to maintain the desired performance. As hot water demand changes, the amount of energy required to heat the incoming water also changes. This creates an opportunity to investigate how the system can adjust its operation to meet actual demand without using its maximum operating capacity.
+
+The objective of this project is to develop and evaluate a control strategy that adjusts water flow and heating operation based on real-time temperature and demand measurements. The proposed strategy will use components such as a variable-speed pump, flow sensor, and inlet and outlet temperature sensors to monitor system conditions and determine when adjustments are needed. By using this feedback, the control system will aim to regulate water flow and coordinate heating operation to provide the required outlet temperature while minimizing unnecessary energy consumption. As hot water demand changes, the system will respond by adjusting its operating conditions rather than continuously relying on maximum capacity when it may not be necessary. The team will investigate how changes in flow rate affect heat transfer, temperature regulation, and electrical power consumption to determine the most effective control approach. Engineering calculations, computer simulations, and testing will be used to evaluate the proposed strategy under different operating conditions and assess its ability to balance energy efficiency with consistent hot water delivery. Ultimately, the goal is to establish an algorithm that improves the energy efficiency of the Regent Commercial Tankless Water Heater without compromising its performance or reliability.
+
+## Restating the Fully Formulated Problem
+
+The primary objective of this project is to develop and evaluate a control strategy for adjusting the pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater based on changing operating conditions. Lochinvar is interested in determining whether reducing pump speed can decrease electrical energy consumption without compromising the performance of the water heating system when full circulation is unnecessary. Because hot water demand varies throughout the day, the pump may not need to operate at a constant speed under every condition. However, reducing pump speed must be carefully evaluated to ensure sufficient water flow through the heat exchanger and the ability to maintain the required water temperature.
+
+The project will investigate the relationship between pump speed, water flow rate, inlet water temperature, and heater operation to determine how these variables affect system performance. The team will develop and evaluate a proposed control strategy that uses operating measurements to determine an appropriate pump speed under different conditions. Although the Regent is the intended application, testing may use the Lochinvar equipment available in the Tennessee Tech laboratory or additional equipment provided by Lochinvar, depending on hardware compatibility and availability. The boilers available at Tennessee Tech are also being used by other capstone teams, which may limit our access to the equipment. As a result, testing may need to rely on simulations and available operating data to identify operating conditions under which pump speed can be reduced while maintaining acceptable water heating performance.
+
+The proposed design shall meet the following requirements:
+
+1. Pump speed control: The pump shall be able to run at different speeds based on the system's needs.
+*	Variable-speed control is the main focus of this project. Adjusting pump speed may help reduce unnecessary electrical energy use while maintaining proper water flow through the system.
+  
+2. Operating measurements: The system shall measure or collect water flow rate, inlet water temperature, and other available data about the water heater.
+*	These measurements will help the team understand how changes in water flow and temperature affect the heater's performance and determine how the pump should be controlled.
+  
+3. Performance evaluation: The team shall study how pump speed, water flow, inlet water temperature, and heater operation affect system performance.
+*	Evaluating these factors will help determine whether changing pump speed can improve energy efficiency without negatively affecting the water heater's operation.
+  
+4. Minimum flow requirements: The pump shall maintain enough water flow through the heat exchanger to meet Lochinvar's requirements.
+*	Maintaining sufficient flow is necessary to help prevent overheating and ensure the equipment operates within its specified limits.
+
+5. Water temperature requirements: The proposed control strategy shall allow the water heater to reach and maintain the required water temperature.
+*	The control strategy must consider water temperature so that energy savings do not come at the expense of the heater's intended performance.
+
+6. Energy efficiency: The team shall evaluate whether running the pump at lower speeds can reduce electrical energy use.
+* Comparing pump energy consumption at different speeds will help determine whether variable-speed control offers potential energy savings.
+
+7. Equipment compatibility: All components shall work together properly with the equipment used for testing.
+*	The team may use the Regent water heater, other compatible Lochinvar equipment, or laboratory simulations, depending on equipment availability.
+
+8. Testing and validation: The team shall evaluate the proposed control strategy using calculations, simulations, and laboratory testing when possible.
+*	These methods will help determine whether the proposed strategy is technically feasible and whether additional testing is needed.
+
+9. Project feasibility: The proposed design shall fit within the available budget, equipment, schedule, and team resources.
+*	These limits will help the team develop a realistic solution that can be completed within the capstone project timeline.
+
+In summary, this project will investigate whether adjusting the internal circulation pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater can reduce electrical energy consumption while maintaining reliable water heating performance. By evaluating pump speed, water flow rate, inlet water temperature, and heater operation, the team will develop and assess a proposed control strategy. Calculations, simulations, and laboratory testing, when available, will be used to compare energy consumption and system performance under different operating conditions. The final goal is to determine the feasibility of variable-speed pump control and identify opportunities to improve energy efficiency without compromising the water heater's operation.
+
+
+
+## Comparative Analysis of Potential Solutions
+
+Several potential solutions were considered for this project. Each solution uses different operating parameters to determine the appropriate pump speed, including boiler firing rate, water flow rate, outlet temperature, and predefined operating states. The selection of a final solution depends on several factors, which will be reviewed in this section.
+
+The first potential solution involves adjusting pump speed based on the boiler's firing rate. This approach uses the boiler's existing 0–10 V signal, which represents its firing rate from 0% to 100%, to determine the appropriate pump speed. This solution does not require an additional sensor, and it could increase energy efficiency; however, firing rate alone may not accurately represent the system's circulation requirements because water demand and inlet-water temperature can vary independently of boiler output.
+
+The second solution that was considered is based on controlling pump speed according to water flowrate. This approach adjusts circulation based on actual hot-water demand, allowing the pump to increase or decrease its speed as water usage changes. This solution also increased energy efficiency, but flow rate alone does not account for changes in inlet-water temperature or boiler firing rate, which may affect the amount of heat required to maintain the desired outlet temperature. 
+
+The third potential solution uses a temperature-based feedback controller to regulate pump speed. This sensor will continuously measure the outlet-water temperature, which is then compared to the desired temperature. Then, the controller adjusts pump speed based on the difference between the measured and desired temperatures. This solution offers the advantage of directly monitoring temperature performance rather than relying solely on indirect indicators of system demand; however, the relationship between pump speed and outlet temperature must be determined experimentally, and the controller must be tuned carefully to prevent unstable operation or interference with the boiler's existing temperature-control system.
+
+The fourth solution is state-based and divides the system operation into multiple states, such as startup, normal operation, increased demand, temperature recovery, and fault protection. Each state would have a corresponding pump-speed strategy based on the system's current operating conditions. This solution allows organization, and multiple operating conditions can be handled separately. This solution also can be less effective if the states are too broad. This can depend on selected pump speeds for each condition, transition conditions, and operating thresholds. 
+
+The fifth solution is the one selected by our team, as it is the most comprehensive solution. This solution combines water flow rate, boiler firing rate, and outlet-temperature feedback. The flow rate and firing rate provide current conditions and will be used to determine the initial pump-speed command. The temperature feedback will monitor performance, and the system will make adjustments to keep the temperature at the desired point. By combining demand-based control with temperature feedback, this solution could respond to changes in hot-water usage while maintaining the required temperature performance. It also has the potential to reduce unnecessary pump operation more effectively than a strategy relying on a single input. However, this approach requires more extensive programming, sensor integration, experimental testing, and controller tuning.
+
+The sixth and final potential solution our team proposed is simulation based, using a computer model of the boiler system. It would represent the relationships between pump speed and flow, as well as heat transfer, boiler firing rate, and outlet-water temperature. Different solutions could then be considered before being implemented physically.  This solution could help identify opportunities to reduce pump energy consumption while maintaining acceptable temperature performance. However, the accuracy of the simulation depends on how closely the model represents the actual system. 
+
+Several factors influence the selection of the final design, including the energy savings, the ability to maintain the desired outlet temperature, responsiveness to changing water demand, implementation difficulty, and reliability during operation. Combining these inputs could therefore provide a more complete representation of the system's operating conditions, although it also increases development and testing requirements. Based on these requirements, solution five is our selected and preferred solution. This design offers the strongest overall potential to balance energy efficiency and temperature regulation because it incorporates information about both system demand and actual thermal performance. Although this solution is more complex than the alternatives, its additional inputs provide a more comprehensive basis for controlling pump operation under changing conditions. Finally, the selected design must be validated through physical testing to determine whether it actually reduces pump energy consumption while maintaining acceptable outlet-temperature performance and stable operation.
+
+
+
+## High-Level Solution
+
+
+   The proposed solution is to develop a variable speed pump controller that is able to reduce unneeded use of electrical energy while maintaining the performance of Lochinvar's water heating system. Rather than having the circulation pump run at a constant speed, the controller will adjust the speed of the pump based on the system's running conditions. Measurements such as the water flow rate, inlet and outlet water temperatures, and boiler firing rate will help determine when the speed of the pump can be reduced without affecting the system's ability to deliver hot water. The overall design will consist of six subsystems: Sensor and Data Acquisition, Microcontroller and Control Logic, Pump and Motor Control, Water Heating and Hydraulic, Monitoring and Performance Evaluation, and Data Logging and Simulation. Each subsystem will have a certain role in helping the controller run properly and meet the project's requirements.
+
+   The Sensor and Data Acquisition subsystem will collect measurements from the water-heating system and send them to the controller. The Microcontroller and Control Logic subsystem will process this information and determine the appropriate pump speed based on the control algorithm and established operating limits. The Pump and Motor Control subsystem will acquire the command and adjust the speed of the pump using hardware that is compatible.
+The Water Heating and Hydraulic subsystem will include the physical equipment involved in the system, such as the pump, piping, circulation loop, boiler, and heat exchanger. Because the changes in pump speed can affect the water flow and heat transfer, the system's response will need to be observed cautiously. The Monitoring and Performance Evaluation subsystem will help decide how well the controller performs by analyzing the electrical power use, water flow, temperature stability, and the time required to reach the wanted temperature. The Data Logging and Simulation subsystem will log measurements and help the team compare results from different running conditions. If enough information is available from the system, simulation software such as Dymola may also be used to study how the system is expected to react.
+
+   All six subsystems will work together to help the controller react to changes in hot water demand. The sensors will give updated measurements, the controller will use those measurements to decide the speed of the pump, and the pump control hardware will make the needed adjustment. The resulting changes in the flow and temperature will then be observed to gauge the system's performance.
+
+   The main focus is to reduce the pump energy consumption without negatively affecting the water heater's process. The pump must have the ability to maintain the minimum flow necessary by the manufacturer, and the system must still reach and maintain the required water temperature. The team will use calculations, simulations, and lab testing when possible to gauge the proposed design. Although the Regent Commercial Instantaneous Water Heater is the planned application, the equipment used for testing will depend strictly on availability and compatibility. The results will help determine whether the variable speed pump control is a realistic way to improve energy efficiency while keeping trustworthy hot water performance.
+
+### Hardware Block Diagram
+
+
+<img width="874" height="1104" alt="block-diagram-capstone" src="https://github.com/user-attachments/assets/565693de-2806-4bfb-9ca7-e67828a2532c" />
+
+
+### Operational Flow Chart
+
+
+
+<img width="1044" height="780" alt="flowchart-capstone" src="https://github.com/user-attachments/assets/edd6917d-b1f9-4489-a623-1d80af3193c1" />
+
+
+## Atomic Subsystem Specifications
+
+
+### 1) Sensor and Data Acquisition Subsystem
+
+
+**Overview:**
+
+The Sensor and Data Acquisition Subsystem will provide real-time and high-fidelity monitoring of all the critical hydraulic and thermal parameters within the heating loop. It shall ensure the pump microcontroller maintains a continuous stream of accurate measurements. These measurements will be the flow rate, outlet temperature, and boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. The design should emphasize signal control and sensor responsiveness.
+
+
+**Functional Description:**
+
+This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
+	
+* Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load.
+  
+* Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read.
+  
+* Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature.
+
+In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
+
+
+**Subsystem Interface:**
+
+1) Enviromental Input
+   * Connected to: Water heating and hydraulic subsystem.
+   * Description: Gathers raw physical fluid velocity and thermal energy changes directly from 	the piping by sensors.
+     
+2) Boiler Load Input
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Intercepts the boiler firing rate signal and captures the active heating demand.
+     
+3) Condition Data Output
+   * Connected to: Microcontroller and Control Logic Subsystem.
+   * Description: Transmits filtered, scaled analog voltages and digital pulses to the processing pins of the microcontroller.
+     
+4) Data Output
+   * Connected to: Monitoring and performance evaluation subsystem.
+   * Description: Gives real-time flow rates and temperature measurements for diagnostic checking.
+     
+
+**Subsystem Operation:**
+
+1) Initialization Phase
+   * The microcontroller will establish connection loops and verify stable reference points.
+   * If any sensors are broken or out of bounds, a fault will be triggered to prevent the pump from running dry.
+     
+2) Data Ingestion Phase
+   * The subsystem will start capturing raw inputs from the sensors on the heating loop.
+     
+3) Filtering and Calibration Phase
+   * Capture the raw data from the analog and digital signals.
+   * Filter out any high-frequency noise.
+   * Take the raw data and convert it into values to read.
+     
+4) Transmission phase
+   * Verified output data will be sent to the display screen.
+
+
+**Expected User Interaction:**
+
+1) Installation and Commissioning Phase
+   * Physically mount the flow meter and temperature sensor.
+   * Wire the sensors and boiler to the microcontroller.
+
+2) Calibration Phase
+	* Check the sensors against already calibrated sensors to make sure they are accurate readings.
+
+3) Passive Monitoring Phase
+	* Observe the continuous readings from the sensors.
+
+4) Maintenance and Diagnostics Phase
+	* If there is a fault, use diagnostic skills to help with troubleshooting any faults.
+
+No direct user control of the raw voltage scaling, filtering or sensor calibration frequency.
+
+
+**Functional Flowchart:**
+
+<img width="534" height="178" alt="image" src="https://github.com/user-attachments/assets/c16677ed-42c8-48d4-8e17-1cb589b570aa" />
+
+
+**Specifications**
+
+1) This subsystem shall read data from the temperature sensor.
+
+2)	This subsystem shall read data from the flow meter.
+   
+3)	This subsystem shall update all data every how many seconds we choose.
+   
+4)	This subsystem shall send a fault error if there is any out-of-bounds data or if there is a broken connection.
+   
+5)	This subsystem shall send data to the microcontroller .
+
+
+
+
+### 2) Microcontroller and Control Logic Subsystem
+
+**Overview:**
+
+The Microcontroller and Control Logic subsystem will act as the decision-making part of the variable-speed pump controller. Its main job will be to use the measurements collected from the water-heating system to determine an appropriate pump speed. The controller will consider available information, such as water flow rate, water temperature, and boiler firing rate, to help determine when the pump can operate at a lower speed.
+The control algorithm must balance energy savings with the system's operating requirements. For example, reducing pump speed too much could cause the water flow to fall below the manufacturer's minimum requirement or affect the system's ability to maintain the desired temperature. Because of this, the controller will need to follow established operating limits when determining the pump-speed command.
+The microcontroller will receive measurements from the Sensor and Data Acquisition subsystem, process the information, and send a command to the Pump and Motor Control subsystem. After the pump speed changes, updated measurements will help the team evaluate how the system responds. This process will be used to test and improve the control algorithm. The specific microcontroller, control algorithm, and communication methods will be chosen after the team confirms which hardware is available and compatible with Lochinvar's equipment.
+
+**Inputs:**
+
+* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
+* Inlet and outlet water temperature measurements, when they are available.
+* Boiling firing rate information, when it is available and compatible with the controller.
+* Manufacturer running limits, in which includes the minimum required water flow.
+* Target the running conditions and control settings created during testing.
+
+**Outputs:**
+
+* Pump speed commands that are sent to the Pump and Motor subsystem.
+* Related running information sent to the Data Logging and Simulation subsystem.
+* Controller status or fault information, if supported by the chosen hardware.
+
+**Interfaces and Procedure:**
+
+The subsystem will get measurements from the Sensor and Data Acquisition subsystem. Depending on the chosen sensors and hardware, these measurements may be provided through analog voltage signals, digital signals, or digital communication. The microcontroller will process the new information and use the control algorithm to decide the suitable pump speed command. The command sent to the pump-control hardware must use a signal or communication approaches supported by the chosen equipment. The exact interface will be decided during detailed design after the team verify the pump's control requirements.
+During the procedure, the controller will read the accessible measurements, evaluate the current state, and calculate a pump speed command. The pump control hardware will then adjust the pump as instructed. The updated measurements will help determine whether the adjustment creates the expected results. If the measurements suggest an unsafe or unacceptable operating procedure, the controller will need to follow a response created during the design process with Lochinvar.
+
+**Functional Flowchart:**
+
+<img width="981" height="93" alt="image" src="https://github.com/user-attachments/assets/70949a81-fe63-4c40-ade3-aa1d8565058e" />
+
+
+**Specifications**
+
+1. The subsystem shall process the accessible flow rate, temperature, and boiler running measurements needed by the control algorithm.
+
+2. The subsystem shall determine pump speed commands depending on the current running conditions and created control logic.
+
+3. The subsystem shall prevent pump speed commands from falling below the minimum permitted running level created from manufacturer requirements and hardware limitations.
+
+4. The subsystem shall sustain changes in pump speed as system demand changes, while staying within the created operating limits.
+
+5. The subsystem shall send pump speed commands through an interface compatible with the selected pump control hardware.
+
+6. The subsystem shall provide applicable operating information to the Data Logging and Simulation subsystem for analysis.
+
+7. The subsystem shall be tested to determine whether the control algorithm can reduce pump energy consumption while still maintaining acceptable flow and temperature performance.
+
+8. The subsystem shall define how it responds to null sensor measurements or operating conditions outside the permitted limits before implementation.
+
+9. The subsystem shall run within the processing, memory, electrical, and communication limits of the chosen microcontroller.
+
+
+### 3) Pump and Motor Control Subsystem
+
+**Overview:**
+
+The pump and motor control subsystem will take the controller's command and change the circulation pump speed to meet that demand. It will ensure the system adjusts the pump speeds based on the control command and demand. The design should emphasize operating within the pump's allowable speed, prevent motor strain, and provide the correct circulation needed to maintain the desirable water temperature.
+
+
+Functional Description:
+
+This subsystem's core function is to receive the calculated speed instructions from the pump's controller and use that to vary the circulation pump during different demand situations and maintain the desired water temperature. This will prepare digital signals for high-efficiency mechanical work.
+
+1) Speed Modulation
+   * Responds directly to incoming signals by altering the voltage or frequency line to the pump. This will allow the pump to adjust the speed based on the control command.
+     
+2) Operational Range Control
+   * This makes sure the pump's motor is operating within the pump's allowable range.
+   * Protects the motor from spinning too fast or stalling below its limit.
+     
+3) Thermal System Balancing
+   * Regulates flow velocity to provide the circulation needed by the heat exchanger to keep the desired temperature under fluctuating demands.
+
+In addition, the subsystem should provide running data for evaluations. This will share motor speed based on flow speeds and temperature readings for lab testing.
+
+
+Subsystem Interface:
+
+1) Control Logic Input
+   * Connected To: Microcontroller and Control Logic Subsystem.
+   * Description: Receives the low-voltage speed commands and safety faults calculated by the microcontroller.
+
+2) Mains Power Input
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Connects to the 120VAC to supply the pump with power.
+     
+3) Mechanical Circulation Output
+   * Connected to: Water Heating and Hydraulic Subsystem.
+   * Description: Delivers control signals and power to the pump to control the motor's speed.
+     
+4) Operational Data Outpu
+   * Connected to: Monitoring and Performance Evaluations Subsystem.
+   * Description: Transmits real-time data to observe the motor speed.
+
+
+**Subsystem Operation:**
+
+1) Initialization Phase
+   * During system startup, the pump controller will establish safe boundaries.
+   * Verifies that the pump is operational and no faults have occurred.
+     
+2) Demand Activation Phase
+   * Delivers 120 VAC to the pump.
+
+3) Modulation Phase
+   * During run time, raw data for the speed commands is captured.
+   * System will continuously adjust pump speeds based on control command, water flow, and the water temperature.
+
+4) Shutdown and Failsafe Phase
+   * If there is a control logic fault or a communication fault, the subsystem will go into action and make sure the water will not overheat.
+   * It will make sure there are safety measures put into effect in case of a fault.
+
+**Expected User Interaction:**
+
+1) Monitoring the active speed.
+2) Monitor if the pump is operating within a safe boundary.
+3) Could have an override program for maintenance.
+
+No direct user control of frequency, pump speed, voltage scaling, or safety switching loops. Pumps' minimum and maximum speed can be programmed through the microcontroller's interface.
+
+
+**Functional Flowchart:**
+
+<img width="825" height="242" alt="image" src="https://github.com/user-attachments/assets/97c8f6ae-c530-4c08-8fbd-bd51574dd9e2" />
+
+
+**Specifications:**
+
+1) This subsystem shall capture the microcontroller's command and change the circulation pump speed dynamically.
+   
+2) The subsystem shall operate within the pump's allowable speed range.
+
+3) The subsystem shall transmit live motor speeds to the microcontroller's display.
+   
+4) This subsystem shall keep the pump speed so the heat exchanger keeps the desired water temperature.
+
+
+### 4) Water Heater and Hydraulic Subsystem
+
+**Overview:**
+
+The Water Heating and Hydraulic Subsystem will provide the physical environment needed to test the variable-speed pump controller. Its main purpose is to heat and circulate water through the existing water-heating system while allowing the team to observe how changes in pump speed affect water flow, inlet and outlet temperatures, and overall heating performance. This subsystem is expected to use the available Lochinvar water heater and circulation pump, along with the existing piping and any additional hydraulic components required for testing. Depending on the condition and configuration of the existing equipment, additional materials may be needed to establish reliable hydraulic connections.
+
+**Functional Description:**
+
+* **Water Heating:** use the existing water heater to provide thermal energy and heat the water according to its established operating settings.
+* **Water Circulation:**  use the circulation pump to move water through the connected hydraulic components and establish the flow conditions required for testing.
+* **Pump Speed Adjustment:** accommodate changes in pump speed commanded by the Pump and Motor Control Subsystem based on instructions from the Microcontroller and Control Logic Subsystem.
+* **Flow and Temperature Response:** allow the team to observe how changes in pump speed affect water flow rate, heat transfer, and outlet-water temperature.
+* **Sensor Integration:** provide appropriate installation points for flow and temperature sensors so that operating measurements can be collected by the Sensor and Data Acquisition Subsystem.
+
+**Inputs:**
+* Heated or partially heated water supplied by the existing water-heating equipment.
+* Pump-speed commands from the Pump and Motor Control Subsystem.
+* Water-flow and temperature measurements from the Sensor and Data Acquisition Subsystem for monitoring and evaluation.
+* Electrical power supplied to the water heater and circulation pump through their existing electrical systems.
+* Test conditions, including target outlet temperature, pump operating speed, and water-demand conditions.
+* Hydraulic connections and operating settings established for each laboratory test.
+
+**Outputs:**
+* Circulated water supplied through the hydraulic system.
+* Heated water at the system outlet under the operating conditions established for testing.
+* Water-flow conditions that can be measured and compared at different pump speeds.
+* Inlet and outlet water temperatures for evaluating heat transfer and temperature stability.
+* A physical test environment for assessing the performance of the variable-speed pump controller.
+* Hydraulic operating data that can be used by the Monitoring and Performance Evaluation Subsystem and the Data Logging and Simulation Subsystem.
+
+**Interfaces and Procedure:**
+
+The Water Heating and Hydraulic Subsystem receives pump-speed commands from the Pump and Motor Control Subsystem and the Microcontroller and Control Logic Subsystem. Flow-rate and temperature measurements are collected through the Sensor and Data Acquisition Subsystem and shared with the monitoring and data logging subsystems for performance evaluation.
+
+Before testing, the water heater, circulation pump, piping, and connections shall be inspected for safe operation and leaks. The system is then operated, pump speed is adjusted under different conditions, and flowrate and temperature data are recorded. After testing, the system shall be shut down according to the manufacturer's procedures.
+
+**Functional Flowchart:**
+
+<img width="431" height="273" alt="image" src="https://github.com/user-attachments/assets/3830704c-444d-49e2-8881-834f89bec4f3" />
+
+**Specifications:**
+
+1. The subsystem shall maintain water circulation within the water heater and pump manufacturer's operating limits.
+2. All piping, fittings, and seals shall withstand the system's operating temperature and pressure without leakage.
+3. The subsystem shall provide suitable locations for flow-rate and temperature sensors.
+4. The subsystem shall support pump-speed adjustments through the Pump and Motor Control Subsystem.
+5. The subsystem shall retain the water heater's existing safety controls and protection mechanisms.
+
+
+### 5) Monitoring and Performance Evaluation Subsystem
+
+**Overview:**
+
+The Monitoring and Performance Evaluation Subsystem will evaluate the performance of the proposed variable speed pump control strategy during testing. It will use system operating results, including available flow rate, water temperature, and pump operating measurements, to determine how changes in pump speed affect the water heating system. The subsystem will assess whether reducing pump speed can decrease electrical energy consumption while maintaining the required water flow and temperature. The resulting performance information will be sent to the Data Logging and Simulation Subsystem for further analysis.
+
+**Functional Description:**
+
+The primary function of this subsystem is to evaluate the system's response to changes in pump speed. It will use the results to assess the effectiveness of the control strategy.
+
+1. **Flow and Temperature Evaluation:** Evaluate changes in water flow rate and temperature to determine whether the system is functioning correctly.
+2. **Energy Performance Evaluation:** Compare energy consumption at different pump speeds when measurements are available.
+3. **Operating Requirements:** Determine whether the system maintains minimum flow and temperature requirements.
+4. **Control Strategy Assessment:** Evaluate whether the proposed control strategy achieves potential energy savings without compromising the performance of the water heater.
+5. **Performance Feedback:** Send evaluation results to the Data Logging and Simulation Subsystem to support further analysis.
+
+**Subsystem Interfaces:**
+
+1. **System Running Results Input**
+   - Connected to: Water Heating and Hydraulic Subsystem.
+   - Description: Receives the system's operating results. 
+
+2. **Performance Results Output**
+   - Connected to: Data Logging and Simulation Subsystem.
+   - Description: Sends performance evaluation results for data recording, comparison, and further analysis.
+
+**Subsystem Operation:**
+
+1. **Receive Operating Results:** Obtain measurements and system operating results during pump testing.
+2. **Evaluate System Performance:** Assess the effects of pump speed changes on water flow rate, temperature, and available electrical power measurements.
+3. **Compare Test Conditions:** Compare performance at different pump speeds against baseline operation.
+4. **Determine Effectiveness:** Evaluate whether the control strategy reduces pump energy consumption while maintaining acceptable flow and temperature performance.
+5. **Transfer Results:** Send the performance results to the Data Logging and Simulation Subsystem for documentation and further analysis.
+
+**Expected User Interaction:**
+
+The team will use this subsystem during laboratory testing to evaluate the system's performance under different operating conditions. The results will help determine whether the proposed control strategy meets the project objectives and identify potential improvements. The subsystem will support performance evaluation only.
+
+**Functional Flow Chart:**
+
+<img width="455" height="168" alt="image" src="https://github.com/user-attachments/assets/a5cbd779-ad76-486f-a6b7-4c7ed8f2db7f" />
+
+
+**Specifications:**
+
+1. This subsystem shall evaluate available flow rate and temperature measurements during testing.
+2. This subsystem shall evaluate energy consumption when suitable measurement equipment is available.
+3. This subsystem shall compare system performance under different pump speeds and operating conditions.
+4. This subsystem shall evaluate whether the system maintains minimum flow and temperature requirements.
+5. This subsystem shall provide performance results to the Data Logging and Simulation Subsystem for further analysis.
+6. This subsystem shall help identify performance issues found during testing that may require adjustments to the proposed control strategy.
+
+
+### 6) Data Logging and Simulation Subsystem
+
+**Overview:**
+
+The Data Logging and Simulation subsystem will help the team to collect data, analyze the system's performance, and evaluate the proposed pump control strategy. Its main purpose will be to record measurements from testing so the team can compare how the system performs at different pump speeds and under different running conditions. Depending on the available equipment, the recorded data may include the speed of the pump, water flow rate, inlet and outlet water temperatures, boiler firing rate, and pump electrical power. The team will use this information to create graphs, identify direction, and compare the system's energy consumption and water heating performance. These results will help the team to decide whether reducing the speed of the pump can save energy without negatively affecting water flow or temperature.
+Simulation may also be used to learn how the system responds to changes in pump speed and hot water demand. If enough system information is available, the team may use Dymola or another appropriate simulation application to model the system's performance. The simulation results can then be compared with labo measurements or data provided by Lochinvar, when it's available. This comparison will help the team decide whether the model relatively represents the actual system. This subsystem will mainly support testing, analysis, and design improvements. Unless additional hardware and software are chosen for real time integration, the logging and simulation software will not directly control the actual pump during normal procedure.
+
+
+**Inputs:**
+
+* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
+* Inlet and outlet water temperature measurements, when it's available.
+* Pump speed measurements or commanded pump speed values.
+* Boiler firing rate information, when it's available.
+* Pump electrical power measurements, if appropriate measurement equipment is available.
+* Test conditions and target procedure values.
+* System parameters and measured data needed to develop/evaluate a simulation model.
+  
+**Outputs:**
+
+* Organized records of procedure measurements.
+* Graphs and comparisons of pump speed, flow rate, temperature, and electrical power.
+* Calculated performance results, including energy use and time to reach the desired temperature when enough data is available.
+* Simulation results showing predicted system performance under chosen running conditions.
+* Analysis that helps the team evaluate and improve the proposed control strategy.
+  
+
+**Interfaces and Procedure:**
+
+   The subsystem will get data from the sensors, controller, and performance monitoring equipment. Depending on the chosen hardware and software, information may be handed over through digital communication, stored files, or manual data export. The exact methods and data formats will be decided during detailed design.
+During lab testing, the team will take note of measurements while the pump runs under different conditions. The measurements will be organized so that results from different pump speeds and demand levels can be compared.          For simulation, the team will use available system information to decide whether an appropriate model can be developed. The model may help examine running conditions that are difficult to reproduce in the lab. When measured data is available, the team will compare the simulation results with the actual results to recognize the differences and decide whether the model needs further adjustments.
+   The results from this subsystem will help the team decide whether the proposed control strategy will meet the project's requirements. If the data shows that certain pump speeds cause problems with flow or temperature, that information can be used to make changes to the control algorithm and testing in the future.
+
+**Functional Flowchart:**
+
+<img width="426" height="35" alt="image" src="https://github.com/user-attachments/assets/62120015-03cd-48d1-bb63-ea6ebcf9c9cd" />
+
+**Specifications:**
+
+1. The subsystem shall record the available running measurements needed to assess the variable speed pump controller.
+
+2. The subsystem shall correlate recorded measurements with the corresponding test conditions when that information is available.
+
+3. The subsystem shall organize recorded data in a format appropriate for analysis, graphing, and comparison.
+
+4. The subsystem shall assist comparisons of electrical energy consumption at different pump running conditions when appropriate power measurements are available.
+
+5. The subsystem shall sustain the assessment of water flow, temperature stability, and time to reach the wanted temperature using available test data.
+
+6. The subsystem shall sustain the development/use of a simulation model if adequate system information and appropriate software is available.
+
+7. The subsystem shall sustain comparisons between simulation results and measured data when appropriate measurements are available.
+
+8. The subsystem shall document the assumptions, limitations, and data sources used in its analysis and simulations.
+
+9. The subsystem shall deliver results that can be used to assess and improve the proposed control strategy.
+
+10. The subsystem shall document test conditions and data processing methods so that the results can be analyzed and compared consistently.
+
+    
+    
+
+Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
+
+Inclued a description of the interfaces between this subsystem and other subsystems:
+- Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
+- Clearly define the direction of the signal (input or output).
+- Document the communication protocols used.
+- Specifying what data will be sent and what will be received.
+
+Detail the operation of the subsystem:
+- Illustrate the expected user interface, if applicable.
+- Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
+
+For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
+
+
+## Ethical, Professional, and Standards Considerations
+
+The development of this variable circulation pump controller project has implications across environmental, societal, economic, scientific, cultural, and ethical domains. These considerations directly influence the controller’s design and the engineering practices required to develop a reliable and efficient system. Throughout the project, the team must consider how the controller will affect facility operations, public health and safety, energy consumption, and future applications developed by Lochinvar.
+
+From an environmental perspective, the controller should be designed to maximize energy efficiency and support water conservation compared with the current fixed-speed circulation pump. Developing a controller that adjusts pump operation based on system demand could reduce unnecessary energy consumption and decrease the facility’s overall carbon footprint. By allowing the pump to operate at different speeds rather than continuously operating at a fixed speed, the controller could improve energy efficiency during periods of lower demand. These environmental considerations will influence the control logic by prioritizing efficient pump operation while maintaining the required water temperature and circulation conditions.
+
+From a societal standpoint, the variable circulation pump controller must feature an intuitive user interface to help operators manage the pump across different commercial facilities. The system must continuously respond to fluctuating peak demands while maintaining strict temperature stability parameters. If the pump fails to satisfy these demands, it could result in financial losses, interruptions in facility operations, and risks to public health and safety. Therefore, the controller should be designed to provide reliable operation, accurate temperature monitoring, and consistent performance under changing operating conditions. These design considerations would help improve the overall reliability of the facility’s water circulation system.
+
+From an economic perspective, implementing a variable circulation pump controller could reduce operating expenses by adjusting the pump’s performance to match system demand. Compared with a fixed-speed circulation pump, the variable controller could reduce unnecessary energy consumption during periods of lower demand. However, these potential savings must be considered alongside the controller’s initial cost, maintenance requirements, and equipment reliability. A system failure could result in additional maintenance costs, equipment damage, or interruptions in facility operations. Therefore, the design should prioritize long-term performance, efficient energy consumption, and reliability while minimizing unnecessary operating expenses.
+
+From a scientific perspective, the variable circulation pump controller must incorporate an accurate and stable control loop capable of responding to changing operating conditions. The accuracy of the controller can be supported by field data provided by Lochinvar from its testing locations. This information will provide physical measurements that can be used to develop, configure, and validate the controller’s logic. Without accurate data, cross-referencing simulation predictions with actual system performance would be difficult and could reduce the reliability of the final design. Standardizing data-collection and testing procedures could improve simulation accuracy, help identify anomalies, and allow the team to make necessary adjustments to the controller. These practices will help ensure that the system responds appropriately to changes in temperature and demand.
+
+Ethical responsibilities are integrated into the design and implementation of the project. As engineers, the team is committed to ensuring the accuracy and integrity of its methodology and data. This commitment includes rigorous measurement validation, proper documentation, equipment calibration, and strict attention to detail. Through collaboration with Lochinvar, the team must remain accountable for its deliverables while adhering to applicable engineering standards, copyrights, and intellectual property rights. Upholding these responsibilities allows the team to use the data provided by Lochinvar securely and incorporate that information into a product intended to remain internal to the company. Maintaining professional integrity throughout the design process will help ensure that the final controller is developed responsibly and that all testing results accurately represent its performance.
+
+From a cultural perspective, the variable circulation pump controller should be designed to accommodate different types of commercial facilities and their operating requirements. Each facility may have different water demands, equipment configurations, and levels of operator experience. A user-friendly interface would allow operators to adjust the controller to meet specific facility requirements without extensive technical knowledge. The controller should also be adaptable to different operating environments while maintaining consistent performance. This flexibility could allow Lochinvar to implement the controller in future products and across a wider range of commercial applications.
+
+Public health and safety are essential considerations throughout the design process. The circulation pump controller must maintain the required water-temperature and flow conditions during fluctuations in system demand. Failure to maintain these parameters could create unsafe operating conditions, affect water availability, or interrupt facility operations. To address these concerns, the controller should incorporate temperature monitoring, appropriate operating limits, and fault-detection capabilities. These features would allow the system to identify abnormal operating conditions and respond appropriately. The design should also account for potential sensor failures, communication issues, and unexpected changes in system demand. Incorporating these safeguards would help protect facility operators and occupants while improving the reliability of the overall system.
+
+Relevant engineering standards will also influence the development of the controller. Organizations such as the American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE), the American National Standards Institute (ANSI), the American Society of Mechanical Engineers (ASME), and UL Standards & Engagement establish or coordinate standards relevant to building energy efficiency, electrical equipment, and control systems. ASHRAE Standard 90.1 provides requirements for energy-efficient building systems, while UL 60730-1 addresses safety requirements for automatic electrical controls. Depending on the final application of the pump, additional requirements involving water circulation, equipment protection, and electrical safety may also apply. The team will need to determine which standards apply to the controller and use them to guide the selection of electrical components, operating limits, control logic, and testing procedures. Following applicable standards will help improve the overall safety, reliability, and compatibility of the final design.
+
+These considerations will influence the design constraints, specifications, and engineering practices implemented throughout the project. The controller must be capable of responding to fluctuations in system demand while maintaining water temperature and circulation within the operating limits established with Lochinvar. These limitations will influence the selection of sensors, the controller’s response time, pump-speed adjustments, and the development of protective features. To evaluate the controller’s performance, the team will compare its energy consumption with that of the existing fixed-speed pump and analyze temperature stability under different loading conditions. Testing should also include simulated faults and abnormal operating conditions to verify that the controller responds safely and reliably. The team will use field measurements, simulation results, and repeated testing to validate the accuracy of the control system. Proper documentation, calibration, and consistent testing practices will help ensure that the final design meets the established requirements.
+
+In conclusion, upholding public safety remains a primary responsibility throughout this project. The development of the variable circulation pump controller must maintain reliable temperature stability under fluctuating loads in commercial facilities while improving energy efficiency and overall system performance. Achieving these goals will require each team member to complete their contributions with technical diligence, professional integrity, and attention to the environmental, societal, cultural, and economic impacts of the design. Team members must also remain mindful that this controller may be used in future products developed by Lochinvar. By following applicable engineering standards, validating system performance, and maintaining ethical responsibilities, the team can work toward delivering a safe, reliable, and efficient controller that benefits both Lochinvar and the public while reducing potential operational risks and liabilities.
+
+
+## Resources
+
+
+### Budget
+
+The proposed budget covers all six subsystems required to develop and evaluate the variable-speed pump controller. The selected design combines flow-rate measurements, the boiler's firing-rate signal, and outlet-temperature feedback to adjust pump speed according to operating conditions.
+
+The budget includes sensing and data acquisition, control hardware and programming, pump-speed control equipment, hydraulic components, performance-monitoring instruments, and data-logging and simulation resources. The estimates are preliminary allowances and assume that the existing Lochinvar water heater, circulation pump, and Keyence flow sensor can be reused where compatible. Existing laboratory equipment and available software are also assumed to be available at no additional cost.
+
+**1. Sensor and Data Acquisition Subsystem**
+
+<img width="930" height="290" alt="image" src="https://github.com/user-attachments/assets/5b57a5b0-8418-431c-8efe-411c7938d2df" />
+
+Justification: The flow sensor measures hot-water demand, while the temperature sensors measure system thermal performance. Signal-conditioning components and wiring provide reliable connections to the controller, and the data acquisition interface allows sensor measurements to be read and recorded. The budget assumes the existing flow sensor is compatible with the selected control hardware.
+
+**2. Microcontroller and Control Logic Subsystem**
+
+<img width="922" height="350" alt="image" src="https://github.com/user-attachments/assets/ceb87af1-52ad-4600-83e7-ed0697139abc" />
+
+Justification: The microcontroller executes the control logic and processes the flowrate, firing-rate, and temperature measurements. The analog input interface is needed to read the boiler's 0–10 V firing-rate signal, while the analog output interface generates the appropriate command for the pump-speed control equipment. The connection hardware helps protect and organize the electronics. Final component selection must account for signal ranges, electrical isolation, and compatibility with the existing boiler and drive.
+
+**3. Pump and Motor Control Subsystem**
+
+<img width="916" height="266" alt="image" src="https://github.com/user-attachments/assets/1311b881-9dbe-4518-85d0-45c9e92654bb" />
+
+Justification: The speed controller adjusts pump operation based on the command from the microcontroller. The VFD is a preliminary option for an appropriately compatible AC motor; the existing pump and motor specifications must be checked before selecting the drive. Wiring and electrical protection components support safe integration. If the existing pump uses a different motor type or has an integrated electronic controller, a different compatible speed-control solution may be required.
+
+**4. Water Heating and Hydraulic Subsystem**
+
+<img width="928" height="414" alt="image" src="https://github.com/user-attachments/assets/980f4cd6-dc09-4630-a1bd-6dc61566811c" />
+
+Justification: The water heater and circulation pump provide the existing test platform. Fittings and connectors support proper hydraulic connections, while valves allow the system to be configured for testing and insulation helps reduce heat loss. Seals and leak-prevention materials support safe, reliable operation. The estimate assumes that the existing equipment is functional and that major plumbing modifications are unnecessary.
+
+**5. Monitoring and Performance Evaluation Subsystem**
+
+<img width="916" height="264" alt="image" src="https://github.com/user-attachments/assets/fbc19844-e9e7-49d8-9760-4bc164dbd20a" />
+
+Justification: Electrical power measurements allow the team to compare pump energy consumption under fixed-speed and variable-speed operation. An independent temperature instrument provides a way to verify the installed sensors, while measurement accessories support data collection during testing. These measurements are necessary to determine whether the proposed controller reduces energy use without negatively affecting outlet-temperature performance.
+
+**6. Data Logging and Simulation Subsystem**
+
+<img width="918" height="272" alt="image" src="https://github.com/user-attachments/assets/f7282957-da67-4ab6-af13-652bc6a57889" />
+
+Justification: Data logging software records flow rate, firing rate, outlet temperature, pump speed, and electrical power measurements for later analysis. Simulation software can help evaluate control strategies before hardware implementation. The budget assumes access to an existing computer and a suitable software license or free simulation tool. If a paid MATLAB/Simulink or Dymola license must be purchased, the project budget will need to be revised.
+
+**7. Comprehensive Project Budget**
+
+<img width="778" height="342" alt="image" src="https://github.com/user-attachments/assets/cf2bb408-17c0-472a-bb89-265b29597eb6" />
+
+
+### Division of Labor
+
+
+* High-Level Solution - Jocelyn Smith
+	* Requirements: Develop an overall solution for the variable-speed pump controller, identify how the six subsystems will work together, 	create a hardware block diagram, and develop an operational flowchart showing how the system will respond to changing operating 			conditions.
+	* Responsible team member and rationale: Jocelyn was assigned this section because of her experience with circuit analysis, 				control systems, and programming. Her knowledge of C/C++, Python, and MATLAB will help her understand how the different subsystems 			interact and how they contribute to reducing pump energy consumption while maintaining system performance.
+* Atomic Subsystem (Microcontroller and Control Logic) - Jocelyn Smith
+	* Requirements: Develop the control logic needed to process sensor measurements and determine the appropriate pump speed. Identify the 		microcontroller requirements, establish how information will be received from the sensors, and determine how commands will be sent to 		the pump control hardware. The design must also account for minimum flow requirements, temperature conditions, and potential sensor 		errors.
+ 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with C/C++, Assembly, 				Python, and control system analysis. These skills will be very useful when developing the programming needed to process sensor data and 	adjust pump speed based on the system's operating conditions. Her background in circuit analysis will also help with understanding the 		connections between the microcontroller, sensors, and pump control hardware.
+* Atomic Subsystem (Data Logic and Simulation Subsystem) - Jocelyn Smith
+	* Requirements: Developing a method for collecting and organizing operating data, including water flow rate, temperature, pump speed, 		and electrical power when available. Use MATLAB or other available software to analyze the collected measurements, develop simulations 		when sufficient information is available, and compare different running conditions to evaluate potential energy savings and system 			performance.
+	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with MATLAB, Python, and 			control system analysis. These skills will help her organize experimental data, develop simulations, and analyze how changes in pump 		speed affect the water heating system. Because this subsystem works closely with the Microcontroller and Control Logic subsystem, 			assigning both to the same team member will also help maintain consistency between the controller design and performance analysis.
+ * Atomic Subsystems(Monitoring and Performance Evaluation Subsystem)- Kendall Arnold
+	 * Requirements: Develop a method for evaluating system performance using operating data, including water flow rate, inlet and outlet 		 water temperatures, pump speed, and available heater operating measurements. Compare the system’s energy consumption and water heating 	 performance when the pump operates at different speeds with its performance at a constant speed. This will help determine whether the 		 proposed control strategy reduces electrical energy consumption while maintaining required water heating performance. Verify that the 		 system meets minimum flow and temperature requirements, evaluate the control strategy under different operating conditions, and 			 provide performance results to the Data Logging and Simulation Subsystem for further analysis.
+     * Responsible team member and rationale: Kendall was assigned this subsystem because of her background in applied physics and 				 experience conducting experimental projects involving data collection, analysis, and comparison of results. She is also experiences 		 with C/C++, assembly, and currently in Control Systems. These skills will be valuable when evaluating system performance under 			 different operating conditions and determining whether the proposed control strategy reduces electrical energy consumption without 		 compromising the performance of the heater.
+* Atomic Subsystem (Sensor and Data Acquisition Subsystem) – Skyler Raines
+	* Requirements: Collect and transfer data from the system. This includes water flow rate, inlet and outlet water temperatures, and 		  boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. Process sensor readings into 		usable data and send them to the Microcontroller and Control Logic Subsystem to support pump speed adjustments. Identify sensor 			faults, disconnected sensors, and measurements outside acceptable operating ranges. Provide the collected measurements to the 			  Monitoring and Performance Evaluation Subsystem and Data Logging and Simulation Subsystem for analyzing system performance.
+	* Responsible team member and rationale: Skyler was assigned this subsystem because her background in Electronics and Computer 			Engineering Technology provides relevant knowledge of electrical connections and hardware components. Her experience assembling 			electrical panels and working with wiring during her internship will help her connect sensors, integrate their wiring with the 			  microcontroller, and ensure the hardware is properly assembled. Her troubleshooting experience will also be useful for identifying 		  faulty connections and resolving issues that could affect the accuracy and reliability of collected data. Additionally, her current 		Control Systems coursework provides relevant knowledge.
+* Atomic Subsystem (Pump and Motor Control Subsystem) – Skyler Raines
+	* Requirements: Adjust the circulation pump speed based on commands received from the Microcontroller and Control Logic Subsystem. 		  Keep the pump operating within its range while providing sufficient water flow to maintain required water heating performance. 			  Provide pump operating data to the Monitoring and Performance Evaluation Subsystem for analysis and maintain safe pump operation if a 	  control or communication fault occurs.
+	* Responsible team member and rationale: Skyler was assigned this subsystem because her experience assembling electrical panels and 		  troubleshooting electrical hardware provides a foundation for integrating the pump's motor control components. Her background in 			  Electronics and Computer Engineering Technology will help her work with electrical connections between the pump, motor control 			  hardware, and microcontroller. Her troubleshooting skills will also be valuable for diagnosing wiring problems, addressing hardware 		  malfunctions, and helping ensure the pump control system operates reliably during testing.
+* Comparative Analysis of Potential Solutions - Danielle Wolford
+	* Requirements: Research and compare the different control strategies that could be used for the variable speed circulation pump 			  controller. Evaluate each solution based on energy efficiency, temperature stability, water flow requirements, system response, and 		  implementation difficulty. Identify the advantages and disadvantages of each approach and explain why the combined flow rate, boiler 		  firing rate, and temperature feedback solution was selected as the preferred design.
+	* Responsible team member and rationale: Danielle was assigned this section because of her experience with control system analysis, 		  circuit analysis, and PLC programming. These skills will help her understand how different control strategies operate and evaluate 		  how each approach could affect the performance of the water heating system. Her knowledge of control systems will also be useful when 	  comparing the proposed solutions and determining which approach best meets Lochinvar's requirements.
+* Budget - Danielle Wolford
+	* Requirements: Develop an estimated budget for the variable speed circulation pump controller, including the components and 				  equipment needed for all six subsystems. Identify the expected costs of sensors, microcontroller hardware, pump control equipment, 		  hydraulic components, testing instruments, and simulation resources. Explain why each component is needed and determine how existing 		  equipment given by Lochinvar or Tennessee Tech could help reduce the overall project cost.
+  	* Responsible team member and rationale: Danielle was assigned this section because of her experience with circuit analysis, KiCad, 		  and electrical hardware. These skills will help her understand the components that are needed for the controller and decide which 		  materials and equipment should be included in the project budget. Her background in programming and control systems will also help 		  her identify the hardware and software resources needed to develop and test the proposed design.
+* Atomic Subsystem (Water Heating and Hydraulic Subsystem) - Danielle Wolford
+	* Requirements: Develop the design requirements for the physical water heating and circulation system, including the water heater, 		  circulation pump, piping, and hydraulic connections. Identify how the subsystem will secure changes in pump speed while maintaining 		  the required water flow and temperature. Determine how the subsystem will interface with the Pump and Motor Control, Sensor and Data 		  Acquisition, and Monitoring and Performance Evaluation subsystems. The design must also consider the equipment compatibility, 			  operating limits, and existing safety controls.
+	* Responsible team member and rationale: Danielle was assigned this subsystem because of her experience with circuit analysis, 			  control systems, and electrical hardware design. These skills will help her understand how the circulation pump and water heating 		  equipment interact with the controller. Her background in PLC programming and control system analysis will also be useful when 			  analyzing how changes in pump speed affect water flow and temperature. This knowledge will help her develop a subsystem design that 		  secures reliable procedure and meets the requirements made by Lochinvar.
+  
+### Timeline
+
+
+<img width="1262" height="665" alt="image" src="https://github.com/user-attachments/assets/40428e21-fbbf-461b-a409-2e50152ccd55" />
+
+
+
+## References
+
+[1] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N,” Lochinvar. [Online]. Available: https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html. [Accessed: Oct. 16, 2026]
+
+[2] Lochinvar, Regent Commercial Tankless Water Heater Installation and Operation Manual, Rev. D, document no. 100399794/2000857139. [Online]. Available: Lochinvar Regent Manual (PDF). [Accessed: Oct. 16, 2026]
+
+[3] M. Irfan, A. A. Amin, S. Waseem, S. Rahman, H. Alwadie, and S. Al Dawsari, “Design of a fault-tolerant control system for a centrifugal pump-based level control system for sensor faults,” Scientific Reports, vol. 16, art. no. 14189, Mar. 2026, doi: 10.1038/s41598-026-42361-x.
+
+[4] U.S. Department of Energy, Hydraulic Institute, and Europump, Variable Speed Pumping: A Guide to Successful Applications—Executive Summary. U.S. Department of Energy, Energy Efficiency and Renewable Energy, Industrial Technologies Program. [Online]. Available: Variable Speed Pumping (PDF). [Accessed: Oct. 16, 2026]
+
+[5] T. C. Hayes and P. Horowitz, The Art of Electronics Student Manual. Cambridge, U.K.: Cambridge University Press, 1989. [Online]. Available: The Art of Electronics Student Manual (PDF). [Accessed: Oct. 16, 2026]
+
+
+## Statement of Contributions
+
+
+Jocelyn Smith: High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem), Divison of Labor
+
+Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystems(Sensor and Data Acquisition Subsystem and Pump and Motor Control Subsystem)
+
+Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsystem), Division of Labor
+
+Danielle Wolford: Comparative analysis of potential solutions, Budget, Atomic Subsystems (Water Heating and Hydraulic Subsystem)
