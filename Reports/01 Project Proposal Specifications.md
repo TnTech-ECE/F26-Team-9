@@ -263,13 +263,13 @@ The following measures will be used to evaluate the success of the project:
 
 To determine the percentage of electrical power savings, the following equation will be used:
 
-[
-\text{Power Savings (%)} =
-\frac{P_{\text{baseline}}-P_{\text{controlled}}}
-{P_{\text{baseline}}}\times100
-]
+$$
+\text{Power Savings (\%)} =
+\frac{P_{\text{base}} - P_{\text{controlled}}}
+{P_{\text{base}}} \times 100
+$$
 
-where (P_{\text{baseline}}) represents the electrical power consumed during original pump procedure and (P_{\text{controlled}}) represents the electrical power consumed while using the proposed variable speed controller.
+where $P_{\text{base}}$ represents the electrical power consumed during original pump procedure and (P_{\text{controlled}}) represents the electrical power consumed while using the proposed variable speed controller.
 
 The team will also compare the results from different running conditions to determine how changes in pump speed affect the flow rate, temperature stability, and power consumption. Research from the U.S. Department of Energy explains that variable speed pumping can reduce energy consumption when pump output is adjusted to match system requirements [10]. However, the actual savings for Lochinvar's equipment will need to be decidied through testing.
 
