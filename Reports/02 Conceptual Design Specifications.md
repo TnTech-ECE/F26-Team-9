@@ -39,7 +39,7 @@ The proposed design shall meet the following requirements:
 3. Performance evaluation: The team shall study how pump speed, water flow, inlet water temperature, and heater operation affect system performance.
 *	Evaluating these factors will help determine whether changing pump speed can improve energy efficiency without negatively affecting the water heater's operation.
   
-4. Minimum flow requirements: The pump shall maintain enough water flow through the heat exchanger to meet the manufacturer's requirements.
+4. Minimum flow requirements: The pump shall maintain enough water flow through the heat exchanger to meet Lochinvar's requirements.
 *	Maintaining sufficient flow is necessary to help prevent overheating and ensure the equipment operates within its specified limits.
 
 5. Water temperature requirements: The proposed control strategy shall allow the water heater to reach and maintain the required water temperature.
