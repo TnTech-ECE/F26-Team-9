@@ -504,22 +504,6 @@ During lab testing, the team will take note of measurements while the pump runs 
 
 10. The subsystem shall document test conditions and data processing methods so that the results can be analyzed and compared consistently.
 
-    
-    
-
-Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
-
-Inclued a description of the interfaces between this subsystem and other subsystems:
-- Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
-- Clearly define the direction of the signal (input or output).
-- Document the communication protocols used.
-- Specifying what data will be sent and what will be received.
-
-Detail the operation of the subsystem:
-- Illustrate the expected user interface, if applicable.
-- Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
-
-For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
 
 ## Ethical, Professional, and Standards Considerations
