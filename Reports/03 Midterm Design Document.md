@@ -425,7 +425,7 @@ Tennessee Technological University
 
 Commercial water heating systems play an important role in providing reliable hot water for applications such as apartments, hotels, restaurants, and other commercial facilities. These systems must be capable of meeting varying hot water demands while maintaining a consistent outlet temperature and sufficient flow rate. The Regent Commercial Tankless Water Heater is designed to heat water as it passes through the system rather than storing a large volume of heated water in a tank. Although this design allows the unit to provide hot water on demand, the system must respond to changes in water flow and temperature to maintain the desired performance. As hot water demand changes, the amount of energy required to heat the incoming water also changes. This creates an opportunity to investigate how the system can adjust its operation to meet actual demand without using its maximum operating capacity.
 
-The objective of this project is to develop and evaluate a control strategy that adjusts water flow and heating operation based on real-time temperature and demand measurements. The proposed strategy will use components such as a variable-speed pump, flow sensor, and inlet and outlet temperature sensors to monitor system conditions and determine when adjustments are needed. By using this feedback, the control system will aim to regulate water flow and coordinate heating operation to provide the required outlet temperature while minimizing unnecessary energy consumption. As hot water demand changes, the system will respond by adjusting its operating conditions rather than continuously relying on maximum capacity when it may not be necessary. The team will investigate how changes in flow rate affect heat transfer, temperature regulation, and electrical power consumption to determine the most effective control approach. Engineering calculations, computer simulations, and testing will be used to evaluate the proposed strategy under different operating conditions and assess its ability to balance energy efficiency with consistent hot water delivery. Ultimately, the goal is to establish an algorithm that improves the energy efficiency of the Regent Commercial Tankless Water Heater without compromising its performance or reliability.
+The objective of this project is to develop and evaluate a control strategy that adjusts circulation pump speed based on real time temperature and demand measurements while allowing the boiler's existing heating controls to operate independently. The proposed strategy will use components such as a variable speed pump, flow sensor, and inlet and outlet temperature sensors to monitor system conditions and determine when adjustments are needed. By using this feedback, the control system will aim to regulate water flow and coordinate heating operation to provide the required outlet temperature while minimizing unnecessary energy consumption. As hot water demand changes, the system will respond by adjusting its operating conditions rather than continuously relying on maximum capacity when it may not be necessary. The team will investigate how changes in flow rate affect heat transfer, temperature regulation, and electrical power consumption to determine the most effective control approach. Engineering calculations, computer simulations, and testing will be used to evaluate the proposed strategy under different operating conditions and assess its ability to balance energy efficiency with consistent hot water delivery. Ultimately, the goal is to establish an algorithm that improves the energy efficiency of the Regent Commercial Tankless Water Heater without compromising its performance or reliability.
 
 ## Restating the Fully Formulated Problem
 
@@ -1012,7 +1012,6 @@ The following table connects each identified standard or regulation to specific 
 | ASHRAE 90.1 | Provides energy efficiency context without automatically imposing a prototype specific requirement | Documented applicability review and measured pump electrical power comparison | Applicability to a commercial implementation |
 
 #### Standards Verification and Documentation Procedure
---- 
 
 * 1. Identify Applicable Requirements: The team will review the selected boiler, circulation pump, sensors, and microcontroller documentation to determine which engineering standards, code provisions, and manufacturer requirements apply to the testing configuration. Any requirements that depend on final equipment selection will remain identified as pending until the necessary information is available.
  
@@ -1027,7 +1026,6 @@ The following table connects each identified standard or regulation to specific 
 * 6. Review Changes to the Final Design: If the selected pump, microcontroller, boiler, or control interface changes during development, the team will review the affected engineering standards and update the relevant design requirements and verification procedures.
  
 #### Remaining Standards Related Confirmations
----
 
 Several engineering details still require confirmation from Lochinvar or the selected equipment manufacturers. These include the minimum required circulation flow rate, allowable pump operating range, supported pump control interface, and approved controller response during sensor or communication failures.
 
@@ -1037,9 +1035,82 @@ The project will not claim formal product certification or complete compliance w
 
 By connecting engineering standards to specific design decisions, numbered specifications, constraints, and measurable verification activities, the team can demonstrate how safety, equipment compatibility, and professional engineering requirements are being incorporated throughout the development process.
 
-#### Project-Specific Ethics and Sustainability Actions (E1)
+#### Project Specific Ethics and Sustainability Actions (E1)
+--- 
 
-The existing discussion of professional integrity, accurate data, intellectual property, and environmental impacts is retained above. To make those commitments verifiable, the team will apply the IEEE Code of Ethics and/or NSPE Code of Ethics principles of protecting public welfare and presenting technical claims truthfully. Specifically, the team will document test conditions, calibration and uncertainty, unsuccessful trials, and the distinction between simulated predictions and measured results. Lochinvar supplied information will be shared only with sponsor/university permission; public repository content will be reviewed for confidential material. Any energy or greenhouse gas savings claim must follow from measured electrical energy and stated assumptions, and prototype electronic waste and maintenance burden will be considered. Reduced pump speed does not independently establish water conservation. The project also does not currently promise a human facing interface.
+The development of the variable-speed circulation pump controller involves ethical responsibilities related to public safety, engineering accuracy, environmental sustainability, and the proper handling of technical information. Although the primary objective is to reduce unnecessary electrical power consumption, the controller must also maintain reliable water heating performance and operate within the approved limits of the existing Lochinvar equipment. The team must ensure that improvements in energy efficiency do not come at the expense of equipment safety, temperature stability, or the needs of individuals who depend on commercial hot water systems.
+
+The project will follow the principles established in the IEEE Code of Ethics, particularly those involving public health and safety, sustainable engineering practices, accurate technical reporting, and professional responsibility [12]. These principles require engineers to prioritize public welfare, communicate technical findings accurately, acknowledge limitations, and consider the potential consequences of engineering decisions.
+
+
+#### Public Safety and Engineering Responsibility
+
+One of the most important ethical considerations for this project is ensuring that changes in circulation pump speed do not negatively affect the safety or performance of the water heating system. Reducing pump speed may decrease electrical power consumption, but insufficient circulation could cause excessive heat exchanger temperatures, unstable outlet water temperatures, or other operating conditions outside the manufacturer's approved limits.
+
+To address these concerns, the controller will be designed to maintain the manufacturer required minimum circulation flow rate and preserve the existing boiler safety protections. The team will also evaluate controller responses to sensor failures, invalid measurements, and communication interruptions. Any fallback behavior that affects pump operation will require review and approval from Lochinvar before physical testing.
+
+Safety related decisions will take priority over potential energy savings. If a proposed operating condition cannot maintain the required temperature stability, minimum circulation flow, or equipment operating limits, it will not be considered an acceptable energy-saving operating condition.
+
+#### Accuracy, Data Integrity, and Technical Reporting
+
+Another important ethical responsibility is ensuring that the project's results are accurate, reproducible, and presented without misleading claims. The controller's performance will be evaluated using measurements of pump electrical power consumption, water flow rate, inlet and outlet water temperatures, and boiler firing rate.
+
+The team will document the equipment used during testing, measurement conditions, calibration information, and any known limitations in the collected data. Preliminary engineering targets will be distinguished from confirmed manufacturer requirements. For example, the proposed 10% electrical power reduction target is a preliminary team objective rather than a guaranteed performance improvement established by Lochinvar.
+
+The team will also document unsuccessful trials, unexpected system behavior, and differences between simulated and experimentally measured results. Simulation predictions will not be presented as verified laboratory measurements. Any reported energy savings will be calculated from recorded electrical measurements under comparable operating conditions.
+
+These practices will help ensure that Lochinvar receives reliable engineering information that can be used to evaluate the feasibility of implementing variable speed circulation control.
+
+#### Intellectual Property and Confidentiality
+
+Because this project is sponsored by Lochinvar, the team may receive manufacturer documentation, equipment information, technical specifications, and operating data that are not intended for unrestricted public distribution.
+
+The team will respect Lochinvar's intellectual property and confidentiality requirements by reviewing technical information before including it in public reports, presentations, or online repositories. Any confidential or proprietary information will only be shared with individuals who have appropriate authorization.
+
+Publicly available technical references, manufacturer documentation, and external research will be cited appropriately. The team will also acknowledge the contributions of its members and other individuals who provide technical assistance throughout the project.
+
+#### Environmental Sustainability and Energy Efficiency
+
+Environmental sustainability is directly related to the purpose of the variable speed circulation pump controller. Commercial water heating systems consume energy during normal operation, and reducing unnecessary pump electrical power consumption could provide an opportunity to decrease energy use.
+
+The proposed controller will attempt to improve efficiency by adjusting circulation pump speed according to water flow rate, boiler firing rate, and outlet-temperature feedback. Rather than operating at a constant high speed, the controller will determine whether a lower speed can maintain the required system performance.
+
+However, reducing pump speed does not automatically guarantee lower total system energy consumption. The team must evaluate whether reduced pump electrical power is accompanied by changes in heating performance, temperature recovery time, or other operating conditions.
+
+The environmental benefits of the proposed design will therefore be evaluated using measured electrical power consumption and documented operating conditions. Any estimated reductions in electrical energy use or greenhouse gas emissions will be supported by stated assumptions and calculations rather than unsupported predictions.
+
+The team will also consider the environmental impact of additional electronic components, wiring, sensors, and equipment required to implement the controller. Reusing compatible equipment provided by Lochinvar or Tennessee Tech may help reduce unnecessary material consumption and project costs.
+
+#### Economic and Social Responsibility
+
+The proposed controller may provide economic benefits to Lochinvar and commercial facility owners by reducing unnecessary circulation pump electrical power consumption. However, these potential savings must be compared with the additional costs associated with sensors, microcontroller hardware, installation, maintenance, and equipment integration.
+
+The team will consider whether the controller provides a practical improvement rather than assuming that increased system complexity is justified by a small reduction in electrical power consumption.
+
+The project must also consider the individuals who rely on commercial hot water systems. Building occupants require reliable hot water at appropriate temperatures, while facility operators and maintenance personnel need equipment that can operate safely and be serviced without unnecessary complications.
+
+These stakeholder needs will be considered when evaluating the proposed control strategy. The design will not prioritize electrical power savings over the reliability, safety, or maintainability of the water heating system.
+
+#### Ethical Verification and Accountability
+
+The team will incorporate ethical considerations into its design reviews, testing procedures, and final evaluation. The following table identifies the main ethical responsibilities, how they will be addressed, and the evidence that will be used to demonstrate that these considerations were evaluated.
+
+
+| Ethical Consideration | Planned Action | Verification Evidence |
+|---|---|---|
+| Public Safety | Maintain the manufacturer-required minimum circulation flow rate and preserve existing Lochinvar boiler safety protections. | Approved operating limits, design reviews, and documented safety test results. |
+| Data Integrity | Record actual measurements, calibration information, operating conditions, and unsuccessful trials. | Test logs, calibration records, and documented experimental results. |
+| Honest Reporting | Clearly distinguish preliminary engineering targets, simulation predictions, and experimentally measured performance. | Final technical report, engineering calculations, and supporting datasets. |
+| Intellectual Property | Protect confidential Lochinvar information and properly cite external technical sources. | Sponsor-approved documentation, public repository reviews, and reference list. |
+| Environmental Sustainability | Evaluate electrical energy savings and consider the environmental impact of additional electronic components and materials. | Electrical power measurements, energy calculations, and component inventory. |
+| Economic Responsibility | Compare potential electrical energy savings with hardware, installation, integration, and maintenance costs. | Project budget and preliminary cost-benefit evaluation. |
+| Stakeholder Welfare | Maintain reliable hot water performance while considering the needs of building occupants, operators, and maintenance personnel. | Temperature stability, minimum-flow, controller stability, and equipment compatibility verification results. |
+
+
+The team will review these responsibilities during design development and before approved physical testing. Any identified safety concerns, unreliable measurements, or conflicts with manufacturer requirements will be documented and addressed before the affected design is considered acceptable.
+
+By incorporating professional ethics, sustainability, and stakeholder responsibilities into the development process, the project can evaluate potential improvements in energy efficiency while maintaining the safety, reliability, and integrity expected of an engineering design.
+
 
 ## Resources
 
@@ -1152,6 +1223,8 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 [10] International Code Council, “2024 International Plumbing Code,” 2024. [Online]. Available: [https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html]. [Accessed: Oct. 22, 2026].
 
 [11] V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. [Online]. Available: [https://escholarship.org/uc/item/4691d71q]. [Accessed: Oct. 9, 2026].
+
+[12] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: https://ieee-cas.org/about/ieee-code-ethics. [Accessed: Nov. 14, 2026].
 
 
 
