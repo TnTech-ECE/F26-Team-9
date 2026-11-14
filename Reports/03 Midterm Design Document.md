@@ -464,6 +464,128 @@ The proposed design shall meet the following requirements:
 
 In summary, this project will investigate whether adjusting the internal circulation pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater can reduce electrical energy consumption while maintaining reliable water heating performance. By evaluating pump speed, water flow rate, inlet water temperature, and heater operation, the team will develop and assess a proposed control strategy. Calculations, simulations, and laboratory testing, when available, will be used to compare energy consumption and system performance under different operating conditions. The final goal is to determine the feasibility of variable-speed pump control and identify opportunities to improve energy efficiency without compromising the water heater's operation.
 
+## Engineering Principles, Mathematical Models, and Verification Tools (C1)
+
+The proposed variable speed circulation pump controller will be developed around the Grundfos UPMS 15-78 130 AR circulation pump identified in the project documentation. Manufacturer published specifications for the UPMS 15-78 130 pump family provide the starting point for evaluating electrical power requirements, pump operation, and potential energy savings. These specifications will be combined with heat transfer equations and feedback control principles to develop and verify the proposed controller.
+
+1. Manufacturer Pump Specifications
+
+The Grundfos UPMS 15-78 130 data booklet identifies the following electrical and operating specifications:
+
+| Parameter | Manufacturer-Published Value |
+|---|---|
+| Nominal electrical supply | 115 V AC, 60 Hz |
+| Minimum electrical input power | 8.4 W |
+| Maximum electrical input power | 68 W |
+| Minimum listed current | 0.18 A |
+| Maximum listed current | 1.25 A |
+| Maximum system pressure | 174 psi |
+| Liquid temperature range | 36–230 °F |
+| Installation length | 130 mm |
+
+These values are taken from the Grundfos UPMS technical data booklet. The final pump nameplate and specific AR configuration will be checked before implementation.
+
+2. Electrical Input Power Calculations
+
+The published maximum electrical input power is:
+
+$$
+P_{\max} = 68\text{ W}
+$$
+
+The published minimum electrical input power is:
+
+$$
+P_{\min} = 8.4\text{ W}
+$$
+
+The difference between the published operating extremes is:
+
+$$
+\Delta P = P_{\max} - P_{\min}
+$$
+
+$$
+\Delta P = 68 - 8.4
+$$
+
+$$
+\Delta P = 59.6\text{ W}
+$$
+
+The percentage difference relative to maximum electrical input power is:
+
+$$
+R = \frac{P_{\max} - P_{\min}}{P_{\max}} \times 100
+$$
+
+$$
+R = \frac{68 - 8.4}{68} \times 100
+$$
+
+$$
+R = 87.65\%
+$$
+
+This calculation establishes the difference between the manufacturer's published minimum and maximum electrical input power values. It does not represent the expected or experimentally verified energy savings of the proposed controller. The actual operating point must maintain the minimum circulation flow required by Lochinvar.
+
+For the preliminary project target of a 10% reduction in electrical input power, the corresponding input power at a 68 W baseline would be:
+
+$$
+P_{\text{target}} = 68(1 - 0.10)
+$$
+
+$$
+P_{\text{target}} = 61.2\text{ W}
+$$
+
+This value is a calculated target relative to the manufacturer's maximum input power, not a guaranteed operating point. Actual performance will be evaluated using measured baseline and controlled power at equivalent operating conditions.
+
+3. Pump Affinity Laws
+
+The pump affinity laws describe how centrifugal pump flow rate, head, and mechanical power change with rotational speed under comparable conditions.
+
+$$
+\frac{Q_2}{Q_1} = \frac{N_2}{N_1}
+$$
+
+$$
+\frac{H_2}{H_1} = \left(\frac{N_2}{N_1}\right)^2
+$$
+
+$$
+\frac{P_2}{P_1} = \left(\frac{N_2}{N_1}\right)^3
+$$
+
+These equations will be used to evaluate the expected relationship between pump speed and hydraulic performance. Numerical speed ratio calculations will use the selected pump's verified operating points rather than assumed rotational speeds.
+
+The manufacturer published electrical input power values cannot be substituted directly into the mechanical power affinity law because electrical input power includes motor and control electronics losses. Manufacturer performance curves and laboratory measurements will be used to evaluate the actual relationship.
+
+4. Heat-Transfer Model
+
+The relationship between circulation flow and heat transfer will be evaluated using:
+
+$$
+\dot{Q}_h = \dot{m} c_p (T_{\text{out}} - T_{\text{in}})
+$$
+
+For water, an approximate relationship in U.S. customary units is:
+
+$$
+\dot{Q}_h \approx 500(\text{GPM})(\Delta T)
+$$
+
+where heat-transfer rate is expressed in Btu/h and temperature difference is expressed in °F.
+
+The actual calculation will use the heat-transfer rate, circulation flow, and inlet and outlet temperatures associated with the Lochinvar equipment selected for testing. The manufacturer required minimum flow rate must be established before determining allowable reductions in circulation.
+
+5. Feedback Control and Verification
+
+The controller will use measured water flow, boiler firing rate demand, and outlet temperature to determine the circulation pump command. Feedforward control will establish an initial command, while temperature feedback will provide corrections within approved operating limits.
+
+MATLAB will be used to calculate and plot pump performance relationships and analyze measured data. Manufacturer performance curves will be used to establish allowable pump operating conditions. STM32 development tools will support implementation and verification of sensor acquisition and control logic. Calibrated temperature, flow, and electrical power measurements will be used to compare predicted and actual system behavior.
+
+The team will evaluate temperature stability, response time, minimum circulation flow, and electrical input power under matched baseline and controlled operating conditions. Manufacturer specifications will establish equipment limits, while experimental measurements will determine whether the proposed controller achieves its performance objectives.
 
 
 ## Comparative Analysis of Potential Solutions
