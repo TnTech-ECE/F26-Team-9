@@ -985,33 +985,57 @@ The existing discussion of public health and safety above establishes the import
 
 | Hazard and cause | People potentially affected | Potential severity | Planned design safeguard | Verification |
 |---|---|---|---|---|
-| Insufficient circulation while the heater is firing | Building occupants, maintenance staff, equipment owner | High: heat-exchanger overheating and equipment damage | Preserve factory high-limit/flow protections, enforce Lochinvar-approved minimum flow, and use an approved circulation-preserving fault response | Trace minimum-flow requirement to manufacturer data; safely simulate low-flow fault |
-| Outlet-water temperature overshoot | Building occupants and facility operators | High: possible scalding | Maintain ±4 °F steady-state target, monitor outlet temperature, and preserve existing heater safety limits | Calibrated reference-temperature recording during approved operating changes |
-| Water held at unsuitable temperatures | Occupants and building management | High: possible Legionella-related health risk | Do not change existing temperature-management or sanitation controls; evaluate ASHRAE 188 applicability with sponsor | Review operating policy and confirm protective settings are not overridden |
-| 120 VAC and motor electrical connections | Students, technicians, laboratory staff | High: shock, burns, fire | Isolate low-voltage controls, protect power circuits, and require authorized electrical work and hazardous-energy procedures | Qualified wiring inspection and documented pre-work isolation |
-| Hot pressurized water and piping | Technicians and nearby personnel | High: burns, leaks, pressure injury | Use manufacturer-rated fittings, approved connections, and authorized plumbing work | Component-rating review and supervised leak inspection |
-| Failed sensors or lost communication | Occupants, operators, equipment owner | High if unsafe circulation results | Validate sensor data, indicate faults, preserve existing protections, and transition to a Lochinvar-approved safe circulation mode | Isolated bench fault-injection test |
+| Insufficient circulation while the heater is firing | Building occupants, maintenance staff, equipment owner | High: heat-exchanger overheating and equipment damage | Preserve factory high limit/flow protections, enforce Lochinvar approved minimum flow, and use an approved circulation preserving fault response | Trace minimum flow requirement to manufacturer data; safely simulate low flow fault |
+| Outlet-water temperature overshoot | Building occupants and facility operators | High: possible scalding | Maintain ±4 °F steady state target, monitor outlet temperature, and preserve existing heater safety limits | Calibrated reference temperature recording during approved operating changes |
+| Water held at unsuitable temperatures | Occupants and building management | High: possible Legionella-related health risk | Do not change existing temperature management or sanitation controls; evaluate ASHRAE 188 applicability with sponsor | Review operating policy and confirm protective settings are not overridden |
+| 120 VAC and motor electrical connections | Students, technicians, laboratory staff | High: shock, burns, fire | Isolate low voltage controls, protect power circuits, and require authorized electrical work and hazardous-energy procedures | Qualified wiring inspection and documented pre work isolation |
+| Hot pressurized water and piping | Technicians and nearby personnel | High: burns, leaks, pressure injury | Use manufacturer rated fittings, approved connections, and authorized plumbing work | Component rating review and supervised leak inspection |
+| Failed sensors or lost communication | Occupants, operators, equipment owner | High if unsafe circulation results | Validate sensor data, indicate faults, preserve existing protections, and transition to a Lochinvar approved safe circulation mode | Isolated bench fault-injection test |
 
 Only qualified or institutionally authorized personnel will perform electrical, gas-appliance, or pressurized plumbing modifications. Unsafe fault scenarios will be tested in simulation or an approved isolated bench setup, rather than intentionally defeating the protection of an operating heater.
 
 #### Application and Verification of Engineering Standards (H2 and H3)
 --- 
 
-The standards discussed above must affect actual engineering decisions. Applicable editions, clauses, and legal obligations will be confirmed with Lochinvar and authorized university personnel before implementation. This table documents planned engineering verification, not a claim of formal certification.
+Identifying engineering standards is important, but the standards must also influence the actual design and testing of the variable speed circulation pump controller. The project involves electrical connections, motor control, water circulation, temperature regulation, and equipment that may operate under hazardous conditions. Therefore, the team must consider how applicable standards and regulations affect component selection, hardware connections, controller behavior, and testing procedures.
+
+The following table connects each identified standard or regulation to specific engineering decisions, existing project specifications and constraints, and the evidence that will be used to verify the design. The team will confirm the applicable editions, provisions, and requirements with Lochinvar and authorized Tennessee Tech personnel before implementation. These activities represent planned engineering verification and do not establish formal product certification.
 
 
 | Standard or regulation | How it affects the proposed design | Verification evidence | Remaining confirmation |
 |---|---|---|---|
-| NFPA 70 (NEC), including Article 430 when applicable | Motor circuit wiring, grounding, overcurrent protection, and any compatible adjustable-speed drive are selected and installed using applicable provisions | Qualified inspection of power schematic, wiring, component ratings, and protective devices | Adopted edition and exact relevant articles/clauses |
-| OSHA 29 CFR 1910.147 | Authorized personnel establish isolation and verification steps before servicing or modifying equipment | Written lockout/tagout procedure and pre-work record where applicable | Workplace applicability and institutional procedure |
-| UL 60730-1 | Fault states, controller reset, and loss-of-input behavior inform the automatic-control design | Documented bench fault-injection tests showing expected and observed safe outputs | Applicable edition, relevant clauses, and product certification scope |
+| NFPA 70 (NEC), including Article 430 when applicable | Motor circuit wiring, grounding, overcurrent protection, and any compatible adjustable speed drive are selected and installed using applicable provisions | Qualified inspection of power schematic, wiring, component ratings, and protective devices | Adopted edition and exact relevant articles/clauses |
+| OSHA 29 CFR 1910.147 | Authorized personnel establish isolation and verification steps before servicing or modifying equipment | Written lockout/tagout procedure and pre work record where applicable | Workplace applicability and institutional procedure |
+| UL 60730-1 | Fault states, controller reset, and loss of input behavior inform the automatic control design | Documented bench fault injection tests showing expected and observed safe outputs | Applicable edition, relevant clauses, and product certification scope |
 | Locally adopted plumbing code, using International Plumbing Code as a reference where applicable | Temperature/pressure ratings and permitted plumbing modifications constrain sensor installation | Component datasheets and approved connection inspection | Jurisdiction, code edition, and permission to modify plumbing |
-| ASHRAE 188 | Existing water-management controls must not be undermined by pump-control changes | Review of facility temperature-management strategy and interface boundary | Whether the standard applies to the final installation |
-| ASHRAE 90.1 | Provides energy-efficiency context without automatically imposing a prototype-specific requirement | Documented applicability review and measured pump electrical power comparison | Applicability to a commercial implementation |
+| ASHRAE 188 | Existing water management controls must not be undermined by pump control changes | Review of facility temperature management strategy and interface boundary | Whether the standard applies to the final installation |
+| ASHRAE 90.1 | Provides energy efficiency context without automatically imposing a prototype specific requirement | Documented applicability review and measured pump electrical power comparison | Applicability to a commercial implementation |
 
+#### Standards Verification and Documentation Procedure
+--- 
 
-The team will connect each relevant standard to a numbered specification or design constraint, identify applicable clauses after the final equipment is selected, and record inspection or test results. The controller will not be represented as UL-certified or code-compliant solely because a capstone bench test was completed.
+* 1. Identify Applicable Requirements: The team will review the selected boiler, circulation pump, sensors, and microcontroller documentation to determine which engineering standards, code provisions, and manufacturer requirements apply to the testing configuration. Any requirements that depend on final equipment selection will remain identified as pending until the necessary information is available.
+ 
+* 2. Connect Standards to Design Decisions: Each applicable requirement will be connected to a specific design decision. This includes selecting compatible electrical components, establishing safe sensor connections, determining allowable pump operating limits, and developing appropriate controller responses to abnormal conditions.
 
+* 3. Review the Design Before Implementation: Before physical testing begins, the team will review the electrical schematics, proposed hydraulic connections, and equipment modifications with Lochinvar and authorized Tennessee Tech personnel. This review will help identify potential safety concerns and ensure that the proposed controller does not interfere with existing equipment protections.
+
+* 4. Perform Verification Testing: Verification will include reviewing component ratings, inspecting electrical connections, comparing sensor measurements with calibrated references, and evaluating controller behavior through simulations and approved bench testing. The team will also investigate how the controller responds to abnormal sensor measurements and communication failures. Unsafe conditions will be evaluated through simulation or appropriately isolated testing rather than intentionally disabling the protections of an operating water heater.
+
+* 5. Document Testing Results: The team will maintain records identifying the requirement being evaluated, the verification method, expected results, observed results, and any corrective actions needed. Requirements that cannot be verified during the current project phase will be documented as pending rather than reported as successfully completed.
+ 
+* 6. Review Changes to the Final Design: If the selected pump, microcontroller, boiler, or control interface changes during development, the team will review the affected engineering standards and update the relevant design requirements and verification procedures.
+ 
+#### Remaining Standards Related Confirmations
+---
+
+Several engineering details still require confirmation from Lochinvar or the selected equipment manufacturers. These include the minimum required circulation flow rate, allowable pump operating range, supported pump control interface, and approved controller response during sensor or communication failures.
+
+The team will also need to determine which electrical, plumbing, and product safety requirements apply to the final laboratory testing configuration. Until these details are confirmed, preliminary engineering targets will remain separate from verified manufacturer requirements.
+
+The project will not claim formal product certification or complete compliance with a building level standard based solely on capstone laboratory testing.
+
+By connecting engineering standards to specific design decisions, numbered specifications, constraints, and measurable verification activities, the team can demonstrate how safety, equipment compatibility, and professional engineering requirements are being incorporated throughout the development process.
 
 #### Project-Specific Ethics and Sustainability Actions (E1)
 
