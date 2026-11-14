@@ -649,14 +649,14 @@ The results will include the mean percentage saving, standard deviation, sample 
 ### Hardware Block Diagram
 
 <p align="center">
-<img width="874" height="1104" alt="block-diagram-capstone" src="https://github.com/user-attachments/assets/565693de-2806-4bfb-9ca7-e67828a2532c" />
+<img width="334" height="442" alt="image" src="https://github.com/user-attachments/assets/d265e0a7-57a0-460e-8f19-bc10e724f190" />
 </p>
 
 ### Operational Flow Chart
 
 
 <p align="center">
-<img width="1044" height="780" alt="flowchart-capstone" src="https://github.com/user-attachments/assets/edd6917d-b1f9-4489-a623-1d80af3193c1" />
+<img width="564" height="457" alt="image" src="https://github.com/user-attachments/assets/aeeeb999-b5ee-458f-a5ab-29ecb7f522bd" />
 </p>
 
 ## Atomic Subsystem Specifications
@@ -674,13 +674,13 @@ The Sensor and Data Acquisition Subsystem will provide real-time and high-fideli
 
 This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
 	
-* Real-time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load.
+* Real time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load.
   
-* Industrial Signal Compatibility: Use hardware scaling to convert high-voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read.
+* Industrial Signal Compatibility: Use hardware scaling to convert high voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read.
   
 * Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature.
 
-In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real-time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
+In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
 
 
 **Subsystem Interface:**
@@ -1033,7 +1033,7 @@ During lab testing, the team will take note of measurements while the pump runs 
 
 **Functional Flowchart:**
 <p align="center">
-  <img width="1100" alt="Microcontroller and Control Logic Flowchart" src="https://github.com/user-attachments/assets/70949a81-fe63-4c40-ade3-aa1d8565058e" />
+<img width="942" height="203" alt="image" src="https://github.com/user-attachments/assets/6a49cbd7-0922-45fe-a327-cdd5e8c62fc1" />
 </p>
 **Specifications:**
 
