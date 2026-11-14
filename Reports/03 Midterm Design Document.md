@@ -49,6 +49,31 @@ Our controller could use the flow rate, modulation, and water temperature to det
 
 Because of this, the main part of our project is not just finding a variable speed pump that already exists. The engineering part is developing the control approach that decides when the pump needs to speed up or slow down based on the current state of the system. We will then have to test the controller to make sure that reducing the pump's energy usage doesn't negatively affect the execution of the water heating system. 
 
+#### Project Stakeholders and Their Needs
+--- 
+
+The development of the variable-speed circulation pump controller involves several direct and indirect stakeholders who have different expectations for the system. Lochinvar is the primary project sponsor and customer, but the design also affects the people responsible for operating, maintaining, installing, and using commercial water heating equipment. Identifying these stakeholders and their needs is important because the controller must improve energy efficiency without negatively affecting the safety, reliability, or performance of the existing water heating system.
+
+The following table identifies the primary stakeholders, their relationship to the project, and the specific needs that must be considered throughout the design process.
+
+
+| Stakeholder | Classification | Interest or Need |
+|---|---|---|
+| Lochinvar Engineering Team | Direct — Project sponsor and customer | Needs a reliable control strategy that adjusts circulation pump speed based on operating conditions while maintaining minimum flow, outlet-temperature stability, and existing equipment protections. Also needs testing data to evaluate potential implementation in future products. |
+| Tennessee Tech Capstone Team | Direct — Designers and developers | Needs access to appropriate equipment, technical documentation, manufacturer specifications, and testing resources to develop and evaluate the controller within the project timeline and budget. |
+| Tennessee Tech Faculty and Laboratory Personnel | Direct — Academic supervisors and testing personnel | Need the design to meet academic requirements, demonstrate sound engineering principles, and follow laboratory safety procedures during development and testing. |
+| Commercial Facility Owners and Managers | Indirect — Customers and decision-makers | Need reliable water heating performance while potentially reducing electrical operating costs and avoiding unnecessary maintenance expenses. |
+| Building Operators | Indirect — System operators | Need the water heating system to respond appropriately to changing demand without requiring frequent manual adjustments or interfering with normal boiler operation. |
+| Maintenance Technicians and Service Personnel | Indirect — Maintenance and repair | Need accessible equipment, clear documentation, safe servicing procedures, and reliable fault identification to maintain and troubleshoot the system. |
+| Building Occupants and Hot Water Users | Indirect — End users | Need a consistent supply of hot water at an appropriate temperature and sufficient flow rate without unsafe temperature fluctuations. |
+| Regulatory Authorities and Safety Organizations | Indirect — Compliance and public safety | Need applicable electrical, plumbing, equipment, and workplace safety requirements to be considered throughout design, installation, and testing. |
+| Local Community and Environment | Indirect — Broader public and environmental interests | Benefit from responsible energy use and reduced unnecessary electricity consumption. The project should avoid introducing additional safety risks or environmental impacts while pursuing energy savings. |
+
+
+Although Lochinvar is the primary customer, the needs of the other stakeholders influence how the proposed controller must operate. For example, Lochinvar's interest in reducing circulation pump electrical power consumption must be balanced with the needs of building occupants who depend on reliable hot water. Similarly, maintenance technicians need the controller to operate safely and provide enough information to identify problems without interfering with the water heater's existing safety systems.
+
+These stakeholder needs are reflected in the project's specifications and constraints. Temperature stability, minimum circulation flow, pump operating limits, electrical power reduction, and compatibility with existing safety controls are all important requirements that will be considered during development and testing. By addressing these needs together, the project can evaluate whether variable speed circulation control provides a practical improvement for Lochinvar while maintaining the safety and reliability expected by other stakeholders.
+
 ### Background
 
 Hot water systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other units. These systems must be capable of responding to frequent changes in hot water demands while maintaining the required water temperature and flow.
