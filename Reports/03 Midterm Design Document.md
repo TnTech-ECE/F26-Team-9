@@ -559,6 +559,48 @@ $$
 
 These equations will be used to evaluate the expected relationship between pump speed and hydraulic performance. Numerical speed ratio calculations will use the selected pump's verified operating points rather than assumed rotational speeds.
 
+The relationship between water flow rate and temperature rise can be evaluated using published performance information for the Lochinvar KNIGHT KHB085 boiler, which is one of the identified laboratory test units.
+
+The manufacturer's published heating capacity is approximately 79,000 Btu/h, with a listed circulation flow of approximately 8 GPM for a 20°F design temperature rise.
+
+Using the approximate water heat transfer relationship:
+
+$$
+\dot{Q}_h = 500(\mathrm{GPM})(\Delta T)
+$$
+
+Rearranging to determine the temperature rise:
+
+$$
+\Delta T = \frac{\dot{Q}_h}{500(\mathrm{GPM})}
+$$
+
+At 8 GPM:
+
+$$
+\Delta T = \frac{79{,}000}{500(8)}
+$$
+
+$$
+\Delta T = 19.75^\circ F
+$$
+
+At a hypothetical reduced flow of 6 GPM:
+
+$$
+\Delta T = \frac{79{,}000}{500(6)}
+$$
+
+$$
+\Delta T \approx 26.33^\circ F
+$$
+
+The calculated temperature rise increases from approximately 19.75°F to 26.33°F when the circulation flow decreases from 8 GPM to 6 GPM, assuming the same heat-transfer rate.
+
+This example demonstrates why circulation flow must be considered when developing the pump speed control strategy. Reducing pump speed may decrease electrical power consumption, but it can also increase the temperature difference across the heat exchanger.
+
+The 6 GPM operating point is included for calculation purposes only and has not been approved as a safe operating condition. Actual minimum flow requirements, permitted temperature rise, and operating limits must be confirmed with Lochinvar before laboratory testing. The proposed controller will not be permitted to override the boiler's existing safety protections.
+
 The manufacturer published electrical input power values cannot be substituted directly into the mechanical power affinity law because electrical input power includes motor and control electronics losses. Manufacturer performance curves and laboratory measurements will be used to evaluate the actual relationship.
 
 4. Heat-Transfer Model
