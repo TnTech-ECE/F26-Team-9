@@ -624,25 +624,27 @@ The Water Heating and Hydraulic subsystem will include the physical equipment in
 The control logic described above will be developed using feedforward information from measured water flow and boiler firing rate, followed by temperature-feedback correction. A preliminary conceptual form is
 
 $$
-u_{\mathrm{cmd}}(t) = \operatorname{clamp}\left[
-u_{\mathrm{ff}}(q(t), f(t)) + K_p e_T(t) + K_i \int e_T(t)\,dt,\;
-u_{\min},\;
-u_{\max}
-\right].
+u_{\mathrm{cmd}}(t) = \min\left(
+u_{\max},
+\max\left(
+u_{\min},
+u_{\mathrm{ff}}(q(t), f(t)) + K_p e_T(t) + K_i \int e_T(t)\,dt
+\right)
+\right)
 $$
 
-Here, \(q\) is measured water flow, \(f\) is boiler firing-rate demand, and \(e_T\) is the outlet-temperature error defined after confirming the direction in which pump-speed changes affect the actual system. The feedforward map, control gains, minimum and maximum commands, and fault response are not yet finalized. A rate limit and an appropriate deadband will be evaluated to prevent excessive command changes; integral anti-windup will be applied when a command reaches its limit. The lower command limit must never imply a flow below the manufacturer's approved minimum. Initial tuning will use simulation and approved bench tests, followed by documented adjustments based on temperature recovery, oscillation, and measured flow. The controller will preserve the existing boiler safety protections.
+Here, \(q\) is measured water flow, \(f\) is boiler firing rate demand, and \(e_T\) is the outlet temperature error defined after confirming the direction in which pump speed changes affect the actual system. The feedforward map, control gains, minimum and maximum commands, and fault response are not yet finalized. A rate limit and an appropriate deadband will be evaluated to prevent excessive command changes; integral anti-windup will be applied when a command reaches its limit. The lower command limit must never imply a flow below the manufacturer's approved minimum. Initial tuning will use simulation and approved bench tests, followed by documented adjustments based on temperature recovery, oscillation, and measured flow. The controller will preserve the existing boiler safety protections.
 
 #### Preliminary Statistical Verification Plan
 --- 
 
-The Monitoring and Performance Evaluation and Data Logging and Simulation functions already described in the project will support repeated baseline-versus-controlled comparisons. The preliminary plan is five paired runs at each of three defined operating conditions, subject to equipment access and approval. For each pair, the team will compare true-RMS electrical input power for the pump/drive at matched conditions and calculate
+The Monitoring and Performance Evaluation and Data Logging and Simulation functions already described in the project will support repeated baseline-versus-controlled comparisons. The preliminary plan is five paired runs at each of three defined operating conditions, subject to equipment access and approval. For each pair, the team will compare true RMS electrical input power for the pump/drive at matched conditions and calculate
 
 $$
 S_i = 100 \frac{P_{\mathrm{baseline},i} - P_{\mathrm{controlled},i}}{P_{\mathrm{baseline},i}}.
 $$
 
-The results will include the mean percentage saving, standard deviation, sample size, and a 95% confidence interval where the data and assumptions support one. For outlet-temperature stability, the team will report the maximum absolute deviation from setpoint and standard deviation over a defined steady-state interval (preliminary: 60 seconds after settling), plus the recovery time after demand changes. Aborted or unsuccessful trials and their reasons will be recorded. Power savings will be interpreted as a success only when the minimum-flow, temperature, and safety constraints are met.
+The results will include the mean percentage saving, standard deviation, sample size, and a 95% confidence interval where the data and assumptions support one. For outlet-temperature stability, the team will report the maximum absolute deviation from setpoint and standard deviation over a defined steady-state interval (preliminary: 60 seconds after settling), plus the recovery time after demand changes. Aborted or unsuccessful trials and their reasons will be recorded. Power savings will be interpreted as a success only when the minimum flow, temperature, and safety constraints are met.
 
 
 
