@@ -4,7 +4,7 @@
 
 ---
 
-### Jocelyn Smith, Kendall Arnold, Skyler Raines, Danielle Wolford, 
+### Jocelyn Smith, Kendall Arnold, Skyler Raines, Danielle Wolford 
 
 Department of Electrical and Computer Engineering  
 Tennessee Technological University
