@@ -139,6 +139,29 @@ The main goal of this project is to develop a control strategy that adjusts the 
 
 These specifications will be used to determine whether the proposed controller can improve pump efficiency while maintaining the running requirements of the water heating system. Any numerical limits not yet provided by Lochinvar will be established and documented before final performance testing.
 
+These specifications will be used to determine whether the proposed controller can improve pump efficiency while maintaining the running requirements of the water heating system. Any numerical limits not yet provided by Lochinvar will be established and documented before final performance testing. All added numerical values above are preliminary engineering targets, not confirmed Lochinvar specifications. The controller's proposed acquisition and logging interval is no greater than 1 second during normal operation (preliminary); the team will verify this with timestamped data and confirm feasibility after selecting hardware.
+
+#### Specification traceability and verification summary
+---
+
+| Requirement | Primary stakeholder need | Acceptance evidence | Status |
+|---|---|---|---|
+| 1 — Temperature Stability | Lochinvar and occupants need reliable outlet temperature | Maximum absolute setpoint deviation within ±4 °F over a documented steady-state window, measured with calibrated reference | Existing requirement; measurement plan added |
+| 2 — Minimum Flow | Lochinvar requires heat-exchanger protection | Measured GPM ≥ confirmed manufacturer Q_min during required circulation | Manufacturer value pending |
+| 3 — Pump Speed | Lochinvar requires equipment compatibility | Logged command and response within approved N_min–N_max | Pump selection pending |
+| 4 — Firing Rate | Controller needs accurate demand information | Isolated 0–10 V input check using known reference voltages | ±2 percentage-point goal preliminary |
+| 5 — Flow Rate | Controller needs reliable flow feedback | Calibrated reference comparison across operating range | Interface and ±5% goal preliminary |
+| 6 — Response Time | Occupants need timely hot water | Time to return to ±4 °F after specified demand step | 120 s / 30 s hold preliminary |
+| 7 — Power Reduction | Lochinvar needs demonstrable electrical savings | True-RMS input-power comparison at matched conditions | ≥10% preliminary target |
+| 8 — Stability | Operators need nonoscillatory pump behavior | Command trace, settling time and peak-to-peak variation | ±5% / 30 s preliminary |
+| 9 — Safety Compatibility | Lochinvar requires factory protections to remain active | Approved interface review and safe bench fault tests | Approved fallback pending |
+| 10 — Operating Conditions | Sponsor needs reproducible performance evidence | Low, medium, high condition datasets with repeated trials | Five paired runs preliminary |
+
+#### Temperature sensor accuracy and calibration
+--- 
+
+The originally proposed Cooper-Atkins Type-K pipe-clamp probes are useful for monitoring trends, but standard Type-K tolerance (approximately ±2.2 °C or ±4 °F), pipe surface temperature offset, and response lag make an uncalibrated pipe clamp reading insufficient to independently verify the ±4 °F water temperature criterion. Thermocouple channels also require cold junction compensation. For performance acceptance, the team will use a calibrated water temperature reference with a documented uncertainty budget, preferably an approved immersion RTD/thermistor or a calibrated reference probe in an authorized measurement location. Any changes to the existing hydraulic system require permission and qualified installation. This does not commit the team to replacing its current feedback sensors before the final sensor selection is approved.
+
 #### Constraints
   
 The proposed variable speed circulation pump controller must run within the electrical, mechanical, thermal, and safety limitations of the existing Lochinvar equipment. Because the project involves commercial water heating equipment, electrical components, and circulating hot water, the design must consider relevant engineering standards and manufacturer requirements. The following constraints will guide the development and testing of the controller.
