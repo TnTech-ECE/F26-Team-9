@@ -1396,6 +1396,10 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 
 [12] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: https://ieee-cas.org/about/ieee-code-ethics. [Accessed: Nov. 14, 2026].
 
+[13] Lochinvar, “KNIGHT Fire Tube Boiler Product Summary: KHB Series,” Lochinvar Corporation. [Online]. Available: [https://assets.lochinvar.com/damroot/Original/10012/024819KHB-PS-01.pdf]. [Accessed: Nov. 15, 2026].
+
+[14] Lochinvar, “KNIGHT Fire Tube Boiler Installation & Operation Manual, Models 55–285,” Lochinvar Corporation. [Online]. Available: [https://www.lochinvar.com/lit/712268KHB-I-O_Rev%20D_100305277_2000558126%20%2834301%29.pdf]. [Accessed: Nov. 15, 2026].
+
 
 
 ## Statement of Contributions
