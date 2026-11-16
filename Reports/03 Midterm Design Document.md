@@ -64,10 +64,6 @@ $$
 
 where Q_h represents the rate of heat transferred to the water, m_V represents the mass flow rate, c is the specific heat capacity of water(constant), and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes[4]. This relationship will be used as a foundation for modeling the thermal response of the system.
 
-To demonstrate the relationship between flow rate and temperature rise, the heat-transfer equation can be applied using the specifications of the Lochinvar Regent IWH0500. This model has a rated heating input of 500,000 Btu/hr and a thermal efficiency of 96%, resulting in an approximate heat output of 480,000 Btu/hr. Using the relationship Q_h ≈ 500 × GPM × ΔT, a flow rate of 40 GPM would produce an approximate temperature rise of 24°F. At 20 GPM, the temperature rise would increase to approximately 48°F, assuming the same heat output. This demonstrates that reducing water flow increases the temperature rise required across the heat exchanger to transfer the same amount of thermal energy.
-
-The circulation pump also places practical limits on the flow rate available to the system. The Grundfos UPMS 15-78 pump has a published maximum flow rate of 16 GPM and a maximum head of 25.6 feet. Its actual operating flow will depend on the resistance of the circulation loop. Therefore, the pump's operating range and the water heater's minimum flow requirements must be considered when developing the variable-speed control strategy. Maintaining sufficient flow is necessary to support heat transfer and prevent the system from exceeding its required operating temperatures.
-
 Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate[4],
 
 $$
