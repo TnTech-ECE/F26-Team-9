@@ -638,9 +638,9 @@ $$
 \boxed{\Delta T = 48^\circ F}
 $$
 
-These calculations assume that the full 480,000 Btu/h heat output is transferred to the water. They demonstrate that reducing water flow increases the temperature rise required across the heat exchanger when the heat-transfer rate remains constant. This relationship is important when determining how much circulation flow can be reduced without exceeding the water heater's allowable temperature limits. These flow rates are illustrative and do not represent verified operating points for the selected circulation pump.
+These calculations assume that the full 480,000 Btu/h heat output is transferred to the water. They demonstrate that reducing water flow increases the temperature rise required across the heat exchanger when the heat-transfer rate remains constant. This relationship is important when evaluating how much circulation flow can be reduced without exceeding the water heater's allowable temperature limits. The flow rates used in these examples are illustrative and do not represent verified operating points for the selected circulation pump.
 
-The actual calculation will use the heat-transfer rate, circulation flow, and inlet and outlet temperatures associated with the Lochinvar equipment selected for testing. The manufacturer required minimum flow rate must be established before determining allowable reductions in circulation.
+During bench testing, circulation flow, inlet and outlet water temperatures, and pump electrical power will be monitored at different pump speeds. These measurements will be used to evaluate changes in flow rate, temperature rise, and pump energy consumption. The manufacturer's minimum required flow rate will also be established to identify the lowest acceptable operating condition while maintaining the required system performance.
 
 5. Feedback Control and Verification
 
