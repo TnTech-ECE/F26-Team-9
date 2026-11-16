@@ -25,7 +25,7 @@ This proposal will provide background information on the Regent water heater and
 
 ## Formulating the Problem
 
-The primary customer for this project is Lochinvar's engineering team, which is responsible for designing, testing, and developing commercial water heating systems, including the Regent Commercial Instantaneous Water Heater. Commercial hot water demand changes throughout the day, creating a need to determine whether circulation pump energy consumption can be reduced during periods of lower demand without compromising the minimum required circulation flow, outlet water temperature, or overall heating performance. The project will evaluate pump electrical input power, circulation flow rate, and inlet and outlet water temperatures at different operating conditions to determine whether reducing pump speed can improve energy efficiency while maintaining the required performance of the water heating system.
+The primary customer for this project is Lochinvar's engineering team, which is responsible for designing, testing, and developing commercial water heating systems, including the Regent Commercial Instantaneous Water Heater. Commercial hot water demand changes throughout the day, creating a need to determine whether circulation pump energy consumption can be reduced during periods of lower demand without compromising minimum circulation flow, outlet water temperature, or overall heating performance. The project will evaluate whether a reduction of at least 10% in pump electrical input power can be achieved under comparable operating conditions while maintaining Lochinvar's required flow and temperature limits.
 
 ### Project Stakeholders and Their Needs
 --- 
