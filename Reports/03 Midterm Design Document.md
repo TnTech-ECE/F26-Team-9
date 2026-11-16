@@ -132,7 +132,7 @@ For centrifugal pumps, the relationship between pump speed and energy consumptio
 \frac{P_2}{P_1}=\left(\frac{N_2}{N_1}\right)^3
 ```
 
-Where Q represents volumetric flow rate, H represents pump head, P represents pump power, and N represents pump rotational speed. Subscripts 1 and 2 represent the initial and adjusted operating conditions. For example, reducing pump speed to 80% of its original speed would theoretically reduce pump power to approximately 51.2% of its original value, since (0.8)³ = 0.512. This demonstrates the potential energy savings associated with reducing pump speed during periods of lower demand.
+Where Q represents volumetric flow rate, H represents pump head, P represents pump power, and N represents pump rotational speed. Subscripts 1 and 2 represent the initial and adjusted operating conditions. 
 
 These relationships provide a theoretical model for predicting pump performance at different operating speeds. However, actual energy savings may differ because of changes in pump efficiency, motor and electronic losses, minimum flow requirements, and the hydraulic characteristics of the circulation loop. In particular, static head can prevent flow and power from following the ideal affinity-law relationships. The predictions will provide a baseline for comparison.
 
