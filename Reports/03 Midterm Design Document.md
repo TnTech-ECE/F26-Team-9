@@ -608,27 +608,37 @@ $$
 
 where heat-transfer rate is expressed in Btu/h and temperature difference is expressed in °F.
 
-**Regent Heat-Transfer Model**
+### Regent Heat-Transfer Model
 
 The relationship between circulation flow rate and temperature rise can also be evaluated using the published specifications of the Lochinvar Regent IWH0500, the intended application for this project. This model has a rated heating input of 500,000 Btu/h and a thermal efficiency of 96%, resulting in an approximate heat output of 480,000 Btu/h.
 
 Using the heat-transfer relationship:
 
-\[\Delta T=\frac{\dot Q_h}{500(GPM)}\]
+$$
+\Delta T = \frac{\dot{Q}_h}{500(GPM)}
+$$
 
-At 40 GPM:
+At an illustrative flow rate of 40 GPM:
 
-\[\Delta T=\frac{480,000}{500(40)}\]
+$$
+\Delta T = \frac{480,000}{500(40)}
+$$
 
-\[\boxed{\Delta T=24^\circ F}\]
+$$
+\boxed{\Delta T = 24^\circ F}
+$$
 
-At 20 GPM:
+At an illustrative flow rate of 20 GPM:
 
-\[\Delta T=\frac{480,000}{500(20)}\]
+$$
+\Delta T = \frac{480,000}{500(20)}
+$$
 
-\[\boxed{\Delta T=48^\circ F}\]
+$$
+\boxed{\Delta T = 48^\circ F}
+$$
 
-These calculations demonstrate that reducing water flow increases the temperature rise required across the heat exchanger when the heat-transfer rate remains constant. This relationship is important when determining how much circulation flow can be reduced without exceeding the water heater's allowable temperature limits.
+These calculations assume that the full 480,000 Btu/h heat output is transferred to the water. They demonstrate that reducing water flow increases the temperature rise required across the heat exchanger when the heat-transfer rate remains constant. This relationship is important when determining how much circulation flow can be reduced without exceeding the water heater's allowable temperature limits. These flow rates are illustrative and do not represent verified operating points for the selected circulation pump.
 
 The actual calculation will use the heat-transfer rate, circulation flow, and inlet and outlet temperatures associated with the Lochinvar equipment selected for testing. The manufacturer required minimum flow rate must be established before determining allowable reductions in circulation.
 
