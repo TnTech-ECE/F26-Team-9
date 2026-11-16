@@ -297,24 +297,29 @@ The project will be considered successful if the controller can reduce pump elec
 
 
 ### Budget
-Item	Price ($)
-KEYENCE FD-Q50C Series Clamp-on Flow Sensor	Free – Provided by Lochinvar
-Microcontroller	Free – Provided by Dr. Elfouly
-Dymola Simulation Software	Free – Provided by Lochinvar
-Water Reservoir (small tank or bucket)	$15.00
-Flexible Water Tubing	$20.00
-Tubing Fittings and Adapters	$20.00
-Hose Clamps and Valves	$20.00
-Platform	$15.00
-Heating Equipment	TBD – See what TN Tech can provide
-DC Power Supply	TBD – See what TN Tech can provide
-Wiring and Connectors	$10.00
-PT100 RTD Temperature Probes (×2)	$32.38
-MAX31865 Interface Modules (×2)	$19.24
-Grundfos UPMS 15-78 130 AR Pump	TBD – Lochinvar may provide
-PZEM-004T V3.0 AC Power Monitor	$25.00
-Sensor Mounts	$15.00
-Total	$191.62
+## Project Budget
+
+| Item | Price ($) |
+|---|---:|
+| KEYENCE FD-Q50C Series Clamp-on Flow Sensor | Free – Provided by Lochinvar |
+| Microcontroller | Free – Provided by Dr. Elfouly |
+| Dymola Simulation Software | Free – Provided by Lochinvar |
+| Water Reservoir (small tank or bucket) | $15.00 |
+| Flexible Water Tubing | $20.00 |
+| Tubing Fittings and Adapters | $20.00 |
+| Hose Clamps and Valves | $20.00 |
+| Platform | $15.00 |
+| Heating Equipment | TBD – See what TN Tech can provide |
+| DC Power Supply | TBD – See what TN Tech can provide |
+| Wiring and Connectors | $10.00 |
+| PT100 RTD Temperature Probes (×2) | $32.38 |
+| MAX31865 Interface Modules (×2) | $19.24 |
+| Grundfos UPMS 15-78 130 AR Pump | TBD – Lochinvar may provide |
+| PZEM-004T V3.0 AC Power Monitor | $25.00 |
+| Sensor Mounts | $15.00 |
+| **Total** | **$191.62** |
+
+*Note: Total includes only items with listed prices and excludes items marked TBD.*
 
 The proposed project budget includes the equipment and materials needed to construct the physical bench-testing setup and evaluate the performance of the variable-speed circulation pump. Several major components, including the KEYENCE FD-Q50C clamp-on flow sensor, microcontroller, and Dymola simulation software, are expected to be provided by Lochinvar or Tennessee Tech at no additional cost. The remaining equipment includes a water reservoir, flexible tubing, plumbing fittings, hose clamps, valves, a mounting platform, wiring, and sensor mounts. Two PT100 RTD temperature probes and MAX31865 interface modules will also be used to monitor the water temperature at the inlet and outlet of the system. A PZEM-004T AC power monitor will measure the pump's electrical consumption during testing.
 
