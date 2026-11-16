@@ -901,7 +901,7 @@ During the procedure, the controller will read the accessible measurements, eval
 9. The subsystem shall run within the processing, memory, electrical, and communication limits of the chosen microcontroller.
 
 
-### 3) Pump and Motor Control Subsystem
+### 3) Pump, Motor Control, and Hydraulic System
 
 **Overview:**
 
@@ -986,7 +986,7 @@ No direct user control of frequency, pump speed, voltage scaling, or safety swit
 4) This subsystem shall keep the pump speed so the heat exchanger keeps the desired water temperature.
 
 
-### 4) Water Heater and Hydraulic Subsystem
+### ----------------------------------------------------old 4--------------
 
 **Overview:**
 
@@ -1035,7 +1035,7 @@ Before testing, the water heater, circulation pump, piping, and connections shal
 5. The subsystem shall retain the water heater's existing safety controls and protection mechanisms.
 
 
-### 5) Monitoring and Performance Evaluation Subsystem
+### 5) Monitoring, Performance Evaluation, and Bench Testing Subsystem
 
 **Overview:**
 
