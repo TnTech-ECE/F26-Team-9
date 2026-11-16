@@ -25,32 +25,35 @@ This proposal will provide background information on the Regent water heater and
 
 ## Formulating the Problem
 
-The primary customer for this project is Lochinvar's engineering team, which is responsible for designing, testing, and developing commercial water heating systems, including the Regent Commercial Instantaneous Water Heater. Commercial hot water demand changes throughout the day, creating a need to determine whether circulation pump energy consumption can be reduced during periods of lower demand without compromising the minimum required circulation flow, outlet water temperature, or overall heating performance. The project will evaluate pump electrical input power, circulation flow rate, and inlet and outlet water temperatures at different operating conditions to determine whether reducing pump speed can improve energy efficiency while maintaining the required performance of the water heating system.
+The primary customer for this project is Lochinvar's engineering team. Lochinvar is interested in whether adjusting circulation pump speed to match changing operating conditions can reduce electrical energy consumption without creating problems with water flow, temperature control, or equipment safety. The intended future application is the Regent Commercial Instantaneous Water Heater, but the project will first evaluate the control approach on a dedicated physical bench setup.
+
+The team will build a small water circulation loop that includes a variable-speed pump, a heat source, flow and temperature sensors, and the actual microcontroller-based controller. This setup will allow the team to change operating conditions in a controlled way and measure how the system responds. The main measurements will include pump electrical input power, circulation flow rate, inlet and outlet water temperatures, and the time required for the system to respond to a change in demand. The bench test will be the primary source of experimental data and the basis for determining whether the controller meets its performance goals.
+
+Before the bench test, a simulation will be developed to represent the relationship between pump operation, water flow, heat transfer, and temperature response. The simulation will help the team choose initial controller settings and test conditions. After the physical system is operating, its measured responses will be compared with the simulation under equivalent conditions. Any differences will be documented so the model and control strategy can be improved.
+
+Testing on actual Lochinvar equipment at Lochinvar's laboratory may be possible near the end of Capstone 2. That opportunity would help the team evaluate how well the bench-tested design transfers to commercial equipment, but it is a stretch goal rather than a requirement for completing the project. The project must still produce meaningful, repeatable results if this additional testing does not occur.
 
 ### Project Stakeholders and Their Needs
 --- 
 
-The development of the variable-speed circulation pump controller involves several direct and indirect stakeholders who have different expectations for the system. Lochinvar is the primary project sponsor and customer, but the design also affects the people responsible for operating, maintaining, installing, and using commercial water heating equipment. Identifying these stakeholders and their needs is important because the controller must improve energy efficiency without negatively affecting the safety, reliability, or performance of the existing water heating system.
+The controller must meet the needs of the sponsor without creating additional risks for people who use, maintain, or test hot-water equipment. Lochinvar needs credible engineering results that show whether the control strategy can reduce pump power while maintaining acceptable thermal and hydraulic performance. The capstone team needs equipment, documentation, technical support, and enough time to construct and test the bench loop. Tennessee Tech faculty and laboratory personnel need a setup that can be reviewed and operated safely.
 
 The following table identifies the primary stakeholders, their relationship to the project, and the specific needs that must be considered throughout the design process.
 
 
 | Stakeholder | Classification | Interest or Need |
 |---|---|---|
-| Lochinvar Engineering Team | Direct: Project sponsor and customer | Needs a reliable control strategy that adjusts circulation pump speed based on operating conditions while maintaining minimum flow, outlet-temperature stability, and existing equipment protections. Also needs testing data to evaluate potential implementation in future products. |
-| Tennessee Tech Capstone Team | Direct: Designers and developers | Needs access to appropriate equipment, technical documentation, manufacturer specifications, and testing resources to develop and evaluate the controller within the project timeline and budget. |
-| Tennessee Tech Faculty and Laboratory Personnel | Direct: Academic supervisors and testing personnel | Need the design to meet academic requirements, demonstrate sound engineering principles, and follow laboratory safety procedures during development and testing. |
-| Commercial Facility Owners and Managers | Indirect: Customers and decision-makers | Need reliable water heating performance while potentially reducing electrical operating costs and avoiding unnecessary maintenance expenses. |
-| Building Operators | Indirect: System operators | Need the water heating system to respond appropriately to changing demand without requiring frequent manual adjustments or interfering with normal boiler operation. |
-| Maintenance Technicians and Service Personnel | Indirect: Maintenance and repair | Need accessible equipment, clear documentation, safe servicing procedures, and reliable fault identification to maintain and troubleshoot the system. |
-| Building Occupants and Hot Water Users | Indirect: End users | Need a consistent supply of hot water at an appropriate temperature and sufficient flow rate without unsafe temperature fluctuations. |
-| Regulatory Authorities and Safety Organizations | Indirect: Compliance and public safety | Need applicable electrical, plumbing, equipment, and workplace safety requirements to be considered throughout design, installation, and testing. |
-| Local Community and Environment | Indirect: Broader public and environmental interests | Benefit from responsible energy use and reduced unnecessary electricity consumption. The project should avoid introducing additional safety risks or environmental impacts while pursuing energy savings. |
+| Lochinvar Engineering Team | Direct — sponsor and customer | A practical pump-control strategy supported by repeatable bench measurements, model validation, and clearly stated operating limits. |
+| Tennessee Tech Capstone Team | Direct — designers and developers | Access to compatible components, engineering information, simulation tools, and a realistic testing schedule. |
+| Tennessee Tech Faculty and Laboratory Personnel | Direct — academic and safety oversight | Documented electrical, hydraulic, and thermal safeguards; an approved bench setup before energizing equipment. |
+| Commercial Facility Owners and Managers | Indirect — future customers | Reliable hot-water performance and the possibility of lower electrical operating costs. |
+| Building Operators | Indirect — future operators | Predictable temperature and flow performance with clear indications of abnormal conditions. |
+| Maintenance and Service Personnel | Indirect — future service users | Safe access, documented connections, identifiable faults, and procedures for working around electrical and heated-water equipment. |
+| Building Occupants and Hot-Water Users | Indirect — end users | Adequate flow and stable water temperature without unsafe overheating or scalding. |
+| Safety and Regulatory Authorities | Indirect — oversight | Appropriate consideration of electrical, plumbing, workplace, and equipment-safety requirements. |
+| Local Community and Environment | Indirect — broader impact | Responsible use of electricity and water without shifting energy savings into avoidable safety or reliability problems. |
 
-
-Although Lochinvar is the primary customer, the needs of the other stakeholders influence how the proposed controller must operate. For example, Lochinvar's interest in reducing circulation pump electrical power consumption must be balanced with the needs of building occupants who depend on reliable hot water. Similarly, maintenance technicians need the controller to operate safely and provide enough information to identify problems without interfering with the water heater's existing safety systems.
-
-These stakeholder needs are reflected in the project's specifications and constraints. Temperature stability, minimum circulation flow, pump operating limits, electrical power reduction, and compatibility with existing safety controls are all important requirements that will be considered during development and testing. By addressing these needs together, the project can evaluate whether variable speed circulation control provides a practical improvement for Lochinvar while maintaining the safety and reliability expected by other stakeholders.
+These needs shape the project's main requirements. Pump electrical savings will only count as a successful result when the bench loop also meets its approved flow, temperature, and safety limits. The team will document both successful and unsuccessful tests so Lochinvar can understand the benefits and limitations of the proposed controller.
 
 ### Background
 
@@ -142,21 +145,21 @@ A variable speed pump provides a way to adjust water flow according to system de
 
 #### Specifications
 
-The main goal of this project is to develop a control strategy that adjusts the circulation pump speed based on the operating conditions of the water heating system. The controller is intended to reduce unnecessary electrical power consumption while maintaining the required water flow, temperature stability, and overall system performance. The following specifications are based on the project requirements provided by Lochinvar and the preliminary engineering targets established by the team. Each specification includes measurable criteria and a verification method to determine whether the proposed controller meets the needs of the project stakeholders.
+The following requirements describe how the controller will be evaluated on the bench. Values not provided by Lochinvar or the selected equipment manufacturers are preliminary engineering targets. They will be reviewed with the sponsor and faculty before final testing.
 
-* 1 – Temperature Stability: The system shall maintain the outlet water temperature within ±4 °F of the desired temperature setpoint during defined steady-state operating conditions. This temperature tolerance is specified in Lochinvar's original capstone project proposal. A preliminary 60 second steady state observation interval will be used to evaluate temperature stability. Verification will be completed by recording the maximum absolute temperature deviation using a calibrated reference instrument with a preliminary expanded uncertainty target of no greater than ±1 °F.
+* 1 – Temperature Stability: During a defined steady-state bench condition, the controller shall maintain the measured outlet-water temperature within ±4°F of the selected setpoint. A preliminary 60-second observation window will be used after the system settles. Verification will use a calibrated water-temperature reference with a preliminary expanded uncertainty target of no greater than ±1°F. The maximum absolute deviation and standard deviation will be reported. The ±4°F target is based on the original project objective; its application to the bench will be confirmed during test planning.
 
-* 2 – Minimum Circulation Flow: The controller shall maintain a circulation flow rate equal to or greater than the minimum required by Lochinvar whenever circulation is necessary. The minimum allowable flow rate, ($Q_{\min}$), shall be expressed in gallons per minute (GPM) and established using the applicable manufacturer requirements for the selected heat exchanger and testing equipment. Lochinvar's original proposal confirms that maintaining minimum circulation flow is required but does not provide a numerical GPM value. Verification will be completed by comparing recorded flow measurements with the manufacturer approved minimum.
+* 2 – Minimum Circulation Flow: The controller shall maintain flow at or above the safe minimum established for the selected bench heat source, pump, and circulation loop whenever heated circulation is required. The numerical minimum, in GPM, will be documented from component requirements and the approved bench design before testing. Verification will use recorded flow measurements and approved low-flow fault tests. The bench minimum shall not be represented as the Regent's manufacturer-required minimum.
 
-* 3 – Pump Speed Control: The controller shall adjust the circulation pump speed in response to changes in system operating conditions, including water flow rate, boiler firing rate, and outlet water temperature. Lochinvar's project documentation identifies the Grundfos UPMS 15-78 130 AR variable-speed circulation pump and describes low voltage PWM and 0–10 V control methods. The actual pump model and supported control interface will be confirmed before implementation. The allowable pump speed range, ($N_{\min}$) to ($N_{\max}$)), will be determined using the applicable pump specifications. Verification will include recording pump speed commands and measured pump response during controlled changes in demand.
+* 3 – Pump Speed Control: The controller shall issue commands within the selected pump's supported control range and respond to changing operating conditions. The proposed Grundfos UPMS 15-78 130 AR remains a candidate pump, subject to availability and confirmation of its exact interface and electrical ratings. Verification will compare commanded operation with observed flow and available pump feedback during bench trials.
 
-* 4 – Firing Rate Monitoring: The controller shall accept a 0–10 V firing rate signal representing 0–100% firing demand from the compatible Lochinvar Knight boiler. Lochinvar's project documentation confirms this signal relationship, where 1 V represents approximately 10% firing rate. The input signal shall be conditioned to remain within the selected microcontroller's allowable electrical input range. A preliminary conversion accuracy target of ±2 percentage points of firing rate demand will be used during development. Verification will be completed by applying known input voltages and comparing the calculated firing rate percentage with the expected values.
+* 4 – Heating-Demand Input: For bench testing, the controller shall accept a representative heating-demand input to support the proposed feedforward algorithm. A preliminary conditioned 0–10 V signal corresponding to 0–100% demand may be used if an approved source and interface are available. The preliminary conversion-accuracy target is ±2 percentage points. Known input values will be applied to verify scaling and electrical compatibility. This input is a bench-test representation of heating demand and is not claimed to be an actual boiler signal.
 
-* 5 – Flow Rate Monitoring: The controller shall convert the pulse frequency output from the KEYENCE flow sensor into a water flow measurement expressed in GPM. Lochinvar's original proposal confirms that the Regent system uses a KEYENCE FD-Q series flow sensor and converts its pulse-frequency output into a digital flow measurement. The exact sensor model, pulse to flow conversion factor, and operating range will be verified using the applicable sensor documentation. A preliminary accuracy target of ±5% of the reference reading will be used during development. Verification will be completed by comparing measured flow values with a calibrated reference over the approved operating range.
+* 5 – Flow Rate Monitoring: The controller shall convert the selected flow sensor's output into GPM. The KEYENCE FD-Q series sensor is a proposed option, but its exact model, supported output mode, and calibration relationship will be confirmed before wiring and programming. A preliminary accuracy target of ±5% of the reference reading will be evaluated using a suitable reference method across the approved bench range.
 
-* 6 – Temperature Response Time: The system shall reach and maintain the desired outlet temperature following changes in water demand without negatively affecting the existing water heater's temperature recovery performance. Lochinvar identifies time to reach the temperature setpoint as a required performance measurement but does not specify a maximum allowable response time. A preliminary target is to return to within ±4 °F of the setpoint within 120 seconds after a defined demand change and remain within this range for at least 30 seconds. Verification will be completed by recording temperature recovery times during baseline and controlled operation under equivalent conditions.
+* 6 – Temperature Response Time: Following a defined change in bench operating conditions, the outlet temperature should return to within ±4°F of setpoint within a preliminary target of 120 seconds and remain there for at least 30 seconds. The team will record recovery time for matched baseline and controlled runs. This is a preliminary project target, not a verified characteristic of the selected heat source.
 
-* 7 – Electrical Power Reduction: The controller shall demonstrate a measurable reduction in circulation pump electrical power consumption compared with baseline operation under equivalent operating conditions. Lochinvar identifies reduced pump power consumption as a primary project objective but does not establish a required percentage reduction. A preliminary engineering target of at least 10% reduction in measured pump and drive electrical input power will be used for qualifying operating conditions. Verification will be completed by recording electrical input power in watts using an appropriate power measurement instrument and calculating:
+* 7 – Electrical Power Reduction: At qualifying operating conditions, the controller shall aim for at least a 10% reduction in measured pump-and-drive real electrical input power compared with baseline operation under equivalent conditions. A suitable power instrument shall measure real input power in watts. Savings will be calculated as:
   
 $$
 \text{Power Savings (\%)} =
@@ -164,83 +167,54 @@ $$
 {P_{\text{baseline}}} \times 100
 $$
 
-Power savings will only be considered acceptable when minimum circulation flow, temperature stability, and equipment safety requirements are satisfied.
+Power reduction will not count as a successful result if the controlled run violates the approved minimum flow, temperature, or safety limits.
 
-* 8 – Controller Stability: The controller shall adjust circulation pump speed without excessive oscillations, repeated limit cycling, or unstable temperature behavior. Lochinvar's original project proposal requires maintaining system stability but does not provide a numerical pump settling time limit. A preliminary target is for the pump speed command to settle within ±5% of its final steady state command within 30 seconds after a defined change in demand. Verification will be completed by recording pump speed commands, flow rate, and outlet temperature during controlled operating changes.
+* 8 – Controller Stability: After a defined demand change, the pump-speed command shall settle within ±5% of its final steady-state value within a preliminary target of 30 seconds, without repeated limit cycling. Command traces, flow measurements, and temperature data will be reviewed together to identify oscillations.
 
-* 9 – Existing System Compatibility: The proposed controller shall operate without bypassing, disabling, or interfering with the existing Lochinvar temperature regulation and manufacturer installed safety controls. Lochinvar specifically requires that the proposed pump control strategy not negatively affect the existing temperature control system. Verification will include an electrical interface review, inspection of the proposed connections, and approved functional testing. The controller's fault response behavior will be established with Lochinvar before physical testing to ensure that existing protections remain operational.
+* 9 – Bench Compatibility and Safety: The controller shall operate with the selected bench pump, heat source, sensors, and power equipment without bypassing their required safety functions. Before the loop is energized, the complete setup shall be reviewed with the faculty supervisor. Bench verification shall include approved checks of maximum temperature, minimum flow, electrical isolation, and defined fault responses. Compatibility with commercial Lochinvar equipment will be evaluated separately if optional laboratory testing occurs.
 
-* 10 – Operating Condition Testing: The team shall evaluate the proposed controller under a minimum of three defined operating conditions representing low, medium, and high water demand, subject to equipment availability and testing approval. Lochinvar's original project proposal requires investigating changes in water flow rate and inlet water temperature and identifies a flow tree as a method of producing repeatable demand changes. A preliminary test plan includes five paired baseline and variable speed controller trials at each operating condition, resulting in 15 paired comparisons. Measurements will include pump operating conditions, water flow rate in GPM, inlet and outlet temperatures in °F, boiler firing rate in percent, and electrical input power in watts. A preliminary acquisition and logging interval of no greater than 1 second will be used. Verification will be completed by reviewing the recorded datasets and confirming that all required operating conditions and measurements were documented.
-
-The specifications above establish measurable criteria for evaluating the proposed controller. Requirements directly supported by Lochinvar's project documentation include the ±4 °F temperature stability tolerance, minimum circulation-flow protection, variable-speed pump operation, and evaluation of electrical power consumption and temperature response. Numerical values that are not provided in the manufacturer's documentation are identified as preliminary engineering targets and will be confirmed with Lochinvar before final testing.
+* 10 – Operating Condition Testing and Model Validation: The team shall conduct at least three defined bench operating conditions representing low, medium, and high demand. The preliminary plan is five paired baseline and controlled runs at each condition, giving 15 paired comparisons. Measurements will be logged at a preliminary interval of no more than one second. The simulation will be run under matching conditions, and differences between predicted and measured flow, temperature, and response time will be reported. Mean percentage electrical savings, sample standard deviation, and a 95% confidence interval will be reported where supported by the data and assumptions.
 
 
 #### Specification Traceability and Verification Summary
 ---
 
-| Requirement | Primary stakeholder need | Acceptance evidence | Status |
-|---|---|---|---|
-| 1. Temperature Stability | Lochinvar and occupants need reliable outlet temperature | Maximum absolute setpoint deviation within ±4 °F over a documented steady state window, measured with calibrated reference | Existing requirement; measurement plan added |
-| 2. Minimum Flow | Lochinvar requires heat-exchanger protection | Measured GPM ≥ confirmed manufacturer $Q_{\min}$ during required circulation | Manufacturer value pending |
-| 3. Pump Speed | Lochinvar requires equipment compatibility | Logged command and response within approved $N_{\min}$ to $N_{\max}$ | Pump selection pending |
-| 4. Firing Rate | Controller needs accurate demand information | Isolated 0–10 V input check using known reference voltages | ±2 percentage point goal preliminary |
-| 5. Flow Rate | Controller needs reliable flow feedback | Calibrated reference comparison across operating range | Interface and ±5% goal preliminary |
-| 6. Response Time | Occupants need timely hot water | Time to return to ±4 °F after specified demand step | 120 s / 30 s hold preliminary |
-| 7. Power Reduction | Lochinvar needs demonstrable electrical savings | True RMS input power comparison at matched conditions | ≥10% preliminary target |
-| 8. Stability | Operators need nonoscillatory pump behavior | Command trace, settling time and peak to peak variation | ±5% / 30 s preliminary |
-| 9. Safety Compatibility | Lochinvar requires factory protections to remain active | Approved interface review and safe bench fault tests | Approved fallback pending |
-| 10. Operating Conditions | Sponsor needs reproducible performance evidence | Low, medium, high condition datasets with repeated trials | Five paired runs preliminary |
+| Requirement | Primary verification | Evidence to report |
+|---|---|---|
+| 1. Temperature stability | Bench test | Calibrated temperature trace, maximum absolute deviation, standard deviation, 60-second window |
+| 2. Minimum flow | Bench test and approved fault test | Measured GPM compared with documented bench minimum |
+| 3. Pump speed control | Simulation, then bench test | Command trace, observed pump/flow response, verified interface limits |
+| 4. Heating-demand input | Bench input test | Known input values, scaling error, electrical-interface check |
+| 5. Flow monitoring | Sensor calibration and bench test | Sensor/reference comparison and conversion method |
+| 6. Temperature response | Simulation and bench test | Time to recover within ±4°F, baseline comparison |
+| 7. Power reduction | Repeated bench trials | Real input power, paired savings, confidence interval |
+| 8. Controller stability | Simulation and bench test | Settling time, oscillation and command-limit traces |
+| 9. Compatibility and safety | Pre-energization review and bench tests | Approved setup, isolation inspection, safe temperature/flow and fault-response checks |
+| 10. Repeatability and validation | Repeated bench trials and model comparison | Trial datasets, uncertainty, simulation-versus-measurement error |
+
 
 #### Temperature Sensor Accuracy and Calibration
 --- 
 
-Accurate temperature measurements are necessary to verify that the proposed controller maintains the required ±4 °F outlet-temperature stability specified by Lochinvar. The originally proposed Cooper Atkins Type-K pipe clamp temperature sensors can be used to monitor temperature changes during development. However, the standard Type-K tolerance of approximately ±2.2 °C, equivalent to approximately ±4 °F, combined with pipe surface measurement differences and sensor response delays, makes uncalibrated pipe clamp measurements insufficient to independently verify the required temperature tolerance.
+Temperature measurements must be accurate enough to support the ±4°F stability requirement. A standard uncalibrated Type-K thermocouple or pipe-clamp probe may not be adequate on its own because its measurement tolerance, pipe-surface effects, and response delay can be large relative to the temperature band being evaluated. Thermocouples also require suitable cold-junction compensation.
 
-For final performance verification, the team will use a calibrated water temperature reference instrument with documented measurement uncertainty. A preliminary expanded uncertainty target of no greater than ±1 °F has been established for the reference measurement. An approved immersion RTD, thermistor, or calibrated reference probe may be considered depending on the available test equipment and authorized measurement locations. Thermocouple measurements will also require appropriate cold junction compensation.
+The proposed bench budget includes two PT100 RTD probes and MAX31865 interface modules. The final probe construction, installation method, calibration, and electrical connections will be checked before use. The team will use a calibrated reference instrument, with a preliminary expanded uncertainty target no greater than ±1°F, to verify the measurement system. Sensor locations will be chosen to represent the water temperature as closely as the approved bench design allows, rather than relying on an uncorrected pipe-surface measurement.
 
-The selected measurement method will be documented before testing, including calibration information, instrument specifications, and the measurement locations used. Any modifications to the existing Lochinvar equipment will require approval before implementation.
+Calibration results, sensor specifications, and measurement uncertainty will be recorded with the test data. Any change to the probe type or mounting arrangement will be documented so temperature results remain traceable.
 
 #### Constraints
   
-The proposed variable speed circulation pump controller must run within the electrical, mechanical, thermal, and safety limitations of the existing Lochinvar equipment. Because the project involves commercial water heating equipment, electrical components, and circulating hot water, the design must consider relevant engineering standards and manufacturer requirements. The following constraints will guide the development and testing of the controller.
-
 Electrical and Safety Constraints
 
-* 1 – Electrical Installation: Electrical wiring, grounding, and protection associated with the controller shall follow the applicable requirements of NFPA 70, the National Electrical Code, where those requirements apply to the installation. The relevant provisions will be reviewed before connecting the controller to the pump or boiler equipment.
+* 1 – Electrical and Safety Constraints. The bench controller, pump, heat source, power supplies, and measurement equipment must operate within their rated voltage, current, and insulation limits. Electrical wiring and protection will be reviewed against applicable requirements of NFPA 70 and relevant laboratory procedures. Only qualified or institutionally authorized personnel may make changes that require electrical or plumbing expertise. Appropriate hazardous-energy controls, including lockout/tagout when applicable, will be followed before servicing. The bench shall be reviewed by the faculty supervisor before it is energized, and no test will bypass required overtemperature, flow, or electrical protections.
 
-* 2 – Electrical Compatibility: The controller shall operate within the voltage and current ratings of the selected microcontroller, sensors, and pump control interfaces. The Knight boiler's 0–10 V firing rate signal must be connected through an appropriately designed signal-conditioning circuit compatible with the selected microcontroller.
+* 2 – Hydraulic and Thermal Constraints. The reservoir, tubing, fittings, valves, heat source, and pump must be suitable for the selected temperatures, pressures, and flow rates. The team will establish the safe minimum circulation flow and maximum temperature from the actual bench equipment and approved design. The controller will not command operation outside those limits. The loop will be checked for leaks, secure connections, and suitable protection from hot water and moving or energized equipment.
 
-* 3 – Hazardous Energy Control: Servicing or modifying the equipment shall follow applicable laboratory safety procedures and hazardous energy control requirements. OSHA 29 CFR 1910.147 provides requirements for controlling hazardous energy during servicing and maintenance in covered workplaces. Its applicability to the specific testing environment will be confirmed.
+* 3 – Equipment and Interface Constraints. The final pump, heat source, flow sensor, RTDs, controller, and power-monitoring method must be confirmed before the wiring and software interfaces are finalized. The proposed heating-demand input must be a properly conditioned bench signal. The project will not depend on access to an existing commercial boiler. Any later integration with the Regent or other Lochinvar laboratory equipment will require a separate compatibility and safety review.
 
-* 4 – Existing Safety Controls: The proposed controller shall not bypass or disable the boiler's existing temperature limits, flow protections, or other manufacturer installed safety functions. Any proposed connections to the existing system must be reviewed and approved before testing.
-
-Plumbing and Mechanical Constraints
-
-* 5 – Plumbing Requirements: Any modifications to the water circulation system shall be evaluated against applicable locally adopted plumbing requirements, including piping materials, fittings, pressure protection, and safe hot water operation. The International Plumbing Code may provide relevant requirements depending on local adoption and applicability.
-
-* 6 – Pipe and Fitting Compatibility: Pipes, fittings, valves, and flow measurement equipment shall be compatible with the operating temperatures, pressures, and flow conditions of the selected test system. Component ratings will be verified using manufacturer documentation before installation.
-
-* 7 – Minimum Circulation Flow: The pump shall not operate below the manufacturer-required minimum circulation flow during conditions requiring circulation. The applicable minimum flow rate will be confirmed with Lochinvar and documented in GPM before testing.
+* 4 – Budget and Schedule Constraints. The project must remain within the approved capstone budget and schedule. The current bench budget identifies an estimated $191.62 in priced items, while the pump, heat source, and power-supply costs or availability remain unresolved. That figure is a partial estimate, not a complete project total. The bench must be assembled, reviewed, tested, and used to collect repeatable data during Capstone 2. Optional testing at Lochinvar's laboratory must not delay the required bench validation.
   
-* 8 – Pump Operating Limits: The controller shall not command pump operation outside the allowable speed, flow, pressure, or electrical limits established by the selected pump manufacturer. Lochinvar's project documentation identifies the Grundfos UPMS 15-78 130 AR variable speed pump; the actual test pump and its approved operating limits will be verified before implementation.
-
-System and Project Constraints
-
-* 9 – Equipment Compatibility: The design must remain compatible with the available Lochinvar test equipment. The Regent Commercial Instantaneous Water Heater is the intended application, while the Knight KHB085 and WHB199 boilers are identified as available laboratory test equipment. Lochinvar may also provide a recirculation loop, pump, flow sensor, and temperature sensors for testing. Differences between the laboratory equipment and Regent system must be identified before applying the results to the Regent.
-
-* 10 – Temperature Performance: Changes in circulation pump speed shall not cause the system to violate the manufacturer-specified ±4 °F outlet temperature stability requirement under the defined steady state operating conditions.
-
-* 11 – Budget and Resources: The design shall remain within the project budget approved by the team and its stakeholders. The currently listed primary component estimates are $580 for the KEYENCE flow sensor, $500 for the variable speed pump, $20 for the microcontroller, and $79 each for two temperature sensors, totaling approximately $1,258. Additional signal conditioning components, power supplies, wiring, and testing equipment may affect the final budget. The team will also account for any equipment provided by Lochinvar to avoid unnecessary purchases.
-
-* 12 – Project Timeline: The team must complete research, requirements development, and the proposed design during Capstone 1, with implementation and testing planned for Capstone 2 according to the approved course schedule.
-
-Environmental and Economic Considerations
-
-Environmental and economic factors are important considerations for this project. Reducing circulation pump speed when full operation is unnecessary may decrease electrical energy consumption and operating costs. However, the controller must maintain the required water heating performance, and potential savings must be evaluated against the additional cost of control hardware and system integration.
-
-The team will compare measured electrical input power during baseline and controlled operation to estimate potential energy savings. The cost of implementing the controller will also be considered when determining whether the system provides a practical improvement for Lochinvar. The actual energy savings will depend on the pump characteristics, operating conditions, and results obtained during testing.
-
-Before the controller is considered for implementation in a commercial Lochinvar product, the applicable product certification, electrical, plumbing, and safety requirements will need to be confirmed. The final design must not compromise equipment reliability or existing safety protections to achieve energy savings.
+* 5 - Environmental and Economic Considerations. The team will compare measured electrical input power under matched operating conditions rather than assuming that lower speed always produces the predicted energy savings. Potential savings must be considered alongside the cost of additional controls, the energy used by the heating equipment, and the need to maintain safe circulation. The bench results will establish whether the control strategy works under the tested conditions; they will not, by themselves, establish full commercial product performance or certification.
 
 ## Survey of Existing Solutions
 
@@ -333,18 +307,13 @@ The current estimated cost of the project is **$191.62**, based on the items wit
 * Kendall Arnold: C/C++, Assembly, AUTOCAD, Controls Systems, Circuit Analysis, LT Spice, KiCad, Technical Documentation
 * Skyler Raines: C/C++, Assembly, Circuit Analysis, AUTOCAD, Revit, PLC, Ladder Logic, Control Systems, Troubleshooting
 
-The capstone team consists of four members: Jocelyn Smith, Danielle Wolford, Kendall Arnold, and Skyler Raines. Each member of the team has experience with different programming languages, engineering software, and electrical engineering concepts that will be useful throughout the project. Developing a variable speed pump controller will require knowledge of programming, circuit analysis, control systems, hardware integration, and testing. The team has experience in some of these areas, which will let the work be divided depending on each member's strengths. However, there are also areas where further research and learning will be needed before the project can be completed.
-Although the team has experience in programming, circuit analysis, and control systems, there are still some areas that will require further knowledge. One of the biggest challenges will be to understand how the circulation pump affects the water flow and temperature inside the heat exchanger. 
+The capstone team consists of Jocelyn Smith, Danielle Wolford, Kendall Arnold, and Skyler Raines. The project includes programming, control systems, circuit analysis, hardware integration, simulation, and experimental testing. Each team member will contribute to the overall design, with primary responsibilities assigned to the individual subsystems.
 
-The team will also need to learn more about the specific pump, sensors, and boiler signals given by Lochinvar. This includes understanding how the 0–10 V firing rate signal and flow sensor measurements can be used when developing the controller. Another area that may need further research is deciding how to alter the pump speed without causing the system to be unstable or negatively affecting the time required to reach the desired temperature.
+Jocelyn has experience with C/C++, Assembly, Python, MATLAB, circuit analysis, and control system analysis. These skills are relevant to developing the microcontroller control logic, supporting simulation work, and organizing recorded measurements. Danielle has experience with C/C++, circuit analysis, PLC programming, control system analysis, LTspice, and KiCad, which will be useful for the pump interface and hydraulic design. Kendall has experience with C/C++, AutoCAD, control systems, circuit analysis, and technical documentation, supporting test planning and performance evaluation. Skyler has experience with electrical hardware, troubleshooting, PLCs, and control systems, which will help with the sensor integration and acquisition hardware.
 
-To achieve the knowledge needed for these areas, the team plans to research the equipment being used, review technical documentation provided by Lochinvar, and communicate with Lochinvar's engineers when questions come up. The team may also need to become more familiar with simulation software such as Dymola if modeling is included in the project. Testing and evaluating results will also help the team better understand how the system responds when different running conditions occur. By combining the skills the members already have with further research and guidance, the team should be able to work through the challenges that come up during the project.
+The team will need additional experience with the selected pump interface, the physical water loop, temperature measurement and calibration, and Dymola simulation. The simulation will be used to develop the control strategy and select the initial test conditions, but the team will also need to learn how to compare its predictions with real bench measurements. Testing will involve heated water and electrical equipment, so the team will work with the faculty supervisor and authorized laboratory personnel to review the setup before energizing it.
 
-The team has chosen Dr. Storm as the project supervisor. The supervisor will help guide the team through the engineering and technical parts of the project. This will include giving feedback on the proposed control approach, helping the team understand the equipment being used, and answering questions that may come up during development and testing. Having a supervisor with knowledge of the project will be important because the team is working with commercial water heating equipment and needs to make sure the proposed controller meets the requirements supplied by Lochinvar.
-
-The instructor for this capstone project is Dr. Storm. The instructor will be able to give the team guidance throughout the project and to make sure the team is meeting the expectations and requirements of the capstone. This includes reviewing project documentation, providing feedback on assignments and presentations, and helping the team stay on track with the project timeline. The instructor will also help evaluate the team's progress and make sure the work being completed meets the academic and engineering expectations of capstone.
-
-Dr. Elfouly is another academic stakeholder involved in the project who can provide additional technical guidance throughout the design and development process. His background in microcontrollers and digital system design will be especially useful when developing the control system for the variable speed circulation pump. His expertise can help the team with choosing and programming the microcontroller, processing signals from the flow and temperature sensors, and developing the control logic needed to adjust the pump speed based on the system's running conditions. Having his guidance will help the team address challenges related to hardware integration, programming, and ensuring that the controller runs correctly with the existing Lochinvar equipment.
+Dr. Storm will provide capstone supervision, project feedback, and oversight of the proposed test plan. Dr. Elfouly can provide technical guidance on the microcontroller, sensor interfaces, and digital control implementation. Lochinvar's engineers will remain important contacts for sponsor requirements, pump compatibility, and any possible final testing at their laboratory. The team will document unresolved equipment details rather than assuming that an interface or operating limit has already been approved.
 
 ### Timeline
 
@@ -355,13 +324,13 @@ Dr. Elfouly is another academic stakeholder involved in the project who can prov
 
 ## Specific Implications
 
-Solving this problem could give various benefits to Lochinvar, especially when it comes to improving the efficiency of their commercial water heating systems. The main goal of our project is to develop a controller that adjusts the circulation pump speed depending the current running conditions of the system. Rather than having the pump run at a higher speed than what is actually needed, the controller would allow the pump to slow down when the system doesn't need as much circulation. This could help reduce that number of electrical power being used by the pump while still allowing the water heating system to run correctly and efficiently. If our team is able to create a successful control strategy, Lochinvar could potentially use the results to improve the efficiency of their current water heating systems. 
+If the project is successful, Lochinvar will have experimental evidence showing whether a variable-speed circulation pump controller can reduce electrical input power while maintaining acceptable water flow and temperature performance. The goal is not simply to make the pump run more slowly. The controller must respond to changes in demand without allowing the water loop to operate below its safe minimum flow or outside its approved temperature limits.
 
-Another benefit of solving this problem is being able to improve energy efficiency without negatively affecting the execution of the system. One of the biggest hurdles is making sure that lowering the speed of the pump doesn't cause problems with water flow or temperature control. The system will sill need to maintain the minimum needed flow rate, reach the wanted temperature set point within a reasonable amount of time, and maintain a stable temperature within +-4 degrees F. By developing a controller that deliberates the flow rate, boiler firing rate, and temperature, our team is in hopes of finding a way to reduce unneeded pump procedure while still meeting these requirements. This would be a benefit to Lochinvar because it could improve the way their systems run without surrendering the performance their customers expect.
+The physical bench test will make it possible to measure these effects under repeatable conditions. By comparing baseline and controlled operation, the team can identify when a lower pump-speed command provides a meaningful power reduction and when the controller needs to maintain a higher flow rate. Repeated tests will help show whether the results are consistent rather than depending on one successful run. Comparing the bench measurements with simulation predictions will also help the team understand which parts of the model need improvement.
 
-There are also potential economic and environmental benefits that could result from this project. If the circulation pump is able to run at lower speeds when feasible, it could reduce the amount of electricity needed to run the system. Although the actual energy savings would need to be decided through testing, the likelihood of reducing the running costs while keeping the same level of performance make the project worth researching. 
-Overall, solving this problem could give Lochinvar a better understanding of how different circulation pump speeds affect power consumption, water flow, and temperature execution. The data accumulated from testing could help decide if a variable speed pump controller would be a functional improvement for their Regent Commercial Instantaneous Water Heater. The main value or gain if this project is finding a ay to make the system more energy efficient while also keeping the reliability that Lochinvar and the customers need. 
+The project could have economic and environmental benefits if reduced pump electrical consumption can be achieved without adding unacceptable cost or complexity. However, the measured savings will apply first to the selected bench equipment and test conditions. The team will avoid presenting bench results as proof that the same percentage savings will occur in every commercial water heater.
 
+The main value of the project is a tested control strategy, a documented bench-testing method, and a set of measured results that Lochinvar can use to evaluate future development. If testing at Lochinvar's laboratory becomes possible near the end of Capstone 2, it may provide additional evidence about how the design behaves with actual commercial equipment. The project will still be complete if that optional testing cannot be arranged.
 
 
 ## Broader Implications, Ethics, and Responsibility as Engineers
@@ -451,44 +420,43 @@ The objective of this project is to develop and evaluate a control strategy that
 
 ## Restating the Fully Formulated Problem
 
-The primary objective of this project is to develop and evaluate a control strategy for adjusting the pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater based on changing operating conditions. Lochinvar is interested in determining whether reducing pump speed can decrease electrical energy consumption without compromising the performance of the water heating system when full circulation is unnecessary. Because hot water demand varies throughout the day, the pump may not need to operate at a constant speed under every condition. However, reducing pump speed must be carefully evaluated to ensure sufficient water flow through the heat exchanger and the ability to maintain the required water temperature.
+The objective of this project is to design, implement, and evaluate a variable-speed circulation pump controller that can reduce unnecessary electrical power consumption while maintaining safe water flow and stable temperature performance. The Lochinvar Regent Commercial Instantaneous Water Heater remains the intended future application, but the controller will be developed and evaluated first using a dedicated physical bench-testing system.
 
-The project will investigate the relationship between pump speed, water flow rate, inlet water temperature, and heater operation to determine how these variables affect system performance. The team will develop and evaluate a proposed control strategy that uses operating measurements to determine an appropriate pump speed under different conditions. Although the Regent is the intended application, testing may use the Lochinvar equipment available in the Tennessee Tech laboratory or additional equipment provided by Lochinvar, depending on hardware compatibility and availability. The boilers available at Tennessee Tech are also being used by other capstone teams, which may limit our access to the equipment. As a result, testing may need to rely on simulations and available operating data to identify operating conditions under which pump speed can be reduced while maintaining acceptable water heating performance.
+The bench setup will include a variable-speed pump, a small water circulation loop, a heat source, flow and temperature sensors, and the team's actual microcontroller-based controller. It will provide a controlled environment for changing flow and heating-demand conditions, recording system responses, and evaluating the effect of pump-speed adjustments. The physical bench test is required and will provide the primary experimental evidence for the project.
 
-The proposed design shall meet the following requirements:
+A simulation model will be developed before testing to represent the expected relationships between pump operation, water flow, heat transfer, and outlet temperature. The simulation will help establish preliminary controller settings and choose bench-test conditions. After measurements have been collected, the simulation will be run under matching conditions and compared with the physical response. The team will report the differences and use the results to improve the model and controller.
 
-1. Pump speed control: The pump shall be able to run at different speeds based on the system's needs.
-*	Variable-speed control is the main focus of this project. Adjusting pump speed may help reduce unnecessary electrical energy use while maintaining proper water flow through the system.
+The design shall meet the following requirements:
+
+1. Pump speed control: The controller shall issue variable-speed commands through the selected pump's supported interface and remain within its documented operating limits.
   
-2. Operating measurements: The system shall measure or collect water flow rate, inlet water temperature, and other available data about the water heater.
-*	These measurements will help the team understand how changes in water flow and temperature affect the heater's performance and determine how the pump should be controlled.
-  
-3. Performance evaluation: The team shall study how pump speed, water flow, inlet water temperature, and heater operation affect system performance.
-*	Evaluating these factors will help determine whether changing pump speed can improve energy efficiency without negatively affecting the water heater's operation.
-  
-4. Minimum flow requirements: The pump shall maintain enough water flow through the heat exchanger to meet Lochinvar's requirements.
-*	Maintaining sufficient flow is necessary to help prevent overheating and ensure the equipment operates within its specified limits.
+2. Operating measurements: The system shall acquire flow rate, inlet and outlet water temperatures, applied heating-demand input, and available pump operating information at a preliminary logging interval of no more than one second.
+   
+3. Temperature stability: The system shall aim to maintain outlet temperature within ±4°F of the selected setpoint during a defined 60-second steady-state window, using a calibrated reference measurement.
+   
+4. Minimum flow: The controller shall maintain at least the approved minimum circulation flow for the actual bench equipment whenever heated circulation is required. The numerical limit will be established before testing.
+   
+5. Response time: After a defined operating change, the controller shall aim to return the outlet temperature to within ±4°F of setpoint within 120 seconds and remain there for at least 30 seconds.
 
-5. Water temperature requirements: The proposed control strategy shall allow the water heater to reach and maintain the required water temperature.
-*	The control strategy must consider water temperature so that energy savings do not come at the expense of the heater's intended performance.
+6. Electrical power reduction: The controller shall aim for at least a 10% reduction in measured pump-and-drive real electrical input power compared with a matched baseline, provided all safety and performance limits remain satisfied.
+   
+7. Controller stability: The pump-speed command shall aim to settle within ±5% of its final value within 30 seconds after a defined change, without repeated limit cycling.
 
-6. Energy efficiency: The team shall evaluate whether running the pump at lower speeds can reduce electrical energy use.
-* Comparing pump energy consumption at different speeds will help determine whether variable-speed control offers potential energy savings.
+8. Physical validation: The team shall complete a bench test using the actual controller, sensors, pump, heat source, and circulation loop. Simulation alone will not satisfy this requirement.
 
-7. Equipment compatibility: All components shall work together properly with the equipment used for testing.
-*	The team may use the Regent water heater, other compatible Lochinvar equipment, or laboratory simulations, depending on equipment availability.
+9. Repeated testing and uncertainty: The preliminary test plan shall include five paired baseline and controlled runs at each of three operating conditions. The results shall include variability, a 95% confidence interval for power savings when statistically supported, and defined temperature-stability measures.
+    
+10. Model validation: Predicted and measured responses shall be compared under equivalent conditions, with model error reported for selected flow, temperature, and response-time measurements.
 
-8. Testing and validation: The team shall evaluate the proposed control strategy using calculations, simulations, and laboratory testing when possible.
-*	These methods will help determine whether the proposed strategy is technically feasible and whether additional testing is needed.
+11. Safety: The bench setup shall be reviewed with the faculty supervisor before energizing. Approved testing shall verify temperature limits, minimum flow, electrical isolation, and fault responses.
 
-9. Project feasibility: The proposed design shall fit within the available budget, equipment, schedule, and team resources.
-*	These limits will help the team develop a realistic solution that can be completed within the capstone project timeline.
+12. Future application: Testing on actual Lochinvar equipment may be pursued near the end of Capstone 2 if access and approval permit, but is not required to complete the project.
 
-In summary, this project will investigate whether adjusting the internal circulation pump speed of the Lochinvar Regent Commercial Instantaneous Water Heater can reduce electrical energy consumption while maintaining reliable water heating performance. By evaluating pump speed, water flow rate, inlet water temperature, and heater operation, the team will develop and assess a proposed control strategy. Calculations, simulations, and laboratory testing, when available, will be used to compare energy consumption and system performance under different operating conditions. The final goal is to determine the feasibility of variable-speed pump control and identify opportunities to improve energy efficiency without compromising the water heater's operation.
+In summary, The project will be judged primarily by the quality of the bench implementation, repeatability of the measurements, safe operation, and evidence that the controller meets the defined performance targets. The team will clearly distinguish results measured on the bench from any predictions about future use in the Regent.
 
 ## Engineering Principles, Mathematical Models, and Verification Tools (C1)
 
-The proposed variable speed circulation pump controller will be developed around the Grundfos UPMS 15-78 130 AR circulation pump identified in the project documentation. Manufacturer published specifications for the UPMS 15-78 130 pump family provide the starting point for evaluating electrical power requirements, pump operation, and potential energy savings. These specifications will be combined with heat transfer equations and feedback control principles to develop and verify the proposed controller.
+The controller design is based on the relationship between pump speed, circulation flow, electrical power, and heat transfer. These relationships will first be used to estimate system behavior and develop the simulation model. The actual bench equipment will then be used to test the predictions. The proposed Grundfos UPMS 15-78 130 AR is a candidate pump, but the exact model and supported control interface must be confirmed before its published ratings are treated as the installed system's ratings.
 
 1. Manufacturer Pump Specifications
 
@@ -674,18 +642,28 @@ Several factors influence the selection of the final design, including the energ
 
 ## High-Level Solution
 
-The proposed solution is to develop a variable speed pump controller that is able to reduce unneeded use of electrical energy while maintaining the performance of Lochinvar's water heating system. Rather than having the circulation pump run at a constant speed, the controller will adjust the speed of the pump based on the system's running conditions. Measurements such as the water flow rate, inlet and outlet water temperatures, and boiler firing rate will help determine when the speed of the pump can be reduced without affecting the system's ability to deliver hot water. The overall design will consist of six subsystems: Sensor and Data Acquisition, Microcontroller and Control Logic, Pump and Motor Control, Water Heating and Hydraulic, Monitoring and Performance Evaluation, and Data Logging and Simulation. Each subsystem will have a certain role in helping the controller run properly and meet the project's requirements.
+The proposed system will adjust the speed of a circulation pump according to the conditions measured in a small water loop. Instead of running at one fixed speed, the controller will use flow, temperature, and a representative heating-demand input to decide whether the pump can operate at a lower setting. The goal is to reduce electrical input power while maintaining safe circulation and acceptable temperature behavior.
 
-   The Sensor and Data Acquisition subsystem will collect measurements from the water-heating system and send them to the controller. The Microcontroller and Control Logic subsystem will process this information and determine the appropriate pump speed based on the control algorithm and established operating limits. The Pump and Motor Control subsystem will acquire the command and adjust the speed of the pump using hardware that is compatible.
-The Water Heating and Hydraulic subsystem will include the physical equipment involved in the system, such as the pump, piping, circulation loop, boiler, and heat exchanger. Because the changes in pump speed can affect the water flow and heat transfer, the system's response will need to be observed cautiously. The Monitoring and Performance Evaluation subsystem will help decide how well the controller performs by analyzing the electrical power use, water flow, temperature stability, and the time required to reach the wanted temperature. The Data Logging and Simulation subsystem will log measurements and help the team compare results from different running conditions. If enough information is available from the system, simulation software such as Dymola may also be used to study how the system is expected to react.
+The system will be developed in simulation first and then implemented using a physical bench setup. The simulation will provide an initial understanding of the system and help the team choose controller settings. The bench will include the actual microcontroller, sensors, variable-speed pump, heat source, reservoir, and plumbing. Repeated bench trials will provide the measured data needed to evaluate the controller and validate the simulation.
 
-   All six subsystems will work together to help the controller react to changes in hot water demand. The sensors will give updated measurements, the controller will use those measurements to decide the speed of the pump, and the pump control hardware will make the needed adjustment. The resulting changes in the flow and temperature will then be observed to gauge the system's performance.
+* 1 –  Sensor and Data Acquisition: Measures flow and temperature and provides conditioned operating inputs to the controller.
+ 
+* 2 – Microcontroller and Control Logic: Calculates pump speed commands, enforces operating limits, and handles detected faults.
 
-   The main focus is to reduce the pump energy consumption without negatively affecting the water heater's process. The pump must have the ability to maintain the minimum flow necessary by the manufacturer, and the system must still reach and maintain the required water temperature. The team will use calculations, simulations, and lab testing when possible to gauge the proposed design. Although the Regent Commercial Instantaneous Water Heater is the planned application, the equipment used for testing will depend strictly on availability and compatibility. The results will help determine whether the variable speed pump control is a realistic way to improve energy efficiency while keeping trustworthy hot water performance.
+* 3 – Pump, Motor Control, and Hydraulic System: Includes the pump interface, water loop, hydraulic model, and minimum-flow protection.
+  
+* 4 – Monitoring, Performance Evaluation, and Bench Testing: Plans and operates the approved bench experiment and evaluates the controller's performance.
+
+* 5 – Data Logging and Simulation: Develops the model, records and stores experimental measurements, compares predictions with bench data, and documents model error.
+
+The main information path begins with measurements from Subsystem 1. Subsystem 2 processes these measurements and sends a command to the compatible pump interface in Subsystem 3. The physical loop responds, producing new flow and temperature conditions. Subsystem 4 manages the test conditions and evaluates the results. Subsystem 5 records the measurements and uses them to check and refine the simulation.
+
+The bench experiment is required for project completion. Testing on actual Lochinvar equipment at the sponsor's laboratory may be pursued near the end of Capstone 2 if the opportunity becomes available, but the team will not depend on that testing to meet its primary objectives.
 
 #### Preliminary Control Design and Tuning Plan
 --- 
-The control logic described above will be developed using feedforward information from measured water flow and boiler firing rate, followed by temperature-feedback correction. A preliminary conceptual form is
+
+The controller will use a feedforward estimate based on measured flow and a representative heating-demand input, followed by a temperature-feedback correction. A preliminary PI-based expression is:
 
 $$
 u_{\mathrm{cmd}}(t) = \min\left(
@@ -697,20 +675,32 @@ u_{\mathrm{ff}}(q(t), f(t)) + K_p e_T(t) + K_i \int e_T(t)\,dt
 \right)
 $$
 
-Here, \(q\) is measured water flow, \(f\) is boiler firing rate demand, and \(e_T\) is the outlet temperature error defined after confirming the direction in which pump speed changes affect the actual system. The feedforward map, control gains, minimum and maximum commands, and fault response are not yet finalized. A rate limit and an appropriate deadband will be evaluated to prevent excessive command changes; integral anti-windup will be applied when a command reaches its limit. The lower command limit must never imply a flow below the manufacturer's approved minimum. Initial tuning will use simulation and approved bench tests, followed by documented adjustments based on temperature recovery, oscillation, and measured flow. The controller will preserve the existing boiler safety protections.
+The feedforward map and control gains will first be developed in simulation. The direction of the temperature-feedback correction will be checked against the actual bench response because changing pump flow can affect outlet temperature differently depending on the heat source and loop arrangement. The controller will use a deadband, a rate limit, and anti-windup logic to reduce unnecessary oscillations and prevent the integral term from continuing to grow when the command reaches a limit.
+
+The final minimum and maximum commands will be based on the installed pump and the safe flow range of the bench. Simulation will be used to select initial settings, and repeated bench measurements will be used to adjust them. The team will document changes to the control gains, settling behavior, temperature response, and flow protection. Any fault response will be defined and approved before the heated loop is energized.
 
 #### Preliminary Statistical Verification Plan
 --- 
 
-The Monitoring and Performance Evaluation and Data Logging and Simulation functions already described in the project will support repeated baseline-versus-controlled comparisons. The preliminary plan is five paired runs at each of three defined operating conditions, subject to equipment access and approval. For each pair, the team will compare true RMS electrical input power for the pump/drive at matched conditions and calculate
+TThe team plans five paired baseline and controlled runs at each of three defined bench operating conditions: low, medium, and high demand. This gives a preliminary total of 15 paired comparisons. Conditions will be matched as closely as possible within each pair, and test order, initial conditions, and any changes in equipment settings will be documented. For each pair, percentage electrical-power savings will be calculated as:
 
 $$
 S_i = 100 \frac{P_{\mathrm{baseline},i} - P_{\mathrm{controlled},i}}{P_{\mathrm{baseline},i}}.
 $$
 
-The results will include the mean percentage saving, standard deviation, sample size, and a 95% confidence interval where the data and assumptions support one. For outlet-temperature stability, the team will report the maximum absolute deviation from setpoint and standard deviation over a defined steady-state interval (preliminary: 60 seconds after settling), plus the recovery time after demand changes. Aborted or unsuccessful trials and their reasons will be recorded. Power savings will be interpreted as a success only when the minimum flow, temperature, and safety constraints are met.
+The results will include the mean saving, sample standard deviation, sample size, and a 95% confidence interval where the data and statistical assumptions support one. Temperature stability will be reported as maximum absolute deviation from setpoint and standard deviation over a preliminary 60-second steady-state window after settling. The team will also record recovery time following a defined operating change. Aborted trials, faults, and results that do not meet the flow or temperature requirements will not be hidden. Power savings will be considered successful only when the controller also meets the approved safety and performance limits. Measurement uncertainty and the small sample size will be discussed when interpreting the results.
 
 
+#### Scope Changes 
+--- 
+
+The project testing strategy has changed from depending on existing commercial heating equipment to building a dedicated physical bench-testing loop. This change will give the team more control over test conditions and provide a reliable way to collect experimental data during Capstone 2. The bench will include a variable-speed pump, a heat source, the actual controller, and the sensors needed to measure system performance.
+
+Simulation remains an important development tool, but it will not replace physical testing. It will be used to develop the control algorithm, choose preliminary operating conditions, and predict the system response. The bench will provide measured results, and those results will be compared with the simulation under matching conditions to determine model error and guide improvements.
+
+The original pump control and hydraulic subsystems have been combined into one subsystem, reducing the design from six subsystems to five. Bench testing has been added to the monitoring and performance subsystem. Data recording and storage will be owned by the Data Logging and Simulation Subsystem so those responsibilities do not overlap with test operation and performance evaluation.
+
+Testing at Lochinvar's laboratory may be considered near the end of Capstone 2 if time, access, and approval permit. It is an optional stretch goal and will not be required for successful completion of the project.
 
 ### Hardware Block Diagram
 
@@ -1356,35 +1346,28 @@ Justification: Data logging software records flow rate, firing rate, outlet temp
 
 ### Division of Labor
 
+The revised design contains five subsystems. Each team member has a primary subsystem responsibility, while Subsystem 2 will be a group effort with a designated documentation lead. The proposed lead below should be confirmed by the team before the updated ownership list is submitted to the professor.
 
-* High-Level Solution - Jocelyn Smith
-	* Requirements: Develop an overall solution for the variable-speed pump controller, identify how the six subsystems will work together, 	create a hardware block diagram, and develop an operational flowchart showing how the system will respond to changing operating 			conditions.
-	* Responsible team member and rationale: Jocelyn was assigned this section because of her experience with circuit analysis, 				control systems, and programming. Her knowledge of C/C++, Python, and MATLAB will help her understand how the different subsystems 			interact and how they contribute to reducing pump energy consumption while maintaining system performance.
-* Atomic Subsystem (Microcontroller and Control Logic) - Jocelyn Smith
-	* Requirements: Develop the control logic needed to process sensor measurements and determine the appropriate pump speed. Identify the 		microcontroller requirements, establish how information will be received from the sensors, and determine how commands will be sent to 		the pump control hardware. The design must also account for minimum flow requirements, temperature conditions, and potential sensor 		errors.
- 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with C/C++, Assembly, 				Python, and control system analysis. These skills will be very useful when developing the programming needed to process sensor data and 	adjust pump speed based on the system's operating conditions. Her background in circuit analysis will also help with understanding the 		connections between the microcontroller, sensors, and pump control hardware.
-* Atomic Subsystem (Data Logic and Simulation Subsystem) - Jocelyn Smith
-	* Requirements: Developing a method for collecting and organizing operating data, including water flow rate, temperature, pump speed, 		and electrical power when available. Use MATLAB or other available software to analyze the collected measurements, develop simulations 		when sufficient information is available, and compare different running conditions to evaluate potential energy savings and system 			performance.
-	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with MATLAB, Python, and 			control system analysis. These skills will help her organize experimental data, develop simulations, and analyze how changes in pump 		speed affect the water heating system. Because this subsystem works closely with the Microcontroller and Control Logic subsystem, 			assigning both to the same team member will also help maintain consistency between the controller design and performance analysis.
- * Atomic Subsystems(Monitoring and Performance Evaluation Subsystem)- Kendall Arnold
-	 * Requirements: Develop a method for evaluating system performance using operating data, including water flow rate, inlet and outlet 		 water temperatures, pump speed, and available heater operating measurements. Compare the system’s energy consumption and water heating 	 performance when the pump operates at different speeds with its performance at a constant speed. This will help determine whether the 		 proposed control strategy reduces electrical energy consumption while maintaining required water heating performance. Verify that the 		 system meets minimum flow and temperature requirements, evaluate the control strategy under different operating conditions, and 			 provide performance results to the Data Logging and Simulation Subsystem for further analysis.
-     * Responsible team member and rationale: Kendall was assigned this subsystem because of her background in applied physics and 				 experience conducting experimental projects involving data collection, analysis, and comparison of results. She is also experiences 		 with C/C++, assembly, and currently in Control Systems. These skills will be valuable when evaluating system performance under 			 different operating conditions and determining whether the proposed control strategy reduces electrical energy consumption without 		 compromising the performance of the heater.
-* Atomic Subsystem (Sensor and Data Acquisition Subsystem) – Skyler Raines
-	* Requirements: Collect and transfer data from the system. This includes water flow rate, inlet and outlet water temperatures, and 		  boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. Process sensor readings into 		usable data and send them to the Microcontroller and Control Logic Subsystem to support pump speed adjustments. Identify sensor 			faults, disconnected sensors, and measurements outside acceptable operating ranges. Provide the collected measurements to the 			  Monitoring and Performance Evaluation Subsystem and Data Logging and Simulation Subsystem for analyzing system performance.
-	* Responsible team member and rationale: Skyler was assigned this subsystem because her background in Electronics and Computer 			Engineering Technology provides relevant knowledge of electrical connections and hardware components. Her experience assembling 			electrical panels and working with wiring during her internship will help her connect sensors, integrate their wiring with the 			  microcontroller, and ensure the hardware is properly assembled. Her troubleshooting experience will also be useful for identifying 		  faulty connections and resolving issues that could affect the accuracy and reliability of collected data. Additionally, her current 		Control Systems coursework provides relevant knowledge.
-* Atomic Subsystem (Pump and Motor Control Subsystem) – Skyler Raines
-	* Requirements: Adjust the circulation pump speed based on commands received from the Microcontroller and Control Logic Subsystem. 		  Keep the pump operating within its range while providing sufficient water flow to maintain required water heating performance. 			  Provide pump operating data to the Monitoring and Performance Evaluation Subsystem for analysis and maintain safe pump operation if a 	  control or communication fault occurs.
-	* Responsible team member and rationale: Skyler was assigned this subsystem because her experience assembling electrical panels and 		  troubleshooting electrical hardware provides a foundation for integrating the pump's motor control components. Her background in 			  Electronics and Computer Engineering Technology will help her work with electrical connections between the pump, motor control 			  hardware, and microcontroller. Her troubleshooting skills will also be valuable for diagnosing wiring problems, addressing hardware 		  malfunctions, and helping ensure the pump control system operates reliably during testing.
-* Comparative Analysis of Potential Solutions - Danielle Wolford
-	* Requirements: Research and compare the different control strategies that could be used for the variable speed circulation pump 			  controller. Evaluate each solution based on energy efficiency, temperature stability, water flow requirements, system response, and 		  implementation difficulty. Identify the advantages and disadvantages of each approach and explain why the combined flow rate, boiler 		  firing rate, and temperature feedback solution was selected as the preferred design.
-	* Responsible team member and rationale: Danielle was assigned this section because of her experience with control system analysis, 		  circuit analysis, and PLC programming. These skills will help her understand how different control strategies operate and evaluate 		  how each approach could affect the performance of the water heating system. Her knowledge of control systems will also be useful when 	  comparing the proposed solutions and determining which approach best meets Lochinvar's requirements.
-* Budget - Danielle Wolford
-	* Requirements: Develop an estimated budget for the variable speed circulation pump controller, including the components and 				  equipment needed for all six subsystems. Identify the expected costs of sensors, microcontroller hardware, pump control equipment, 		  hydraulic components, testing instruments, and simulation resources. Explain why each component is needed and determine how existing 		  equipment given by Lochinvar or Tennessee Tech could help reduce the overall project cost.
-  	* Responsible team member and rationale: Danielle was assigned this section because of her experience with circuit analysis, KiCad, 		  and electrical hardware. These skills will help her understand the components that are needed for the controller and decide which 		  materials and equipment should be included in the project budget. Her background in programming and control systems will also help 		  her identify the hardware and software resources needed to develop and test the proposed design.
-* Atomic Subsystem (Water Heating and Hydraulic Subsystem) - Danielle Wolford
-	* Requirements: Develop the design requirements for the physical water heating and circulation system, including the water heater, 		  circulation pump, piping, and hydraulic connections. Identify how the subsystem will secure changes in pump speed while maintaining 		  the required water flow and temperature. Determine how the subsystem will interface with the Pump and Motor Control, Sensor and Data 		  Acquisition, and Monitoring and Performance Evaluation subsystems. The design must also consider the equipment compatibility, 			  operating limits, and existing safety controls.
-	* Responsible team member and rationale: Danielle was assigned this subsystem because of her experience with circuit analysis, control systems, and electrical hardware design. These skills will help her understand how the circulation pump and water heating equipment interact with the controller. Her background in PLC programming and control system analysis will also be useful when analyzing how changes in pump speed affect water flow and temperature. This knowledge will help her develop a subsystem design that secures reliable procedure and meets the requirements made by Lochinvar.
+| Subsystem | Primary owner or lead | Responsibility |
+|---|---|---|
+| 1. Sensor and Data Acquisition | Skyler Raines | Select and integrate flow and temperature sensors, condition measurements, verify sensor interfaces, and provide reliable inputs to the controller. |
+| 2. Microcontroller and Control Logic | Group effort; **proposed lead: Jocelyn Smith** | Develop and document the controller, fault responses, command limits, and control algorithm; integrate contributions from all four members. |
+| 3. Pump, Motor Control, and Hydraulic System | Danielle Wolford | Develop the pump interface, circulation-loop and hydraulic model, and minimum-flow protection for the bench setup. |
+| 4. Monitoring, Performance Evaluation, and Bench Testing | Kendall Arnold | Plan and carry out the approved physical bench tests, coordinate repeated trials, and evaluate whether performance targets are met. |
+| 5. Data Logging and Simulation | Jocelyn Smith | Develop the simulation, establish preliminary test conditions, record and store experimental data, compare model predictions with bench measurements, and report model error. |
+
+
+* Subsystem 1 — Skyler Raines. Skyler will lead sensor selection and integration, including flow measurement, temperature measurement, signal conditioning, and communication of validated sensor readings to the controller.
   
+* Subsystem 2 — Group Effort, with Jocelyn Smith proposed as lead. Jocelyn will coordinate the control algorithm documentation and integrate the control software with the simulation and data recording requirements. Skyler will contribute sensor interface information, Danielle will contribute pump command and hydraulic limit requirements, and Kendall will contribute test and verification requirements. The final lead designation and individual contributions will be confirmed by the team.
+
+* Subsystem 3 — Danielle Wolford. Danielle will lead the combined pump, motor control, and hydraulic design, including the compatible speed command interface, water-loop requirements, hydraulic model, and minimum-flow safeguards.
+  
+* Subsystem 4 — Kendall Arnold. Kendall will lead the physical bench-test plan and performance evaluation, including repeatable operating conditions, matched baseline and controlled trials, temperature and power measurements, and safety verification evidence.
+
+* Subsystem 5 — Jocelyn Smith. Jocelyn will lead simulation development, data recording and storage design, model-to-bench comparison, and reporting of model error. This subsystem will provide datasets to Kendall for performance evaluation rather than taking over operation of the bench experiment.
+
+
 ### Timeline
 
 <p align="center">
