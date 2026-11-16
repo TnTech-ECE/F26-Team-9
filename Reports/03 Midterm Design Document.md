@@ -114,6 +114,24 @@ $$
 Where ρ is the density of water.These relationships allow changes in the volumetric flow rate of water to be related to the mass flow rate used in the heat transfer equation.
 The demand for hot water is never stagnant, it is constantly changing. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
 
+For centrifugal pumps, the relationship between pump speed and energy consumption can be described using the pump affinity laws[18]. These laws state that volumetric flow rate is proportional to pump speed, pump head is proportional to the square of pump speed, and pump power is proportional to the cube of pump speed. These relationships can be expressed as:
+
+```math
+\frac{Q_2}{Q_1}=\frac{N_2}{N_1}
+```
+
+```math
+\frac{H_2}{H_1}=\left(\frac{N_2}{N_1}\right)^2
+```
+
+```math
+\frac{P_2}{P_1}=\left(\frac{N_2}{N_1}\right)^3
+```
+
+Where Q represents volumetric flow rate, H represents pump head, P represents pump power, and N represents pump rotational speed. Subscripts 1 and 2 represent the initial and adjusted operating conditions. For example, reducing pump speed to 80% of its original speed would theoretically reduce pump power to approximately 51.2% of its original value, since (0.8)³ = 0.512. This demonstrates the potential energy savings associated with reducing pump speed during periods of lower demand.
+
+These relationships provide a theoretical model for predicting pump performance at different operating speeds. However, actual energy savings may differ because of changes in pump efficiency, motor and electronic losses, minimum flow requirements, and the hydraulic characteristics of the circulation loop. In particular, static head can prevent flow and power from following the ideal affinity-law relationships. The predictions will provide a baseline for comparison.
+
 Electrical power is the rate at which electrical energy is used by a system. Power can be expressed as[16]: 
 
 $$
