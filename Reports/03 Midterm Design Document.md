@@ -297,13 +297,28 @@ The project will be considered successful if the controller can reduce pump elec
 
 
 ### Budget
-<p align="center">
-<img width="773" height="197" alt="image" src="https://github.com/user-attachments/assets/60f14c90-7f94-4488-af62-af302226a655" />
-</p>
+Item	Price ($)
+KEYENCE FD-Q50C Series Clamp-on Flow Sensor	Free – Provided by Lochinvar
+Microcontroller	Free – Provided by Dr. Elfouly
+Dymola Simulation Software	Free – Provided by Lochinvar
+Water Reservoir (small tank or bucket)	$15.00
+Flexible Water Tubing	$20.00
+Tubing Fittings and Adapters	$20.00
+Hose Clamps and Valves	$20.00
+Platform	$15.00
+Heating Equipment	TBD – See what TN Tech can provide
+DC Power Supply	TBD – See what TN Tech can provide
+Wiring and Connectors	$10.00
+PT100 RTD Temperature Probes (×2)	$32.38
+MAX31865 Interface Modules (×2)	$19.24
+Grundfos UPMS 15-78 130 AR Pump	TBD – Lochinvar may provide
+PZEM-004T V3.0 AC Power Monitor	$25.00
+Sensor Mounts	$15.00
+Total	$191.62
 
-The estimated budget for the project is approximately $1,179. The primary expenses include the variable speed pump, flow measurement, temperature measurement, and control components required to develop and test the proposed system. The KEYENCE FD-Q50C clamp on flow sensor, estimated at $580, will measure water flow without requiring significant modifications to the existing plumbing. A variable speed pump, estimated at $500, will allow the team to investigate how adjusting pump speed affects flow rate, water temperature, and overall system performance. A microcontroller, estimated at $20, will be used to facilitate communication between the sensors and control system during testing.
+The proposed project budget includes the equipment and materials needed to construct the physical bench-testing setup and evaluate the performance of the variable-speed circulation pump. Several major components, including the KEYENCE FD-Q50C clamp-on flow sensor, microcontroller, and Dymola simulation software, are expected to be provided by Lochinvar or Tennessee Tech at no additional cost. The remaining equipment includes a water reservoir, flexible tubing, plumbing fittings, hose clamps, valves, a mounting platform, wiring, and sensor mounts. Two PT100 RTD temperature probes and MAX31865 interface modules will also be used to monitor the water temperature at the inlet and outlet of the system. A PZEM-004T AC power monitor will measure the pump's electrical consumption during testing.
 
-Temperature measurements will be obtained using two Cooper Atkins 4005MK Type-K pipe clamp sensors, estimated at $79 each, to measure water temperatures at the inlet and outlet of the system. These measurements will allow the team to calculate the temperature change across the water heater and evaluate its thermal performance. The total estimated cost of these primary components is $1,258. However, the final project cost may vary depending on the development of the project, any additional equipment or materials required, and the potential availability of components or resources provided by Lochinvar.
+The current estimated cost of the project is **$191.62**, based on the items with confirmed prices. The final cost may change depending on the availability of additional equipment and materials from Tennessee Tech and Lochinvar. In particular, the heating equipment and DC power supply will be investigated for availability through Tennessee Tech, while Lochinvar may be able to provide the Grundfos UPMS 15-78 130 AR circulation pump for the bench setup. These potential contributions could reduce the overall project expenses while still providing the equipment needed to conduct physical testing and compare experimental results with the simulation.
 
 ### Personnel
 
