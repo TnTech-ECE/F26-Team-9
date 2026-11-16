@@ -25,13 +25,7 @@ This proposal will provide background information on the Regent water heater and
 
 ## Formulating the Problem
 
-The primary customer for this project is Lochinvar's engineering team. Lochinvar is interested in whether adjusting circulation pump speed to match changing operating conditions can reduce electrical energy consumption without creating problems with water flow, temperature control, or equipment safety. The intended future application is the Regent Commercial Instantaneous Water Heater, but the project will first evaluate the control approach on a dedicated physical bench setup.
-
-The team will build a small water circulation loop that includes a variable-speed pump, a heat source, flow and temperature sensors, and the actual microcontroller-based controller. This setup will allow the team to change operating conditions in a controlled way and measure how the system responds. The main measurements will include pump electrical input power, circulation flow rate, inlet and outlet water temperatures, and the time required for the system to respond to a change in demand. The bench test will be the primary source of experimental data and the basis for determining whether the controller meets its performance goals.
-
-Before the bench test, a simulation will be developed to represent the relationship between pump operation, water flow, heat transfer, and temperature response. The simulation will help the team choose initial controller settings and test conditions. After the physical system is operating, its measured responses will be compared with the simulation under equivalent conditions. Any differences will be documented so the model and control strategy can be improved.
-
-Testing on actual Lochinvar equipment at Lochinvar's laboratory may be possible near the end of Capstone 2. That opportunity would help the team evaluate how well the bench-tested design transfers to commercial equipment, but it is a stretch goal rather than a requirement for completing the project. The project must still produce meaningful, repeatable results if this additional testing does not occur.
+The primary customer for this project is Lochinvar's engineering team, which is responsible for designing, testing, and developing commercial water heating systems, including the Regent Commercial Instantaneous Water Heater. Commercial hot water demand changes throughout the day, creating a need to determine whether circulation pump energy consumption can be reduced during periods of lower demand without compromising minimum circulation flow, outlet water temperature, or overall heating performance. The project will evaluate whether a reduction of at least 10% in pump electrical input power can be achieved under comparable operating conditions while maintaining Lochinvar's required flow and temperature limits.
 
 ### Project Stakeholders and Their Needs
 --- 
