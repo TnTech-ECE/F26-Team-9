@@ -427,6 +427,7 @@ In conclusion, as engineers, upholding public safety remains our primary directi
 [16] OpenStax, “19.4 Electric Power,” University Physics Volume 2. [Online]. Available: https://openstax.org/books/physics/pages/19-4-electric-power. [Accessed: Oct. 23, 2026].
 
 [17] OpenStax, “20.4 Electric Power and Energy,” College Physics. [Online]. Available: https://openstax.org/books/college-physics/pages/20-4-electric-power-and-energy. [Accessed: Oct. 23, 2026].
+[18] Grundfos, Grundfos E-Pumps Product Guide, "Affinity Equations." View Grundfos reference
 
 ## Statement of Contributions
 
