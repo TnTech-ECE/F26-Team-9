@@ -1035,7 +1035,7 @@ Before testing, the water heater, circulation pump, piping, and connections shal
 5. The subsystem shall retain the water heater's existing safety controls and protection mechanisms.
 
 
-### 5) Monitoring, Performance Evaluation, and Bench Testing Subsystem
+### 4) Monitoring, Performance Evaluation, and Bench Testing Subsystem
 
 **Overview:**
 
@@ -1088,7 +1088,7 @@ The team will use this subsystem during laboratory testing to evaluate the syste
 6. This subsystem shall help identify performance issues found during testing that may require adjustments to the proposed control strategy.
 
 
-### 6) Data Logging and Simulation Subsystem
+### 5) Data Logging and Simulation Subsystem
 
 **Overview:**
 
