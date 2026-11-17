@@ -711,7 +711,7 @@ The final minimum and maximum commands will be based on the installed pump and t
 #### Preliminary Statistical Verification Plan
 --- 
 
-TThe team plans five paired baseline and controlled runs at each of three defined bench operating conditions: low, medium, and high demand. This gives a preliminary total of 15 paired comparisons. Conditions will be matched as closely as possible within each pair, and test order, initial conditions, and any changes in equipment settings will be documented. For each pair, percentage electrical-power savings will be calculated as:
+The team plans five paired baseline and controlled runs at each of three defined bench operating conditions: low, medium, and high demand. This gives a preliminary total of 15 paired comparisons. Conditions will be matched as closely as possible within each pair, and test order, initial conditions, and any changes in equipment settings will be documented. For each pair, percentage electrical-power savings will be calculated as:
 
 $$
 S_i = 100 \frac{P_{\mathrm{baseline},i} - P_{\mathrm{controlled},i}}{P_{\mathrm{baseline},i}}.
