@@ -208,8 +208,6 @@ Electrical and Safety Constraints
 
 ## Survey of Existing Solutions
 
-## Survey of Existing Solutions
-
 Several existing technologies and control methods are used to regulate water circulation in commercial and residential heating systems. These include fixed-speed pumps, multi-speed pumps, variable-speed pumps, and automatic control systems that adjust pump operation based on pressure, temperature, or water flow. Each approach has advantages and limitations depending on the application. Reviewing these technologies is important because the goal of this project is not simply to reduce pump speed, but to determine whether adjusting circulation based on operating conditions can reduce electrical power consumption while maintaining acceptable water flow and temperature performance.
 
 Fixed-speed circulation pumps operate at a constant speed regardless of changes in system demand. These pumps are commonly used because they are relatively simple to install, operate, and maintain. However, a fixed-speed pump may consume more electrical energy than necessary when the system does not require its full circulation capacity. Multi-speed pumps provide additional flexibility by allowing the operator to select between several predetermined speed settings. Although this can reduce energy consumption under certain conditions, these pumps may still require manual adjustments and do not necessarily respond automatically to changing system conditions. Research published by Lawrence Berkeley National Laboratory discusses how variable-speed pumping can improve efficiency by matching pump operation more closely to system requirements [5].
