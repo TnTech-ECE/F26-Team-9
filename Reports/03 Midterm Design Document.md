@@ -1,6 +1,6 @@
 <div align="center">
 
-# Variable-Speed Circulation Pump Controller Project Proposal
+# Variable Speed Circulation Pump Controller Project Proposal
 
 ---
 
@@ -958,55 +958,114 @@ During operation, the subsystem will continuously acquire and condition sensor s
 
 **Overview:**
 
-The Microcontroller and Control Logic Subsystem will receive water flow measurements from the KEYENCE flow sensor through a pulse frequency input and boiler firing rate information through a conditioned 0–10 V analog input. The boiler signal will be electrically conditioned and isolated as required by the approved interface design to ensure compatibility with the selected STM32 microcontroller. Inlet and outlet temperature measurements will be received through the appropriate sensor interface and signal conditioning hardware.
+The Microcontroller and Control Logic Subsystem will process the operating measurements collected from the Sensor and Data Acquisition Subsystem and determine the appropriate circulation pump speed command. The proposed controller will use the STM32 Nucleo-L476RG development board and a control algorithm that combines water flow rate, a representative heating-demand input, and outlet-temperature feedback.
 
-The microcontroller will process these measurements and calculate a pump speed command using the proposed control algorithm. The command will be transmitted to the Pump and Motor Control Subsystem through a manufacturer supported control interface, such as low voltage PWM or 0–10 V, depending on the verified pump configuration. Operating measurements, pump commands, and controller status information will also be made available to the Data Logging and Simulation Subsystem.
+The controller will initially estimate the required pump operating level from flow rate and heating demand. It will then use temperature feedback to evaluate whether additional adjustments are necessary. The controller will enforce the minimum circulation flow requirement and the verified pump command limits so that reducing electrical consumption does not compromise safe operation.
 
-During operation, the controller will continuously evaluate system measurements, calculate the required pump speed command, and enforce the established operating limits. If a sensor failure, communication error, or unsafe operating condition is detected, the controller will follow a fault response procedure approved by Lochinvar before physical testing. The final microcontroller pin assignments, electrical interfaces, and communication methods will be documented during Detailed Design.
+The physical bench will use a representative heating demand signal rather than requiring a connection to an operating Lochinvar boiler. The exact output configuration of the KEYENCE flow sensor and the control interface of the selected Grundfos pump must be verified before the electrical connections are finalized.
+
+The subsystem will also detect invalid measurements, communication failures, and operating conditions outside approved limits. When a fault occurs, the controller will initiate the defined response without bypassing independent equipment protection. Operating measurements, calculated commands, and controller status will be transmitted to the Data Logging and Simulation Subsystem for recording and evaluation.
+
+**Functional Description:**
+
+1. **Controller Initialization:** Initialize the STM32, communication peripherals, sensor interfaces, pump-command output, and controller operating parameters.
+
+2. **Measurement Acquisition:** Receive water flow rate, inlet temperature, outlet temperature, and representative heating-demand information through the interfaces established by Subsystem 1.
+
+3. **Measurement Validation:** Check incoming measurements for invalid values, communication failures, and conditions outside the approved operating range.
+
+4. **Feedforward Control:** Calculate an initial pump operating command using measured flow rate and the representative heating-demand input.
+
+5. **Temperature Feedback:** Compare measured outlet temperature with the selected setpoint and determine whether a correction to the pump command is appropriate.
+
+6. **Operating-Limit Enforcement:** Restrict the calculated command to the verified pump-control range and enforce the approved minimum circulation-flow requirement.
+
+7. **Pump Command Transmission:** Send the final command to Subsystem 3 through the manufacturer-supported pump-control interface.
+
+8. **Fault Handling:** Detect abnormal conditions and initiate the approved fault response, including a safe heater response where an authorized interface is provided.
+
+9. **Data Communication:** Transmit measurements, operating commands, controller states, and fault information to Subsystem 5 for recording.
 
 **Inputs:**
 
-* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
-* Inlet and outlet water temperature measurements, when they are available.
-* Boiling firing rate information, when it is available and compatible with the controller.
-* Manufacturer running limits, in which includes the minimum required water flow.
-* Target the running conditions and control settings created during testing.
+* Water flow rate from Subsystem 1, expressed in GPM after conversion.
+* Inlet and outlet water temperatures from PT100 RTDs through MAX31865 SPI interface modules.
+* Representative heating demand input, preliminarily 0–10 V before appropriate signal conditioning.
+* Selected outlet temperature setpoint and controller operating parameters.
+* Approved minimum circulation flow and pump command limits.
+* Available pump status or fault feedback from Subsystem 3, if supported by the selected equipment.
 
 **Outputs:**
 
-* Pump speed commands that are sent to the Pump and Motor subsystem.
-* Related running information sent to the Data Logging and Simulation subsystem.
-* Controller status or fault information, if supported by the chosen hardware.
+* Pump speed command to Subsystem 3 through the verified manufacturer supported control interface.
+* Controller operating state, command value, and measurement information to Subsystem 5.
+* Fault codes and diagnostic status for monitoring and recording.
+* Approved heater shutdown or inhibit request, if the final bench includes a suitable authorized interface.
+
+**Interfaces Between Subsystems:**
+
+| Connection | Direction | Signal Type | Purpose |
+|---|---|---|---|
+| Subsystem 1: Flow sensor | Input | Pulse/digital or conditioned analog; final type TBD | Receive flow measurement and calculate GPM |
+| Subsystem 1: PT100 temperature channels | Input | SPI digital communication from two MAX31865 modules | Receive inlet and outlet temperature measurements |
+| Subsystem 1: Heating demand input | Input | Conditioned analog voltage to STM32 ADC; proposed external range 0–10 V | Receive representative demand information |
+| Subsystem 3: Pump control | Output | Manufacturer-supported PWM, analog, or other verified control interface; TBD | Command pump operating level |
+| Subsystem 3: Pump feedback | Input, if available | Manufacturer supported status or feedback signal; TBD | Monitor pump operating status |
+| Subsystem 4: Bench operating parameters | Input | Configured values and approved test settings | Establish test setpoint, limits, and operating condition |
+| Subsystem 5: Data logging | Output | USB serial/UART digital communication | Transmit measurements, commands, states, and faults |
+| Low voltage power system | Input | Regulated supply compatible with STM32 and interface hardware | Supply controller and low voltage circuitry |
+
+The STM32 shall not be connected directly to an unconditioned 0–10 V signal or an incompatible pump control input. Required isolation, level shifting, and signal conditioning will be established from verified equipment specifications.
+
+The STM32 GPIO and peripheral assignments will be finalized during Detailed Design. The proposed implementation will use SPI for temperature acquisition, ADC or a digital input for the verified flow and demand interfaces, an appropriate timer or output peripheral for the pump command, and USB serial/UART for logging.
+
 
 **Interfaces and Procedure:**
 
-The subsystem will get measurements from the Sensor and Data Acquisition subsystem. Depending on the chosen sensors and hardware, these measurements may be provided through analog voltage signals, digital signals, or digital communication. The microcontroller will process the new information and use the control algorithm to decide the suitable pump speed command. The command sent to the pump-control hardware must use a signal or communication approaches supported by the chosen equipment. The exact interface will be decided during detailed design after the team verify the pump's control requirements.
-During the procedure, the controller will read the accessible measurements, evaluate the current state, and calculate a pump speed command. The pump control hardware will then adjust the pump as instructed. The updated measurements will help determine whether the adjustment creates the expected results. If the measurements suggest an unsafe or unacceptable operating procedure, the controller will need to follow a response created during the design process with Lochinvar.
+When the bench is initialized, the STM32 will configure the required peripherals and check the availability of the expected measurement inputs. The controller will remain in an approved startup state until the conditions required for operation have been satisfied.
+
+During normal operation, the microcontroller will acquire the latest measurements, convert them into engineering units, and evaluate their validity. The feedforward algorithm will determine an initial pump operating command using flow rate and heating demand. The temperature-feedback algorithm will then calculate any necessary correction.
+
+A preliminary proportional-integral control relationship is:
+
+$$
+u_{\text{raw}}(t)=u_{\text{ff}}(q(t),f(t))+K_pe_T(t)+K_i\int_0^t e_T(\tau)\,d\tau
+$$
+
+The final command will be restricted to the permitted range:
+
+$$
+u_{\text{cmd}}(t)=\operatorname{clip}(u_{\text{raw}}(t),u_{\min},u_{\max})
+$$
+
+The correct feedback direction, controller gains, and command limits will be established using the Dymola model and verified through physical bench testing. Integral windup protection and suitable command rate limits will be considered during implementation.
+
+The controller will transmit the approved command to the pump and continue monitoring the resulting flow and temperature response. Measurement records and controller states will be provided to Subsystem 5 at the required logging interval.
+
+If the controller detects insufficient circulation, invalid sensor information, or a critical operating fault, it will initiate the approved fault response. Independent thermal and electrical protection will remain separate from the STM32 control algorithm.
+
 
 **Functional Flowchart:**
 <p align="center">
 <img width="981" height="93" alt="image" src="https://github.com/user-attachments/assets/70949a81-fe63-4c40-ade3-aa1d8565058e" />
 </p>
 
-**Specifications**
+**Specifications:**
 
-1. The subsystem shall process the accessible flow rate, temperature, and boiler running measurements needed by the control algorithm.
-
-2. The subsystem shall determine pump speed commands depending on the current running conditions and created control logic.
-
-3. The subsystem shall prevent pump speed commands from falling below the minimum permitted running level created from manufacturer requirements and hardware limitations.
-
-4. The subsystem shall sustain changes in pump speed as system demand changes, while staying within the created operating limits.
-
-5. The subsystem shall send pump speed commands through an interface compatible with the selected pump control hardware.
-
-6. The subsystem shall provide applicable operating information to the Data Logging and Simulation subsystem for analysis.
-
-7. The subsystem shall be tested to determine whether the control algorithm can reduce pump energy consumption while still maintaining acceptable flow and temperature performance.
-
-8. The subsystem shall define how it responds to null sensor measurements or operating conditions outside the permitted limits before implementation.
-
-9. The subsystem shall run within the processing, memory, electrical, and communication limits of the chosen microcontroller.
+| ID | Specification | Verification Method |
+|---|---|---|
+| 1 | The subsystem shall acquire the flow, inlet temperature, outlet temperature, and representative heating demand measurements required by the control algorithm. | Sensor interface and integration testing |
+| 2 | The subsystem shall convert valid measurements into GPM, °F, and heating demand percentage. | Comparison with known input values |
+| 3 | The subsystem shall calculate an initial pump command using flow rate and representative heating demand. | Software tests and Dymola comparison |
+| 4 | The subsystem shall use outlet temperature feedback to calculate a correction to the initial pump command. | Simulation and bench response testing |
+| 5 | The subsystem shall restrict pump commands to the verified supported operating range. | Command boundary testing |
+| 6 | The subsystem shall enforce the approved minimum circulation flow requirement whenever heated circulation is required. | Supervised minimum flow verification |
+| 7 | The subsystem shall transmit commands through the selected pump's verified control interface. | Electrical interface and pump response testing |
+| 8 | The subsystem shall detect invalid or unavailable critical sensor measurements and initiate the approved fault response. | Sensor fault testing |
+| 9 | The subsystem shall record or transmit controller state, measurement values, pump command, and fault status at intervals no greater than one second. | Timestamp and communication testing |
+| 10 | Following a defined demand change, the pump command output shall aim to settle within ±5% of its final value within 30 seconds without repeated limit cycling. | Command trace analysis |
+| 11 | The subsystem shall support evaluation of the preliminary ±4°F outlet temperature stability target over a defined 60 second steady state window. | Physical bench testing |
+| 12 | The subsystem shall provide a defined startup, shutdown, and fault recovery procedure without bypassing independent equipment safety devices. | Approved functional and fault testing |
 
 
 ### 3) Pump, Motor Control, and Hydraulic System
@@ -1198,67 +1257,173 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 
 **Overview:**
 
-The Data Logging and Simulation Subsystem will receive operating measurements from the Sensor and Data Acquisition Subsystem, pump speed commands and controller status from the Microcontroller and Control Logic Subsystem, and performance results from the Monitoring and Performance Evaluation Subsystem. The proposed logging system will record water flow rate, inlet and outlet temperatures, boiler firing rate, pump-speed command, available electrical power measurements, timestamps, and corresponding test conditions.
+The Data Logging and Simulation Subsystem will support development and experimental validation of the Variable Speed Circulation Pump Controller by combining computer simulation with organized physical bench-test measurements. Dymola simulation software will be used to model the relationships between circulation pump operation, water flow rate, heat transfer, and temperature response. The simulation will serve as an input to the physical bench-testing process by helping the team select preliminary controller settings and appropriate experimental operating conditions.
 
-A preliminary logging interval of no greater than one second will be used during laboratory testing. Measurements will be stored in an organized format suitable for graphing and analysis, such as CSV files. An SD card or another compatible storage method may be used, depending on the selected hardware. The exact communication protocol and storage interface will be established during Detailed Design.
+The physical bench test will remain the primary method of verifying controller performance. After testing, the measured results will be compared with simulation predictions under equivalent operating conditions to evaluate model accuracy and identify differences between theoretical and actual system behavior. The subsystem will also collect and organize measurements from the STM32 controller and the approved electrical power measurement system. Data will be recorded with timestamps and test condition identifiers in a structured format suitable for analysis, such as CSV files. The logging and simulation functions are required parts of the project. The subsystem will not directly command the circulation pump during normal operation. Pump control firmware and real time control decisions remain the responsibility of Subsystem 2.
 
-After testing, the recorded measurements will be used to compare baseline and controlled pump operation, calculate electrical power savings, evaluate temperature stability, and determine response time. If sufficient system information is available, simulation software may also be used to model the system's behavior and compare predicted results with measured data. This subsystem will support performance evaluation and future improvements to the control strategy rather than directly controlling the circulation pump.
+**Functional Description:**
+
+1. **Simulation Development:** Develop a Dymola model representing the selected pump, hydraulic loop, heat source, and relevant temperature behavior.
+
+2. **Preliminary Test Selection:** Use simulation predictions to help identify controller settings and low-, medium-, and high-demand conditions for the physical bench.
+
+3. **Data Acquisition:** Receive measurements, controller commands, operating states, and fault information from the STM32.
+
+4. **Power Data Integration:** Incorporate real electrical input-power measurements from the approved power-monitoring equipment.
+
+5. **Data Storage:** Save measurements in organized CSV files containing timestamps, units, operating conditions, and test identifiers.
+
+6. **Baseline and Controlled Comparison:** Organize the results from matched constant-speed and variable-speed trials.
+
+7. **Simulation Validation:** Compare Dymola predictions with measured flow rate, temperature, and transient response.
+
+8. **Error and Uncertainty Analysis:** Calculate model errors, electrical-power savings, repeatability, and appropriate statistical measures.
+
+9. **Results Documentation:** Generate graphs, tables, and datasets for the technical report and performance evaluation.
+
 
 **Inputs:**
 
-* Water flow rate measurements from the Sensor and Data Acquisition subsystem.
-* Inlet and outlet water temperature measurements, when it's available.
-* Pump speed measurements or commanded pump speed values.
-* Boiler firing rate information, when it's available.
-* Pump electrical power measurements, if appropriate measurement equipment is available.
-* Test conditions and target procedure values.
-* System parameters and measured data needed to develop/evaluate a simulation model.
+* Flow rate in GPM from the STM32 measurement system.
+* Inlet and outlet water temperatures in °F.
+* Representative heating demand input and selected temperature setpoint.
+* Commanded pump operating level and available pump feedback.
+* Controller operating state and fault information.
+* Real electrical input power measurements from the approved monitoring equipment.
+* Bench-test identifiers, operating conditions, and timestamps.
+* Pump curves, hydraulic parameters, heat source characteristics, and other verified model inputs.
   
 **Outputs:**
 
-* Organized records of procedure measurements.
-* Graphs and comparisons of pump speed, flow rate, temperature, and electrical power.
-* Calculated performance results, including energy use and time to reach the desired temperature when enough data is available.
-* Simulation results showing predicted system performance under chosen running conditions.
-* Analysis that helps the team evaluate and improve the proposed control strategy.
+* Dymola simulation predictions and preliminary controller setting recommendations.
+* CSV files containing organized physical bench-test measurements.
+* Baseline and controlled operating-condition datasets.
+* Flow rate, temperature, pump-command, and electrical power graphs.
+* Calculated electrical power savings and applicable energy consumption results.
+* Simulation versus measurement error calculations.
+* Statistical summaries, uncertainty information, and documented limitations.
+* Data and analysis provided to Subsystem 4 for performance evaluation.
   
+**Interfaces Between Subsystems:**
+
+| Connection | Direction | Signal or Data Type | Purpose |
+|---|---|---|---|
+| Subsystem 1: Sensor measurements | Input through Subsystem 2 | Digital measurement records | Obtain validated flow and temperature information |
+| Subsystem 2: Controller data | Input | USB serial/UART digital communication | Receive measurements, pump commands, states, and faults |
+| Subsystem 3: Pump characteristics | Input | Manufacturer documentation and model parameters | Represent pump performance in Dymola |
+| Subsystem 4: Electrical measurements | Input | Instrument export, supported digital interface, or documented data import | Record real pump-and-drive input power |
+| Subsystem 4: Bench-test conditions | Input | Test identifiers, operating settings, and recorded procedures | Associate measurements with physical trials |
+| Subsystem 4: Analysis results | Output | CSV files, plots, tables, and reports | Support experimental performance evaluation |
+| Subsystem 2: Simulation recommendations | Output | Model results and proposed controller parameters | Inform initial controller settings before bench testing |
+| Computer storage | Output | CSV files and associated metadata | Preserve experimental records |
+
+The preliminary communication approach will use the STM32's USB serial/UART connection to transfer operating measurements to a computer. A computer-based logging program will organize the received data into CSV files.
+
+If the electrical power instrument cannot communicate directly with the STM32 or computer, its measurements will be imported using a documented method. The final design must provide a way to associate electrical-power readings with the correct test conditions and measurement times.
+
+The Dymola simulation will not be assumed to communicate with the STM32 in real time. Instead, its predictions will be used to prepare the bench experiment and later compared with the recorded experimental results.
+
 
 **Interfaces and Procedure:**
 
-   The subsystem will get data from the sensors, controller, and performance monitoring equipment. Depending on the chosen hardware and software, information may be handed over through digital communication, stored files, or manual data export. The exact methods and data formats will be decided during detailed design.
-During lab testing, the team will take note of measurements while the pump runs under different conditions. The measurements will be organized so that results from different pump speeds and demand levels can be compared.          For simulation, the team will use available system information to decide whether an appropriate model can be developed. The model may help examine running conditions that are difficult to reproduce in the lab. When measured data is available, the team will compare the simulation results with the actual results to recognize the differences and decide whether the model needs further adjustments.
-   The results from this subsystem will help the team decide whether the proposed control strategy will meet the project's requirements. If the data shows that certain pump speeds cause problems with flow or temperature, that information can be used to make changes to the control algorithm and testing in the future.
+The subsystem will first collect the verified specifications and physical parameters needed to develop the simulation model. These may include pump characteristics, hydraulic resistance, water properties, heat-source behavior, and selected operating conditions.
+
+Dymola will be used to predict system responses at different pump operating levels and heating-demand conditions. The resulting predictions will help establish initial controller parameters and identify useful physical test conditions.
+
+Before bench testing, the data logging system will be configured to receive measurements from the STM32. Each record will include the applicable timestamp, test identifier, and available operating measurements.
+
+A preliminary CSV record will contain the following fields:
+
+| Field | Unit or Format | Description |
+|---|---|---|
+| timestamp_s | Seconds | Time relative to the beginning of the test |
+| test_id | Text | Unique test identification |
+| demand_level | Low, Medium, High | Selected operating condition |
+| test_mode | Baseline or Controlled | Pump operating strategy |
+| flow_gpm | GPM | Measured circulation flow rate |
+| inlet_temp_f | °F | Measured inlet-water temperature |
+| outlet_temp_f | °F | Measured outlet-water temperature |
+| temp_setpoint_f | °F | Selected outlet-temperature target |
+| heating_demand_pct | % | Applied representative heating demand |
+| pump_command_pct | % | Normalized pump operating command |
+| pump_power_w | W | Measured real electrical input power |
+| controller_state | Text or numeric code | Current controller operating state |
+| fault_code | Text or numeric code | Recorded controller fault information |
+
+The pump power measurement may be stored in a synchronized companion dataset if the selected power instrument cannot provide readings through the same communication interface. The physical bench-testing plan will include three operating conditions representing low, medium, and high demand. Five paired baseline and controlled trials will be completed for each condition, resulting in 15 paired comparisons. After testing, the subsystem will organize the collected data and compare baseline and controlled operation. Simulation predictions will be evaluated using matching test conditions.
+
+**Electrical Power Savings Calculation:**
+
+The measured percentage reduction in electrical input power will be calculated using:
+
+$$
+S=\frac{P_{\text{baseline}}-P_{\text{controlled}}}{P_{\text{baseline}}}\times100\%
+$$
+
+where:
+
+- **S** represents percentage electrical power savings.
+- **P_baseline** represents measured baseline real electrical input power.
+- **P_controlled** represents measured controlled real electrical input power.
+
+For time varying measurements, the team will calculate average real power over equivalent observation windows. Electrical energy may also be calculated from the recorded power measurements using:
+
+$$
+E=\int_{t_0}^{t_1}P(t)\,dt
+$$
+
+For discrete measurements, a numerical approximation may be used:
+
+$$
+E\approx\sum_{i=1}^{n-1}\frac{P_i+P_{i+1}}{2}(t_{i+1}-t_i)
+$$
+
+The units of energy will be reported consistently, such as joules or watt hours.
+
+**Simulation Error Calculation:**
+
+Absolute error between simulated and measured values will be calculated as:
+
+$$
+e_x=|x_{\text{simulated}}-x_{\text{measured}}|
+$$
+
+Percentage error will be calculated where the measured reference value is nonzero and the comparison is meaningful:
+
+$$
+e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
+$$
+
+The team will compare simulation and physical bench results for selected flow rate, temperature, and response time measurements. Differences will be documented and used to evaluate model assumptions and improve subsequent predictions.
+
+The analysis will also report trial to trial variability and a 95% confidence interval for electrical power savings when supported by the collected data and statistical assumptions.
 
 **Functional Flowchart:**
 <p align="center">
 <img width="942" height="203" alt="image" src="https://github.com/user-attachments/assets/6a49cbd7-0922-45fe-a327-cdd5e8c62fc1" />
 </p>
+
 **Specifications:**
 
-1. The subsystem shall record the available running measurements needed to assess the variable speed pump controller.
+| ID | Specification | Verification Method |
+|---|---|---|
+| 1 | The subsystem shall develop a Dymola simulation representing the selected bench pump, hydraulic loop, and relevant thermal behavior. | Model review and simulation execution |
+| 2 | The subsystem shall use simulation predictions to identify preliminary controller settings and bench operating conditions. | Documented simulation to test comparison |
+| 3 | The subsystem shall receive and store available flow, temperature, demand, pump command, controller state, and fault measurements. | Data logging integration test |
+| 4 | The subsystem shall incorporate measured real pump and drive electrical input power into the experimental dataset. | Power measurement and data import verification |
+| 5 | The subsystem shall record operating measurements at intervals no greater than one second, excluding separately documented instrument limitations. | Timestamp interval analysis |
+| 6 | The subsystem shall associate each measurement with its test identifier and baseline or controlled operating mode. | CSV record inspection |
+| 7 | The subsystem shall store experimental data in a documented, machine readable format suitable for analysis and graphing. | CSV import and data integrity testing |
+| 8 | The subsystem shall support five paired baseline and controlled trials at each of three demand conditions, producing 15 paired comparisons. | Completed test-record review |
+| 9 | The subsystem shall calculate measured percentage electrical-power savings using matched baseline and controlled data. | Independent calculation verification |
+| 10 | The subsystem shall compare simulated and measured flow, temperature, and response time values under equivalent conditions. | Simulation validation report |
+| 11 | The subsystem shall calculate and report appropriate model error measures. | Independent calculation verification |
+| 12 | The subsystem shall report repeatability, variability, and a 95% confidence interval for power savings when statistically supported. | Statistical analysis review |
+| 13 | The subsystem shall preserve available raw measurements and document missing data, processing methods, assumptions, and model limitations. | Dataset and report review |
+| 14 | The subsystem shall generate graphs and summary tables for the final engineering report. | Review of submitted analysis results |
 
-2. The subsystem shall correlate recorded measurements with the corresponding test conditions when that information is available.
 
-3. The subsystem shall organize recorded data in a format appropriate for analysis, graphing, and comparison.
-
-4. The subsystem shall assist comparisons of electrical energy consumption at different pump running conditions when appropriate power measurements are available.
-
-5. The subsystem shall sustain the assessment of water flow, temperature stability, and time to reach the wanted temperature using available test data.
-
-6. The subsystem shall sustain the development/use of a simulation model if adequate system information and appropriate software is available.
-
-7. The subsystem shall sustain comparisons between simulation results and measured data when appropriate measurements are available.
-
-8. The subsystem shall document the assumptions, limitations, and data sources used in its analysis and simulations.
-
-9. The subsystem shall deliver results that can be used to assess and improve the proposed control strategy.
-
-10. The subsystem shall document test conditions and data processing methods so that the results can be analyzed and compared consistently.
-
-    
-    
-
-Based on the high-level design, provide a comprehensive description of the functions each subsection will perform.
+Based on the high level design, provide a comprehensive description of the functions each subsection will perform.
 
 Inclued a description of the interfaces between this subsystem and other subsystems:
 - Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
