@@ -1317,33 +1317,33 @@ The team will review these responsibilities throughout design development and be
 
 The development of the Variable-Speed Circulation Pump Controller could provide economic, environmental, and societal benefits to the population. By adjusting the circulation pump speed according to heating demand, water flow rate, and outlet temperature, the proposed system aims to reduce unnecessary electrical energy consumption while maintaining reliable hot-water performance. Some stakeholders may face disadvantages due to the implementation of additional control hardware, sensors, and software. Explaining these disadvantages will be essential to ensuring that the proposed project will benefit its intended users without compromising the safety, reliability, or economic feasibility. 
 
-* 1. Building Occupants and Hot-Water Users(Societal Impact)
+1. Building Occupants and Hot-Water Users(Societal Impact)
 
 This project would benefit commercial building occupants through improved hot-water temperature stability and more reliable circulation during demand changes. The controller could help maintain consistent system performance while reducing unnecessary pump speed operation. This could help reduce the energy the pump needs to circulate at certain times. 
 
 However, building occupants could be disadvantaged if the pump operates below the required circulation flow or fails to respond appropriately to changing demand. A controller malfunction or failure of the system's safety protections could result in inconsistent water temperatures, insufficient hot-water availability, or unsafe operating conditions. These disadvantages could negatively affect commercial facilities with high or fluctuating hot water demands [4].
 
 
-* 2. Maintenance and Service Technicians (Economic and Societal Impact)
+2. Maintenance and Service Technicians (Economic and Societal Impact)
 
 Maintenance technicians could benefit from the additional operating measurements that could be collected by the controller. The flow rate, temperature, and pump operating data could assist the technician in identifying any abnormal conditions as well as troubleshooting the system performance [2]. 
 
 However, introducing additional sensors, wiring, electronic control, and software could also be a disadvantage to the technician. Adding these components could make the system more complex for maintenance and troubleshooting. Technicians may require additional training to understand the controller's operation and diagnose potential sensor or control-system failures, increasing maintenance time and labor costs. Having incorrect maintenance procedures could affect the equipment's reliability and its safe operation.
 
-* 3. Commercial Facility Owners and Building Operators (Economic Impact)
+3. Commercial Facility Owners and Building Operators (Economic Impact)
 
 Commercial facility owners could benefit from reduced electrical operating expenses if the variable speed pump consumes less power during lower demand conditions. Reduced pump operations may also improve energy management and provide opportunities for long-term operating cost savings [4].
 
 However, additional controller hardware, sensors, installation requirements, and maintenance could increase the initial cost of implementing the system. If the electrical savings are smaller than anticipated, the cost of the system could outweigh its financial benefits. Unexpected controller failures could also create additional maintenance expenses or equipment downtime.
 
 
-* 4. Lochinvar Engineering Team and Company (Economic and Societal Impact)
+4. Lochinvar Engineering Team and Company (Economic and Societal Impact)
 
 Lochinvar could benefit from a control strategy that demonstrates reduced pump electrical consumption while maintaining acceptable temperature and flow conditions. Successful experimental results could provide useful data for future commercial water-heating applications and potential improvements in energy efficiency. 
 
 However, Lochinvar could also be at a disadvantage if the controller has reliability problems, inaccurate measurements, or equipment failure in the future. A controller failure could result in additional warranty expenses, engineering modification, customer dissatisfaction, or any potential liability associated with inadequate performance.
 
-* 5. Environment and Local Communities (Environmental and Economic Impact)
+5. Environment and Local Communities (Environmental and Economic Impact)
 
 The environment and surrounding communities could benefit from reduced electricity consumption. Reduced energy demand could contribute to lower greenhouse gas emissions, depending on the electricity generation source, while supporting more efficient resource utilization in commercial facilities.
 
