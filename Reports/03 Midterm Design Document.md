@@ -451,11 +451,16 @@ In summary, The project will be judged primarily by the quality of the bench imp
 
 ## Engineering Principles, Mathematical Models, and Verification Tools (C1)
 
-The controller design is based on the relationship between pump speed, circulation flow, electrical power, and heat transfer. These relationships will first be used to estimate system behavior and develop the simulation model. The actual bench equipment will then be used to test the predictions. The proposed Grundfos UPMS 15-78 130 AR is a candidate pump, but the exact model and supported control interface must be confirmed before its published ratings are treated as the installed system's ratings.
+The proposed Variable Speed Circulation Pump Controller will be developed using engineering principles involving fluid mechanics, heat transfer, electrical power, and feedback control. These principles will be used to predict how changes in pump speed affect water circulation, temperature response, and electrical energy consumption.
 
-1. Manufacturer Pump Specifications
+The initial calculations will support development of the Dymola simulation model and selection of preliminary controller settings. The physical bench will then be used to evaluate these predictions using the actual STM32L476RG controller, variable speed pump, electric heat source, flow sensor, and temperature sensors. Simulation results will be compared with experimental measurements to determine how accurately the model represents the physical system.
 
-The Grundfos UPMS 15-78 130 data booklet identifies the following electrical and operating specifications:
+The Grundfos UPMS 15-78 130 AR remains a candidate pump. The manufacturer published specifications for the UPMS 15-78 130 pump family will be used as preliminary reference information until the exact model, control interface, and operating limits are confirmed.
+
+### Manufacturer Pump Specifications
+---
+
+The Grundfos UPMS technical data booklet provides the following specifications for the UPMS 15-78 130 pump family [15].
 
 | Parameter | Manufacturer-Published Value |
 |---|---|
@@ -465,187 +470,332 @@ The Grundfos UPMS 15-78 130 data booklet identifies the following electrical and
 | Minimum listed current | 0.18 A |
 | Maximum listed current | 1.25 A |
 | Maximum system pressure | 174 psi |
-| Liquid temperature range | 36–230 °F |
+| Liquid temperature range | 36–230°F |
 | Installation length | 130 mm |
 
-These values are taken from the Grundfos UPMS technical data booklet. The final pump nameplate and specific AR configuration will be checked before implementation.
 
-2. Electrical Input Power Calculations
+These values describe the published pump family configuration and are not confirmation of the exact AR variant proposed for the bench. The team will verify the installed pump's nameplate, supported speed control method, hydraulic performance, and applicable operating limits before finalizing the electrical and mechanical design.
 
-The published maximum electrical input power is:
+### Electrical Input Power Calculations
+---
+
+Electrical power consumption is one of the primary measurements used to evaluate the proposed controller. The selected pump family's published maximum electrical input power is:
 
 $$
-P_{\max} = 68\text{ W}
+P_{\max}=68\text{ W}
 $$
 
 The published minimum electrical input power is:
 
 $$
-P_{\min} = 8.4\text{ W}
+P_{\min}=8.4\text{ W}
 $$
 
 The difference between the published operating extremes is:
 
 $$
-\Delta P = P_{\max} - P_{\min}
+\Delta P=P_{\max}-P_{\min}
 $$
 
 $$
-\Delta P = 68 - 8.4
+\Delta P=68-8.4=59.6\text{ W}
+$$
+
+The percentage difference relative to the published maximum electrical input power is:
+
+$$
+R=\frac{P_{\max}-P_{\min}}{P_{\max}}\times100
 $$
 
 $$
-\Delta P = 59.6\text{ W}
+R=\frac{68-8.4}{68}\times100=87.65\%
 $$
 
-The percentage difference relative to maximum electrical input power is:
+This calculation identifies the difference between the manufacturer's published electrical input-power limits. It does not represent the expected energy savings of the proposed controller because the minimum and maximum operating points may not provide equivalent flow, temperature performance, or heating conditions.
+
+The project's preliminary target is a reduction of at least 10% in measured pump-and-drive real electrical input power while maintaining approved performance and safety requirements.
+
+Using the manufacturer's published maximum power of 68 W as an illustrative baseline:
 
 $$
-R = \frac{P_{\max} - P_{\min}}{P_{\max}} \times 100
-$$
-
-$$
-R = \frac{68 - 8.4}{68} \times 100
-$$
-
-$$
-R = 87.65\%
-$$
-
-This calculation establishes the difference between the manufacturer's published minimum and maximum electrical input power values. It does not represent the expected or experimentally verified energy savings of the proposed controller. The actual operating point must maintain the minimum circulation flow required by Lochinvar.
-
-For the preliminary project target of a 10% reduction in electrical input power, the corresponding input power at a 68 W baseline would be:
-
-$$
-P_{\text{target}} = 68(1 - 0.10)
+P_{\text{target}}=P_{\text{baseline}}(1-0.10)
 $$
 
 $$
-P_{\text{target}} = 61.2\text{ W}
+P_{\text{target}}=68(0.90)=61.2\text{ W}
 $$
 
-This value is a calculated target relative to the manufacturer's maximum input power, not a guaranteed operating point. Actual performance will be evaluated using measured baseline and controlled power at equivalent operating conditions.
+Therefore, a reduction from 68 W to 61.2 W would correspond to the project's 10% power-reduction target for that illustrative baseline.
 
-3. Pump Affinity Laws
-
-The pump affinity laws describe how centrifugal pump flow rate, head, and mechanical power change with rotational speed under comparable conditions.
+During physical testing, the team will use actual measured electrical input power rather than assuming the pump operates at the published maximum. The measured percentage savings will be calculated as:
 
 $$
-\frac{Q_2}{Q_1} = \frac{N_2}{N_1}
+S=\frac{P_{\text{baseline}}-P_{\text{controlled}}}{P_{\text{baseline}}}\times100\%
 $$
 
-$$
-\frac{H_2}{H_1} = \left(\frac{N_2}{N_1}\right)^2
-$$
+For AC-powered equipment, multiplying RMS voltage by RMS current does not necessarily provide real power because of power factor and possible waveform distortion. Therefore, an appropriately rated instrument capable of measuring real electrical input power will be used.
+
+### Pump Affinity Laws
+
+The pump affinity laws describe the theoretical relationships between rotational speed, volumetric flow rate, pump head, and mechanical power for a centrifugal pump operating under comparable conditions [6], [15].
+
+The relationship between flow rate and pump speed is:
 
 $$
-\frac{P_2}{P_1} = \left(\frac{N_2}{N_1}\right)^3
+\frac{Q_2}{Q_1}=\frac{N_2}{N_1}
 $$
 
-These equations will be used to evaluate the expected relationship between pump speed and hydraulic performance. Numerical speed ratio calculations will use the selected pump's verified operating points rather than assumed rotational speeds.
-
-The relationship between water flow rate and temperature rise can be evaluated using published performance information for the Lochinvar KNIGHT KHB085 boiler, which is one of the identified laboratory test units.
-
-The manufacturer's published heating capacity is approximately 79,000 Btu/h, with a listed circulation flow of approximately 8 GPM for a 20°F design temperature rise.
-
-Using the approximate water heat transfer relationship:
+The relationship between pump head and speed is:
 
 $$
-\dot{Q}_h = 500(\mathrm{GPM})(\Delta T)
+\frac{H_2}{H_1}=\left(\frac{N_2}{N_1}\right)^2
 $$
 
-Rearranging to determine the temperature rise:
+The relationship between mechanical pump power and speed is:
 
 $$
-\Delta T = \frac{\dot{Q}_h}{500(\mathrm{GPM})}
+\frac{P_2}{P_1}=\left(\frac{N_2}{N_1}\right)^3
 $$
 
-At 8 GPM:
+where:
+
+- **Q** represents volumetric flow rate.
+- **H** represents pump head.
+- **P** represents mechanical pump power.
+- **N** represents pump rotational speed.
+- Subscripts 1 and 2 represent the initial and adjusted operating conditions.
+
+For an illustrative reduction to 80% of the original rotational speed:
 
 $$
-\Delta T = \frac{79{,}000}{500(8)}
+\frac{N_2}{N_1}=0.80
 $$
 
-$$
-\Delta T = 19.75^\circ F
-$$
-
-At a hypothetical reduced flow of 6 GPM:
+The theoretical flow ratio is:
 
 $$
-\Delta T = \frac{79{,}000}{500(6)}
+\frac{Q_2}{Q_1}=0.80
 $$
 
-$$
-\Delta T \approx 26.33^\circ F
-$$
-
-The calculated temperature rise increases from approximately 19.75°F to 26.33°F when the circulation flow decreases from 8 GPM to 6 GPM, assuming the same heat-transfer rate.
-
-This example demonstrates why circulation flow must be considered when developing the pump speed control strategy. Reducing pump speed may decrease electrical power consumption, but it can also increase the temperature difference across the heat exchanger.
-
-The 6 GPM operating point is included for calculation purposes only and has not been approved as a safe operating condition. Actual minimum flow requirements, permitted temperature rise, and operating limits must be confirmed with Lochinvar before laboratory testing. The proposed controller will not be permitted to override the boiler's existing safety protections.
-
-The manufacturer published electrical input power values cannot be substituted directly into the mechanical power affinity law because electrical input power includes motor and control electronics losses. Manufacturer performance curves and laboratory measurements will be used to evaluate the actual relationship.
-
-4. Heat-Transfer Model
-
-The relationship between circulation flow and heat transfer will be evaluated using:
+The theoretical head ratio is:
 
 $$
-\dot{Q}_h = \dot{m} c_p (T_{\text{out}} - T_{\text{in}})
+\frac{H_2}{H_1}=(0.80)^2=0.64
 $$
 
-For water, an approximate relationship in U.S. customary units is:
+The theoretical mechanical power ratio is:
 
 $$
-\dot{Q}_h \approx 500(\text{GPM})(\Delta T)
+\frac{P_2}{P_1}=(0.80)^3=0.512
+$$
+
+The corresponding ideal mechanical power reduction is:
+
+$$
+(1-0.512)\times100=48.8\%
+$$
+
+This example demonstrates the theoretical relationship between pump speed and mechanical power. It does not establish that the bench pump will achieve a 48.8% reduction in measured electrical input power. Actual results will depend on the pump's operating characteristics, motor efficiency, electronic drive losses, and hydraulic resistance of the water loop.
+
+The team will use these relationships to develop preliminary predictions in Dymola and compare them with actual bench measurements. Manufacturer pump curves and the verified supported operating range will be used to determine whether the selected speed commands are practical.
+
+### Heat-Transfer Model
+
+Heat transfer is an important consideration because changing circulation flow can affect the temperature difference between the inlet and outlet of the heat source.
+
+The rate of thermal energy transferred to circulating water can be represented by:
+
+$$
+\dot{Q}_h=\dot{m}c_p(T_{\text{out}}-T_{\text{in}})
+$$
+
+where:
+
+- **Q̇ₕ** is the heat-transfer rate in watts.
+- **ṁ** is the mass flow rate in kg/s.
+- **cₚ** is the specific heat capacity of water in J/(kg·K).
+- **T_out** is the outlet-water temperature.
+- **T_in** is the inlet-water temperature.
+
+Mass flow rate can be determined from volumetric flow rate using:
+
+$$
+\dot{m}=\rho\dot{V}
+$$
+
+where:
+
+- **ρ** represents water density in kg/m³.
+- **V̇** represents volumetric flow rate in m³/s.
+
+For preliminary calculations involving liquid water, an approximate U.S. customary relationship is:
+
+$$
+\dot{Q}_h\approx500(\text{GPM})(\Delta T)
 $$
 
 where heat-transfer rate is expressed in Btu/h and temperature difference is expressed in °F.
 
-### Regent Heat-Transfer Model
-
-The relationship between circulation flow rate and temperature rise can also be evaluated using the published specifications of the Lochinvar Regent IWH0500, the intended application for this project. This model has a rated heating input of 500,000 Btu/h and a thermal efficiency of 96%, resulting in an approximate heat output of 480,000 Btu/h.
-
-Using the heat-transfer relationship:
+Rearranging the equation gives:
 
 $$
-\Delta T = \frac{\dot{Q}_h}{500(GPM)}
+\Delta T=\frac{\dot{Q}_h}{500(\text{GPM})}
 $$
 
-At an illustrative flow rate of 40 GPM:
+This relationship demonstrates that, for approximately constant heat transfer to the water, decreasing the flow rate increases the temperature rise across the heat source.
+
+### Preliminary Bench Heat-Transfer Calculation
+
+The exact heat source has not yet been selected. Therefore, the following example uses an illustrative thermal input of 500 W to demonstrate the calculation method. This value is not a confirmed heater rating, measured heat-transfer rate, or approved operating condition.
+
+Converting 500 W to Btu/h:
 
 $$
-\Delta T = \frac{480,000}{500(40)}
-$$
-
-$$
-\boxed{\Delta T = 24^\circ F}
-$$
-
-At an illustrative flow rate of 20 GPM:
-
-$$
-\Delta T = \frac{480,000}{500(20)}
+\dot{Q}_h=500(3.412142)
 $$
 
 $$
-\boxed{\Delta T = 48^\circ F}
+\dot{Q}_h\approx1706.1\text{ Btu/h}
 $$
 
-These calculations assume that the full 480,000 Btu/h heat output is transferred to the water. They demonstrate that reducing water flow increases the temperature rise required across the heat exchanger when the heat-transfer rate remains constant. This relationship is important when evaluating how much circulation flow can be reduced without exceeding the water heater's allowable temperature limits. The flow rates used in these examples are illustrative and do not represent verified operating points for the selected circulation pump.
+At an illustrative flow rate of 1.0 GPM:
 
-During bench testing, circulation flow, inlet and outlet water temperatures, and pump electrical power will be monitored at different pump speeds. These measurements will be used to evaluate changes in flow rate, temperature rise, and pump energy consumption. The manufacturer's minimum required flow rate will also be established to identify the lowest acceptable operating condition while maintaining the required system performance.
+$$
+\Delta T=\frac{1706.1}{500(1.0)}
+$$
 
-5. Feedback Control and Verification
+$$
+\Delta T\approx3.41^\circ\text{F}
+$$
 
-The controller will use measured water flow, boiler firing rate demand, and outlet temperature to determine the circulation pump command. Feedforward control will establish an initial command, while temperature feedback will provide corrections within approved operating limits.
+At an illustrative reduced flow rate of 0.5 GPM:
 
-MATLAB will be used to calculate and plot pump performance relationships and analyze measured data. Manufacturer performance curves will be used to establish allowable pump operating conditions. STM32 development tools will support implementation and verification of sensor acquisition and control logic. Calibrated temperature, flow, and electrical power measurements will be used to compare predicted and actual system behavior.
+$$
+\Delta T=\frac{1706.1}{500(0.5)}
+$$
 
-The team will evaluate temperature stability, response time, minimum circulation flow, and electrical input power under matched baseline and controlled operating conditions. Manufacturer specifications will establish equipment limits, while experimental measurements will determine whether the proposed controller achieves its performance objectives.
+$$
+\Delta T\approx6.82^\circ\text{F}
+$$
 
+| Illustrative Condition | Flow Rate | Assumed Heat Transfer | Calculated Temperature Rise |
+|---|---|---|---|
+| Condition 1 | 1.0 GPM | 500 W | 3.41°F |
+| Condition 2 | 0.5 GPM | 500 W | 6.82°F |
+
+These calculations demonstrate that reducing flow from 1.0 GPM to 0.5 GPM doubles the theoretical temperature rise across the heat source when the heat-transfer rate remains constant.
+
+The calculations do not establish that either flow rate is safe for the selected bench equipment. The actual minimum flow, heat-source rating, water-temperature limits, and achievable operating conditions will be determined after the equipment has been selected.
+
+In the physical bench, heat losses, reservoir temperature changes, heater control behavior, and the hydraulic arrangement may cause measured temperatures to differ from these simplified predictions.
+
+### Reservoir Thermal Response
+
+Because the proposed bench may use a reservoir and recirculating water loop, the team must also consider how the overall water temperature changes over time.
+
+A simplified energy balance for a well-mixed reservoir is:
+
+$$
+m_wc_p\frac{dT}{dt}=P_{\text{heat,water}}-\dot{Q}_{\text{loss}}
+$$
+
+where:
+
+- **m_w** represents the mass of water in the reservoir.
+- **cₚ** represents the specific heat capacity of water.
+- **T** represents the reservoir-water temperature.
+- **P_heat,water** represents thermal power delivered to the water.
+- **Q̇_loss** represents the heat-transfer rate from the water to the surroundings.
+
+This relationship shows that reservoir temperature will increase when the heat delivered to the water exceeds heat losses. In a continuously heated closed loop, pump-speed adjustments alone may not be sufficient to maintain a constant outlet-water temperature.
+
+The selected bench arrangement must therefore provide a suitable method for establishing repeatable thermal operating conditions. Depending on the final design, this may involve controlled heater operation, a suitable heat-removal mechanism, or a defined transient testing procedure. The team will document the actual arrangement and its limitations before interpreting temperature-control results.
+
+### Preliminary Feedback Control Model
+
+The controller will use measured flow rate, a representative heating-demand input, and temperature feedback to determine the pump-speed command.
+
+The feedforward component will provide an initial pump-speed estimate based on the measured operating conditions. Temperature feedback will then be used to adjust the command when necessary.
+
+A preliminary proportional-integral control relationship is:
+
+$$
+u_{\text{raw}}(t)=u_{\text{ff}}(q(t),f(t))+K_pe_T(t)+K_i\int_0^t e_T(\tau)\,d\tau
+$$
+
+The command will be limited to the permitted pump-control range:
+
+$$
+u_{\text{cmd}}(t)=\operatorname{clip}(u_{\text{raw}}(t),u_{\min},u_{\max})
+$$
+
+where:
+
+- **u_cmd** represents the commanded pump operating level.
+- **u_ff** represents the preliminary feedforward command.
+- **q(t)** represents the measured flow rate.
+- **f(t)** represents the representative heating-demand input.
+- **e_T(t)** represents the temperature error.
+- **Kₚ** and **Kᵢ** represent proportional and integral gains.
+- **u_min** and **u_max** represent approved pump-command limits.
+
+The temperature error and appropriate direction of the feedback correction will be established from the actual thermal response of the selected bench. The team will not assume that increasing pump speed always increases outlet-water temperature.
+
+The controller will also incorporate command limits, fault detection, and appropriate measures to reduce oscillations. The final control gains and command mapping will be developed through simulation and adjusted using measured bench results.
+
+### Dymola Simulation and Physical Bench Validation
+
+Dymola will be used to model the circulation loop and predict how changes in pump operation affect flow rate, heat transfer, and temperature response. The model will include the selected pump characteristics, hydraulic resistance, heat source behavior, and relevant thermal properties to the extent supported by available equipment information.
+
+The simulation will be developed before physical testing and used to select preliminary controller settings and experimental operating conditions.
+
+The physical bench will then use the actual STM32L476RG controller to acquire measurements and command the selected pump. The planned measurement system includes the KEYENCE flow sensor, PT100 RTD temperature sensors with MAX31865 SPI interface modules, and a suitable real power measurement instrument.
+
+The preliminary testing plan includes three operating conditions representing low, medium, and high demand. Five paired baseline and controlled runs will be conducted at each condition, resulting in 15 paired comparisons.
+
+The team will record:
+
+- Water flow rate in GPM.
+- Inlet and outlet water temperatures.
+- Pump-speed command and available operating feedback.
+- Applied representative heating-demand input.
+- Measured pump-and-drive real electrical input power.
+- Time and operating condition for each measurement.
+- Controller faults and abnormal operating events.
+
+Measurements will be recorded at a preliminary interval of no more than one second.
+
+Simulation predictions will be compared with bench measurements under equivalent operating conditions. The absolute prediction error for a measured quantity can be calculated as:
+
+$$
+e_x=|x_{\text{simulated}}-x_{\text{measured}}|
+$$
+
+Where an appropriate nonzero reference exists, percentage error may be calculated as:
+
+$$
+e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
+$$
+
+The team will report differences in flow rate, temperature response, and relevant transient behavior. Measured electrical-power savings will be evaluated using matched baseline and controlled runs, including variability and a 95% confidence interval when supported by the experimental data.
+
+The final evaluation will determine whether the controller can achieve the preliminary target of at least 10% pump electrical-input-power reduction while maintaining approved flow, temperature, stability, and safety requirements.
+
+### Engineering Verification Summary
+
+The mathematical models will support the initial design, but experimental measurements will determine whether the proposed controller meets its requirements.
+
+| Engineering Principle | Design Application | Verification Method |
+|---|---|---|
+| Pump affinity laws | Estimate changes in flow, head, and mechanical power with pump speed. | Compare predictions with manufacturer curves and bench measurements. |
+| Electrical power | Evaluate pump and drive input power reduction. | Measure real electrical input power during matched trials. |
+| Heat transfer equation | Estimate temperature rise across the bench heat source. | Compare calculated and measured inlet/outlet temperature differences. |
+| Reservoir energy balance | Evaluate temperature drift and thermal operating conditions. | Record reservoir and loop temperature behavior during testing. |
+| Feedback control | Calculate pump speed commands from measured conditions. | Review STM32 command traces, response time, and stability. |
+| Dymola simulation | Select initial controller settings and test conditions. | Compare simulation predictions with physical bench data. |
+| Statistical analysis | Evaluate repeatability and uncertainty of electrical savings. | Analyze paired trials, variation, and confidence intervals. |
+
+The final design will distinguish theoretical predictions, manufacturer specifications, preliminary targets, and experimental results. This approach will allow the team to evaluate the proposed control strategy without assuming that ideal pump relationships or simulation predictions will automatically be achieved on the physical bench.
 
 ## Comparative Analysis of Potential Solutions
 
@@ -1150,19 +1300,45 @@ In conclusion, upholding public safety remains a primary responsibility througho
 #### Specific Health, Safety, and Welfare Hazards (H1)
 ---
 
-The existing discussion of public health and safety above establishes the importance of reliable temperature and flow control. The following table identifies the particular hazards, people exposed, severity, design safeguards, and evidence required to make these considerations actionable.
+The proposed Variable Speed Circulation Pump Controller will be developed and evaluated using a dedicated physical bench-testing system. The bench will include a water reservoir, variable-speed circulation pump, electric heat source, flow sensor, inlet and outlet temperature sensors, STM32L476RG microcontroller, and electrical measurement equipment. Although the system will not initially operate on commercial Lochinvar heating equipment, the physical bench introduces electrical, hydraulic, and thermal hazards that must be addressed before testing begins.
+
+The primary safety concern is ensuring that the controller does not reduce circulation flow below the safe operating limits of the selected bench equipment. Insufficient flow could result in excessive water temperature rise, overheating of the heat source, or damage to the pump and surrounding components. Additional hazards include electrical shock, hot-water exposure, leaks, unexpected pressure increases, sensor failures, and incorrect pump control commands.
+
+The following table identifies the primary hazards, individuals who may be affected, potential severity, planned safeguards, and verification methods.
+
 
 | Hazard and Cause | People Potentially Affected | Potential Severity | Planned Design Safeguard | Verification |
 |---|---|---|---|---|
-| Insufficient circulation while the heater is firing | Building occupants, maintenance staff, equipment owner | High: heat exchanger overheating and equipment damage | Preserve factory high-limit and flow protections, enforce Lochinvar approved minimum flow, and use an approved circulation preserving fault response | Trace minimum flow requirement to manufacturer data; safely simulate low flow fault |
-| Outlet water temperature overshoot | Building occupants and facility operators | High: possible scalding | Maintain ±4°F steady state target, monitor outlet temperature, and preserve existing heater safety limits | Calibrated reference temperature recording during approved operating changes |
-| Water held at unsuitable temperatures | Occupants and building management | High: possible Legionella related health risk | Do not change existing temperature management or sanitation controls; evaluate ASHRAE Standard 188 applicability with Lochinvar | Review operating policy and confirm protective settings are not overridden |
-| 120 VAC and motor electrical connections | Students, technicians, laboratory staff | High: electrical shock, burns, or fire | Isolate low voltage controls, protect power circuits, and require authorized electrical work and hazardous energy control procedures | Qualified wiring inspection and documented pre work isolation |
-| Hot pressurized water and piping | Technicians and nearby personnel | High: burns, leaks, or pressure related injuries | Use manufacturer rated fittings, approved connections, and authorized plumbing work | Component rating review and supervised leak inspection |
-| Gas fired boiler operation and combustion related hazards | Students, laboratory personnel, maintenance technicians, and nearby occupants | High: potential gas leaks, fire, combustion related injuries, or carbon monoxide exposure | Preserve manufacturer combustion safety controls, prohibit unauthorized gas system modifications, and require qualified personnel for gas related work | Confirm manufacturer safety protections remain operational and obtain authorized inspection before testing |
-| Failed sensors or lost communication | Occupants, operators, equipment owner | High: potential unsafe circulation and equipment overheating | Validate sensor data, indicate faults, preserve existing protections, and transition to a Lochinvar approved safe circulation mode | Isolated bench fault injection testing |
+| Insufficient circulation while the electric heat source is operating | Students, faculty, and laboratory personnel | High: localized overheating, equipment damage, or unsafe water temperatures | Establish the minimum safe circulation flow from selected equipment specifications; monitor flow continuously; require an approved heater shutdown or interlock response when circulation becomes insufficient. | Document minimum-flow requirements and perform approved low-flow protection tests without bypassing independent safety devices. |
+| Outlet-water temperature exceeding the approved operating limit | Students and nearby laboratory personnel | High: burns, overheating, or component damage | Monitor outlet temperature using the PT100 RTD measurement system; establish a maximum permitted temperature; preserve independent overtemperature protection. | Compare recorded temperatures with a calibrated reference and verify approved overtemperature responses. |
+| Electrical shock from pump, heater, or power-monitoring connections | Students, technicians, and faculty | High: electrical shock, burns, or fire | Separate hazardous-voltage wiring from STM32 low-voltage circuitry; use appropriate grounding, enclosures, protection, and authorized electrical installation. | Inspect electrical schematics, wiring, protective devices, and isolation before energizing. |
+| Water leakage near energized electrical equipment | Students and laboratory personnel | High: electrical hazards, slipping, or equipment damage | Use compatible tubing, fittings, clamps, and secure connections; position electrical components away from possible leaks; inspect the loop before operation. | Perform a supervised leak inspection and verify electrical equipment placement. |
+| Excessive hydraulic pressure or unsuitable component ratings | Students and nearby personnel | High: tubing failure, water release, or injury | Verify pressure and temperature ratings of the reservoir, tubing, fittings, pump, and heat source; provide appropriate pressure protection if required by the final loop design. | Review component datasheets, hydraulic schematic, and pressure-protection arrangements before heated operation. |
+| Pump malfunction or unexpected loss of circulation | Students, faculty, and laboratory personnel | High: heat-source overheating or equipment damage | Detect insufficient measured flow and relevant pump faults; use an approved response that places the heat source and circulation equipment in a safe condition. | Conduct supervised pump-fault and circulation-loss tests using approved methods. |
+| Failed temperature or flow sensors | Students and laboratory personnel | High: incorrect pump commands or undetected unsafe operating conditions | Validate sensor ranges, communication status, and measurement plausibility; reject invalid readings and initiate the approved fault response. | Test disconnected, invalid, and out-of-range sensor conditions without defeating independent protections. |
+| Incorrect STM32 control output or communication failure | Students, technicians, and laboratory personnel | Moderate to high: unexpected pump operation or inadequate circulation | Limit pump commands to the verified supported range; define startup, reset, watchdog, and communication-loss behavior; maintain independent heater protection. | Verify controller limits, startup behavior, and approved fault responses before heated operation. |
+| Contact with hot tubing, fittings, or heating equipment | Students and laboratory personnel | Moderate to high: skin burns | Identify hot surfaces, provide appropriate guards or insulation, and require cooling before handling or servicing. | Inspect exposed surfaces and document safe handling and shutdown procedures. |
+| Unexpected energization or stored energy during maintenance | Students, faculty, and authorized technicians | High: electrical injury, hot-water release, or unexpected equipment operation | Follow applicable hazardous-energy isolation procedures; disconnect and verify electrical power and safely release thermal or hydraulic energy before servicing. | Document shutdown and isolation procedures and verify their use during supervised maintenance. |
 
-Only qualified or institutionally authorized personnel will perform electrical, gas-appliance, or pressurized plumbing modifications. Unsafe fault scenarios will be tested in simulation or an approved isolated bench setup, rather than intentionally defeating the protection of an operating heater.
+
+#### Hazard Prevention and Fault Response Procedures
+
+Before physical testing, the team will identify the operating limits of the selected pump, heat source, reservoir, tubing, and sensors. These limits will include the minimum circulation flow, maximum water temperature, allowable pressure, electrical supply requirements, and supported pump control interface. Any limit that has not been confirmed will remain unresolved until the necessary manufacturer information and faculty approval are obtained.
+
+The STM32L476RG controller will monitor the available flow and temperature measurements and compare them with the approved operating limits. If a sensor failure, communication error, insufficient circulation condition, or abnormal temperature is detected, the controller will initiate the fault response established during Detailed Design. Software based protection will supplement, rather than replace, independent protective devices associated with the heat source and electrical equipment.
+
+The team will use simulation to evaluate potentially unsafe operating conditions before attempting physical fault testing. Physical tests involving abnormal conditions will only be conducted after approval from the faculty supervisor and will not involve bypassing manufacturer required safety protections.
+
+#### Bench Inspection and Safety Verification
+
+The physical bench will undergo a documented inspection before heated operation. The team will verify the electrical connections, component ratings, sensor installation, pump-control interface, hydraulic connections, and available safety protections. The system will first be evaluated under approved low-risk conditions to confirm basic circulation, measurement accuracy, and controller communication.
+
+After initial verification, the team will conduct supervised operating tests and record water flow, inlet and outlet temperatures, pump electrical input power, and controller status. Any observed unsafe condition or unexpected equipment response will require the affected test to be stopped and reviewed before testing continues.
+
+Only qualified or institutionally authorized personnel will perform work requiring electrical or plumbing expertise. The team will follow applicable Tennessee Tech laboratory procedures and hazardous-energy requirements, including OSHA 29 CFR 1910.147 where applicable [9].
+
+The final bench design will prioritize the safety of students, faculty, and laboratory personnel while providing a controlled environment for evaluating the proposed pump-control strategy. Future integration with Lochinvar equipment will require a separate safety review because the operating conditions and hazards of a commercial water heater may differ from those of the physical bench.
+
 
 #### Application and Verification of Engineering Standards (H2 and H3)
 --- 
@@ -1465,7 +1641,10 @@ The revised design contains five subsystems. Each team member has a primary subs
 
 [14] Lochinvar, “KNIGHT Fire Tube Boiler Installation & Operation Manual, Models 55–285,” Lochinvar Corporation. [Online]. Available: [https://www.lochinvar.com/lit/712268KHB-I-O_Rev%20D_100305277_2000558126%20%2834301%29.pdf]. [Accessed: Nov. 15, 2026].
 
+[15] Grundfos, *UPMS Data Booklet*, "UPMS 15-78 130: Performance Curves and Technical Data," p. 11. [Online]. Available: [https://api.grundfos.com/literature/Grundfosliterature-6910086.pdf]. [Accessed: Nov. 18, 2026].
+[16] U.S. Department of Energy, *DOE Fundamentals Handbook: Thermodynamics, Heat Transfer, and Fluid Flow*, vol. 1, DOE-HDBK-1012/1-92, 1992. [Online]. Available: [https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1012-92_VOL1.pdf]. [Accessed: Nov. 18, 2026].
 
+[17] Grundfos, "How to Find Installation and Operation Manuals Online," Grundfos Support. [Online]. Available: [https://www.grundfos.com/us/support/how-to-guides/how-to-find-installation-and-operation-manuals-online]. [Accessed: Nov. 18, 2026].
 
 ## Statement of Contributions
 
