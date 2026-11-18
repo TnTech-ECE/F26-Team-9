@@ -1027,6 +1027,7 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 
 The flowchart should represent the physical bench testing process:
 
+<img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/5f9fe24c-76ea-41b2-a033-0a6fbf57ad0c" />
 
 **Specifications:**
 
