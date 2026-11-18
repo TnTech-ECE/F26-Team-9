@@ -1026,6 +1026,7 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 **Functional Flow Chart:**
 
 The flowchart should represent the physical bench testing process:
+<img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/c35ff45f-a61f-48c8-8805-d174615b1e0a" />
 
 <img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/5f9fe24c-76ea-41b2-a033-0a6fbf57ad0c" />
 
