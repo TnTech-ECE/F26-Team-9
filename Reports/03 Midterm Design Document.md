@@ -1349,6 +1349,48 @@ The environment and surrounding communities could benefit from reduced electrici
 
 However, the additional sensors, electronic components, and controller hardware introduce material consumption and eventual electronic waste. If the equipment has a short operating life or the controller fails to provide measurable energy savings, the environmental benefits could be reduced or offset by the resources required to manufacture, maintain, and replace the additional components.
 
+
+#### Mitigation Strategies for the Disadvantages (J2)
+---
+
+To address the potential disadvantages identified in the Benefits and Disadvantages to affected Groups, the team will incorporate specific mitigation measures into the controller design, simulation, and physical testing process. Additional measures will be recommended to Lochinvar and the team's faculty advisors for consideration before future commercial implementation. These strategies are intended to reduce safety risks, improve equipment reliability, limit unnecessary costs, and ensure that energy savings do not compromise the water-heating performance.
+
+1. Building Occupants and Hot-water Users
+
+To reduce the possibility of unstable temperatures or inadequate circulation, the controller will continuously monitor water flow and inlet and outlet temperatures through the Sensor and Data Acquisition Subsystem. The control algorithm will enforce the minimum circulation flow established for the approved bench equipment and will be designed to maintain outlet temperature within ±4°F of the selected setpoint under defined steady-state testing conditions.
+
+If measured flow or temperature exceeds the established operating limits, the controller will initiate a predefined fault response approved during the bench safety review. The system will not override the heat source's existing safety protections. Before recommending future implementation on the Regent, the team will verify the manufacturer's minimum-flow requirements, acceptable temperature limits, and appropriate independent protective controls.
+
+2. Maintenance and Service Technicians
+
+To reduce maintenance complexity, the team will develop a clear wiring diagram that the technicians can follow when troubleshooting. There will also be documentation of sensor connections and spec sheets for the different components. These will identify how each sensor, microcontroller, and pump work and communicate with each other.
+
+When a sensor fault is detected, the controller will initiate the predefined fault response established during bench testing rather than continuing normal pump-speed adjustments using unreliable measurements. The team will document the expected sensor operating ranges and the corresponding fault responses. Recorded measurements and fault information will be used to assist technicians in identifying whether abnormal operation originates from a sensor, microcontroller, or pump interface. These measures will help reduce troubleshooting time and improve the reliability of future maintenance procedures.
+
+3. Commercial Facility Owners and Building Operators (Economic Impact)
+
+To reduce the possibility of unnecessary installation expenses and operating costs, the team will conduct an economic evaluation comparing the additional hardware costs with the potential electrical savings achieved through variable-speed operation.
+
+The team will evaluate whether the controller achieves the project's target of at least a 10% reduction in measured pump-and-drive real electrical input power under qualifying operating conditions. This reduction will only be considered successful if the system continues to meet the established temperature stability, minimum-flow, and safety requirements [8].
+
+Measured savings will be used to estimate potential electricity-cost reductions and assess whether the additional system cost is economically justified. If testing indicates that the energy savings are insufficient to offset implementation costs, the team will document these limitations and recommend design improvements before commercial adoption.
+
+4. Lochinvar Engineering Team and Company
+
+To reduce the risk of equipment failure, unreliable performance, and unnecessary development costs, the team will validate the proposed control strategy through simulation and physical bench testing before recommending commercial implementation.
+
+The controller will be tested under low, medium, and high-demand conditions. The preliminary testing plan will include five paired baseline and controlled runs at each operating condition, resulting in 15 paired comparisons. During these tests, the team will record outlet temperature, water flow rate, pump electrical power consumption, and controller response. This testing will allow the team to evaluate temperature stability, minimum-flow compliance, electrical power reduction, and repeatability before recommending the controller for future commercial applications.
+
+The system will also preserve the heat source's existing safety functions and enforce approved operating limits. Any future integration with Lochinvar equipment will require separate compatibility testing and safety approval. These procedures will provide Lochinvar with documented evidence of the controller's performance and limitations before considering further development.
+
+5. Environment and Local Communities
+
+To reduce the environmental impact of additional electronic components, the team will prioritize reliable hardware and use available equipment from Lochinvar and Tennessee Tech where practical. Components will be selected based on their compatibility with the system's operating requirements to reduce unnecessary replacement or redesign.
+
+The team will compare measured pump electrical power consumption between constant-speed baseline operation and variable-speed controlled operation under equivalent low-, medium-, and high-demand conditions rather than assuming that reducing pump speed automatically results in energy savings [4].
+
+For future commercial development, the team recommends evaluating component service life, repairability, and proper electronic-waste disposal. These measures will help determine whether the electrical savings provide a meaningful long-term environmental benefit.
+
  
 ## Resources
 
