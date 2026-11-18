@@ -1031,16 +1031,17 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 
 **Specifications:**
 
-1. This subsystem will assemble and integrate the physical water circulation bench, including the pump, heating element, sensors, and measurement equipment.
-2. This subsystem will monitor actual water flow rate and inlet and outlet temperature measurements during testing.
-3. This subsystem will measure pump electrical consumption using suitable voltage and current measurement equipment.
-4. This subsystem will implement and run the control code developed by the Data Logging and Simulation Subsystem on the STM32 to test variable-speed pump operation.
-5. This subsystem will compare system performance under constant-speed and variable-speed operation and different operating conditions.
-6. This subsystem will evaluate whether the system maintains minimum flow and acceptable temperature requirements during testing.
-7. This subsystem will provide collected measurements and physical test results to the Data Logging and Simulation Subsystem for recording and further analysis.
-8. This subsystem will identify performance issues found during testing that may require adjustments to the physical setup or proposed control strategy.
-9. All sensor and control signals connected to the STM32 will meet its electrical input and output requirements or use appropriate signal conditioning.
-10. The pump will receive operating power independently from the STM32, with appropriate electrical protection and isolation between high-voltage and low-voltage circuits.
+**Specifications:**
+
+1. This subsystem shall assemble and integrate the physical water circulation bench, including the pump, heating element(possibly simulated), sensors, and measurement equipment.
+2. This subsystem shall monitor actual water flow rate and inlet and outlet temperature measurements during testing.
+3. This subsystem shall measure pump electrical consumption using suitable voltage and current measurement equipment.
+4. This subsystem shall implement and run the control code developed by the Data Logging and Simulation Subsystem.
+5. This subsystem shall compare system performance under constant speed and variable speed operation across different operating conditions.
+6. This subsystem shall evaluate whether the system maintains minimum flow and acceptable temperature requirements during testing.
+7. This subsystem shall provide collected sensor measurements and physical test results to the Data Logging and Simulation Subsystem for recording and further analysis.
+8. This subsystem shall identify performance issues found during testing that may require adjustments to the physical setup or proposed control strategy.
+9. The pump shall receive operating power independently from the STM32, with appropriate electrical protection and isolation between high-voltage and low-voltage circuits.
 
 
 ### 5) Data Logging and Simulation Subsystem
