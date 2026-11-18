@@ -780,15 +780,11 @@ The final sensor configurations, electrical connections, signal conditioning req
 
 **Interfaces and Procedure:**
 
-The subsystem will collect measurements from sensors installed on the physical water circulation loop. The KEYENCE FD-Q50C flow sensor will monitor water flow and provide an electrical signal corresponding to the measured flow rate. The exact signal type and electrical requirements will be confirmed using the selected sensor's manufacturer documentation. If a pulse-frequency output is available and selected, the signal will be connected to a compatible microcontroller digital input for frequency measurement.
+The subsystem will collect water flow, inlet temperature, and outlet temperature measurements from sensors installed on the circulation loop. The KEYENCE FD-Q50C flow sensor will provide an electrical signal corresponding to the measured flow rate. The two PT100 RTD sensors will connect to MAX31865 modules, which will transmit digital temperature measurements to the STM32 microcontroller through SPI communication.
 
-The inlet and outlet water temperatures will be measured using two PT100 RTD sensors. These sensors produce resistance changes as the water temperature changes. Each sensor will connect to a MAX31865 interface module, which will convert the resistance measurement into digital data that the STM32 microcontroller can read using SPI communication.
+A representative heating-demand signal, potentially using 0–10 V, will be conditioned to a voltage compatible with the microcontroller's analog input. During bench testing, this signal may be simulated rather than obtained directly from a Lochinvar boiler. The exact flow-sensor configuration and electrical interfaces will be confirmed during Detailed Design.
 
-The heating-demand input will represent the current heating requirements of the system. During bench testing, this input may be provided through an approved simulated 0–10 V signal rather than a direct connection to the Lochinvar boiler. The analog voltage will be scaled and protected as required to remain within the microcontroller's supported input range. If future testing uses an actual boiler firing-rate signal, the electrical interface and isolation requirements will need to be verified before implementation.
-
-During operation, the subsystem will acquire the available flow, temperature, and heating-demand measurements at the established sampling interval. The electrical signals will be conditioned as necessary before being processed by the microcontroller. The controller will convert the measurements into engineering units such as gallons per minute (GPM), degrees Fahrenheit (°F), and heating-demand percentage.
-
-The subsystem will also support sensor diagnostic checks to identify disconnected sensors, communication failures, or measurements outside the established operating ranges. If an invalid measurement is detected, the Microcontroller and Control Logic Subsystem will determine the appropriate response according to the approved fault-handling procedure. Valid measurements will be used for pump control, performance monitoring, and experimental data logging. The exact sensor wiring, sampling interval, and calibration procedures will be finalized during Detailed Design.
+During operation, the subsystem will continuously acquire and condition sensor signals for processing by the microcontroller. The measurements will be converted into engineering units such as GPM, °F, and heating-demand percentage. Invalid readings or communication failures will be identified and reported to the Microcontroller and Control Logic Subsystem for the approved fault response. Valid measurements will support pump control, system monitoring, and experimental data logging.
   
 **Functional Flowchart:**
 <p align="center">
@@ -869,70 +865,39 @@ During the procedure, the controller will read the accessible measurements, eval
 
 **Overview:**
 
-The pump and motor control subsystem will take the controller's command and change the circulation pump speed to meet that demand. It will ensure the system adjusts the pump speeds based on the control command and demand. The design should emphasize operating within the pump's allowable speed, prevent motor strain, and provide the correct circulation needed to maintain the desirable water temperature.
+The Pump, Motor Control, and Hydraulic System Subsystem will receive pump speed commands from the Microcontroller and Control Logic Subsystem and adjust the circulation pump operation according to the current heating demand and operating conditions. The subsystem will use a variable-speed circulation pump, with the Grundfos UPMS 15-78 130 AR currently being considered as the primary pump for the physical bench-testing system. The pump will circulate water through the hydraulic loop while responding to the control commands calculated by the STM32 microcontroller.
 
+The pump speed will be adjusted through a manufacturer-supported control interface, potentially using a low-voltage PWM signal or another compatible control method depending on the verified pump configuration. The subsystem will operate within the pump's approved operating limits and maintain the minimum circulation flow required by the selected bench equipment. The design will emphasize reliable pump operation, controlled changes in water flow, and the prevention of operating conditions that could damage the equipment or compromise water-temperature performance.
 
-Functional Description:
+During operation, the subsystem will receive speed commands from the microcontroller and adjust pump operation accordingly. Changes in pump speed will affect water circulation through the hydraulic loop and influence the inlet and outlet water temperatures. The Sensor and Data Acquisition Subsystem will measure these changes and provide updated measurements to the controller. The controller will then determine whether additional pump speed adjustments are required to maintain acceptable flow and temperature performance while reducing unnecessary electrical power consumption.
 
-This subsystem's core function is to receive the calculated speed instructions from the pump's controller and use that to vary the circulation pump during different demand situations and maintain the desired water temperature. This will prepare digital signals for high-efficiency mechanical work.
+The subsystem will also support monitoring of pump electrical power consumption and available operating information during physical bench testing. These measurements will be used to compare constant-speed baseline operation with variable-speed controlled operation. The final pump selection, electrical supply requirements, control interface, hydraulic connections, and operating limits will be confirmed during Detailed Design before physical testing.
 
-1) Speed Modulation
-   * Responds directly to incoming signals by altering the voltage or frequency line to the pump. This will allow the pump to adjust the speed based on the control command.
-     
-2) Operational Range Control
-   * This makes sure the pump's motor is operating within the pump's allowable range.
-   * Protects the motor from spinning too fast or stalling below its limit.
-     
-3) Thermal System Balancing
-   * Regulates flow velocity to provide the circulation needed by the heat exchanger to keep the desired temperature under fluctuating demands.
+**Inputs:**
 
-In addition, the subsystem should provide running data for evaluations. This will share motor speed based on flow speeds and temperature readings for lab testing.
+* Pump speed commands from the Microcontroller and Control Logic Subsystem.
+* Controller operating limits and fault-response commands established from the approved bench design.
+* Electrical power supplied through a compatible power source based on the selected pump's manufacturer specifications.
+* Water entering the circulation pump from the physical hydraulic loop.
+* Hydraulic operating conditions determined by the selected tubing, fittings, valves, reservoir, and heat source.
+* Minimum and maximum operating limits established from the pump manufacturer and approved bench-testing requirements.
 
+**Outputs:**
 
-Subsystem Interface:
+* Variable-speed pump operation based on the commands received from the Microcontroller and Control Logic Subsystem.
+* Controlled water circulation through the physical hydraulic loop and selected heat source.
+* Changes in water flow rate and temperature conditions that can be measured by the Sensor and Data Acquisition Subsystem.
+* Available pump operating information, such as speed or fault feedback, when supported by the selected pump.
+* Pump electrical power measurements made available to the Monitoring, Performance Evaluation, and Bench Testing Subsystem.
+* Pump operating status and fault information provided to the Microcontroller and Control Logic Subsystem when supported by the selected hardware.
 
-1) Control Logic Input
-   * Connected To: Microcontroller and Control Logic Subsystem.
-   * Description: Receives the low-voltage speed commands and safety faults calculated by the microcontroller.
+**Interfaces and Procedure:**
 
-2) Mains Power Input
-   * Connected to: Water Heating and Hydraulic Subsystem.
-   * Description: Connects to the 120VAC to supply the pump with power.
-     
-3) Mechanical Circulation Output
-   * Connected to: Water Heating and Hydraulic Subsystem.
-   * Description: Delivers control signals and power to the pump to control the motor's speed.
-     
-4) Operational Data Outpu
-   * Connected to: Monitoring and Performance Evaluations Subsystem.
-   * Description: Transmits real-time data to observe the motor speed.
+The subsystem will receive pump speed commands from the Microcontroller and Control Logic Subsystem through a manufacturer-supported control interface, potentially using low-voltage PWM or another compatible method. The proposed Grundfos UPMS 15-78 130 AR pump will receive electrical power from a supply matching its verified specifications. The final electrical connections and control interface will be confirmed during Detailed Design before physical testing.
 
+During operation, the pump will circulate water through the hydraulic loop, including the reservoir, tubing, valves, and heat source. The pump speed will adjust according to the received control commands, changing the water flow rate. The Sensor and Data Acquisition Subsystem will measure the resulting flow and temperatures, allowing the microcontroller to determine whether additional adjustments are needed.
 
-**Subsystem Operation:**
-
-1) Initialization Phase
-   * During system startup, the pump controller will establish safe boundaries.
-   * Verifies that the pump is operational and no faults have occurred.
-     
-2) Demand Activation Phase
-   * Delivers 120 VAC to the pump.
-
-3) Modulation Phase
-   * During run time, raw data for the speed commands is captured.
-   * System will continuously adjust pump speeds based on control command, water flow, and the water temperature.
-
-4) Shutdown and Failsafe Phase
-   * If there is a control logic fault or a communication fault, the subsystem will go into action and make sure the water will not overheat.
-   * It will make sure there are safety measures put into effect in case of a fault.
-
-**Expected User Interaction:**
-
-1) Monitoring the active speed.
-2) Monitor if the pump is operating within a safe boundary.
-3) Could have an override program for maintenance.
-
-No direct user control of frequency, pump speed, voltage scaling, or safety switching loops. Pumps' minimum and maximum speed can be programmed through the microcontroller's interface.
-
+The subsystem will operate within the approved pump and hydraulic limits while maintaining the required minimum circulation flow. If a fault or unsafe operating condition is detected, the controller will initiate an approved fault response without bypassing existing safety protections. During bench testing, the pump's real electrical input power will be measured to compare constant-speed and variable-speed operation under equivalent conditions.
 
 **Functional Flowchart:**
 <p align="center">
