@@ -754,77 +754,42 @@ Testing at Lochinvar's laboratory may be considered near the end of Capstone 2 i
 
 **Overview:**
 
-The Sensor and Data Acquisition Subsystem will provide real-time and high-fidelity monitoring of all the critical hydraulic and thermal parameters within the heating loop. It shall ensure the pump microcontroller maintains a continuous stream of accurate measurements. These measurements will be the flow rate, outlet temperature, and boiler firing rate for the necessary data that will be needed for the circulation pump to be accurate. The design should emphasize signal control and sensor responsiveness.
+The Sensor and Data Acquisition Subsystem will provide real-time measurements of the water flow rate, inlet and outlet water temperatures, and heating demand within the water circulation loop. The subsystem will use the proposed KEYENCE FD-Q50C flow sensor to measure water flow and two PT100 RTD temperature sensors to monitor inlet and outlet water temperatures. A representative heating-demand signal, potentially using a 0–10 V analog input, will also be included to provide information about the current heating requirements of the system.
 
+The flow sensor will provide an electrical output that corresponds to the measured water flow rate. Depending on the verified configuration of the selected KEYENCE sensor, this output may be a digital pulse-frequency signal or an analog signal. The PT100 temperature sensors will change resistance according to the measured water temperature. These resistance measurements will be converted into digital information using MAX31865 interface modules, which will communicate with the STM32 microcontroller through SPI communication. The proposed 0–10 V heating-demand input will be conditioned and isolated as required by the approved interface design to ensure compatibility with the microcontroller's supported analog input range.
 
-**Functional Description:**
+During operation, the subsystem will continuously acquire measurements from the sensors and provide the signals required by the Microcontroller and Control Logic Subsystem. The microcontroller will process these measurements to determine the current operating conditions and calculate the appropriate pump speed command. The subsystem will also support the detection of sensor failures, invalid measurements, and communication errors. These conditions will be reported to the Microcontroller and Control Logic Subsystem so that the appropriate fault response can be initiated.
 
-This subsystem's core function is to capture continuous live operating data of the heating loop and transmit it to the pump's microcontroller. This will prepare raw data for safe digital processing. 
-	
-* Real time data collection: Pump system variables at sampling intervals, track fluctuating fluid velocity, thermal output and thermal input back into the boiler, and the boiler load.
+The final sensor configurations, electrical connections, signal conditioning requirements, and microcontroller interfaces will be verified and documented during Detailed Design. The initial implementation will focus on the approved physical bench-testing system, while communication with actual Lochinvar boiler equipment may be evaluated during future testing if the required interfaces and approvals are available.
+
+**Inputs:**
+
+* Water flow measurements from the KEYENCE FD-Q50C flow sensor installed on the circulation loop.
+* Inlet water temperature measurements from a PT100 RTD temperature sensor.
+* Outlet water temperature measurements from a second PT100 RTD temperature sensor.
+* A representative heating-demand signal, potentially using a conditioned 0–10 V analog input.
+* Sensor calibration information and operating limits established from manufacturer specifications and bench-testing requirements.
+
+**Outputs:**
+
+* Water flow measurement signals transmitted to the Microcontroller and Control Logic Subsystem through the verified flow-sensor interface.
+* Inlet and outlet temperature measurements transmitted through MAX31865 modules using SPI communication.
+* Conditioned heating-demand information transmitted to the microcontroller through an analog input.
+* Sensor status and fault information used by the Microcontroller and Control Logic Subsystem to identify invalid measurements or sensor failures.
+* Measurement information made available through the microcontroller to the Monitoring, Performance Evaluation, and Bench Testing Subsystem and the Data Logging and Simulation Subsystem.
+
+**Interfaces and Procedure:**
+
+The subsystem will collect measurements from sensors installed on the physical water circulation loop. The KEYENCE FD-Q50C flow sensor will monitor water flow and provide an electrical signal corresponding to the measured flow rate. The exact signal type and electrical requirements will be confirmed using the selected sensor's manufacturer documentation. If a pulse-frequency output is available and selected, the signal will be connected to a compatible microcontroller digital input for frequency measurement.
+
+The inlet and outlet water temperatures will be measured using two PT100 RTD sensors. These sensors produce resistance changes as the water temperature changes. Each sensor will connect to a MAX31865 interface module, which will convert the resistance measurement into digital data that the STM32 microcontroller can read using SPI communication.
+
+The heating-demand input will represent the current heating requirements of the system. During bench testing, this input may be provided through an approved simulated 0–10 V signal rather than a direct connection to the Lochinvar boiler. The analog voltage will be scaled and protected as required to remain within the microcontroller's supported input range. If future testing uses an actual boiler firing-rate signal, the electrical interface and isolation requirements will need to be verified before implementation.
+
+During operation, the subsystem will acquire the available flow, temperature, and heating-demand measurements at the established sampling interval. The electrical signals will be conditioned as necessary before being processed by the microcontroller. The controller will convert the measurements into engineering units such as gallons per minute (GPM), degrees Fahrenheit (°F), and heating-demand percentage.
+
+The subsystem will also support sensor diagnostic checks to identify disconnected sensors, communication failures, or measurements outside the established operating ranges. If an invalid measurement is detected, the Microcontroller and Control Logic Subsystem will determine the appropriate response according to the approved fault-handling procedure. Valid measurements will be used for pump control, performance monitoring, and experimental data logging. The exact sensor wiring, sampling interval, and calibration procedures will be finalized during Detailed Design.
   
-* Industrial Signal Compatibility: Use hardware scaling to convert high voltage analog inputs and digital frequencies into a safe manner for the microcontroller to read.
-  
-* Measure Responsiveness: Shall optimize the thermal and fluid feedback to ensure it is energy efficient and saves water while maintaining the temperature.
-
-In addition, this subsystem would also need to be able to communicate with the boiler's main controller and display screen. It will share the temperature values from the pump controller and display real time temperatures on the screen. This helps give a parameter visibility of live water temperatures.
-
-
-**Subsystem Interface:**
-
-1) Enviromental Input
-   * Connected to: Water heating and hydraulic subsystem.
-   * Description: Gathers raw physical fluid velocity and thermal energy changes directly from 	the piping by sensors.
-     
-2) Boiler Load Input
-   * Connected to: Water Heating and Hydraulic Subsystem.
-   * Description: Intercepts the boiler firing rate signal and captures the active heating demand.
-     
-3) Condition Data Output
-   * Connected to: Microcontroller and Control Logic Subsystem.
-   * Description: Transmits filtered, scaled analog voltages and digital pulses to the processing pins of the microcontroller.
-     
-4) Data Output
-   * Connected to: Monitoring and performance evaluation subsystem.
-   * Description: Gives real-time flow rates and temperature measurements for diagnostic checking.
-     
-
-**Subsystem Operation:**
-
-1) Initialization Phase
-   * The microcontroller will establish connection loops and verify stable reference points.
-   * If any sensors are broken or out of bounds, a fault will be triggered to prevent the pump from running dry.
-     
-2) Data Ingestion Phase
-   * The subsystem will start capturing raw inputs from the sensors on the heating loop.
-     
-3) Filtering and Calibration Phase
-   * Capture the raw data from the analog and digital signals.
-   * Filter out any high-frequency noise.
-   * Take the raw data and convert it into values to read.
-     
-4) Transmission phase
-   * Verified output data will be sent to the display screen.
-
-
-**Expected User Interaction:**
-
-1) Installation and Commissioning Phase
-   * Physically mount the flow meter and temperature sensor.
-   * Wire the sensors and boiler to the microcontroller.
-
-2) Calibration Phase
-	* Check the sensors against already calibrated sensors to make sure they are accurate readings.
-
-3) Passive Monitoring Phase
-	* Observe the continuous readings from the sensors.
-
-4) Maintenance and Diagnostics Phase
-	* If there is a fault, use diagnostic skills to help with troubleshooting any faults.
-
-No direct user control of the raw voltage scaling, filtering or sensor calibration frequency.
-
-
 **Functional Flowchart:**
 <p align="center">
 <img width="534" height="178" alt="image" src="https://github.com/user-attachments/assets/c16677ed-42c8-48d4-8e17-1cb589b570aa" />
@@ -840,7 +805,7 @@ No direct user control of the raw voltage scaling, filtering or sensor calibrati
    
 4)	This subsystem shall send a fault error if there is any out-of-bounds data or if there is a broken connection.
    
-5)	This subsystem shall send data to the microcontroller .
+5)	This subsystem shall send data to the microcontroller.
 
 
 
