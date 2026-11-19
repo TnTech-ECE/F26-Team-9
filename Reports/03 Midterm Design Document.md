@@ -1219,7 +1219,8 @@ Collected measurements and physical test results will be transmitted to Subsyste
 **Functional Flowchart:**
 <img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/28966266-766a-4621-9a8d-618993ed77ae" />
 
-<img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/8c4514aa-2b90-4a1d-9c9b-0fefee1539ec" />
+
+<img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/3c9903be-fe6e-49a5-bd7d-fa4f52222671" />
 
 
 **Specifications:**
