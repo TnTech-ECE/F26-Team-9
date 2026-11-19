@@ -1405,21 +1405,6 @@ The team will compare simulation and physical bench results for selected flow ra
 | 14 | The subsystem shall generate graphs and summary tables for the final engineering report. | Review of submitted analysis results |
 
 
-Based on the high level design, provide a comprehensive description of the functions each subsection will perform.
-
-Inclued a description of the interfaces between this subsystem and other subsystems:
-* Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
-* Clearly define the direction of the signal (input or output).
-* Document the communication protocols used.
-* Specifying what data will be sent and what will be received.
-
-Detail the operation of the subsystem:
-* Illustrate the expected user interface, if applicable.
-* Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
-
-For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
-
-
 ## Ethical, Professional, and Standards Considerations
 
 The development of this variable circulation pump controller project has implications across environmental, societal, economic, scientific, cultural, and ethical domains. These considerations directly influence the controller’s design and the engineering practices required to develop a reliable and efficient system. Throughout the project, the team must consider how the controller will affect facility operations, public health and safety, energy consumption, and future applications developed by Lochinvar.
