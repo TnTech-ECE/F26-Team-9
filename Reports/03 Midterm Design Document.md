@@ -1240,8 +1240,6 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 
 **Specifications:**
 
-**Specifications:**
-
 1. This subsystem shall assemble and integrate the physical water circulation bench, including the pump, heating element(possibly simulated), sensors, and measurement equipment.
 2. This subsystem shall monitor actual water flow rate and inlet and outlet temperature measurements during testing.
 3. This subsystem shall measure pump electrical consumption using suitable voltage and current measurement equipment.
@@ -1317,20 +1315,12 @@ The physical bench test will remain the primary method of verifying controller p
 | Subsystem 2: Simulation recommendations | Output | Model results and proposed controller parameters | Inform initial controller settings before bench testing |
 | Computer storage | Output | CSV files and associated metadata | Preserve experimental records |
 
-The preliminary communication approach will use the STM32's USB serial/UART connection to transfer operating measurements to a computer. A computer-based logging program will organize the received data into CSV files.
-
-If the electrical power instrument cannot communicate directly with the STM32 or computer, its measurements will be imported using a documented method. The final design must provide a way to associate electrical-power readings with the correct test conditions and measurement times.
-
-The Dymola simulation will not be assumed to communicate with the STM32 in real time. Instead, its predictions will be used to prepare the bench experiment and later compared with the recorded experimental results.
+The preliminary communication approach will use the STM32's USB serial/UART connection to transfer operating measurements to a computer. A computer-based logging program will organize the received data into CSV files. If the electrical power instrument cannot communicate directly with the STM32 or computer, its measurements will be imported using a documented method. The final design must provide a way to associate electrical power readings with the correct test conditions and measurement times. The Dymola simulation will not be assumed to communicate with the STM32 in real time. Instead, its predictions will be used to prepare the bench experiment and later compared with the recorded experimental results.
 
 
 **Interfaces and Procedure:**
 
-The subsystem will first collect the verified specifications and physical parameters needed to develop the simulation model. These may include pump characteristics, hydraulic resistance, water properties, heat-source behavior, and selected operating conditions.
-
-Dymola will be used to predict system responses at different pump operating levels and heating-demand conditions. The resulting predictions will help establish initial controller parameters and identify useful physical test conditions.
-
-Before bench testing, the data logging system will be configured to receive measurements from the STM32. Each record will include the applicable timestamp, test identifier, and available operating measurements.
+The subsystem will first collect the verified specifications and physical parameters needed to develop the simulation model. These may include pump characteristics, hydraulic resistance, water properties, heat source behavior, and selected operating conditions. Dymola will be used to predict system responses at different pump operating levels and heating-demand conditions. The resulting predictions will help establish initial controller parameters and identify useful physical test conditions. Before bench testing, the data logging system will be configured to receive measurements from the STM32. Each record will include the applicable timestamp, test identifier, and available operating measurements.
 
 A preliminary CSV record will contain the following fields:
 
@@ -1394,9 +1384,7 @@ $$
 e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
 $$
 
-The team will compare simulation and physical bench results for selected flow rate, temperature, and response time measurements. Differences will be documented and used to evaluate model assumptions and improve subsequent predictions.
-
-The analysis will also report trial to trial variability and a 95% confidence interval for electrical power savings when supported by the collected data and statistical assumptions.
+The team will compare simulation and physical bench results for selected flow rate, temperature, and response time measurements. Differences will be documented and used to evaluate model assumptions and improve subsequent predictions. The analysis will also report trial to trial variability and a 95% confidence interval for electrical power savings when supported by the collected data and statistical assumptions.
 
 **Functional Flowchart:**
 <p align="center">
@@ -1426,14 +1414,14 @@ The analysis will also report trial to trial variability and a 95% confidence in
 Based on the high level design, provide a comprehensive description of the functions each subsection will perform.
 
 Inclued a description of the interfaces between this subsystem and other subsystems:
-- Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
-- Clearly define the direction of the signal (input or output).
-- Document the communication protocols used.
-- Specifying what data will be sent and what will be received.
+* Give the type of signal (e.g. power, analog signal, serial communication, wireless communication, etc).
+* Clearly define the direction of the signal (input or output).
+* Document the communication protocols used.
+* Specifying what data will be sent and what will be received.
 
 Detail the operation of the subsystem:
-- Illustrate the expected user interface, if applicable.
-- Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
+* Illustrate the expected user interface, if applicable.
+* Include functional flowcharts that capture the major sequential steps needed to achieve the desired functionalities.
 
 For all subsystems, formulate detailed "shall" statements. Ensure these statements are comprehensive enough so that an engineer who is unfamiliar with your project can design the subsystem based on your specifications. Assume the role of the customer in this context to provide clear and precise requirements.
 
@@ -1446,19 +1434,19 @@ From an environmental perspective, the controller should be designed to improve 
 
 From a societal standpoint, the variable circulation pump controller must operate reliably within the approved equipment limits across different commercial facilities. The system must continuously respond to fluctuating peak demands while maintaining strict temperature stability parameters. If the pump fails to satisfy these demands, it could result in financial losses, interruptions in facility operations, and risks to public health and safety. Therefore, the controller should be designed to provide reliable operation, accurate temperature monitoring, and consistent performance under changing operating conditions. These design considerations would help improve the overall reliability of the facility’s water circulation system.
 
-From an economic perspective, implementing a variable circulation pump controller could reduce operating expenses by adjusting the pump’s performance to match system demand. Compared with a fixed-speed circulation pump, the variable controller could reduce unnecessary energy consumption during periods of lower demand. However, these potential savings must be considered alongside the controller’s initial cost, maintenance requirements, and equipment reliability. A system failure could result in additional maintenance costs, equipment damage, or interruptions in facility operations. Therefore, the design should prioritize long-term performance, efficient energy consumption, and reliability while minimizing unnecessary operating expenses.
+From an economic perspective, implementing a variable circulation pump controller could reduce operating expenses by adjusting the pump’s performance to match system demand. Compared with a fixed speed circulation pump, the variable controller could reduce unnecessary energy consumption during periods of lower demand. However, these potential savings must be considered alongside the controller’s initial cost, maintenance requirements, and equipment reliability. A system failure could result in additional maintenance costs, equipment damage, or interruptions in facility operations. Therefore, the design should prioritize long-term performance, efficient energy consumption, and reliability while minimizing unnecessary operating expenses.
 
-From a scientific perspective, the variable circulation pump controller must incorporate an accurate and stable control loop capable of responding to changing operating conditions. The accuracy of the controller can be supported by field data provided by Lochinvar from its testing locations. This information will provide physical measurements that can be used to develop, configure, and validate the controller’s logic. Without accurate data, cross-referencing simulation predictions with actual system performance would be difficult and could reduce the reliability of the final design. Standardizing data-collection and testing procedures could improve simulation accuracy, help identify anomalies, and allow the team to make necessary adjustments to the controller. These practices will help ensure that the system responds appropriately to changes in temperature and demand.
+From a scientific perspective, the variable circulation pump controller must incorporate an accurate and stable control loop capable of responding to changing operating conditions. The accuracy of the controller can be supported by field data provided by Lochinvar from its testing locations. This information will provide physical measurements that can be used to develop, configure, and validate the controller’s logic. Without accurate data, cross referencing simulation predictions with actual system performance would be difficult and could reduce the reliability of the final design. Standardizing data collection and testing procedures could improve simulation accuracy, help identify anomalies, and allow the team to make necessary adjustments to the controller. These practices will help ensure that the system responds appropriately to changes in temperature and demand.
 
 Ethical responsibilities are integrated into the design and implementation of the project. As engineers, the team is committed to ensuring the accuracy and integrity of its methodology and data. This commitment includes rigorous measurement validation, proper documentation, equipment calibration, and strict attention to detail. Through collaboration with Lochinvar, the team must remain accountable for its deliverables while adhering to applicable engineering standards, copyrights, and intellectual property rights. Upholding these responsibilities allows the team to use the data provided by Lochinvar securely and incorporate that information into a product intended to remain internal to the company. Maintaining professional integrity throughout the design process will help ensure that the final controller is developed responsibly and that all testing results accurately represent its performance.
 
-From a cultural perspective, the variable circulation pump controller should be designed to accommodate different types of commercial facilities and their operating requirements. Each facility may have different water demands, equipment configurations, and levels of operator experience. The controller would need to be configured and validated for the requirements of each facility; a user-facing interface is not part of the current design requirements. The controller should also be adaptable to different operating environments while maintaining consistent performance. This flexibility could allow Lochinvar to implement the controller in future products and across a wider range of commercial applications.
+From a cultural perspective, the variable circulation pump controller should be designed to accommodate different types of commercial facilities and their operating requirements. Each facility may have different water demands, equipment configurations, and levels of operator experience. The controller would need to be configured and validated for the requirements of each facility. A user facing interface is not part of the current design requirements. The controller should also be adaptable to different operating environments while maintaining consistent performance. This flexibility could allow Lochinvar to implement the controller in future products and across a wider range of commercial applications.
 
-Public health and safety are essential considerations throughout the design process. The circulation pump controller must maintain the required water-temperature and flow conditions during fluctuations in system demand. Failure to maintain these parameters could create unsafe operating conditions, affect water availability, or interrupt facility operations. To address these concerns, the controller should incorporate temperature monitoring, appropriate operating limits, and fault-detection capabilities. These features would allow the system to identify abnormal operating conditions and respond appropriately. The design should also account for potential sensor failures, communication issues, and unexpected changes in system demand. Incorporating these safeguards would help protect facility operators and occupants while improving the reliability of the overall system.
+Public health and safety are essential considerations throughout the design process. The circulation pump controller must maintain the required water temperature and flow conditions during fluctuations in system demand. Failure to maintain these parameters could create unsafe operating conditions, affect water availability, or interrupt facility operations. To address these concerns, the controller should incorporate temperature monitoring, appropriate operating limits, and fault detection capabilities. These features would allow the system to identify abnormal operating conditions and respond appropriately. The design should also account for potential sensor failures, communication issues, and unexpected changes in system demand. Incorporating these safeguards would help protect facility operators and occupants while improving the reliability of the overall system.
 
 Relevant engineering standards will also influence the development of the controller. Organizations such as the American Society of Heating, Refrigerating and Air-Conditioning Engineers (ASHRAE), the American National Standards Institute (ANSI), the American Society of Mechanical Engineers (ASME), and UL Standards & Engagement establish or coordinate standards relevant to building energy efficiency, electrical equipment, and control systems. ASHRAE Standard 90.1 provides requirements for energy-efficient building systems, while UL 60730-1 addresses safety requirements for automatic electrical controls. Depending on the final application of the pump, additional requirements involving water circulation, equipment protection, and electrical safety may also apply. The team will need to determine which standards apply to the controller and use them to guide the selection of electrical components, operating limits, control logic, and testing procedures. Following applicable standards will help improve the overall safety, reliability, and compatibility of the final design.
 
-These considerations will influence the design constraints, specifications, and engineering practices implemented throughout the project. The controller must be capable of responding to fluctuations in system demand while maintaining water temperature and circulation within the operating limits established with Lochinvar. These limitations will influence the selection of sensors, the controller’s response time, pump-speed adjustments, and the development of protective features. To evaluate the controller’s performance, the team will compare its energy consumption with that of the existing fixed-speed pump and analyze temperature stability under different loading conditions. Testing should also include simulated faults and abnormal operating conditions to verify that the controller responds safely and reliably. The team will use field measurements, simulation results, and repeated testing to validate the accuracy of the control system. Proper documentation, calibration, and consistent testing practices will help ensure that the final design meets the established requirements.
+These considerations will influence the design constraints, specifications, and engineering practices implemented throughout the project. The controller must be capable of responding to fluctuations in system demand while maintaining water temperature and circulation within the operating limits established with Lochinvar. These limitations will influence the selection of sensors, the controller’s response time, pump speed adjustments, and the development of protective features. To evaluate the controller’s performance, the team will compare its energy consumption with that of the existing fixed-speed pump and analyze temperature stability under different loading conditions. Testing should also include simulated faults and abnormal operating conditions to verify that the controller responds safely and reliably. The team will use field measurements, simulation results, and repeated testing to validate the accuracy of the control system. Proper documentation, calibration, and consistent testing practices will help ensure that the final design meets the established requirements.
 
 In conclusion, upholding public safety remains a primary responsibility throughout this project. The development of the variable circulation pump controller must maintain reliable temperature stability under fluctuating loads in commercial facilities while improving energy efficiency and overall system performance. Achieving these goals will require each team member to complete their contributions with technical diligence, professional integrity, and attention to the environmental, societal, cultural, and economic impacts of the design. Team members must also remain mindful that this controller may be used in future products developed by Lochinvar. By following applicable engineering standards, validating system performance, and maintaining ethical responsibilities, the team can work toward delivering a safe, reliable, and efficient controller that benefits both Lochinvar and the public while reducing potential operational risks and liabilities.
 
@@ -1474,16 +1462,16 @@ The following table identifies the primary hazards, individuals who may be affec
 
 | Hazard and Cause | People Potentially Affected | Potential Severity | Planned Design Safeguard | Verification |
 |---|---|---|---|---|
-| Insufficient circulation while the electric heat source is operating | Students, faculty, and laboratory personnel | High: localized overheating, equipment damage, or unsafe water temperatures | Establish the minimum safe circulation flow from selected equipment specifications; monitor flow continuously; require an approved heater shutdown or interlock response when circulation becomes insufficient. | Document minimum-flow requirements and perform approved low-flow protection tests without bypassing independent safety devices. |
-| Outlet-water temperature exceeding the approved operating limit | Students and nearby laboratory personnel | High: burns, overheating, or component damage | Monitor outlet temperature using the PT100 RTD measurement system; establish a maximum permitted temperature; preserve independent overtemperature protection. | Compare recorded temperatures with a calibrated reference and verify approved overtemperature responses. |
-| Electrical shock from pump, heater, or power-monitoring connections | Students, technicians, and faculty | High: electrical shock, burns, or fire | Separate hazardous-voltage wiring from STM32 low-voltage circuitry; use appropriate grounding, enclosures, protection, and authorized electrical installation. | Inspect electrical schematics, wiring, protective devices, and isolation before energizing. |
-| Water leakage near energized electrical equipment | Students and laboratory personnel | High: electrical hazards, slipping, or equipment damage | Use compatible tubing, fittings, clamps, and secure connections; position electrical components away from possible leaks; inspect the loop before operation. | Perform a supervised leak inspection and verify electrical equipment placement. |
-| Excessive hydraulic pressure or unsuitable component ratings | Students and nearby personnel | High: tubing failure, water release, or injury | Verify pressure and temperature ratings of the reservoir, tubing, fittings, pump, and heat source; provide appropriate pressure protection if required by the final loop design. | Review component datasheets, hydraulic schematic, and pressure-protection arrangements before heated operation. |
-| Pump malfunction or unexpected loss of circulation | Students, faculty, and laboratory personnel | High: heat-source overheating or equipment damage | Detect insufficient measured flow and relevant pump faults; use an approved response that places the heat source and circulation equipment in a safe condition. | Conduct supervised pump-fault and circulation-loss tests using approved methods. |
-| Failed temperature or flow sensors | Students and laboratory personnel | High: incorrect pump commands or undetected unsafe operating conditions | Validate sensor ranges, communication status, and measurement plausibility; reject invalid readings and initiate the approved fault response. | Test disconnected, invalid, and out-of-range sensor conditions without defeating independent protections. |
-| Incorrect STM32 control output or communication failure | Students, technicians, and laboratory personnel | Moderate to high: unexpected pump operation or inadequate circulation | Limit pump commands to the verified supported range; define startup, reset, watchdog, and communication-loss behavior; maintain independent heater protection. | Verify controller limits, startup behavior, and approved fault responses before heated operation. |
+| Insufficient circulation while the electric heat source is operating | Students, faculty, and laboratory personnel | High: localized overheating, equipment damage, or unsafe water temperatures | Establish the minimum safe circulation flow from selected equipment specifications; monitor flow continuously; require an approved heater shutdown or interlock response when circulation becomes insufficient. | Document minimum flow requirements and perform approved low flow protection tests without bypassing independent safety devices. |
+| Outlet-water temperature exceeding the approved operating limit | Students and nearby laboratory personnel | High: burns, overheating, or component damage | Monitor outlet temperature using the PT100 RTD measurement system, establish a maximum permitted temperature, preserve independent overtemperature protection. | Compare recorded temperatures with a calibrated reference and verify approved overtemperature responses. |
+| Electrical shock from pump, heater, or power monitoring connections | Students, technicians, and faculty | High: electrical shock, burns, or fire | Separate hazardous voltage wiring from STM32 low voltage circuitry. Use appropriate grounding, enclosures, protection, and authorized electrical installation. | Inspect electrical schematics, wiring, protective devices, and isolation before energizing. |
+| Water leakage near energized electrical equipment | Students and laboratory personnel | High: electrical hazards, slipping, or equipment damage | Use compatible tubing, fittings, clamps, and secure connections; position electrical components away from possible leaks. Inspect the loop before operation. | Perform a supervised leak inspection and verify electrical equipment placement. |
+| Excessive hydraulic pressure or unsuitable component ratings | Students and nearby personnel | High: tubing failure, water release, or injury | Verify pressure and temperature ratings of the reservoir, tubing, fittings, pump, and heat source; provide appropriate pressure protection if required by the final loop design. | Review component datasheets, hydraulic schematic, and pressure protection arrangements before heated operation. |
+| Pump malfunction or unexpected loss of circulation | Students, faculty, and laboratory personnel | High: heat source overheating or equipment damage | Detect insufficient measured flow and relevant pump faults; use an approved response that places the heat source and circulation equipment in a safe condition. | Conduct supervised pump fault and circulation loss tests using approved methods. |
+| Failed temperature or flow sensors | Students and laboratory personnel | High: incorrect pump commands or undetected unsafe operating conditions | Validate sensor ranges, communication status, and measurement plausibility. Reject invalid readings and initiate the approved fault response. | Test disconnected, invalid, and out of range sensor conditions without defeating independent protections. |
+| Incorrect STM32 control output or communication failure | Students, technicians, and laboratory personnel | Moderate to high: unexpected pump operation or inadequate circulation | Limit pump commands to the verified supported range. Define startup, reset, watchdog, and communication loss behavior. Maintain independent heater protection. | Verify controller limits, startup behavior, and approved fault responses before heated operation. |
 | Contact with hot tubing, fittings, or heating equipment | Students and laboratory personnel | Moderate to high: skin burns | Identify hot surfaces, provide appropriate guards or insulation, and require cooling before handling or servicing. | Inspect exposed surfaces and document safe handling and shutdown procedures. |
-| Unexpected energization or stored energy during maintenance | Students, faculty, and authorized technicians | High: electrical injury, hot-water release, or unexpected equipment operation | Follow applicable hazardous-energy isolation procedures; disconnect and verify electrical power and safely release thermal or hydraulic energy before servicing. | Document shutdown and isolation procedures and verify their use during supervised maintenance. |
+| Unexpected energization or stored energy during maintenance | Students, faculty, and authorized technicians | High: electrical injury, hot water release, or unexpected equipment operation | Follow applicable hazardous-energy isolation procedures. Disconnect and verify electrical power and safely release thermal or hydraulic energy before servicing. | Document shutdown and isolation procedures and verify their use during supervised maintenance. |
 
 
 #### Hazard Prevention and Fault Response Procedures
@@ -1496,19 +1484,19 @@ The team will use simulation to evaluate potentially unsafe operating conditions
 
 #### Bench Inspection and Safety Verification
 
-The physical bench will undergo a documented inspection before heated operation. The team will verify the electrical connections, component ratings, sensor installation, pump-control interface, hydraulic connections, and available safety protections. The system will first be evaluated under approved low-risk conditions to confirm basic circulation, measurement accuracy, and controller communication.
+The physical bench will undergo a documented inspection before heated operation. The team will verify the electrical connections, component ratings, sensor installation, pump control interface, hydraulic connections, and available safety protections. The system will first be evaluated under approved low risk conditions to confirm basic circulation, measurement accuracy, and controller communication.
 
 After initial verification, the team will conduct supervised operating tests and record water flow, inlet and outlet temperatures, pump electrical input power, and controller status. Any observed unsafe condition or unexpected equipment response will require the affected test to be stopped and reviewed before testing continues.
 
 Only qualified or institutionally authorized personnel will perform work requiring electrical or plumbing expertise. The team will follow applicable Tennessee Tech laboratory procedures and hazardous-energy requirements, including OSHA 29 CFR 1910.147 where applicable [9].
 
-The final bench design will prioritize the safety of students, faculty, and laboratory personnel while providing a controlled environment for evaluating the proposed pump-control strategy. Future integration with Lochinvar equipment will require a separate safety review because the operating conditions and hazards of a commercial water heater may differ from those of the physical bench.
+The final bench design will prioritize the safety of students, faculty, and laboratory personnel while providing a controlled environment for evaluating the proposed pump control strategy. Future integration with Lochinvar equipment will require a separate safety review because the operating conditions and hazards of a commercial water heater may differ from those of the physical bench.
 
 
 #### Application and Verification of Engineering Standards (H2 and H3)
 --- 
 
-The variable speed circulation pump controller will be developed and evaluated using a dedicated physical bench test rather than depending on access to commercial heating equipment. The bench will include a variable-speed pump, heat source, water circulation loop, sensors, power connections, and the actual controller. Because the experiment involves electricity, moving water, and heat, the team must consider the standards and safety procedures that apply to the equipment actually selected for the bench. The standards will guide component selection, wiring, plumbing, control limits, fault responses, and testing methods.
+The variable speed circulation pump controller will be developed and evaluated using a dedicated physical bench test rather than depending on access to commercial heating equipment. The bench will include a variable speed pump, heat source, water circulation loop, sensors, power connections, and the actual controller. Because the experiment involves electricity, moving water, and heat, the team must consider the standards and safety procedures that apply to the equipment actually selected for the bench. The standards will guide component selection, wiring, plumbing, control limits, fault responses, and testing methods.
 
 The following table explains how each standard or regulation may influence the design and what evidence the team plans to collect. Applicability depends on the final equipment, installation, jurisdiction, and institutional requirements. The team will confirm the relevant editions and provisions with the faculty supervisor and authorized laboratory personnel before implementation. The verification activities described here are part of the capstone design process; they do not constitute formal certification or a claim of full code compliance.
 
@@ -1516,13 +1504,13 @@ The following table explains how each standard or regulation may influence the d
 
 | Standard or regulation | How it affects the proposed bench design | Planned verification evidence | Applicability or detail still to confirm |
 |---|---|---|---|
-| NFPA 70 (National Electrical Code), including Article 430 where applicable | Guides the review of motor branch circuit wiring, conductor sizing, grounding, overcurrent protection, disconnecting means, and the selected pump or motor control equipment. Low voltage control circuits will be appropriately separated or isolated from hazardous-voltage circuits. | Power and control schematics, component ratings, protective device review, and an inspection by qualified or institutionally authorized personnel before energizing the bench. | Adopted code edition, relevant articles, the pump's electrical design, and whether Article 430 provisions apply to each installed component. |
-| OSHA 29 CFR 1910.147 and Tennessee Tech hazardous energy procedures, as applicable | Informs the procedure for isolating electrical, thermal, pressure, and other hazardous energy before servicing, modifying, or repairing the bench setup. The team will not assume that switching off the controller makes the apparatus safe to work on. | Written isolation and verification procedure; authorized pre work checks and records where required. | Regulatory applicability to the educational laboratory and the institution's required procedures. |
+| NFPA 70 (National Electrical Code), including Article 430 where applicable | Guides the review of motor branch circuit wiring, conductor sizing, grounding, overcurrent protection, disconnecting means, and the selected pump or motor control equipment. Low voltage control circuits will be appropriately separated or isolated from hazardous voltage circuits. | Power and control schematics, component ratings, protective device review, and an inspection by qualified or institutionally authorized personnel before energizing the bench. | Adopted code edition, relevant articles, the pump's electrical design, and whether Article 430 provisions apply to each installed component. |
+| OSHA 29 CFR 1910.147 and Tennessee Tech hazardous energy procedures, as applicable | Informs the procedure for isolating electrical, thermal, pressure, and other hazardous energy before servicing, modifying, or repairing the bench setup. The team will not assume that switching off the controller makes the apparatus safe to work on. | Written isolation and verification procedure. Authorized pre work checks and records where required. | Regulatory applicability to the educational laboratory and the institution's required procedures. |
 | UL 60730-1, where applicable to the selected automatic electrical control | Provides a safety design reference for abnormal operation, loss of inputs, controller resets, and safe responses to faults. Software will not be treated as a substitute for independent equipment protection. | Documented fault response requirements, simulation of unsafe scenarios, and approved bench fault injection tests that do not defeat protective devices. | Applicable clauses, whether the controller falls within the standard's scope, and whether any product certification would be required for future commercialization. |
 | Applicable plumbing and mechanical requirements; International Plumbing Code as a reference where appropriate | Informs the selection of temperature and pressure rated tubing, fittings, reservoir, valves, and connections. The water loop will be checked for leakage and safe operation within the selected components' ratings. | Component datasheets, bench loop schematic, approved connection review, and supervised leak inspection before heated operation. | Local code applicability, pressure relief and backflow requirements, and the approved configuration of the final bench loop. |
-| ASHRAE Standard 188 | Relevant primarily to future building water system applications and water management responsibilities. The bench will not be presented as a commercial domestic hot water installation. If the controller is later connected to commercial equipment, it must not undermine existing water management protections. | Written applicability review, identification of the boundary between the bench experiment and a future building installation, and a future integration safety review if sponsor testing is approved. | Whether and how the standard applies to any eventual commercial installation; not automatically a direct bench-test requirement. |
+| ASHRAE Standard 188 | Relevant primarily to future building water system applications and water management responsibilities. The bench will not be presented as a commercial domestic hot water installation. If the controller is later connected to commercial equipment, it must not undermine existing water management protections. | Written applicability review, identification of the boundary between the bench experiment and a future building installation, and a future integration safety review if sponsor testing is approved. | Whether and how the standard applies to any eventual commercial installation; not automatically a direct bench test requirement. |
 | ASHRAE Standard 90.1 | Provides context for energy efficient building systems and future commercial use, but does not automatically establish a compliance requirement for the capstone bench prototype. | Measured pump and drive real electrical input power comparisons, documented test conditions, and a written applicability statement. | Applicable edition and whether specific provisions would apply to a future commercial product or installation. |
-| Selected pump, heat source, and sensor manufacturer instructions | Establish the actual safe operating limits for the bench, including maximum temperature, permitted flow range, pressure, electrical ratings, and supported pump control interface. These equipment specific limits take priority over unverified assumptions. | Verified datasheets and nameplates, a documented limits table, wiring/interface review, calibrated measurements, and approved bench checks of temperature and minimum flow. | Final component models, approved minimum circulation flow in GPM, maximum temperature, pump-control method, and any required independent protective devices. |
+| Selected pump, heat source, and sensor manufacturer instructions | Establish the actual safe operating limits for the bench, including maximum temperature, permitted flow range, pressure, electrical ratings, and supported pump control interface. These equipment specific limits take priority over unverified assumptions. | Verified datasheets and nameplates, a documented limits table, wiring/interface review, calibrated measurements, and approved bench checks of temperature and minimum flow. | Final component models, approved minimum circulation flow in GPM, maximum temperature, pump control method, and any required independent protective devices. |
 
 
 #### Standards Verification and Documentation Procedure
@@ -1537,7 +1525,7 @@ The following table explains how each standard or regulation may influence the d
 
 * 5. Document the evidence: For each requirement, the team will record the source, expected result, test procedure, measured result, uncertainty where relevant, and any corrective action. Incomplete or failed checks will remain visible in the documentation until resolved.
  
-* 6. Review changes: If the selected heat source, pump, controller, sensor, or interface changes, the team will revisit the affected limits, schematics, test procedures, and applicable standards before repeating the relevant verification steps. Any optional testing at Lochinvar's laboratory will require a separate equipment-specific review and approval.
+* 6. Review changes: If the selected heat source, pump, controller, sensor, or interface changes, the team will revisit the affected limits, schematics, test procedures, and applicable standards before repeating the relevant verification steps. Any optional testing at Lochinvar's laboratory will require a separate equipment specific review and approval.
  
 #### Remaining Standards Related Confirmations
 
@@ -1550,14 +1538,14 @@ By linking the standards to specific design decisions and recorded bench checks,
 #### Project Specific Ethics and Sustainability Actions (E1)
 --- 
 
-The goal of this project is to determine whether a variable-speed circulation pump controller can reduce electrical power use without sacrificing safe water flow or acceptable temperature performance. The team will evaluate the controller through a physical bench experiment, using simulation to plan initial operating conditions and compare predicted results with measured behavior. This approach creates ethical responsibilities in the way the system is designed, tested, documented, and presented to Lochinvar.
+The goal of this project is to determine whether a variable speed circulation pump controller can reduce electrical power use without sacrificing safe water flow or acceptable temperature performance. The team will evaluate the controller through a physical bench experiment, using simulation to plan initial operating conditions and compare predicted results with measured behavior. This approach creates ethical responsibilities in the way the system is designed, tested, documented, and presented to Lochinvar.
 
 The team will use the IEEE Code of Ethics as a guide for prioritizing public safety, reporting technical results accurately, recognizing the limits of its expertise, and considering the environmental and social effects of engineering decisions. A lower pump-power reading will not be treated as a successful outcome if the test violates an approved flow, temperature, or safety limit.
 
 
 #### Public Safety and Engineering Responsibility
 
-The bench loop will contain heated water, electrical power, and pressurized or circulating components. Reducing pump speed too far could cause inadequate circulation or excessive water-temperature rise, depending on the selected heat source and loop design. The controller will therefore enforce the documented safe minimum flow and operating limits of the actual bench equipment, rather than relying on a limit assumed from a different heater or pump.
+The bench loop will contain heated water, electrical power, and pressurized or circulating components. Reducing pump speed too far could cause inadequate circulation or excessive water temperature rise, depending on the selected heat source and loop design. The controller will therefore enforce the documented safe minimum flow and operating limits of the actual bench equipment, rather than relying on a limit assumed from a different heater or pump.
 
 Before the bench is energized, the team will review the design and test plan with the faculty supervisor. Authorized personnel will inspect the electrical and plumbing arrangements where required. Independent heat-source and electrical protections will remain active. The team will also define how the controller should respond to failed sensors, invalid measurements, communication loss, and abnormal temperature or flow readings. Unsafe conditions will first be evaluated in simulation or through an approved isolated test; the team will not intentionally defeat protective devices to demonstrate a fault.
 
@@ -1565,11 +1553,11 @@ If the bench cannot maintain the approved minimum flow, temperature limits, or o
 
 #### Accuracy, Data Integrity, and Technical Reporting
 
-The project's main conclusions will come from measured bench data, not simulation results alone. The team plans to record real pump and drive electrical input power, water flow, inlet and outlet temperatures, pump commands, applied heating-demand conditions, controller status, and timestamps. Measurements will be accompanied by equipment identification, calibration information, test conditions, and known uncertainty.
+The project's main conclusions will come from measured bench data, not simulation results alone. The team plans to record real pump and drive electrical input power, water flow, inlet and outlet temperatures, pump commands, applied heating demand conditions, controller status, and timestamps. Measurements will be accompanied by equipment identification, calibration information, test conditions, and known uncertainty.
 
 The preliminary testing plan includes five paired baseline and controlled runs at each of three operating conditions. The team will report the average percentage electrical power savings, variation between runs, and a 95% confidence interval where the data and assumptions support it. Temperature stability and response time will also be reported using defined measurement windows. Unsuccessful trials, unexpected behavior, and excluded or incomplete measurements will be documented rather than hidden.
 
-Simulation will be used to select initial controller settings and test conditions. After the bench experiments, predicted and measured responses will be compared under equivalent conditions, and model error will be reported. The team will distinguish between initial predictions, updated simulation results, and physical measurements. The preliminary goal of at least 10% electrical-power reduction will be described as a design target, not a result already achieved. Any conclusions about future use in the Regent will be identified as potential applications rather than proven commercial performance.
+Simulation will be used to select initial controller settings and test conditions. After the bench experiments, predicted and measured responses will be compared under equivalent conditions, and model error will be reported. The team will distinguish between initial predictions, updated simulation results, and physical measurements. The preliminary goal of at least 10% electrical power reduction will be described as a design target, not a result already achieved. Any conclusions about future use in the Regent will be identified as potential applications rather than proven commercial performance.
 
 #### Intellectual Property and Confidentiality
 
@@ -1579,9 +1567,9 @@ Manufacturer information and outside research will be cited appropriately. The t
 
 #### Environmental Sustainability and Energy Efficiency
 
-Reducing unnecessary circulation pump electrical consumption could reduce energy use, but lower pump speed does not guarantee lower overall energy consumption. A change in flow may affect temperature response, heating time, or the amount of energy required by the heat source. For this reason, the team will measure pump-and-drive real electrical input power under matched bench conditions and will discuss any observed tradeoffs in thermal performance.
+Reducing unnecessary circulation pump electrical consumption could reduce energy use, but lower pump speed does not guarantee lower overall energy consumption. A change in flow may affect temperature response, heating time, or the amount of energy required by the heat source. For this reason, the team will measure pump and drive real electrical input power under matched bench conditions and will discuss any observed tradeoffs in thermal performance.
 
-The project will report electrical-power savings for the tested pump and operating conditions without assuming the same savings will occur in every commercial installation. Any estimate of longer term energy or emissions reductions will state its assumptions and distinguish measured values from projections. The team will also consider the cost and environmental impact of sensors, electronics, wiring, water use, and replacement parts. Where practical and safe, compatible existing equipment will be reused.
+The project will report electrical power savings for the tested pump and operating conditions without assuming the same savings will occur in every commercial installation. Any estimate of longer term energy or emissions reductions will state its assumptions and distinguish measured values from projections. The team will also consider the cost and environmental impact of sensors, electronics, wiring, water use, and replacement parts. Where practical and safe, compatible existing equipment will be reused.
 
 #### Economic and Social Responsibility
 
@@ -1597,8 +1585,8 @@ The following table connects the team's ethical responsibilities to actions and 
 
 | Ethical consideration | Planned action | Verification evidence |
 |---|---|---|
-| Public safety | Maintain the selected bench equipment's approved flow and temperature limits, preserve independent protections, and obtain a faculty review before energizing. | Approved test plan, equipment-limit records, inspection notes, and bench safety-test results. |
-| Responsible fault testing | Define sensor, communication, and abnormal condition responses without bypassing protective devices. | Simulation records, approved fault-injection procedures, and measured controller responses. |
+| Public safety | Maintain the selected bench equipment's approved flow and temperature limits, preserve independent protections, and obtain a faculty review before energizing. | Approved test plan, equipment limit records, inspection notes, and bench safety test results. |
+| Responsible fault testing | Define sensor, communication, and abnormal condition responses without bypassing protective devices. | Simulation records, approved fault injection procedures, and measured controller responses. |
 | Data integrity | Record calibrated measurements, operating conditions, timestamps, uncertainty, unsuccessful runs, and data processing steps. | Raw datasets, calibration records, test logs, and analysis files. |
 | Honest reporting | Distinguish simulation predictions, measured bench results, preliminary targets, and optional future application claims. | Model error comparisons, technical report, plots, and clearly labeled results. |
 | Intellectual property | Respect Lochinvar's restrictions and cite technical information and outside research appropriately. | Reviewed public documents, repository contents, and reference list. |
@@ -1613,31 +1601,31 @@ The team will review these responsibilities throughout design development and be
 #### Benefits and Disadvantages (J1)
 ---
 
-The development of the Variable-Speed Circulation Pump Controller could provide economic, environmental, and societal benefits to the population. By adjusting the circulation pump speed according to heating demand, water flow rate, and outlet temperature, the proposed system aims to reduce unnecessary electrical energy consumption while maintaining reliable hot-water performance. Some stakeholders may face disadvantages due to the implementation of additional control hardware, sensors, and software. Explaining these disadvantages will be essential to ensuring that the proposed project will benefit its intended users without compromising the safety, reliability, or economic feasibility. 
+The development of the Variable Speed Circulation Pump Controller could provide economic, environmental, and societal benefits to the population. By adjusting the circulation pump speed according to heating demand, water flow rate, and outlet temperature, the proposed system aims to reduce unnecessary electrical energy consumption while maintaining reliable hot water performance. Some stakeholders may face disadvantages due to the implementation of additional control hardware, sensors, and software. Explaining these disadvantages will be essential to ensuring that the proposed project will benefit its intended users without compromising the safety, reliability, or economic feasibility. 
 
 1. Building Occupants and Hot-Water Users(Societal Impact)
 
-This project would benefit commercial building occupants through improved hot-water temperature stability and more reliable circulation during demand changes. The controller could help maintain consistent system performance while reducing unnecessary pump speed operation. This could help reduce the energy the pump needs to circulate at certain times. 
+This project would benefit commercial building occupants through improved hot water temperature stability and more reliable circulation during demand changes. The controller could help maintain consistent system performance while reducing unnecessary pump speed operation. This could help reduce the energy the pump needs to circulate at certain times. 
 
-However, building occupants could be disadvantaged if the pump operates below the required circulation flow or fails to respond appropriately to changing demand. A controller malfunction or failure of the system's safety protections could result in inconsistent water temperatures, insufficient hot-water availability, or unsafe operating conditions. These disadvantages could negatively affect commercial facilities with high or fluctuating hot water demands [4].
+However, building occupants could be disadvantaged if the pump operates below the required circulation flow or fails to respond appropriately to changing demand. A controller malfunction or failure of the system's safety protections could result in inconsistent water temperatures, insufficient hot water availability, or unsafe operating conditions. These disadvantages could negatively affect commercial facilities with high or fluctuating hot water demands [4].
 
 
 2. Maintenance and Service Technicians (Economic and Societal Impact)
 
 Maintenance technicians could benefit from the additional operating measurements that could be collected by the controller. The flow rate, temperature, and pump operating data could assist the technician in identifying any abnormal conditions as well as troubleshooting the system performance [2]. 
 
-However, introducing additional sensors, wiring, electronic control, and software could also be a disadvantage to the technician. Adding these components could make the system more complex for maintenance and troubleshooting. Technicians may require additional training to understand the controller's operation and diagnose potential sensor or control-system failures, increasing maintenance time and labor costs. Having incorrect maintenance procedures could affect the equipment's reliability and its safe operation.
+However, introducing additional sensors, wiring, electronic control, and software could also be a disadvantage to the technician. Adding these components could make the system more complex for maintenance and troubleshooting. Technicians may require additional training to understand the controller's operation and diagnose potential sensor or control system failures, increasing maintenance time and labor costs. Having incorrect maintenance procedures could affect the equipment's reliability and its safe operation.
 
 3. Commercial Facility Owners and Building Operators (Economic Impact)
 
-Commercial facility owners could benefit from reduced electrical operating expenses if the variable speed pump consumes less power during lower demand conditions. Reduced pump operations may also improve energy management and provide opportunities for long-term operating cost savings [4].
+Commercial facility owners could benefit from reduced electrical operating expenses if the variable speed pump consumes less power during lower demand conditions. Reduced pump operations may also improve energy management and provide opportunities for long term operating cost savings [4].
 
 However, additional controller hardware, sensors, installation requirements, and maintenance could increase the initial cost of implementing the system. If the electrical savings are smaller than anticipated, the cost of the system could outweigh its financial benefits. Unexpected controller failures could also create additional maintenance expenses or equipment downtime.
 
 
 4. Lochinvar Engineering Team and Company (Economic and Societal Impact)
 
-Lochinvar could benefit from a control strategy that demonstrates reduced pump electrical consumption while maintaining acceptable temperature and flow conditions. Successful experimental results could provide useful data for future commercial water-heating applications and potential improvements in energy efficiency. 
+Lochinvar could benefit from a control strategy that demonstrates reduced pump electrical consumption while maintaining acceptable temperature and flow conditions. Successful experimental results could provide useful data for future commercial water heating applications and potential improvements in energy efficiency. 
 
 However, Lochinvar could also be at a disadvantage if the controller has reliability problems, inaccurate measurements, or equipment failure in the future. A controller failure could result in additional warranty expenses, engineering modification, customer dissatisfaction, or any potential liability associated with inadequate performance.
 
@@ -1655,7 +1643,7 @@ To address the potential disadvantages identified in the Benefits and Disadvanta
 
 1. Building Occupants and Hot-water Users
 
-To reduce the possibility of unstable temperatures or inadequate circulation, the controller will continuously monitor water flow and inlet and outlet temperatures through the Sensor and Data Acquisition Subsystem. The control algorithm will enforce the minimum circulation flow established for the approved bench equipment and will be designed to maintain outlet temperature within ±4°F of the selected setpoint under defined steady-state testing conditions.
+To reduce the possibility of unstable temperatures or inadequate circulation, the controller will continuously monitor water flow and inlet and outlet temperatures through the Sensor and Data Acquisition Subsystem. The control algorithm will enforce the minimum circulation flow established for the approved bench equipment and will be designed to maintain outlet temperature within ±4°F of the selected setpoint under defined steady state testing conditions.
 
 If measured flow or temperature exceeds the established operating limits, the controller will initiate a predefined fault response approved during the bench safety review. The system will not override the heat source's existing safety protections. Before recommending future implementation on the Regent, the team will verify the manufacturer's minimum-flow requirements, acceptable temperature limits, and appropriate independent protective controls.
 
@@ -1663,21 +1651,21 @@ If measured flow or temperature exceeds the established operating limits, the co
 
 To reduce maintenance complexity, the team will develop a clear wiring diagram that the technicians can follow when troubleshooting. There will also be documentation of sensor connections and spec sheets for the different components. These will identify how each sensor, microcontroller, and pump work and communicate with each other.
 
-When a sensor fault is detected, the controller will initiate the predefined fault response established during bench testing rather than continuing normal pump-speed adjustments using unreliable measurements. The team will document the expected sensor operating ranges and the corresponding fault responses. Recorded measurements and fault information will be used to assist technicians in identifying whether abnormal operation originates from a sensor, microcontroller, or pump interface. These measures will help reduce troubleshooting time and improve the reliability of future maintenance procedures.
+When a sensor fault is detected, the controller will initiate the predefined fault response established during bench testing rather than continuing normal pump speed adjustments using unreliable measurements. The team will document the expected sensor operating ranges and the corresponding fault responses. Recorded measurements and fault information will be used to assist technicians in identifying whether abnormal operation originates from a sensor, microcontroller, or pump interface. These measures will help reduce troubleshooting time and improve the reliability of future maintenance procedures.
 
 3. Commercial Facility Owners and Building Operators (Economic Impact)
 
-To reduce the possibility of unnecessary installation expenses and operating costs, the team will conduct an economic evaluation comparing the additional hardware costs with the potential electrical savings achieved through variable-speed operation.
+To reduce the possibility of unnecessary installation expenses and operating costs, the team will conduct an economic evaluation comparing the additional hardware costs with the potential electrical savings achieved through variable speed operation.
 
-The team will evaluate whether the controller achieves the project's target of at least a 10% reduction in measured pump-and-drive real electrical input power under qualifying operating conditions. This reduction will only be considered successful if the system continues to meet the established temperature stability, minimum-flow, and safety requirements [8].
+The team will evaluate whether the controller achieves the project's target of at least a 10% reduction in measured pump and drive real electrical input power under qualifying operating conditions. This reduction will only be considered successful if the system continues to meet the established temperature stability, minimum flow, and safety requirements [8].
 
-Measured savings will be used to estimate potential electricity-cost reductions and assess whether the additional system cost is economically justified. If testing indicates that the energy savings are insufficient to offset implementation costs, the team will document these limitations and recommend design improvements before commercial adoption.
+Measured savings will be used to estimate potential electricity cost reductions and assess whether the additional system cost is economically justified. If testing indicates that the energy savings are insufficient to offset implementation costs, the team will document these limitations and recommend design improvements before commercial adoption.
 
 4. Lochinvar Engineering Team and Company
 
 To reduce the risk of equipment failure, unreliable performance, and unnecessary development costs, the team will validate the proposed control strategy through simulation and physical bench testing before recommending commercial implementation.
 
-The controller will be tested under low, medium, and high-demand conditions. The preliminary testing plan will include five paired baseline and controlled runs at each operating condition, resulting in 15 paired comparisons. During these tests, the team will record outlet temperature, water flow rate, pump electrical power consumption, and controller response. This testing will allow the team to evaluate temperature stability, minimum-flow compliance, electrical power reduction, and repeatability before recommending the controller for future commercial applications.
+The controller will be tested under low, medium, and high demand conditions. The preliminary testing plan will include five paired baseline and controlled runs at each operating condition, resulting in 15 paired comparisons. During these tests, the team will record outlet temperature, water flow rate, pump electrical power consumption, and controller response. This testing will allow the team to evaluate temperature stability, minimum-flow compliance, electrical power reduction, and repeatability before recommending the controller for future commercial applications.
 
 The system will also preserve the heat source's existing safety functions and enforce approved operating limits. Any future integration with Lochinvar equipment will require separate compatibility testing and safety approval. These procedures will provide Lochinvar with documented evidence of the controller's performance and limitations before considering further development.
 
@@ -1685,9 +1673,9 @@ The system will also preserve the heat source's existing safety functions and en
 
 To reduce the environmental impact of additional electronic components, the team will prioritize reliable hardware and use available equipment from Lochinvar and Tennessee Tech where practical. Components will be selected based on their compatibility with the system's operating requirements to reduce unnecessary replacement or redesign.
 
-The team will compare measured pump electrical power consumption between constant-speed baseline operation and variable-speed controlled operation under equivalent low-, medium-, and high-demand conditions rather than assuming that reducing pump speed automatically results in energy savings [4].
+The team will compare measured pump electrical power consumption between constant-speed baseline operation and variable speed controlled operation under equivalent low-, medium-, and high-demand conditions rather than assuming that reducing pump speed automatically results in energy savings [4].
 
-For future commercial development, the team recommends evaluating component service life, repairability, and proper electronic-waste disposal. These measures will help determine whether the electrical savings provide a meaningful long-term environmental benefit.
+For future commercial development, the team recommends evaluating component service life, repairability, and proper electronic-waste disposal. These measures will help determine whether the electrical savings provide a meaningful long term environmental benefit.
 
  
 ## Resources
@@ -1695,39 +1683,39 @@ For future commercial development, the team recommends evaluating component serv
 
 ### Budget
 
-The proposed budget covers all six subsystems required to develop and evaluate the variable-speed pump controller. The selected design combines flow-rate measurements, the boiler's firing-rate signal, and outlet-temperature feedback to adjust pump speed according to operating conditions.
+The proposed budget covers all six subsystems required to develop and evaluate the variable speed pump controller. The selected design combines flow rate measurements, the boiler's firing rate signal, and outlet temperature feedback to adjust pump speed according to operating conditions.
 
-The budget includes sensing and data acquisition, control hardware and programming, pump-speed control equipment, hydraulic components, performance-monitoring instruments, and data-logging and simulation resources. The estimates are preliminary allowances and assume that the existing Lochinvar water heater, circulation pump, and Keyence flow sensor can be reused where compatible. Existing laboratory equipment and available software are also assumed to be available at no additional cost.
+The budget includes sensing and data acquisition, control hardware and programming, pump speed control equipment, hydraulic components, performance monitoring instruments, and data logging and simulation resources. The estimates are preliminary allowances and assume that the existing Lochinvar water heater, circulation pump, and Keyence flow sensor can be reused where compatible. Existing laboratory equipment and available software are also assumed to be available at no additional cost.
 
 **1. Sensor and Data Acquisition Subsystem**
 <p align="center">
 <img width="930" height="290" alt="image" src="https://github.com/user-attachments/assets/5b57a5b0-8418-431c-8efe-411c7938d2df" />
 </p>
-Justification: The flow sensor measures hot-water demand, while the temperature sensors measure system thermal performance. Signal-conditioning components and wiring provide reliable connections to the controller, and the data acquisition interface allows sensor measurements to be read and recorded. The budget assumes the existing flow sensor is compatible with the selected control hardware.
+Justification: The flow sensor measures hot-water demand, while the temperature sensors measure system thermal performance. Signal conditioning components and wiring provide reliable connections to the controller, and the data acquisition interface allows sensor measurements to be read and recorded. The budget assumes the existing flow sensor is compatible with the selected control hardware.
 
 **2. Microcontroller and Control Logic Subsystem**
 <p align="center">
 <img width="922" height="350" alt="image" src="https://github.com/user-attachments/assets/ceb87af1-52ad-4600-83e7-ed0697139abc" />
 </p>
-Justification: The microcontroller executes the control logic and processes the flowrate, firing-rate, and temperature measurements. The analog input interface is needed to read the boiler's 0–10 V firing-rate signal, while the analog output interface generates the appropriate command for the pump-speed control equipment. The connection hardware helps protect and organize the electronics. Final component selection must account for signal ranges, electrical isolation, and compatibility with the existing boiler and drive.
+Justification: The microcontroller executes the control logic and processes the flowrate, firing rate, and temperature measurements. The analog input interface is needed to read the boiler's 0–10 V firing rate signal, while the analog output interface generates the appropriate command for the pump speed control equipment. The connection hardware helps protect and organize the electronics. Final component selection must account for signal ranges, electrical isolation, and compatibility with the existing boiler and drive.
 
 **3. Pump and Motor Control Subsystem**
 <p align="center">
 <img width="916" height="266" alt="image" src="https://github.com/user-attachments/assets/1311b881-9dbe-4518-85d0-45c9e92654bb" />
 </p>
-Justification: The speed controller adjusts pump operation based on the command from the microcontroller. The VFD is a preliminary option for an appropriately compatible AC motor; the existing pump and motor specifications must be checked before selecting the drive. Wiring and electrical protection components support safe integration. If the existing pump uses a different motor type or has an integrated electronic controller, a different compatible speed-control solution may be required.
+Justification: The speed controller adjusts pump operation based on the command from the microcontroller. The VFD is a preliminary option for an appropriately compatible AC motor. The existing pump and motor specifications must be checked before selecting the drive. Wiring and electrical protection components support safe integration. If the existing pump uses a different motor type or has an integrated electronic controller, a different compatible speed control solution may be required.
 
 **4. Water Heating and Hydraulic Subsystem**
 <p align="center">
 <img width="928" height="414" alt="image" src="https://github.com/user-attachments/assets/980f4cd6-dc09-4630-a1bd-6dc61566811c" />
 </p>
-Justification: The water heater and circulation pump provide the existing test platform. Fittings and connectors support proper hydraulic connections, while valves allow the system to be configured for testing and insulation helps reduce heat loss. Seals and leak-prevention materials support safe, reliable operation. The estimate assumes that the existing equipment is functional and that major plumbing modifications are unnecessary.
+Justification: The water heater and circulation pump provide the existing test platform. Fittings and connectors support proper hydraulic connections, while valves allow the system to be configured for testing and insulation helps reduce heat loss. Seals and leak prevention materials support safe, reliable operation. The estimate assumes that the existing equipment is functional and that major plumbing modifications are unnecessary.
 
 **5. Monitoring and Performance Evaluation Subsystem**
 <p align="center">
 <img width="916" height="264" alt="image" src="https://github.com/user-attachments/assets/fbc19844-e9e7-49d8-9760-4bc164dbd20a" />
 </p>
-Justification: Electrical power measurements allow the team to compare pump energy consumption under fixed-speed and variable-speed operation. An independent temperature instrument provides a way to verify the installed sensors, while measurement accessories support data collection during testing. These measurements are necessary to determine whether the proposed controller reduces energy use without negatively affecting outlet-temperature performance.
+Justification: Electrical power measurements allow the team to compare pump energy consumption under fixed speed and variable speed operation. An independent temperature instrument provides a way to verify the installed sensors, while measurement accessories support data collection during testing. These measurements are necessary to determine whether the proposed controller reduces energy use without negatively affecting outlet-temperature performance.
 
 **6. Data Logging and Simulation Subsystem**
 <p align="center">
@@ -1747,7 +1735,7 @@ The revised design contains five subsystems. Each team member has a primary subs
 | Subsystem | Primary owner or lead | Responsibility |
 |---|---|---|
 | 1. Sensor and Data Acquisition | Skyler Raines | Select and integrate flow and temperature sensors, condition measurements, verify sensor interfaces, and provide reliable inputs to the controller. |
-| 2. Microcontroller and Control Logic | Group effort; **proposed lead: Jocelyn Smith** | Develop and document the controller, fault responses, command limits, and control algorithm; integrate contributions from all four members. |
+| 2. Microcontroller and Control Logic | Group effort; **lead: Jocelyn Smith** | Develop and document the controller, fault responses, command limits, and control algorithm. Integrate contributions from all four members. |
 | 3. Pump, Motor Control, and Hydraulic System | Danielle Wolford | Develop the pump interface, circulation-loop and hydraulic model, and minimum-flow protection for the bench setup. |
 | 4. Monitoring, Performance Evaluation, and Bench Testing | Kendall Arnold | Plan and carry out the approved physical bench tests, coordinate repeated trials, and evaluate whether performance targets are met. |
 | 5. Data Logging and Simulation | Jocelyn Smith | Develop the simulation, establish preliminary test conditions, record and store experimental data, compare model predictions with bench measurements, and report model error. |
@@ -1759,13 +1747,13 @@ The revised design contains five subsystems. Each team member has a primary subs
 * Subsystem 2 — Group Effort, with Jocelyn Smith proposed as lead. Jocelyn will coordinate the control algorithm documentation and integrate the control software with the simulation and data recording requirements. Skyler will contribute sensor interface information, Danielle will contribute pump command and hydraulic limit requirements, and Kendall will contribute test and verification requirements. The final lead designation and individual contributions will be confirmed by the team.
 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with C/C++, Assembly, Python, and control system analysis. These skills will be very useful when developing the programming needed to process sensor data and adjust pump speed based on the system's operating conditions. Her background in circuit analysis will also help with understanding the connections between the microcontroller, sensors, and pump control hardware.
 
-* Subsystem 3 — Danielle Wolford. Danielle will lead the combined pump, motor control, and hydraulic design, including the compatible speed command interface, water-loop requirements, hydraulic model, and minimum-flow safeguards.
+* Subsystem 3 — Danielle Wolford. Danielle will lead the combined pump, motor control, and hydraulic design, including the compatible speed command interface, water loop requirements, hydraulic model, and minimum flow safeguards.
 	* Responsible team member and rationale: Danielle was assigned this subsystem because her experience assembling electrical panels and troubleshooting electrical hardware provides a foundation for integrating the pump's motor control components. Her background in Electronics and Computer Engineering Technology will help her work with electrical connections between the pump, motor control hardware, and microcontroller. Her troubleshooting skills will also be valuable for diagnosing wiring problems, addressing hardware malfunctions, and helping ensure the pump control system operates reliably during testing.
   
-* Subsystem 4 — Kendall Arnold. Kendall will lead the physical bench-test plan and performance evaluation, including repeatable operating conditions, matched baseline and controlled trials, temperature and power measurements, and safety verification evidence.
+* Subsystem 4 — Kendall Arnold. Kendall will lead the physical bench test plan and performance evaluation, including repeatable operating conditions, matched baseline and controlled trials, temperature and power measurements, and safety verification evidence.
 	* Responsible team member and rationale: Kendall was assigned this subsystem because of her background in applied physics and experience conducting experimental projects involving data collection, analysis, and comparison of results. She is also experiences with C/C++, assembly, and currently in Control Systems. These skills will be valuable when evaluating system performance under different operating conditions and determining whether the proposed control strategy reduces electrical energy consumption without compromising the performance of the heater.
 
-* Subsystem 5 — Jocelyn Smith. Jocelyn will lead simulation development, data recording and storage design, model-to-bench comparison, and reporting of model error. This subsystem will provide datasets to Kendall for performance evaluation rather than taking over operation of the bench experiment.
+* Subsystem 5 — Jocelyn Smith. Jocelyn will lead simulation development, data recording and storage design, model to bench comparison, and reporting of model error. This subsystem will provide datasets to Kendall for performance evaluation rather than taking over operation of the bench experiment.
 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with MATLAB, Python, and control system analysis. These skills will help her organize experimental data, develop simulations, and analyze how changes in pump speed affect the water heating system. Because this subsystem works closely with the Microcontroller and Control Logic subsystem, assigning both to the same team member will also help maintain consistency between the controller design and performance analysis.
 
 
@@ -1800,11 +1788,9 @@ The revised design contains five subsystems. Each team member has a primary subs
 
 [11] V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. [Online]. Available: [https://escholarship.org/uc/item/4691d71q]. [Accessed: Oct. 9, 2026].
 
-[12] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: https://ieee-cas.org/about/ieee-code-ethics. [Accessed: Nov. 14, 2026].
+[12] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: [https://ieee-cas.org/about/ieee-code-ethics]. [Accessed: Nov. 14, 2026].
 
-[13] Lochinvar, “KNIGHT Fire Tube Boiler Product Summary: KHB Series,” Lochinvar Corporation. [Online]. Available: [https://assets.lochinvar.com/damroot/Original/10012/024819KHB-PS-01.pdf]. [Accessed: Nov. 15, 2026].
-
-[14] Lochinvar, “KNIGHT Fire Tube Boiler Installation & Operation Manual, Models 55–285,” Lochinvar Corporation. [Online]. Available: [https://www.lochinvar.com/lit/712268KHB-I-O_Rev%20D_100305277_2000558126%20%2834301%29.pdf]. [Accessed: Nov. 15, 2026].
+## ADD 2 REFERENCES
 
 [15] Grundfos, *UPMS Data Booklet*, "UPMS 15-78 130: Performance Curves and Technical Data," p. 11. [Online]. Available: [https://api.grundfos.com/literature/Grundfosliterature-6910086.pdf]. [Accessed: Nov. 18, 2026].
 [16] U.S. Department of Energy, *DOE Fundamentals Handbook: Thermodynamics, Heat Transfer, and Fluid Flow*, vol. 1, DOE-HDBK-1012/1-92, 1992. [Online]. Available: [https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1012-92_VOL1.pdf]. [Accessed: Nov. 18, 2026].
@@ -1814,11 +1800,11 @@ The revised design contains five subsystems. Each team member has a primary subs
 ## Statement of Contributions
 
 
-Jocelyn Smith: High Level Solution, Atomic Subsystem (Microcontroller and Control Logic, Data Logic and Simulation Subsystem), Divison of Labor
+Jocelyn Smith: High Level Solution, Atomic Subsystems 2 and 5 (Microcontroller and Control Logic, Data Logic and Simulation Subsystem), Divison of Labor
 
-Skyler Raines: TimeLine, Ethical, Professional, and Standards Considerations, Atomic Subsystems(Sensor and Data Acquisition Subsystem and Pump and Motor Control Subsystem)
+Skyler Raines: Timeline, Ethical, Professional, and Standards Considerations, Atomic Subsystem 1 (Sensor and Data Acquisition Subsystem)
 
-Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystems(Monitoring and Performance Evaluation Subsystem), Division of Labor
+Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystem 4 (Monitoring, Performance Evaluation, and Bench Testing Subsystem), Division of Labor
 
-Danielle Wolford: Comparative analysis of potential solutions, Budget, Atomic Subsystems (Water Heating and Hydraulic Subsystem)
+Danielle Wolford: Comparative analysis of potential solutions, Budget, Atomic Subsystem 3 (Pump, Motor Control, and Hydraulic System)
 
