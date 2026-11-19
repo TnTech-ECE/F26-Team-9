@@ -1760,7 +1760,8 @@ The revised design contains five subsystems. Each team member has a primary subs
 ### Timeline
 
 <p align="center">
-<img width="1262" height="665" alt="image" src="https://github.com/user-attachments/assets/40428e21-fbbf-461b-a409-2e50152ccd55" />
+<img width="1481" height="683" alt="image" src="https://github.com/user-attachments/assets/9c039826-889b-4d0b-a2d1-7609de5e0b7d" />
+
 </p>
 
 
