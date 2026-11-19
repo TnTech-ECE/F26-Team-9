@@ -1804,7 +1804,7 @@ Jocelyn Smith: High Level Solution, Atomic Subsystems 2 and 5 (Microcontroller a
 
 Skyler Raines: Timeline, Ethical, Professional, and Standards Considerations, Atomic Subsystem 1 (Sensor and Data Acquisition Subsystem)
 
-Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystem 4 (Monitoring, Performance Evaluation, and Bench Testing Subsystem), Division of Labor
+Kendall Arnold: Introduction, Restating the Fully Formulated Problem, Atomic Subsystem 4 (Monitoring, Performance Evaluation, and Bench Testing Subsystem), Division of Labor, Budget
 
-Danielle Wolford: Comparative analysis of potential solutions, Budget, Atomic Subsystem 3 (Pump, Motor Control, and Hydraulic System)
+Danielle Wolford: Comparative analysis of potential solutions, Atomic Subsystem 3 (Pump, Motor Control, and Hydraulic System)
 
