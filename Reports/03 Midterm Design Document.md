@@ -1134,65 +1134,87 @@ The collected operating measurements will support performance evaluation and exp
 
 The Monitoring, Performance Evaluation, and Bench Testing Subsystem will be responsible for assembling, integrating, and evaluating the physical water circulation bench used to test the proposed variable-speed pump control strategy. The bench will use the Grundfos UPMS 15-78 130 AR circulation pump provided by Lochinvar, an STM32 Nucleo-L476RG microcontroller, a flow sensor, temperature sensors, and electrical measurement equipment. A heating element is also being evaluated for integration into the water circulation loop.
 
-This subsystem will monitor system operating measurements, including water flow rate, inlet and outlet temperatures, and pump electrical consumption, to determine how changes in pump speed affect system performance. The pump control algorithm and associated microcontroller code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) will be implemented on the STM32 and used during physical testing. This subsystem will compare constant-speed and variable-speed operation to evaluate whether reducing pump speed can decrease electrical energy consumption while maintaining acceptable water flow and temperature performance. The collected measurements and performance results will be provided to the Data Logging and Simulation Subsystem (Subsystem 5) for recording and further analysis.
+This subsystem will monitor system operating measurements, including water flow rate, inlet and outlet temperatures, and pump electrical consumption, to determine how changes in pump speed affect system performance. The pump control algorithm and associated microcontroller code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) will be loaded onto the STM32 and used during physical testing. This subsystem will compare constant-speed and variable-speed operation to evaluate whether reducing pump speed can decrease electrical energy consumption while maintaining acceptable water flow and temperature performance. The collected measurements and performance results will be provided to the Data Logging and Simulation Subsystem (Subsystem 5) for recording, comparison with simulation results, and further analysis.
 
 **Functional Description:**
 
-The primary function of this subsystem is to assemble and operate the physical bench test while evaluating the system's response to changes in pump speed. This subsystem integrates the sensors, pump, hydraulic components, and control system developed by the other subsystems to evaluate the effectiveness of the proposed variable speed pump control strategy through physical testing.
+The primary function of this subsystem is to assemble and operate the physical bench test while evaluating the system's response to changes in pump speed. This subsystem integrates the sensors, pump, hydraulic components, and control system developed by the other subsystems to evaluate the effectiveness of the proposed variable-speed pump control strategy through physical testing.
 
-1. **Bench Test Integration:** Assemble the physical water circulation loop and integrate the pump, heating element, sensors, and measurement equipment. Coordinate with Pump, Motor Control, and Hydraulic Subsystem (Subsystem 3) to integrate the pump interface and hydraulic components into the bench setup.
+1. **Bench Test Integration:** Assemble the physical water circulation loop and integrate the pump, heating element (if used), sensors, and measurement equipment. Coordinate with the Pump, Motor Control, and Hydraulic System Subsystem (Subsystem 3) to integrate the pump interface and hydraulic components into the bench setup.
 
-2. **Flow and Temperature Monitoring:** Work with Sensor and Data Acquisition Subsystem (Subsystem 1) to integrate and monitor flow rate, inlet and outlet temperatures, and other required measurements during physical testing.
+2. **Flow and Temperature Monitoring:** Work with the Sensor and Data Acquisition Subsystem (Subsystem 1) to obtain and monitor flow rate, inlet and outlet temperatures, and other required measurements during physical testing.
 
 3. **Energy Performance Evaluation:** Measure and compare pump electrical power and energy consumption at different pump speeds to evaluate the energy performance of the proposed control strategy.
 
-4. **Operating Requirements:** Determine whether the system maintains minimum flow and acceptable temperature requirements during variable-speed operation, using the operating limits and requirements established by the control and hydraulic subsystems.
+4. **Operating Requirements:** Determine whether the system maintains minimum flow and acceptable temperature requirements during variable-speed operation, using the operating limits and requirements established by the Microcontroller and Control Logic Subsystem (Subsystem 2) and the Pump, Motor Control, and Hydraulic System Subsystem (Subsystem 3).
 
-5. **Control Strategy Testing:** Implement and run the pump control algorithm and associated microcontroller code developed by Microcontroller and Control Logic Subsystem (Subsystem 2) on the STM32 to test the pump's response to different operating conditions.
+5. **Control Strategy Testing:** Load and run the pump control algorithm and associated microcontroller code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) on the STM32 to test the pump's response to different operating conditions.
 
-6. **Performance Feedback:** Provide collected measurements and physical test results to Data Logging and Simulation Subsystem (Subsystem 5) for data recording, comparison with simulation results, and further analysis.
+6. **Performance Feedback:** Provide collected measurements and physical test results to the Data Logging and Simulation Subsystem (Subsystem 5) for data recording, comparison with simulation results, and further analysis.
 
 7. **System Evaluation:** Identify performance issues during physical testing and communicate findings to the appropriate subsystems for potential adjustments to the pump control algorithm, sensor integration, hydraulic setup, or simulation model.
 
 **Subsystem Interfaces:**
 
-### Subsystem Interfaces
-
-1. **Water Heating and Hydraulic Subsystem Input**
+1. **Water Heating and Hydraulic Interface**
    - **Connected to:** Subsystem 3: Pump, Motor Control, and Hydraulic System.
-   - **Description:** Interfaces with the physical water circulation loop, including the Grundfos UPMS 15-78 130 AR pump, reservoir, piping, and heating components. Coordinates with Subsystem 3 to integrate the pump and hydraulic components into the physical bench setup.
+   - **Signal/Connection Type:** Hydraulic connection and pump electrical/control interface.
+   - **Direction:** Hydraulic and pump operating interactions between the subsystems.
+   - **Description:** Interfaces with the physical water circulation loop, including the Grundfos UPMS 15-78 130 AR pump, reservoir, piping, and heating components. Subsystem 3 is responsible for the pump interface and hydraulic system integration. Subsystem 4 integrates these components into the physical bench setup and evaluates their operation.
 
 2. **Sensor and Measurement Inputs**
    - **Connected to:** Subsystem 1: Sensor and Data Acquisition.
-   - **Description:** Receives flow rate, inlet and outlet temperature, and pump electrical measurements during physical testing. Subsystem 1 is responsible for selecting and integrating the sensors, conditioning measurement signals, and verifying sensor interfaces to ensure compatibility with the STM32.
+   - **Signal/Connection Type:** Analog or digital sensor signals, depending on the selected sensor interfaces.
+   - **Direction:** Input to Subsystem 4.
+   - **Data Received:** Flow rate, inlet temperature, and outlet temperature measurements.
+   - **Description:** Receives flow and temperature measurements from the sensors integrated by Subsystem 1. Subsystem 1 is responsible for selecting and integrating the sensors, conditioning measurement signals, and verifying sensor interfaces to ensure compatibility with the STM32. Subsystem 4 uses these measurements to monitor system performance during testing.
 
 3. **Microcontroller and Pump Control Interface**
    - **Connected to:** Subsystem 2: Microcontroller and Control Logic, and Subsystem 3: Pump, Motor Control, and Hydraulic System.
-   - **Description:** Receives the pump control algorithm and associated microcontroller code developed by Subsystem 2. The code is implemented on the STM32 Nucleo-L476RG to operate the pump and adjust its speed during physical testing. Subsystem 3 provides the pump interface and hydraulic integration. The pump receives operating power from a separate 115 VAC, 60 Hz supply, while the STM32 provides the appropriate external speed-control signal through the pump interface.
+   - **Signal/Connection Type:** Digital microcontroller code and an electrical pump speed-control signal.
+   - **Direction:** Control code and algorithm received from Subsystem 2; speed-control command output from the STM32 to the pump through the interface provided by Subsystem 3.
+   - **Data Received:** Pump control algorithm, operating limits, and control logic.
+   - **Data Sent:** Pump speed commands generated by the STM32 during testing.
+   - **Description:** Receives the pump control algorithm and associated microcontroller code developed by Subsystem 2. The code is loaded onto the STM32 Nucleo-L476RG and used to operate the pump and adjust its speed during physical testing. Subsystem 3 provides the pump interface and hydraulic integration. The pump receives operating power from its designated electrical supply, independently of the STM32 control circuitry.
 
 4. **Performance Results Output**
    - **Connected to:** Subsystem 5: Data Logging and Simulation.
-   - **Description:** Provides collected physical measurements and test results to Subsystem 5 for data recording, comparison with simulation results, and further analysis. Communication will use a serial interface, such as USB virtual COM or UART, depending on the final implementation.
+   - **Signal/Connection Type:** Serial digital communication.
+   - **Direction:** Output from Subsystem 4 to Subsystem 5.
+   - **Data Sent:** Flow rate, inlet and outlet temperatures, pump speed, electrical power consumption, and physical test results.
+   - **Description:** Provides collected physical measurements and test results to Subsystem 5 for data recording, comparison with simulation results, and further analysis. Communication may use USB virtual COM or UART, depending on the final implementation.
 
 **Electrical and Communication Interfaces:**
 
-- **Pump Power:** The Grundfos pump operates from an independent 115 VAC, 60 Hz supply. The STM32 does not provide the pump's operating power.
-- **Pump Speed Control:** The STM32 sends an external PWM or 0–10 V control signal to adjust pump speed, depending on the confirmed pump configuration. Signal conditioning may be required to interface the STM32 with the pump.
-- **Microcontroller Logic:** The STM32 Nucleo-L476RG operates with 3.3 V logic levels. External sensor and control signals must be compatible with the microcontroller's electrical requirements.
-- **Flow Measurement:** The KEYENCE FD-Q50C provides water flow measurements through its specified electrical output interface. The output type and voltage range will determine the required signal conditioning.
+- **Pump Power:** The Grundfos pump will receive operating power through its designated electrical supply. The pump's voltage, frequency, and power requirements must be verified using its specifications. The STM32 does not provide the pump's operating power.
+
+- **Pump Speed Control:** The STM32 sends an external speed-control signal to adjust pump operation through the pump interface provided by Subsystem 3. The specific signal type and voltage requirements must be verified using the confirmed pump configuration. Signal conditioning or electrical isolation may be required to interface the STM32 with the pump.
+
+- **Microcontroller Logic:** The STM32 Nucleo-L476RG operates with 3.3 V logic levels. External sensor and control signals must be compatible with the microcontroller's electrical requirements. Appropriate signal conditioning and protection must be provided where necessary.
+
+- **Flow Measurement:** The KEYENCE FD-Q50C provides water flow measurements through its specified electrical output interface. The output type and voltage range will determine the required signal conditioning before measurements are provided to the STM32.
+
 - **Temperature Measurement:** Inlet and outlet temperature sensors provide measurements through their specified output interfaces. Signal conditioning or conversion may be required before connecting them to the STM32.
-- **Electrical Measurement:** Pump voltage and current will be measured using appropriate electrical measurement equipment with suitable isolation and signal conditioning.
-- **Data Communication:** The STM32 transfers collected measurements and operating information to the data logging system through USB serial or UART, depending on the final implementation.
+
+- **Electrical Measurement:** Pump voltage and current will be measured using appropriate electrical measurement equipment with suitable isolation and signal conditioning. These measurements will be used to calculate pump electrical power and energy consumption.
+
+- **Data Communication:** The STM32 transfers collected measurements and operating information to the data logging system through USB serial communication or UART, depending on the final implementation. The transmitted data will include flow rate, temperature, pump speed, and electrical power measurements.
 
 **Subsystem Operation:**
 
-1. **Prepare and Integrate Bench Test:** Assemble the water circulation loop and install the pump, heating element, sensors, and measurement equipment.
-2. **Initialize System:** Verify sensor connections, microcontroller communication, pump operation, and measurement equipment before testing.
-3. **Run Baseline Test:** Operate the pump at a selected constant speed and collect flow rate, temperature, and electrical consumption measurements.
-4. **Run Variable-Speed Test:** Implement and run the control code developed by the Data Logging and Simulation Subsystem on the STM32 to adjust pump speed under different operating conditions.
-5. **Monitor System Performance:** The STM32 receives sensor measurements, executes the control code, and sends the appropriate speed command to the pump. The system continuously measures water flow rate, inlet and outlet temperatures, and pump electrical consumption to evaluate the pump's response.
-6. **Compare Test Conditions:** Compare variable-speed performance against baseline operation to identify changes in energy consumption, flow rate, and temperature response.
-7. **Transfer Results:** Provide collected measurements and physical test results to the Data Logging and Simulation Subsystem for data recording and comparison with simulation results.
+1. **Prepare and Integrate Bench Test:** Assemble the water circulation loop and install the pump, heating element (if used), sensors, and measurement equipment. Coordinate with Subsystems 1 and 3 to integrate the sensor and hydraulic components.
+
+2. **Initialize System:** Verify sensor connections, microcontroller communication, pump operation, and measurement equipment before testing. Confirm that the STM32 can receive the required sensor measurements and communicate with the pump control interface.
+
+3. **Run Baseline Test:** Operate the pump at a selected constant speed and collect flow rate, temperature, and electrical consumption measurements to establish baseline performance.
+
+4. **Run Variable-Speed Test:** Load and run the control code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) on the STM32 to adjust pump speed under different operating conditions.
+
+5. **Monitor System Performance:** The STM32 receives flow and temperature measurements through the sensor interfaces, executes the control algorithm, and sends the appropriate speed command to the pump through the pump control interface. The system measures water flow rate, inlet and outlet temperatures, and pump electrical consumption to evaluate the pump's response.
+
+6. **Compare Test Conditions:** Compare variable-speed performance against baseline operation to identify changes in energy consumption, flow rate, and temperature response. Evaluate whether the system maintains the required operating conditions.
+
+7. **Transfer Results:** Provide collected measurements and physical test results to the Data Logging and Simulation Subsystem (Subsystem 5) for data recording, comparison with simulation results, and further analysis.
 
 **Expected User Interaction**
 
@@ -1200,21 +1222,26 @@ The team will use this subsystem during laboratory testing to assemble, operate,
 
 **Functional Flow Chart:**
 
-<img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/c35ff45f-a61f-48c8-8805-d174615b1e0a" />
+<img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/38970912-709f-49a7-9d55-121d61e63c84" />
 
-<img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/5f9fe24c-76ea-41b2-a033-0a6fbf57ad0c" />
-
-**Specifications:**
+<img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/c45e18b9-dc46-48d8-919b-53d19186681f" />
 
 **Specifications:**
 
 1. This subsystem shall assemble and integrate the physical water circulation bench, including the pump, heating element (if used), sensors, and measurement equipment, coordinating with the Pump, Motor Control, and Hydraulic System Subsystem (Subsystem 3).
+
 2. This subsystem shall monitor water flow rate and inlet and outlet temperature measurements using the sensors integrated by the Sensor and Data Acquisition Subsystem (Subsystem 1).
+
 3. This subsystem shall measure pump electrical consumption using suitable voltage and current measurement equipment.
-4. This subsystem shall load and run the control code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) on the STM32 to evaluate variable speed pump operation.
+
+4. This subsystem shall load and run the control code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) on the STM32 to evaluate variable-speed pump operation.
+
 5. This subsystem shall provide collected sensor measurements and physical test results to the Data Logging and Simulation Subsystem (Subsystem 5) for recording, comparison with simulation results, and further analysis.
+
 6. This subsystem shall evaluate whether the system maintains minimum flow and acceptable temperature requirements during testing, considering the operating limits established by Subsystems 2 and 3.
+
 7. This subsystem shall identify performance issues found during testing that may require adjustments to the physical setup, sensor measurements, or proposed control strategy and communicate relevant findings to the appropriate subsystems.
+
 8. The pump shall receive operating power independently from the STM32, with appropriate electrical protection and isolation between high-voltage and low-voltage circuits.
 
 
