@@ -1072,17 +1072,17 @@ If the controller detects insufficient circulation, invalid sensor information, 
 
 **Overview:**
 
-The Pump, Motor Control, and Hydraulic System will control water circulation and provide the physical environment required to test the Variable-Speed Circulation Pump Controller. The subsystem will use the proposed Grundfos UPMS 15-78 circulation pump, a water heater or approved heat source, a water reservoir, piping, fittings, and other hydraulic components needed for laboratory testing. Its primary purpose is to receive pump-speed commands from the STM32 microcontroller, adjust water circulation accordingly, and provide the operating conditions necessary to evaluate system performance.
+The Pump, Motor Control, and Hydraulic System will control water circulation and provide the physical environment required to test the Variable Speed Circulation Pump Controller. The subsystem will use the proposed Grundfos UPMS 15-78 circulation pump, a water heater or approved heat source, a water reservoir, piping, fittings, and other hydraulic components needed for laboratory testing. Its primary purpose is to receive pump-speed commands from the STM32 microcontroller, adjust water circulation accordingly, and provide the operating conditions necessary to evaluate system performance.
 
 The circulation pump will receive a speed-control signal from the Microcontroller and Control Logic Subsystem through the pump's compatible control interface. The pump will adjust its operating speed based on the commanded signal while remaining within the manufacturer's allowable operating limits. The final control signal type, electrical connections, and operating requirements will be verified using the selected pump's manufacturer documentation during Detailed Design.
 
 During operation, the circulation pump will move water through the heating loop while the selected water heater or heat source provides thermal energy to the circulating water. Changes in pump speed will affect the water flow rate and heat transfer within the system. The hydraulic system will provide suitable installation locations for the KEYENCE FD-Q50C flow sensor and two PT100 RTD temperature sensors used by the Sensor and Data Acquisition Subsystem. These sensors will allow the team to monitor water flow rate and inlet and outlet temperatures during testing.
 
-The subsystem will support testing under different heating-demand conditions to evaluate how variable-speed circulation affects water temperature stability, flow rate, and overall system performance. The design will emphasize maintaining sufficient circulation, preventing operation outside the pump's allowable limits, and retaining the existing safety protections of the pump and heating equipment. The initial implementation will focus on the approved laboratory bench-testing system, while integration with actual Lochinvar boiler equipment may be evaluated during future testing if the required interfaces and approvals are available.
+The subsystem will support testing under different heating demand conditions to evaluate how variable speed circulation affects water temperature stability, flow rate, and overall system performance. The design will emphasize maintaining sufficient circulation, preventing operation outside the pump's allowable limits, and retaining the existing safety protections of the pump and heating equipment. The initial implementation will focus on the approved laboratory bench testing system.
 
 **Inputs:**
 
-* Pump-speed commands received from the Microcontroller and Control Logic Subsystem through the verified pump-control interface.
+* Pump-speed commands received from the Microcontroller and Control Logic Subsystem through the verified pump control interface.
 * Electrical power supplied to the Grundfos UPMS 15-78 circulation pump and heating equipment.
 * Water supplied through the reservoir and hydraulic circulation loop.
 * Heating conditions established by the selected water heater or approved heat source.
@@ -1100,7 +1100,7 @@ The subsystem will support testing under different heating-demand conditions to 
 
 **Interfaces and Procedure:**
 
-The subsystem will receive pump-speed commands from the STM32 microcontroller through the verified control interface of the Grundfos UPMS 15-78 circulation pump. The pump will adjust its operating speed according to the received command while maintaining operation within the manufacturer's electrical and hydraulic limits. The final control signal type and electrical connections will be confirmed during Detailed Design.
+The subsystem will receive pump speed commands from the STM32 microcontroller through the verified control interface of the Grundfos UPMS 15-78 circulation pump. The pump will adjust its operating speed according to the received command while maintaining operation within the manufacturer's electrical and hydraulic limits. The final control signal type and electrical connections will be confirmed during Detailed Design.
 
 The circulation pump, water heater or approved heat source, reservoir, piping, and fittings will establish a closed-loop water circulation system for laboratory testing. The KEYENCE FD-Q50C flow sensor and two PT100 RTD temperature sensors will be installed at appropriate locations within the hydraulic loop. These sensors will provide operating measurements to the Sensor and Data Acquisition Subsystem, which will transmit the processed information to the STM32 microcontroller.
 
@@ -1115,11 +1115,11 @@ The collected operating measurements will support performance evaluation and exp
 
 **Specifications:**
 
-1) This subsystem shall receive pump-speed commands from the Microcontroller and Control Logic Subsystem through the verified pump-control interface.
+1) This subsystem shall receive pump speed commands from the Microcontroller and Control Logic Subsystem through the verified pump control interface.
 2) This subsystem shall adjust the circulation pump speed according to the received control commands.
 3) This subsystem shall maintain pump operation within the manufacturer's specified electrical and operating limits.
 4) This subsystem shall circulate water through the heating system while maintaining the required minimum flow rate during heated operation.
-5) This subsystem shall provide the hydraulic connections and installation locations required for the flow-rate and temperature sensors.
+5) This subsystem shall provide the hydraulic connections and installation locations required for the flow rate and temperature sensors.
 6) This subsystem shall support water heating and circulation under the established laboratory testing conditions.
 7) This subsystem shall maintain piping, fittings, and seals capable of withstanding the system's operating temperature and pressure without leakage.
 8) This subsystem shall retain the existing safety protections of the circulation pump and heating equipment.
