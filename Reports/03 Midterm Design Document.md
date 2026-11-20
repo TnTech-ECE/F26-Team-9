@@ -339,43 +339,6 @@ For scientifical aspects, the variable circulation pump needs to ensure that the
 
 In conclusion, as engineers, upholding public safety remains our primary directive and core professional responsibilities throughout this project. The development of this variable circulation controller will need to maintain absolute precision in the thermal stability under high fluctuating loads in a commercial business. Achieving these standards will require each member of the team to execute their contributions with technical diligence and professional integrity.  Members of the team must be mindful that this design may be used in future implementations that Lochinvar develops. We must remain aware of our ethical obligations to the public and deliver a safe, high-performing product that will have a positive public impact and will eliminate corporate liabilities for Lochinvar.
 
-## References
-
-\(1\) “How Do Instant Water Heaters Work? A Look Inside the Technology and Installation Process,” Motivated Mechanical Solutions. \(Online\). Available: [https://motivatedmechanicalsolutions.com/how-do-instant-water-heaters-work-a-look-inside-the-technology-and-installation-process/](https://motivatedmechanicalsolutions.com/how-do-instant-water-heaters-work-a-look-inside-the-technology-and-installation-process/). \(Accessed: Sept. 29, 2026\).
-
-\(2\) “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500L,” Lochinvar. \(Online\). Available: [https://www.lochinvar.com/en_US/products/IWH0500L-SG101.html](https://www.lochinvar.com/en_US/products/IWH0500L-SG101.html). \(Accessed: Sept. 29, 2026\).
-
-\(3\) “How Do Heat Exchangers Work?,” Explain That Stuff. \(Online\). Available: [https://www.explainthatstuff.com/how-heat-exchangers-work.html](https://www.explainthatstuff.com/how-heat-exchangers-work.html). \(Accessed: Sept. 30, 2026\).
-
-\(4\) “Heat Exchangers Formulas Explained with Calculation Examples,” Heat Exchanger. \(Online\). Available: [https://www.heatexchanger.co.in/Heat-Exchanger-Blog-Details/heat-exchanger-formula/](https://www.heatexchanger.co.in/Heat-Exchanger-Blog-Details/heat-exchanger-formula/). \(Accessed: Oct. 1, 2026\).
-
-\(5\) V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. \(Online\). Available: [https://escholarship.org/uc/item/4691d71q] \(Accessed: Oct. 9, 2026\).
-
-\(6\) Occupational Safety and Health Administration, “1910.147—The Control of Hazardous Energy (Lockout/Tagout).” \(Online\). Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147]. \(Accessed: Oct. 9, 2026\).
-
-\(7\) Hydraulic Institute, “Application Guideline for Variable Speed Pumping,” 2017. \(Online\). Available: [https://store.accuristech.com/standards/application-guideline-for-variable-speed-pumping-a148e?product_id=1946769]. \(Accessed: Oct. 9, 2026\).
-
-\(8\) ASHRAE, “Design and Application of Controls,” 2023 ASHRAE Handbook—HVAC Applications, ch. 48, 2023. \(Online\). Available: [https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch48/A23_Ch48_ip.aspx]. \(Accessed: Oct. 9, 2026\).
-
-\(9\) OpenAI, “ChatGPT,” [Online]. Available: [https://chatgpt.com/]. [Accessed: Oct. 9, 2026].
-
-\(10\) U.S. Department of Energy and Hydraulic Institute, “Improving Pumping System Performance: A Sourcebook for Industry,” 2nd ed., May 2006. \(Online\). Available: [https://www.energy.gov/sites/default/files/2014/05/f16/pump.pdf]. \(Accessed: Oct. 22, 2026\)
-
-\(11\) Grundfos, “MAGNA3 Operation and Control Modes.” \(Online\). Available: [https://www.grundfos.com/solutions/learn/ecademy/all-courses/the-magna3-circulator-pump-course1/magna3-operation-and-control-modes]. \(Accessed: Oct. 22, 2026\).
-
-\(12\) Armstrong Fluid Technology, “Design Envelope 4300 Pumps.” \(Online\). Available: [https://armstrongfluidtechnology.com/products/design-envelope-4300-pumps]. \(Accessed: Oct. 22, 2026\).
-
-\(13\) Armstrong Fluid Technology, “Armstrong Design Envelope Pumping with Integrated Sensorless Control,” white paper. \(Online\). Available: [https://armstrongfluidtechnology.com/~/media/documents/sales-and-marketing/white-papers/90_601_pspc_whitepaper.pdf?la=es-us]. \(Accessed: Oct. 22, 2026\).
-
-\(14\) National Fire Protection Association, “NFPA 70: National Electrical Code,” 2026. \(Online\). Available: [https://www.nfpa.org/codes-and-standards/nfpa-70-development/70]. \(Accessed: Oct. 22, 2026\).
-
-\(15\) International Code Council, “2024 International Plumbing Code,” 2024. \(Online\). Available: [https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html]. \(Accessed: Oct. 22, 2026\).
-
-[16] OpenStax, “19.4 Electric Power,” University Physics Volume 2. [Online]. Available: https://openstax.org/books/physics/pages/19-4-electric-power. [Accessed: Oct. 23, 2026].
-
-[17] OpenStax, “20.4 Electric Power and Energy,” College Physics. [Online]. Available: https://openstax.org/books/college-physics/pages/20-4-electric-power-and-energy. [Accessed: Oct. 23, 2026].
-[18] Grundfos, Grundfos E-Pumps Product Guide, “Affinity Equations,” p. 3. [Online]. Available: https://d1pkofokfruj4.cloudfront.net/media/upload/resource/m/Grundfos-E-Pumps-Product-Guide.pdf. [Accessed: Nov. 16, 2026].
-
 ## Statement of Contributions
 
 * Kendall Arnold - Introduction, Background, Budget
@@ -450,7 +413,7 @@ The physical bench measurements will provide the primary evidence for evaluating
 ### Manufacturer Pump Specifications
 ---
 
-The Grundfos UPMS 15-78 130 AR remains a candidate pump for the physical bench. The published specifications for the UPMS 15-78 130 pump family provide preliminary electrical and mechanical information for the design [15].
+The Grundfos UPMS 15-78 130 AR remains a candidate pump for the physical bench. The published specifications for the UPMS 15-78 130 pump family provide preliminary electrical and mechanical information for the design [25].
 
 | Parameter | Manufacturer Published Value |
 |---|---|
@@ -633,7 +596,7 @@ An appropriately rated power measurement instrument will be used to measure real
 
 ### Pump Affinity Laws
 
-The pump affinity laws describe the theoretical relationships between rotational speed, flow rate, pump head, and mechanical power for a centrifugal pump operating under comparable conditions [6], [15].
+The pump affinity laws describe the theoretical relationships between rotational speed, flow rate, pump head, and mechanical power for a centrifugal pump operating under comparable conditions [10], [25].
 
 The relationship between flow rate and pump speed is:
 
@@ -1676,7 +1639,7 @@ The physical bench will undergo a documented inspection before heated operation.
 
 After initial verification, the team will conduct supervised operating tests and record water flow, inlet and outlet temperatures, pump electrical input power, and controller status. Any observed unsafe condition or unexpected equipment response will require the affected test to be stopped and reviewed before testing continues.
 
-Only qualified or institutionally authorized personnel will perform work requiring electrical or plumbing expertise. The team will follow applicable Tennessee Tech laboratory procedures and hazardous-energy requirements, including OSHA 29 CFR 1910.147 where applicable [9].
+Only qualified or institutionally authorized personnel will perform work requiring electrical or plumbing expertise. The team will follow applicable Tennessee Tech laboratory procedures and hazardous-energy requirements, including OSHA 29 CFR 1910.147 where applicable [6].
 
 The final bench design will prioritize the safety of students, faculty, and laboratory personnel while providing a controlled environment for evaluating the proposed pump control strategy. Future integration with Lochinvar equipment will require a separate safety review because the operating conditions and hazards of a commercial water heater may differ from those of the physical bench.
 
@@ -1795,18 +1758,18 @@ The development of the Variable Speed Circulation Pump Controller could provide 
 
 This project would benefit commercial building occupants through improved hot water temperature stability and more reliable circulation during demand changes. The controller could help maintain consistent system performance while reducing unnecessary pump speed operation. This could help reduce the energy the pump needs to circulate at certain times. 
 
-However, building occupants could be disadvantaged if the pump operates below the required circulation flow or fails to respond appropriately to changing demand. A controller malfunction or failure of the system's safety protections could result in inconsistent water temperatures, insufficient hot water availability, or unsafe operating conditions. These disadvantages could negatively affect commercial facilities with high or fluctuating hot water demands [4].
+However, building occupants could be disadvantaged if the pump operates below the required circulation flow or fails to respond appropriately to changing demand. A controller malfunction or failure of the system's safety protections could result in inconsistent water temperatures, insufficient hot water availability, or unsafe operating conditions. These disadvantages could negatively affect commercial facilities with high or fluctuating hot water demands [22].
 
 
 2. Maintenance and Service Technicians (Economic and Societal Impact)
 
-Maintenance technicians could benefit from the additional operating measurements that could be collected by the controller. The flow rate, temperature, and pump operating data could assist the technician in identifying any abnormal conditions as well as troubleshooting the system performance [2]. 
+Maintenance technicians could benefit from the additional operating measurements that could be collected by the controller. The flow rate, temperature, and pump operating data could assist the technician in identifying any abnormal conditions as well as troubleshooting the system performance [20]. 
 
 However, introducing additional sensors, wiring, electronic control, and software could also be a disadvantage to the technician. Adding these components could make the system more complex for maintenance and troubleshooting. Technicians may require additional training to understand the controller's operation and diagnose potential sensor or control system failures, increasing maintenance time and labor costs. Having incorrect maintenance procedures could affect the equipment's reliability and its safe operation.
 
 3. Commercial Facility Owners and Building Operators (Economic Impact)
 
-Commercial facility owners could benefit from reduced electrical operating expenses if the variable speed pump consumes less power during lower demand conditions. Reduced pump operations may also improve energy management and provide opportunities for long term operating cost savings [4].
+Commercial facility owners could benefit from reduced electrical operating expenses if the variable speed pump consumes less power during lower demand conditions. Reduced pump operations may also improve energy management and provide opportunities for long term operating cost savings [22].
 
 However, additional controller hardware, sensors, installation requirements, and maintenance could increase the initial cost of implementing the system. If the electrical savings are smaller than anticipated, the cost of the system could outweigh its financial benefits. Unexpected controller failures could also create additional maintenance expenses or equipment downtime.
 
@@ -1845,7 +1808,7 @@ When a sensor fault is detected, the controller will initiate the predefined fau
 
 To reduce the possibility of unnecessary installation expenses and operating costs, the team will conduct an economic evaluation comparing the additional hardware costs with the potential electrical savings achieved through variable speed operation.
 
-The team will evaluate whether the controller achieves the project's target of at least a 10% reduction in measured pump and drive real electrical input power under qualifying operating conditions. This reduction will only be considered successful if the system continues to meet the established temperature stability, minimum flow, and safety requirements [8].
+The team will evaluate whether the controller achieves the project's target of at least a 10% reduction in measured pump and drive real electrical input power under qualifying operating conditions. This reduction will only be considered successful if the system continues to meet the established temperature stability, minimum flow, and safety requirements [14].
 
 Measured savings will be used to estimate potential electricity cost reductions and assess whether the additional system cost is economically justified. If testing indicates that the energy savings are insufficient to offset implementation costs, the team will document these limitations and recommend design improvements before commercial adoption.
 
@@ -1861,7 +1824,7 @@ The system will also preserve the heat source's existing safety functions and en
 
 To reduce the environmental impact of additional electronic components, the team will prioritize reliable hardware and use available equipment from Lochinvar and Tennessee Tech where practical. Components will be selected based on their compatibility with the system's operating requirements to reduce unnecessary replacement or redesign.
 
-The team will compare measured pump electrical power consumption between constant-speed baseline operation and variable speed controlled operation under equivalent low-, medium-, and high-demand conditions rather than assuming that reducing pump speed automatically results in energy savings [4].
+The team will compare measured pump electrical power consumption between constant-speed baseline operation and variable speed controlled operation under equivalent low-, medium-, and high-demand conditions rather than assuming that reducing pump speed automatically results in energy savings [22].
 
 For future commercial development, the team recommends evaluating component service life, repairability, and proper electronic-waste disposal. These measures will help determine whether the electrical savings provide a meaningful long term environmental benefit.
 
@@ -1997,36 +1960,59 @@ The revised design contains five subsystems. Each team member has a primary subs
 
 ## References
 
-[1] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N,” Lochinvar. [Online]. Available: [https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html]. [Accessed: Oct. 16, 2026]
+[1] “How Do Instant Water Heaters Work? A Look Inside the Technology and Installation Process,” Motivated Mechanical Solutions. [Online]. Available: https://motivatedmechanicalsolutions.com/how-do-instant-water-heaters-work-a-look-inside-the-technology-and-installation-process/. [Accessed: Sept. 29, 2026].
 
-[2] Lochinvar, Regent Commercial Tankless Water Heater Installation and Operation Manual, Rev. D, document no. 100399794/2000857139. [Online]. Available: Lochinvar Regent Manual (PDF). [Accessed: Oct. 16, 2026]
+[2] “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500L,” Lochinvar. [Online]. Available: https://www.lochinvar.com/en_US/products/IWH0500L-SG101.html. [Accessed: Sept. 29, 2026].
 
-[3] M. Irfan, A. A. Amin, S. Waseem, S. Rahman, H. Alwadie, and S. Al Dawsari, “Design of a fault-tolerant control system for a centrifugal pump-based level control system for sensor faults,” Scientific Reports, vol. 16, art. no. 14189, Mar. 2026, doi: 10.1038/s41598-026-42361-x.
+[3] “How Do Heat Exchangers Work?,” Explain That Stuff. [Online]. Available: https://www.explainthatstuff.com/how-heat-exchangers-work.html. [Accessed: Sept. 30, 2026].
 
-[4] U.S. Department of Energy, Hydraulic Institute, and Europump, Variable Speed Pumping: A Guide to Successful Applications—Executive Summary. U.S. Department of Energy, Energy Efficiency and Renewable Energy, Industrial Technologies Program. [Online]. Available: Variable Speed Pumping (PDF). [Accessed: Oct. 16, 2026]
+[4] “Heat Exchangers Formulas Explained with Calculation Examples,” Heat Exchanger. [Online]. Available: https://www.heatexchanger.co.in/Heat-Exchanger-Blog-Details/heat-exchanger-formula/. [Accessed: Oct. 1, 2026].
 
-[5] T. C. Hayes and P. Horowitz, The Art of Electronics Student Manual. Cambridge, U.K.: Cambridge University Press, 1989. [Online]. Available: The Art of Electronics Student Manual (PDF). [Accessed: Oct. 16, 2026]
+[5] V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. [Online]. Available: https://escholarship.org/uc/item/4691d71q. [Accessed: Oct. 9, 2026].
 
-[6] U.S. Department of Energy and Hydraulic Institute, “Improving Pumping System Performance: A Sourcebook for Industry,” 2nd ed., May 2006. [Online]. Available: [https://www.energy.gov/sites/default/files/2014/05/f16/pump.pdf]. [Accessed: Oct. 22, 2026].
+[6] Occupational Safety and Health Administration, “1910.147—The Control of Hazardous Energy (Lockout/Tagout).” [Online]. Available: https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147. [Accessed: Oct. 9, 2026].
 
-[7] ASHRAE, “Design and Application of Controls,” 2023 ASHRAE Handbook—HVAC Applications, ch. 48, 2023. [Online]. Available: [https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch48/A23_Ch48_ip.aspx]. [Accessed: Oct. 9, 2026].
+[7] Hydraulic Institute, “Application Guideline for Variable Speed Pumping,” 2017. [Online]. Available: https://store.accuristech.com/standards/application-guideline-for-variable-speed-pumping-a148e?product_id=1946769. [Accessed: Oct. 9, 2026].
 
-[8] National Fire Protection Association, “NFPA 70: National Electrical Code.” [Online]. Available: [https://www.nfpa.org/codes-and-standards/nfpa-70-development/70]. [Accessed: Oct. 22, 2026].
+[8] ASHRAE, “Design and Application of Controls,” 2023 ASHRAE Handbook—HVAC Applications, ch. 48, 2023. [Online]. Available: https://handbook.ashrae.org/Handbooks/A23/IP/A23_Ch48/A23_Ch48_ip.aspx. [Accessed: Oct. 9, 2026].
 
-[9] Occupational Safety and Health Administration, “1910.147—The Control of Hazardous Energy (Lockout/Tagout).” [Online]. Available: [https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.147]. [Accessed: Oct. 9, 2026].
+[9] OpenAI, “ChatGPT.” [Online]. Available: https://chatgpt.com/. [Accessed: Oct. 9, 2026].
 
-[10] International Code Council, “2024 International Plumbing Code,” 2024. [Online]. Available: [https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html]. [Accessed: Oct. 22, 2026].
+[10] U.S. Department of Energy and Hydraulic Institute, “Improving Pumping System Performance: A Sourcebook for Industry,” 2nd ed., May 2006. [Online]. Available: https://www.energy.gov/sites/default/files/2014/05/f16/pump.pdf. [Accessed: Oct. 22, 2026].
 
-[11] V. Tutterow and A. T. McKane, “Variable Speed Pumping: A Guide to Successful Applications,” Lawrence Berkeley National Laboratory, 2004. [Online]. Available: [https://escholarship.org/uc/item/4691d71q]. [Accessed: Oct. 9, 2026].
+[11] Grundfos, “MAGNA3 Operation and Control Modes.” [Online]. Available: https://www.grundfos.com/solutions/learn/ecademy/all-courses/the-magna3-circulator-pump-course1/magna3-operation-and-control-modes. [Accessed: Oct. 22, 2026].
 
-[12] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: [https://ieee-cas.org/about/ieee-code-ethics]. [Accessed: Nov. 14, 2026].
+[12] Armstrong Fluid Technology, “Design Envelope 4300 Pumps.” [Online]. Available: https://armstrongfluidtechnology.com/products/design-envelope-4300-pumps. [Accessed: Oct. 22, 2026].
 
-## ADD 2 REFERENCES
+[13] Armstrong Fluid Technology, “Armstrong Design Envelope Pumping with Integrated Sensorless Control,” white paper. [Online]. Available: https://armstrongfluidtechnology.com/~/media/documents/sales-and-marketing/white-papers/90_601_pspc_whitepaper.pdf?la=es-us. [Accessed: Oct. 22, 2026].
 
-[15] Grundfos, *UPMS Data Booklet*, "UPMS 15-78 130: Performance Curves and Technical Data," p. 11. [Online]. Available: [https://api.grundfos.com/literature/Grundfosliterature-6910086.pdf]. [Accessed: Nov. 18, 2026].
-[16] U.S. Department of Energy, *DOE Fundamentals Handbook: Thermodynamics, Heat Transfer, and Fluid Flow*, vol. 1, DOE-HDBK-1012/1-92, 1992. [Online]. Available: [https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1012-92_VOL1.pdf]. [Accessed: Nov. 18, 2026].
+[14] National Fire Protection Association, “NFPA 70: National Electrical Code,” 2026. [Online]. Available: https://www.nfpa.org/codes-and-standards/nfpa-70-development/70. [Accessed: Oct. 22, 2026].
 
-[17] Grundfos, "How to Find Installation and Operation Manuals Online," Grundfos Support. [Online]. Available: [https://www.grundfos.com/us/support/how-to-guides/how-to-find-installation-and-operation-manuals-online]. [Accessed: Nov. 18, 2026].
+[15] International Code Council, “2024 International Plumbing Code,” 2024. [Online]. Available: https://shop.iccsafe.org/international-codes/model-codes/2024-international-plumbing-coder.html. [Accessed: Oct. 22, 2026].
+
+[16] OpenStax, “19.4 Electric Power,” University Physics Volume 2. [Online]. Available: https://openstax.org/books/physics/pages/19-4-electric-power. [Accessed: Oct. 23, 2026].
+
+[17] OpenStax, “20.4 Electric Power and Energy,” College Physics. [Online]. Available: https://openstax.org/books/college-physics/pages/20-4-electric-power-and-energy. [Accessed: Oct. 23, 2026].
+
+[18] Grundfos, Grundfos E-Pumps Product Guide, “Affinity Equations,” p. 3. [Online]. Available: https://d1pkofokfruj4.cloudfront.net/media/upload/resource/m/Grundfos-E-Pumps-Product-Guide.pdf. [Accessed: Nov. 16, 2026].
+
+[19] Lochinvar, “Regent™ Commercial Tankless Water Heater – 6 Gallons | Model IWH0500N.” [Online]. Available: https://www.lochinvar.com/en_CA/products/tankless-condensing-regent/iwh0500n-100/100389046.html. [Accessed: Oct. 16, 2026].
+
+[20] Lochinvar, Regent Commercial Tankless Water Heater Installation and Operation Manual, Rev. D, document no. 100399794/2000857139. [Online]. Available: Lochinvar Regent Manual (PDF). [Accessed: Oct. 16, 2026].
+
+[21] M. Irfan, A. A. Amin, S. Waseem, S. Rahman, H. Alwadie, and S. Al Dawsari, “Design of a fault-tolerant control system for a centrifugal pump-based level control system for sensor faults,” Scientific Reports, vol. 16, art. no. 14189, Mar. 2026, doi: 10.1038/s41598-026-42361-x.
+
+[22] U.S. Department of Energy, Hydraulic Institute, and Europump, Variable Speed Pumping: A Guide to Successful Applications—Executive Summary, U.S. Department of Energy, Energy Efficiency and Renewable Energy, Industrial Technologies Program, 2004. [Online]. Available: https://www.energy.gov/sites/default/files/2014/05/f16/variable_speed_pumping.pdf. [Accessed: Oct. 16, 2026].
+
+[23] T. C. Hayes and P. Horowitz, The Art of Electronics Student Manual. Cambridge, U.K.: Cambridge University Press, 1989. [Online]. Available: The Art of Electronics Student Manual (PDF). [Accessed: Oct. 16, 2026].
+
+[24] IEEE, “IEEE Code of Ethics,” IEEE Circuits and Systems Society. [Online]. Available: https://ieee-cas.org/about/ieee-code-ethics. [Accessed: Nov. 14, 2026].
+
+[25] Grundfos, UPMS Data Booklet, “UPMS 15-78 130: Performance Curves and Technical Data,” p. 11. [Online]. Available: https://api.grundfos.com/literature/Grundfosliterature-6910086.pdf. [Accessed: Nov. 18, 2026].
+
+[26] U.S. Department of Energy, DOE Fundamentals Handbook: Thermodynamics, Heat Transfer, and Fluid Flow, vol. 1, DOE-HDBK-1012/1-92, 1992. [Online]. Available: https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1012-92_VOL1.pdf. [Accessed: Nov. 18, 2026].
+
+[27] Grundfos, “How to Find Installation and Operation Manuals Online,” Grundfos Support. [Online]. Available: https://www.grundfos.com/us/support/how-to-guides/how-to-find-installation-and-operation-manuals-online. [Accessed: Nov. 18, 2026].
 
 ## Statement of Contributions
 
