@@ -424,27 +424,16 @@ A simulation model will be developed before testing to represent the expected re
 The design shall meet the following requirements:
 
 1. Pump speed control: The controller shall issue variable-speed commands through the selected pump's supported interface and remain within its documented operating limits.
-  
-2. Operating measurements: The system shall acquire flow rate, inlet and outlet water temperatures, applied heating-demand input, and available pump operating information at a preliminary logging interval of no more than one second.
-   
-3. Temperature stability: The system shall aim to maintain outlet temperature within ±4°F of the selected setpoint during a defined 60-second steady-state window, using a calibrated reference measurement.
-   
-4. Minimum flow: The controller shall maintain at least the approved minimum circulation flow for the actual bench equipment whenever heated circulation is required. The numerical limit will be established before testing.
-   
+2. Operating measurements: The system shall acquire flow rate, inlet and outlet water temperatures, applied heating-demand input, and available pump operating information at a preliminary logging interval of no more than one second.   
+3. Temperature stability: The system shall aim to maintain outlet temperature within ±4°F of the selected setpoint during a defined 60-second steady-state window, using a calibrated reference measurement.  
+4. Minimum flow: The controller shall maintain at least the approved minimum circulation flow for the actual bench equipment whenever heated circulation is required. The numerical limit will be established before testing.   
 5. Response time: After a defined operating change, the controller shall aim to return the outlet temperature to within ±4°F of setpoint within 120 seconds and remain there for at least 30 seconds.
-
-6. Electrical power reduction: The controller shall aim for at least a 10% reduction in measured pump-and-drive real electrical input power compared with a matched baseline, provided all safety and performance limits remain satisfied.
-   
+6. Electrical power reduction: The controller shall aim for at least a 10% reduction in measured pump-and-drive real electrical input power compared with a matched baseline, provided all safety and performance limits remain satisfied. 
 7. Controller stability: The pump-speed command shall aim to settle within ±5% of its final value within 30 seconds after a defined change, without repeated limit cycling.
-
 8. Physical validation: The team shall complete a bench test using the actual controller, sensors, pump, heat source, and circulation loop. Simulation alone will not satisfy this requirement.
-
-9. Repeated testing and uncertainty: The preliminary test plan shall include five paired baseline and controlled runs at each of three operating conditions. The results shall include variability, a 95% confidence interval for power savings when statistically supported, and defined temperature-stability measures.
-    
+9. Repeated testing and uncertainty: The preliminary test plan shall include five paired baseline and controlled runs at each of three operating conditions. The results shall include variability, a 95% confidence interval for power savings when statistically supported, and defined temperature-stability measures. 
 10. Model validation: Predicted and measured responses shall be compared under equivalent conditions, with model error reported for selected flow, temperature, and response-time measurements.
-
 11. Safety: The bench setup shall be reviewed with the faculty supervisor before energizing. Approved testing shall verify temperature limits, minimum flow, electrical isolation, and fault responses.
-
 12. Future application: Testing on actual Lochinvar equipment may be pursued near the end of Capstone 2 if access and approval permit, but is not required to complete the project.
 
 In summary, The project will be judged primarily by the quality of the bench implementation, repeatability of the measurements, safe operation, and evidence that the controller meets the defined performance targets. The team will clearly distinguish results measured on the bench from any predictions about future use in the Regent.
@@ -551,7 +540,6 @@ The sensors will be calibrated against a suitable reference instrument before te
 ### Heating Demand Input Signal
 
 The proposed control strategy uses heating demand as one of the inputs for determining an initial pump speed command.
-
 For the physical bench, a representative heating demand signal will be used rather than requiring a connection to an operating commercial boiler.
 
 A preliminary option is a conditioned 0–10 V analog signal representing 0–100% heating demand.
