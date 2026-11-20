@@ -996,7 +996,7 @@ $$
 Where a suitable nonzero measured reference exists, the percentage error can be calculated as:
 
 $$
-e_{x,\%} = \frac{\left|x_{\text{simulated}} - x_{\text{measured}}\right|}{\left|x_{\text{measured}}\right|} \times 100\%
+E = \frac{|x_{\text{simulated}} - x_{\text{measured}}|}{|x_{\text{measured}}|} \times 100
 $$
 
 The team will compare predicted and measured flow rates, inlet and outlet temperatures, and relevant transient responses. Differences may result from heat losses, sensor uncertainty, actual pump characteristics, hydraulic resistance, or simplified assumptions within the simulation model. These differences will be documented and used to refine the model and improve the controller where appropriate. The final evaluation will rely on the physical bench measurements rather than simulation predictions alone.
