@@ -1884,7 +1884,7 @@ For future commercial development, the team recommends evaluating component serv
 | PZEM-004T V3.0 AC Power Monitor | $25.00 |
 | **Subtotal** | **$91.62** |
 
-This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
+This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures, while the PZEM-004T power monitor will measure electrical consumption.. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
 
 **2. Microcontroller and Control Logic Subsystem**
 **Primary Owner: Group Effort; Lead: Jocelyn Smith**
@@ -1923,7 +1923,7 @@ This subsystem focuses on the pump interface, circulation-loop design, hydraulic
 | DC Power Supply | TBD – See what TN Tech can provide |
 | **Subtotal** | **$260.99 + TBD** |
 
-This subsystem is responsible for planning and coordinating the construction of the physical test bench, organizing repeated testing trials, and evaluating whether performance targets are met. The reservoir, copper piping, fittings, valves, and platform will support construction of the water circulation setup. The circulation heater will provide a means of heating the water during testing, while the PZEM-004T power monitor will measure electrical consumption. Testing measurements will be used to compare pump operation at different speeds and evaluate energy consumption and water heating performance.
+This subsystem is responsible for planning and coordinating the construction of the physical test bench, organizing repeated testing trials, and evaluating whether performance targets are met. The reservoir, copper piping, fittings, valves, and platform will support construction of the water circulation setup. The circulation heater will provide a means of heating the water during testing. 
 
 **5. Data Logging and Simulation Subsystem**
 **Primary Owner: Jocelyn Smith**
