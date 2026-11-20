@@ -1344,7 +1344,7 @@ The collected operating measurements will support performance evaluation and exp
 
 **Overview:**
 
-The Monitoring, Performance Evaluation, and Bench Testing Subsystem will be responsible for assembling, integrating, and evaluating the physical water circulation bench used to test the proposed variable-speed pump control strategy. The bench will use the Grundfos UPMS 15-78 130 AR circulation pump provided by Lochinvar, an STM32 Nucleo-L476RG microcontroller, a flow sensor, temperature sensors, and electrical measurement equipment. A heating element is also being evaluated for integration into the water circulation loop.
+The Monitoring, Performance Evaluation, and Bench Testing Subsystem will lead the planning, coordination, assembly, and integration of the physical water circulation bench used to test the proposed variable speed pump control strategy. The bench will use the Grundfos UPMS 15-78 130 AR circulation pump provided by Lochinvar, an STM32 Nucleo-L476RG microcontroller, a flow sensor, temperature sensors, and electrical measurement equipment. A heating element is also being evaluated for integration into the water circulation loop.
 
 This subsystem will monitor system operating measurements, including water flow rate, inlet and outlet temperatures, and pump electrical consumption, to determine how changes in pump speed affect system performance. The pump control algorithm and associated microcontroller code developed by the Microcontroller and Control Logic Subsystem (Subsystem 2) will be loaded onto the STM32 and used during physical testing. This subsystem will compare constant-speed and variable-speed operation to evaluate whether reducing pump speed can decrease electrical energy consumption while maintaining acceptable water flow and temperature performance. The collected measurements and performance results will be provided to the Data Logging and Simulation Subsystem (Subsystem 5) for recording, comparison with simulation results, and further analysis.
 
@@ -1871,50 +1871,88 @@ For future commercial development, the team recommends evaluating component serv
 
 ### Budget
 
-The proposed budget covers all six subsystems required to develop and evaluate the variable speed pump controller. The selected design combines flow rate measurements, the boiler's firing rate signal, and outlet temperature feedback to adjust pump speed according to operating conditions.
+## 1. Sensor and Data Acquisition Subsystem
+**Primary Owner: Skyler Raines**
 
-The budget includes sensing and data acquisition, control hardware and programming, pump speed control equipment, hydraulic components, performance monitoring instruments, and data logging and simulation resources. The estimates are preliminary allowances and assume that the existing Lochinvar water heater, circulation pump, and Keyence flow sensor can be reused where compatible. Existing laboratory equipment and available software are also assumed to be available at no additional cost.
+| Item | Price ($) |
+|---|---:|
+| KEYENCE FD-Q50C Series Clamp-on Flow Sensor | Free – Provided by Lochinvar |
+| PT100 RTD Temperature Probes (×2) | $32.38 |
+| MAX31865 Interface Modules (×2) | $19.24 |
+| Sensor Mounts | $15.00 |
+| Additional Pressure/Temperature Measurement Ports | Free – Provided by Lochinvar |
+| PZEM-004T V3.0 AC Power Monitor | $25.00 |
+| **Subtotal** | **$91.62** |
 
-**1. Sensor and Data Acquisition Subsystem**
-<p align="center">
-<img width="930" height="290" alt="image" src="https://github.com/user-attachments/assets/5b57a5b0-8418-431c-8efe-411c7938d2df" />
-</p>
-Justification: The flow sensor measures hot-water demand, while the temperature sensors measure system thermal performance. Signal conditioning components and wiring provide reliable connections to the controller, and the data acquisition interface allows sensor measurements to be read and recorded. The budget assumes the existing flow sensor is compatible with the selected control hardware.
+This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
 
-**2. Microcontroller and Control Logic Subsystem**
-<p align="center">
-<img width="922" height="350" alt="image" src="https://github.com/user-attachments/assets/ceb87af1-52ad-4600-83e7-ed0697139abc" />
-</p>
-Justification: The microcontroller executes the control logic and processes the flowrate, firing rate, and temperature measurements. The analog input interface is needed to read the boiler's 0–10 V firing rate signal, while the analog output interface generates the appropriate command for the pump speed control equipment. The connection hardware helps protect and organize the electronics. Final component selection must account for signal ranges, electrical isolation, and compatibility with the existing boiler and drive.
+## 2. Microcontroller and Control Logic Subsystem
+**Primary Owner: Group Effort; Lead: Jocelyn Smith**
 
-**3. Pump and Motor Control Subsystem**
-<p align="center">
-<img width="916" height="266" alt="image" src="https://github.com/user-attachments/assets/1311b881-9dbe-4518-85d0-45c9e92654bb" />
-</p>
-Justification: The speed controller adjusts pump operation based on the command from the microcontroller. The VFD is a preliminary option for an appropriately compatible AC motor. The existing pump and motor specifications must be checked before selecting the drive. Wiring and electrical protection components support safe integration. If the existing pump uses a different motor type or has an integrated electronic controller, a different compatible speed control solution may be required.
+| Item | Price ($) |
+|---|---:|
+| Microcontroller | Free – Provided by Dr. Elfouly |
+| Wiring and Connectors | $10.00 |
+| **Subtotal** | **$10.00** |
 
-**4. Water Heating and Hydraulic Subsystem**
-<p align="center">
-<img width="928" height="414" alt="image" src="https://github.com/user-attachments/assets/980f4cd6-dc09-4630-a1bd-6dc61566811c" />
-</p>
-Justification: The water heater and circulation pump provide the existing test platform. Fittings and connectors support proper hydraulic connections, while valves allow the system to be configured for testing and insulation helps reduce heat loss. Seals and leak prevention materials support safe, reliable operation. The estimate assumes that the existing equipment is functional and that major plumbing modifications are unnecessary.
+This subsystem includes the microcontroller and basic electrical connections required to implement the pump control strategy. The microcontroller will process operating measurements from the Sensor and Data Acquisition Subsystem and execute the control logic used to determine the appropriate pump speed. Wiring and connectors will provide the necessary electrical connections between the microcontroller, sensors, and control hardware.
 
-**5. Monitoring and Performance Evaluation Subsystem**
-<p align="center">
-<img width="916" height="264" alt="image" src="https://github.com/user-attachments/assets/fbc19844-e9e7-49d8-9760-4bc164dbd20a" />
-</p>
-Justification: Electrical power measurements allow the team to compare pump energy consumption under fixed speed and variable speed operation. An independent temperature instrument provides a way to verify the installed sensors, while measurement accessories support data collection during testing. These measurements are necessary to determine whether the proposed controller reduces energy use without negatively affecting outlet-temperature performance.
+## 3. Pump, Motor Control, and Hydraulic System
+**Primary Owner: Danielle Wolford**
 
-**6. Data Logging and Simulation Subsystem**
-<p align="center">
-<img width="918" height="272" alt="image" src="https://github.com/user-attachments/assets/f7282957-da67-4ab6-af13-652bc6a57889" />
-</p>
-Justification: Data logging software records flow rate, firing rate, outlet temperature, pump speed, and electrical power measurements for later analysis. Simulation software can help evaluate control strategies before hardware implementation. The budget assumes access to an existing computer and a suitable software license or free simulation tool. If a paid MATLAB/Simulink or Dymola license must be purchased, the project budget will need to be revised.
+| Item | Price ($) |
+|---|---:|
+| Grundfos UPMS 15-78 130 AR Pump | Free – Provided by Lochinvar |
+| **Subtotal** | **$0.00** |
 
-**7. Comprehensive Project Budget**
-<p align="center">
-<img width="778" height="342" alt="image" src="https://github.com/user-attachments/assets/cf2bb408-17c0-472a-bb89-265b29597eb6" />
-</p>
+This subsystem focuses on the pump interface, circulation-loop design, hydraulic modeling, and minimum-flow protection for the bench setup. The pump will provide water circulation through the system and will be interfaced with the control hardware to support variable-speed operation. Hydraulic requirements and minimum-flow limitations will be established to help ensure proper pump operation. The associated piping and hydraulic components will be coordinated with the Monitoring, Performance Evaluation, and Bench Testing Subsystem.
+
+## 4. Monitoring, Performance Evaluation, and Bench Testing
+**Primary Owner: Kendall Arnold**
+
+| Item | Price ($) |
+|---|---:|
+| Water Reservoir (small tank or bucket) | $15.00 |
+| Flexible Water Tubing | $20.00 |
+| Copper Tubing/Piping Assembly | Free – Fabricated by Lochinvar |
+| G1 Threaded Pump Fittings | Free – Provided by Lochinvar |
+| Pressure Relief Valve | Free – Provided by Lochinvar |
+| Ball Valve | Free – Provided by Lochinvar |
+| Platform | $15.00 |
+| ZEROSTART Circulation Heater (1,000 W, 120 V) | $210.99 |
+| DC Power Supply | TBD – See what TN Tech can provide |
+| **Subtotal** | **$260.99 + TBD** |
+
+This subsystem is responsible for planning and coordinating the construction of the physical test bench, organizing repeated testing trials, and evaluating whether performance targets are met. The reservoir, copper piping, fittings, valves, and platform will support construction of the water circulation setup. The circulation heater will provide a means of heating the water during testing, while the PZEM-004T power monitor will measure electrical consumption. Testing measurements will be used to compare pump operation at different speeds and evaluate energy consumption and water heating performance.
+
+## 5. Data Logging and Simulation Subsystem
+**Primary Owner: Jocelyn Smith**
+
+| Item | Price ($) |
+|---|---:|
+| Dymola Simulation Software | Free – Provided by Lochinvar |
+| MicroSD Card Module (3.3 V, SPI) | $5.00 |
+| 16GB microSD Card (Class 10) | $15.00 |
+| **Subtotal** | **$20.00** |
+
+This subsystem focuses on simulating system operation and recording measurements collected during testing. Dymola will be used to model and evaluate the proposed control strategy under different operating conditions. The microSD card module and memory card will provide local data storage for measurements such as flow rate, temperature, pump speed, and electrical power consumption. The recorded data will support analysis and comparison of simulation results and physical bench testing.
+
+## Budget Summary
+
+| Subsystem | Estimated Cost ($) |
+|---|---:|
+| 1. Sensor and Data Acquisition | $66.62 |
+| 2. Microcontroller and Control Logic | $10.00 |
+| 3. Pump, Motor Control, and Hydraulic System | $0.00 |
+| 4. Monitoring, Performance Evaluation, and Bench Testing | $265.99 |
+| 5. Data Logging and Simulation | $20.00 |
+| **Total** | **$362.61 + TBD** |
+
+**Budget Notes:**
+- Components provided by Lochinvar and Dr. Elfouly are listed as free.
+- The DC power supply cost is still undetermined pending confirmation of available Tennessee Tech resources.
+- The ZEROSTART circulation heater cost is preliminary and should be confirmed for compatibility as we are still looking at other methods to solve this problem. 
+- The budget may change as the physical bench design and component requirements are finalized. Updates will be in the Detail design or Capstone 2
 
 ### Division of Labor
 
