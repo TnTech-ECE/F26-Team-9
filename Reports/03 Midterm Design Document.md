@@ -132,6 +132,7 @@ A variable speed pump provides a way to adjust water flow according to system de
 ### Specifications and Constraints
 
 #### Specifications
+---
 
 The following requirements describe how the controller will be evaluated on the bench. Values not provided by Lochinvar or the selected equipment manufacturers are preliminary engineering targets. They will be reviewed with the sponsor and faculty before final testing.
 
@@ -165,7 +166,6 @@ Power reduction will not count as a successful result if the controlled run viol
 
 
 #### Specification Traceability and Verification Summary
----
 
 | Requirement | Primary verification | Evidence to report |
 |---|---|---|
@@ -182,7 +182,6 @@ Power reduction will not count as a successful result if the controlled run viol
 
 
 #### Temperature Sensor Accuracy and Calibration
---- 
 
 Temperature measurements must be accurate enough to support the ±4°F stability requirement. A standard uncalibrated Type-K thermocouple or pipe-clamp probe may not be adequate on its own because its measurement tolerance, pipe-surface effects, and response delay can be large relative to the temperature band being evaluated. Thermocouples also require suitable cold-junction compensation.
 
@@ -191,7 +190,7 @@ The proposed bench budget includes two PT100 RTD probes and MAX31865 interface m
 Calibration results, sensor specifications, and measurement uncertainty will be recorded with the test data. Any change to the probe type or mounting arrangement will be documented so temperature results remain traceable.
 
 #### Constraints
-  
+--- 
 Electrical and Safety Constraints
 
 * 1 – Electrical and Safety Constraints. The bench controller, pump, heat source, power supplies, and measurement equipment must operate within their rated voltage, current, and insulation limits. Electrical wiring and protection will be reviewed against applicable requirements of NFPA 70 and relevant laboratory procedures. Only qualified or institutionally authorized personnel may make changes that require electrical or plumbing expertise. Appropriate hazardous-energy controls, including lockout/tagout when applicable, will be followed before servicing. The bench shall be reviewed by the faculty supervisor before it is energized, and no test will bypass required overtemperature, flow, or electrical protections.
