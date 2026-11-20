@@ -976,7 +976,7 @@ $$
 Where supported by the data and statistical assumptions, a 95% confidence interval for the mean savings will be calculated as:
 
 $$
-CI_{95\%} = \overline{S} \pm t_{0.975,n-1} \frac{s}{\sqrt{n}}
+CI = \bar{S} \pm \frac{t \cdot s}{\sqrt{n}}
 $$
 
 These calculations will help determine whether the observed electrical savings are consistent across repeated trials. The results will be reported together with temperature stability, flow measurements, and applicable operating limits. A reduction in electrical power will not count as successful if it is achieved by violating the approved safety or performance requirements.
