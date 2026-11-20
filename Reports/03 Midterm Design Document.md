@@ -451,18 +451,20 @@ In summary, The project will be judged primarily by the quality of the bench imp
 
 ## Engineering Principles, Mathematical Models, and Verification Tools (C1)
 
-The proposed Variable Speed Circulation Pump Controller will be developed using engineering principles involving fluid mechanics, heat transfer, electrical power, and feedback control. These principles will be used to predict how changes in pump speed affect water circulation, temperature response, and electrical energy consumption.
+The proposed Variable Speed Circulation Pump Controller will be developed using engineering principles involving fluid mechanics, heat transfer, electrical power, signal processing, and feedback control. These principles will be used to determine how changes in pump speed affect water circulation, outlet-water temperature, and electrical energy consumption.
 
-The initial calculations will support development of the Dymola simulation model and selection of preliminary controller settings. The physical bench will then be used to evaluate these predictions using the actual STM32L476RG controller, variable speed pump, electric heat source, flow sensor, and temperature sensors. Simulation results will be compared with experimental measurements to determine how accurately the model represents the physical system.
+The design will use an STM32L476RG microcontroller to process sensor measurements and determine the appropriate pump-speed command. The controller will receive information about water flow, inlet and outlet temperatures, and a representative heating demand input. These signals will be converted into engineering units and used by the control algorithm to adjust pump operation while maintaining the established temperature and minimum-flow requirements.
 
-The Grundfos UPMS 15-78 130 AR remains a candidate pump. The manufacturer published specifications for the UPMS 15-78 130 pump family will be used as preliminary reference information until the exact model, control interface, and operating limits are confirmed.
+Dymola simulation will be used before physical testing to predict system behavior, select preliminary controller settings, and establish suitable operating conditions. A required physical bench test will then use the actual microcontroller, variable-speed pump, heat source, and sensors to evaluate the control strategy.
+
+The physical bench measurements will provide the primary evidence for evaluating performance. Simulation predictions will be compared with experimental measurements to determine how accurately the model represents the physical system.
 
 ### Manufacturer Pump Specifications
 ---
 
-The Grundfos UPMS technical data booklet provides the following specifications for the UPMS 15-78 130 pump family [15].
+The Grundfos UPMS 15-78 130 AR remains a candidate pump for the physical bench. The published specifications for the UPMS 15-78 130 pump family provide preliminary electrical and mechanical information for the design [15].
 
-| Parameter | Manufacturer-Published Value |
+| Parameter | Manufacturer Published Value |
 |---|---|
 | Nominal electrical supply | 115 V AC, 60 Hz |
 | Minimum electrical input power | 8.4 W |
@@ -474,12 +476,117 @@ The Grundfos UPMS technical data booklet provides the following specifications f
 | Installation length | 130 mm |
 
 
-These values describe the published pump family configuration and are not confirmation of the exact AR variant proposed for the bench. The team will verify the installed pump's nameplate, supported speed control method, hydraulic performance, and applicable operating limits before finalizing the electrical and mechanical design.
+These specifications describe the published pump family and do not confirm the exact characteristics of the proposed AR variant. Before finalizing the electrical design, the team will verify the selected pump's nameplate information, supported speed-control interface, hydraulic characteristics, and manufacturer operating limits.
 
-### Electrical Input Power Calculations
+The controller must use the interface supported by the actual pump. A standard variable-frequency drive will not be assumed necessary or compatible with the selected circulation pump.
+
+### Electrical Signals and Controller Interfaces
 ---
 
-Electrical power consumption is one of the primary measurements used to evaluate the proposed controller. The selected pump family's published maximum electrical input power is:
+The controller will communicate with several external components to monitor operating conditions and adjust pump speed. Each connection must be identified by its signal type, electrical characteristics, and function.
+
+The proposed system includes analog measurements, digital communication, a pump-speed control signal, and separate electrical power connections. The exact interface for each component will be confirmed using the selected equipment's manufacturer documentation before the physical bench is assembled.
+
+The following table identifies the proposed signal paths:
+
+| Component | Signal Type | Signal Direction | Purpose |
+|---|---|---|---|
+| KEYENCE FD-Q series flow sensor | Digital pulse or conditioned analog signal, depending on selected output configuration | Sensor → STM32 | Measure circulation flow rate |
+| PT100 inlet temperature sensor | Resistance based temperature measurement through MAX31865 | Sensor → Interface module | Measure inlet water temperature |
+| PT100 outlet temperature sensor | Resistance-based temperature measurement through MAX31865 | Sensor → Interface module | Measure outlet-water temperature |
+| MAX31865 interface modules | SPI digital communication | Interface modules → STM32 | Transfer temperature measurement data |
+| Representative heating demand source | Conditioned 0–10 V analog signal, if implemented | Demand source → Input conditioning circuit → STM32 | Represent heating demand from 0–100% |
+| STM32 pump control output | Manufacturer supported PWM or other compatible control signal | STM32 → Pump control interface | Command pump operating speed |
+| Electrical power measurement instrument | Instrument dependent measurement or logging interface | Power instrument → Data logging system | Measure real electrical input power |
+| STM32 data logging connection | USB serial communication | STM32 → Computer | Record operating measurements |
+| Optional microSD storage | SPI digital communication | STM32 ↔ microSD module | Provide local backup data storage |
+
+The signal types shown are proposed design interfaces rather than confirmation of the final wiring configuration. In particular, the flow sensor's output mode, pump command interface, heating-demand source, and power instrument's data interface remain subject to equipment selection and verification.
+
+### Flow Sensor Signal
+
+The proposed KEYENCE FD-Q series flow sensor will measure the amount of water circulating through the physical bench in gallons per minute (GPM).
+
+The selected sensor's output configuration must be verified before implementation. If a pulse output is available and selected, the STM32 can determine flow rate by measuring pulse frequency and applying the manufacturer's calibration relationship.
+
+If an analog output is selected, the signal will be conditioned to an electrical range compatible with the STM32 analog to digital converter (ADC).
+
+For a pulse based measurement, a general conversion relationship is as follows:
+
+$$
+Q=K_f f_p
+$$
+
+where:
+
+* $Q$ represents measured water flow in GPM.
+* $f_p$ represents the measured pulse frequency.
+* $K_f$ represents the conversion coefficient established from the selected sensor's documented output configuration.
+
+The coefficient cannot be finalized until the sensor model, output mode, and scaling relationship are confirmed.
+
+The controller will compare the measured flow rate with the approved minimum flow requirement for the selected bench equipment. If flow falls below the required limit, the controller will respond according to the approved fault handling strategy rather than continuing normal energy-saving operation.
+
+### Temperature Sensor Signals
+
+Two PT100 resistance temperature detectors (RTDs) are proposed to measure the inlet and outlet water temperatures. The PT100 sensors change electrical resistance with temperature. Because the STM32 does not directly interpret RTD resistance as a temperature measurement, each sensor will be connected through a MAX31865 interface module. The MAX31865 modules will perform the required RTD measurement conversion and communicate with the STM32 using the Serial Peripheral Interface (SPI). The controller will use the resulting measurements to calculate the temperature difference across the heated section and evaluate the outlet water temperature relative to the desired setpoint.
+
+The temperature difference is:
+
+$$
+\Delta T=T_{\text{out}}-T_{\text{in}}
+$$
+
+The outlet temperature control error can be expressed as:
+
+$$
+e_T(t)=T_{\text{setpoint}}-T_{\text{out}}(t)
+$$
+
+The preliminary temperature stability target is ±4°F from the selected setpoint during a defined steady state operating condition.
+
+The sensors will be calibrated against a suitable reference instrument before testing. Sensor installation, measurement uncertainty, and response time will also be evaluated because these factors influence the reliability of the temperature measurements.
+
+
+### Heating Demand Input Signal
+
+The proposed control strategy uses heating demand as one of the inputs for determining an initial pump speed command.
+
+For the physical bench, a representative heating demand signal will be used rather than requiring a connection to an operating commercial boiler.
+
+A preliminary option is a conditioned 0–10 V analog signal representing 0–100% heating demand.
+
+The relationship can be expressed as:
+
+$$
+D=\frac{V_{\text{demand}}}{10}\times100%
+$$
+
+where:
+
+* $D$ represents the heating demand percentage.
+* $V_{\text{demand}}$ represents the applied voltage between 0 and 10 V.
+
+For example, a 5 V signal represents:
+
+$$
+D=\frac{5}{10}\times100=50%
+$$
+
+The STM32 analog inputs operate at a lower voltage than the proposed 0–10 V signal. Therefore, a suitable input conditioning circuit will be required if this interface is selected. The conditioning circuit must limit the voltage applied to the microcontroller to its supported range and provide appropriate protection. Isolation requirements will depend on the final signal source and electrical arrangement. The heating demand input will be used to represent different operating conditions during bench testing. It will not be described as an actual boiler firing rate signal unless a compatible boiler interface is subsequently implemented and verified.
+
+### Pump Speed Command Signal
+
+After processing the available measurements, the STM32 will calculate a pump speed command.
+The command will be transmitted using the selected pump's supported control interface. The proposed Grundfos pump may support an electronic speed control method, but the exact control characteristics must be verified for the selected model. If PWM control is confirmed, the STM32 will generate a command based on the required duty cycle, frequency, voltage levels, and interface requirements specified by the manufacturer. The controller will not assume that a particular PWM duty cycle corresponds directly to the same percentage of actual pump rotational speed.
+
+Instead, the relationship between the command and the resulting pump operation will be established using manufacturer information and physical bench measurements. The command will also be limited to the approved operating range to prevent the controller from requesting unsupported pump conditions.
+
+### Electrical Input Power Calculations
+
+Electrical power consumption is one of the primary measurements used to evaluate the proposed control strategy.
+
+The selected pump family's published maximum electrical input power is:
 
 $$
 P_{\max}=68\text{ W}
@@ -501,43 +608,45 @@ $$
 \Delta P=68-8.4=59.6\text{ W}
 $$
 
-The percentage difference relative to the published maximum electrical input power is:
+The percentage difference relative to the maximum published electrical input power is:
 
 $$
-R=\frac{P_{\max}-P_{\min}}{P_{\max}}\times100
+R=\frac{68-8.4}{68}\times100
 $$
 
 $$
-R=\frac{68-8.4}{68}\times100=87.65\%
+R=87.65\%
 $$
 
-This calculation identifies the difference between the manufacturer's published electrical input-power limits. It does not represent the expected energy savings of the proposed controller because the minimum and maximum operating points may not provide equivalent flow, temperature performance, or heating conditions.
+This calculation identifies the difference between the published electrical input power limits. It does not represent the expected savings of the proposed controller because these operating conditions may produce different flow rates and thermal performance. The project's preliminary electrical power-reduction target is at least 10% under comparable operating conditions while maintaining approved flow, temperature, and safety requirements.
 
-The project's preliminary target is a reduction of at least 10% in measured pump-and-drive real electrical input power while maintaining approved performance and safety requirements.
-
-Using the manufacturer's published maximum power of 68 W as an illustrative baseline:
+Using the published maximum input power as an illustrative baseline:
 
 $$
 P_{\text{target}}=P_{\text{baseline}}(1-0.10)
 $$
 
 $$
-P_{\text{target}}=68(0.90)=61.2\text{ W}
+P_{\text{target}}=68(0.90)
 $$
 
-Therefore, a reduction from 68 W to 61.2 W would correspond to the project's 10% power-reduction target for that illustrative baseline.
-
-During physical testing, the team will use actual measured electrical input power rather than assuming the pump operates at the published maximum. The measured percentage savings will be calculated as:
-
 $$
-S=\frac{P_{\text{baseline}}-P_{\text{controlled}}}{P_{\text{baseline}}}\times100\%
+P_{\text{target}}=61.2\text{ W}
 $$
 
-For AC-powered equipment, multiplying RMS voltage by RMS current does not necessarily provide real power because of power factor and possible waveform distortion. Therefore, an appropriately rated instrument capable of measuring real electrical input power will be used.
+A reduction from 68 W to 61.2 W would represent a 10% electrical power reduction for this illustrative baseline. During physical testing, actual electrical input power will be measured rather than assuming the pump operates at its published maximum.
+
+The measured savings will be calculated using:
+
+$$
+S=\frac{P_{\text{baseline}}-P_{\text{controlled}}}{P_{\text{baseline}}}\times100%
+$$
+
+An appropriately rated power measurement instrument will be used to measure real electrical input power, including the pump motor and internal drive electronics. For AC-powered equipment, multiplying RMS voltage by RMS current does not necessarily provide real power because power factor and waveform distortion may affect the result.
 
 ### Pump Affinity Laws
 
-The pump affinity laws describe the theoretical relationships between rotational speed, volumetric flow rate, pump head, and mechanical power for a centrifugal pump operating under comparable conditions [6], [15].
+The pump affinity laws describe the theoretical relationships between rotational speed, flow rate, pump head, and mechanical power for a centrifugal pump operating under comparable conditions [6], [15].
 
 The relationship between flow rate and pump speed is:
 
@@ -559,11 +668,11 @@ $$
 
 where:
 
-- **Q** represents volumetric flow rate.
-- **H** represents pump head.
-- **P** represents mechanical pump power.
-- **N** represents pump rotational speed.
-- Subscripts 1 and 2 represent the initial and adjusted operating conditions.
+* $Q$ represents volumetric flow rate.
+* $H$ represents pump head.
+* $P$ represents mechanical pump power.
+* $N$ represents pump rotational speed.
+* Subscripts 1 and 2 represent the initial and adjusted operating conditions.
 
 For an illustrative reduction to 80% of the original rotational speed:
 
@@ -577,7 +686,7 @@ $$
 \frac{Q_2}{Q_1}=0.80
 $$
 
-The theoretical head ratio is:
+The theoretical pump-head ratio is:
 
 $$
 \frac{H_2}{H_1}=(0.80)^2=0.64
@@ -592,30 +701,36 @@ $$
 The corresponding ideal mechanical power reduction is:
 
 $$
-(1-0.512)\times100=48.8\%
+(1-0.512)\times100=48.8%
 $$
 
-This example demonstrates the theoretical relationship between pump speed and mechanical power. It does not establish that the bench pump will achieve a 48.8% reduction in measured electrical input power. Actual results will depend on the pump's operating characteristics, motor efficiency, electronic drive losses, and hydraulic resistance of the water loop.
-
-The team will use these relationships to develop preliminary predictions in Dymola and compare them with actual bench measurements. Manufacturer pump curves and the verified supported operating range will be used to determine whether the selected speed commands are practical.
-
-### Heat-Transfer Model
-
-Heat transfer is an important consideration because changing circulation flow can affect the temperature difference between the inlet and outlet of the heat source.
-
-The rate of thermal energy transferred to circulating water can be represented by:
+Therefore:
 
 $$
-\dot{Q}_h=\dot{m}c_p(T_{\text{out}}-T_{\text{in}})
+\text{Theoretical Mechanical Power Reduction}=48.8\%
+$$
+
+This example demonstrates why variable-speed operation can potentially reduce pump power requirements. 
+
+However, the 48.8% value is not a guaranteed reduction in measured electrical input power. Actual results depend on the pump characteristics, motor and electronic drive losses, and hydraulic resistance of the physical water loop. The affinity law relationships will be used to establish preliminary predictions in Dymola. Manufacturer pump curves and physical bench measurements will then be used to evaluate whether the predicted behavior occurs under the selected operating conditions.
+
+### Heat Transfer Model
+
+Heat transfer must be considered because changing circulation flow affects the temperature difference between the inlet and outlet of the heat source.
+
+The rate of thermal energy transferred to circulating water is:
+
+$$
+\dot{Q}h=\dot{m}c_p(T{\text{out}}-T_{\text{in}})
 $$
 
 where:
 
-- **Q̇ₕ** is the heat-transfer rate in watts.
-- **ṁ** is the mass flow rate in kg/s.
-- **cₚ** is the specific heat capacity of water in J/(kg·K).
-- **T_out** is the outlet-water temperature.
-- **T_in** is the inlet-water temperature.
+* $\dot{Q}_h$ is the heat-transfer rate in watts.
+* $\dot{m}$ is the mass flow rate in kg/s.
+* $c_p$ is the specific heat capacity of water in J/(kg·K).
+* $T_{\text{out}}$ is the outlet water temperature.
+* $T_{\text{in}}$ is the inlet water temperature.
 
 Mass flow rate can be determined from volumetric flow rate using:
 
@@ -625,8 +740,8 @@ $$
 
 where:
 
-- **ρ** represents water density in kg/m³.
-- **V̇** represents volumetric flow rate in m³/s.
+* $\rho$ represents water density in kg/m³.
+* $\dot{V}$ represents volumetric flow rate in m³/s.
 
 For preliminary calculations involving liquid water, an approximate U.S. customary relationship is:
 
@@ -634,19 +749,26 @@ $$
 \dot{Q}_h\approx500(\text{GPM})(\Delta T)
 $$
 
-where heat-transfer rate is expressed in Btu/h and temperature difference is expressed in °F.
+where the heat transfer rate is expressed in Btu/h and the temperature difference is expressed in °F.
 
-Rearranging the equation gives:
+Rearranging:
 
 $$
 \Delta T=\frac{\dot{Q}_h}{500(\text{GPM})}
 $$
 
-This relationship demonstrates that, for approximately constant heat transfer to the water, decreasing the flow rate increases the temperature rise across the heat source.
+This relationship demonstrates that decreasing flow rate while maintaining approximately constant heat transfer increases the temperature rise across the heated section. The controller must therefore consider temperature feedback and minimum flow requirements when reducing pump speed.
 
-### Preliminary Bench Heat-Transfer Calculation
+### Preliminary Bench Heat Transfer Calculation
 
-The exact heat source has not yet been selected. Therefore, the following example uses an illustrative thermal input of 500 W to demonstrate the calculation method. This value is not a confirmed heater rating, measured heat-transfer rate, or approved operating condition.
+The exact heat source for the physical bench has not yet been selected. Therefore, an illustrative thermal power delivered to the water of 500 W will be used to demonstrate the calculation method.
+
+| Illustrative Condition | Flow Rate | Assumed Heat Transfer | Calculated Temperature Rise |
+|---|---|---|---|
+| Condition 1 | 1.0 GPM | 500 W | 3.41°F |
+| Condition 2 | 0.5 GPM | 500 W | 6.82°F |
+
+This value is not a confirmed heater rating, measured heat-transfer rate, or approved operating condition.
 
 Converting 500 W to Btu/h:
 
@@ -678,20 +800,12 @@ $$
 \Delta T\approx6.82^\circ\text{F}
 $$
 
-| Illustrative Condition | Flow Rate | Assumed Heat Transfer | Calculated Temperature Rise |
-|---|---|---|---|
-| Condition 1 | 1.0 GPM | 500 W | 3.41°F |
-| Condition 2 | 0.5 GPM | 500 W | 6.82°F |
-
-These calculations demonstrate that reducing flow from 1.0 GPM to 0.5 GPM doubles the theoretical temperature rise across the heat source when the heat-transfer rate remains constant.
-
-The calculations do not establish that either flow rate is safe for the selected bench equipment. The actual minimum flow, heat-source rating, water-temperature limits, and achievable operating conditions will be determined after the equipment has been selected.
-
-In the physical bench, heat losses, reservoir temperature changes, heater control behavior, and the hydraulic arrangement may cause measured temperatures to differ from these simplified predictions.
+These calculations demonstrate that reducing flow from 1.0 GPM to 0.5 GPM doubles the theoretical temperature rise across the heat source when heat transfer remains constant. Neither flow rate is established as safe or achievable for the final bench. The actual minimum flow, heat source rating, and operating limits will be determined from the selected equipment.
+Physical measurements may differ from the simplified calculations because of heat losses, changing reservoir temperatures, heater control behavior, and hydraulic resistance.
 
 ### Reservoir Thermal Response
 
-Because the proposed bench may use a reservoir and recirculating water loop, the team must also consider how the overall water temperature changes over time.
+The proposed bench may use a reservoir and recirculating water loop. The thermal behavior of the reservoir must be considered when evaluating the controller.
 
 A simplified energy balance for a well-mixed reservoir is:
 
@@ -701,29 +815,29 @@ $$
 
 where:
 
-- **m_w** represents the mass of water in the reservoir.
-- **cₚ** represents the specific heat capacity of water.
-- **T** represents the reservoir-water temperature.
-- **P_heat,water** represents thermal power delivered to the water.
-- **Q̇_loss** represents the heat-transfer rate from the water to the surroundings.
+* $m_w$ represents the mass of water in the reservoir.
+* $c_p$ represents the specific heat capacity of water.
+* $T$ represents reservoir-water temperature.
+* $P_{\text{heat,water}}$ represents thermal power delivered to the water.
+* $\dot{Q}_{\text{loss}}$ represents heat transfer from the water to the surroundings.
 
-This relationship shows that reservoir temperature will increase when the heat delivered to the water exceeds heat losses. In a continuously heated closed loop, pump-speed adjustments alone may not be sufficient to maintain a constant outlet-water temperature.
+This equation demonstrates that the reservoir temperature increases when the heat delivered to the water exceeds the heat lost to the surroundings.
 
-The selected bench arrangement must therefore provide a suitable method for establishing repeatable thermal operating conditions. Depending on the final design, this may involve controlled heater operation, a suitable heat-removal mechanism, or a defined transient testing procedure. The team will document the actual arrangement and its limitations before interpreting temperature-control results.
+In a continuously heated closed loop, adjusting pump speed alone may not maintain a constant outlet water temperature. Therefore, the physical bench must include an appropriate method for establishing repeatable thermal operating conditions. The final arrangement may use controlled heater operation, a suitable heat removal method, or a defined transient testing procedure. The selected approach will be documented before testing, and its effects will be included when comparing experimental measurements with simulation predictions.
 
 ### Preliminary Feedback Control Model
 
-The controller will use measured flow rate, a representative heating-demand input, and temperature feedback to determine the pump-speed command.
+The selected control strategy combines flow-rate information, representative heating demand, and outlet-temperature feedback.
 
-The feedforward component will provide an initial pump-speed estimate based on the measured operating conditions. Temperature feedback will then be used to adjust the command when necessary.
+The flow rate and heating-demand measurements will be used to establish an initial pump-speed command. Temperature feedback will then determine whether the command requires adjustment.
 
 A preliminary proportional-integral control relationship is:
 
 $$
-u_{\text{raw}}(t)=u_{\text{ff}}(q(t),f(t))+K_pe_T(t)+K_i\int_0^t e_T(\tau)\,d\tau
+u_{\text{raw}}(t)=u_{\text{ff}}(q(t),f(t))+K_pe_T(t)+K_i\int_0^t e_T(\tau),d\tau
 $$
 
-The command will be limited to the permitted pump-control range:
+The calculated command will be limited to the approved pump-control range:
 
 $$
 u_{\text{cmd}}(t)=\operatorname{clip}(u_{\text{raw}}(t),u_{\min},u_{\max})
@@ -731,71 +845,184 @@ $$
 
 where:
 
-- **u_cmd** represents the commanded pump operating level.
-- **u_ff** represents the preliminary feedforward command.
-- **q(t)** represents the measured flow rate.
-- **f(t)** represents the representative heating-demand input.
-- **e_T(t)** represents the temperature error.
-- **Kₚ** and **Kᵢ** represent proportional and integral gains.
-- **u_min** and **u_max** represent approved pump-command limits.
+* $u_{\text{cmd}}$ represents the commanded pump operating level.
+* $u_{\text{ff}}$ represents the preliminary feedforward command.
+* $q(t)$ represents measured flow rate.
+* $f(t)$ represents representative heating demand.
+* $e_T(t)$ represents temperature error.
+* $K_p$ and $K_i$ represent proportional and integral gains.
+* $u_{\min}$ and $u_{\max}$ represent approved command limits.
 
-The temperature error and appropriate direction of the feedback correction will be established from the actual thermal response of the selected bench. The team will not assume that increasing pump speed always increases outlet-water temperature.
+The feedback correction direction will be established from the actual thermal response of the selected bench. The design will not assume that increasing pump speed always increases outlet water temperature. The controller will include command limits, fault detection, and appropriate measures to reduce oscillation and prevent unsafe operation. The final control gains and pump command mapping will be developed through simulation and adjusted using physical bench measurements.
 
-The controller will also incorporate command limits, fault detection, and appropriate measures to reduce oscillations. The final control gains and command mapping will be developed through simulation and adjusted using measured bench results.
+
+### Physical Bench Testing System
+
+The required physical bench will provide an experimental environment for evaluating the controller under controlled operating conditions. The planned system will consist of a small water circulation loop containing a variable speed pump, reservoir, heat source, tubing, fittings, flow sensor, inlet and outlet temperature sensors, and the STM32 controller. The water loop will circulate water through the heated section while the controller monitors operating conditions and adjusts the pump speed command. The physical bench will be used to determine whether the controller can reduce electrical input power while maintaining acceptable circulation flow, temperature stability, and system response.
+
+#### Bench Components and Their Functions
+
+| Component | Function During Testing |
+|---|---|
+| Water reservoir | Holds circulating water and provides a defined volume for the experiment |
+| Variable speed pump | Circulates water through the loop at commanded operating conditions |
+| Heat source | Supplies controlled thermal energy to the circulating water |
+| KEYENCE flow sensor | Measures actual circulation flow rate |
+| Inlet PT100 sensor | Measures water temperature before the heated section |
+| Outlet PT100 sensor | Measures water temperature after the heated section |
+| MAX31865 modules | Convert RTD measurements into digital temperature data |
+| STM32L476RG controller | Processes measurements and calculates pump commands |
+| Heating-demand signal source | Provides representative low-, medium-, and high-demand inputs |
+| Electrical power instrument | Measures real electrical input power consumed by the pump and drive |
+| Computer with Python logging | Records and organizes experimental measurements |
+| Dymola simulation | Predicts system response and informs preliminary test settings |
+
+The final bench configuration will depend on the confirmed pump, heat source, sensor interfaces, and available laboratory equipment. The electrical power supplied to the pump and heat source will remain separate from the low-voltage microcontroller signal connections.
+Appropriate electrical protection, grounding, isolation, thermal safeguards, and hydraulic operating limits will be reviewed with the faculty supervisor before energizing the bench.
+
+#### Bench Signal and Data Flow
+
+The physical bench will use the following general sequence:
+
+1. The flow sensor measures the water circulation rate and sends its configured output to the STM32.
+2. The PT100 sensors measure inlet and outlet temperatures, with the MAX31865 modules communicating the measurements through SPI.
+3. The representative heating demand source supplies the selected test input through an appropriate signal conditioning interface.
+4. The STM32 converts the received measurements into engineering units and evaluates the current operating condition.
+5. The control algorithm calculates an initial pump speed command and applies the required temperature feedback correction.
+6. The command is checked against the approved pump operating range and minimum-flow requirements.
+7. The STM32 sends the resulting command through the pump's verified control interface.
+8. The pump changes its operation, affecting water flow and the thermal response of the circulation loop.
+9. The sensors measure the resulting changes, and the controller repeats the process.
+10. The computer records the measurements and operating conditions for later analysis.
+
+The preliminary data logging interval will be no more than one second. The actual control loop update rate may differ and will be selected according to sensor response times, communication requirements, and controller stability.
+
+#### Baseline and Controlled Testing
+
+The bench will be evaluated using two primary operating modes.
+
+#### Baseline Operation
+
+The pump will operate at a defined fixed operating condition established for the selected bench equipment. The team will record water flow, inlet and outlet temperatures, electrical input power, and thermal response. This information will establish the reference performance for comparison.
+
+#### Variable Speed Controlled Operation
+
+The STM32 will adjust pump operation according to the developed control algorithm. The same experimental conditions will be applied as closely as practical so the resulting measurements can be compared with baseline operation. The controller will use flow, temperature, and representative heating demand measurements to determine when pump speed can be reduced without violating the approved operating limits. The team will evaluate whether electrical power consumption decreases while the system continues to satisfy its temperature, flow, and safety requirements.
+
+### Bench Testing Procedure
+
+The preliminary experimental plan includes three operating conditions representing low, medium, and high demand. Five paired baseline and controlled runs will be performed at each operating condition, producing 15 paired comparisons. Before testing, the team will verify the selected equipment specifications, inspect the electrical and hydraulic connections, calibrate the measurement system, and obtain the required faculty approval.
+
+The preliminary testing procedure will include the following steps:
+
+1. Equipment verification: Confirm the selected pump, heat source, sensor interfaces, electrical ratings, and minimum flow requirements.
+2. Sensor calibration: Verify flow and temperature measurements using suitable reference methods and record the measurement uncertainty.
+3. Baseline operation: Establish the selected operating condition and record the pump's electrical input power, flow rate, inlet and outlet temperatures, and response time.
+4. Controlled operation: Enable the STM32 control algorithm and repeat the experiment under comparable conditions.
+5. Demand changes: Apply defined changes to the representative heating-demand input and record the controller's response.
+6. Temperature evaluation: Determine whether outlet temperature remains within the preliminary ±4°F stability target and evaluate recovery following defined changes.
+7. Minimum-flow verification: Confirm that the controller maintains the approved minimum circulation flow during normal heated operation.
+8. Repeated trials: Repeat the baseline and controlled measurements to evaluate consistency and uncertainty.
+9. Simulation comparison: Run Dymola under equivalent operating conditions and compare the predicted responses with the measured data.
+10. Performance analysis: Calculate electrical power savings, response time, temperature deviation, and simulation error.
+
+Testing will be conducted within approved equipment limits. Fault response testing will be performed only under a reviewed procedure that does not bypass required safety protections.
+
+
+### Data Collection and Electrical Savings Verification
+
+The STM32 will collect operating measurements and transmit the available data to a computer for recording and analysis. USB serial communication with Python based CSV logging is the proposed primary data recording method. Optional microSD storage may provide local backup logging if implemented.
+
+The recorded dataset will include:
+
+| Measurement | Unit or Representation | Purpose |
+|---|---|---|
+| Time | Seconds | Establish measurement timing |
+| Flow rate | GPM | Evaluate circulation and minimum flow |
+| Inlet temperature | °F | Monitor entering water temperature |
+| Outlet temperature | °F | Evaluate thermal response |
+| Temperature error | °F | Evaluate setpoint tracking |
+| Heating-demand input | % | Identify applied operating condition |
+| Pump command | Duty cycle, command level, or verified interface units | Evaluate controller output |
+| Electrical input power | W | Calculate measured power savings |
+| Controller status | Operating state or fault code | Identify operating conditions and abnormal events |
+
+Electrical power measurements may be recorded directly by the logging system or synchronized from a separate instrument, depending on the final measurement equipment.
+
+For each paired operating condition, the percentage electrical power savings will be calculated using:
+
+$$
+S_i=\frac{P_{\text{baseline},i}-P_{\text{controlled},i}}{P_{\text{baseline},i}}\times100%
+$$
+
+The mean savings across the valid paired trials will be:
+
+$$
+\overline{S}=\frac{1}{n}\sum_{i=1}^{n}S_i
+$$
+
+where:
+
+* $S_i$ represents the electrical power savings for paired trial $i$.
+* $n$ represents the number of valid paired trials.
+* $\overline{S}$ represents the mean percentage savings.
+
+The sample standard deviation will be calculated as:
+
+$$
+s=\sqrt{\frac{\sum_{i=1}^{n}(S_i-\overline{S})^2}{n-1}}
+$$
+
+Where supported by the data and statistical assumptions, a 95% confidence interval for the mean savings will be calculated as:
+
+$$
+CI_{95%}=\overline{S}\pm t_{0.975,n-1}\frac{s}{\sqrt{n}}
+$$
+
+These calculations will help determine whether the observed electrical savings are consistent across repeated trials. The results will be reported together with temperature stability, flow measurements, and applicable operating limits. A reduction in electrical power will not count as successful if it is achieved by violating the approved safety or performance requirements.
 
 ### Dymola Simulation and Physical Bench Validation
 
-Dymola will be used to model the circulation loop and predict how changes in pump operation affect flow rate, heat transfer, and temperature response. The model will include the selected pump characteristics, hydraulic resistance, heat source behavior, and relevant thermal properties to the extent supported by available equipment information.
+Dymola will be used to represent the expected hydraulic and thermal behavior of the circulation loop. The model will include the selected pump characteristics, water flow relationships, hydraulic resistance, heat source behavior, and relevant thermal properties to the extent supported by available equipment information.
 
-The simulation will be developed before physical testing and used to select preliminary controller settings and experimental operating conditions.
+Simulation will be used as an input to the physical bench testing process. It will help the team identify suitable operating conditions, develop preliminary controller settings, and predict the expected effects of pump speed changes before conducting experiments. The physical bench will then provide measured data for evaluating these predictions. The simulation and physical bench will be compared using equivalent operating conditions, including the applied heating demand input, initial temperatures, pump commands, and relevant system parameters.
 
-The physical bench will then use the actual STM32L476RG controller to acquire measurements and command the selected pump. The planned measurement system includes the KEYENCE flow sensor, PT100 RTD temperature sensors with MAX31865 SPI interface modules, and a suitable real power measurement instrument.
-
-The preliminary testing plan includes three operating conditions representing low, medium, and high demand. Five paired baseline and controlled runs will be conducted at each condition, resulting in 15 paired comparisons.
-
-The team will record:
-
-- Water flow rate in GPM.
-- Inlet and outlet water temperatures.
-- Pump-speed command and available operating feedback.
-- Applied representative heating-demand input.
-- Measured pump-and-drive real electrical input power.
-- Time and operating condition for each measurement.
-- Controller faults and abnormal operating events.
-
-Measurements will be recorded at a preliminary interval of no more than one second.
-
-Simulation predictions will be compared with bench measurements under equivalent operating conditions. The absolute prediction error for a measured quantity can be calculated as:
+The absolute prediction error for a measured quantity can be calculated as:
 
 $$
 e_x=|x_{\text{simulated}}-x_{\text{measured}}|
 $$
 
-Where an appropriate nonzero reference exists, percentage error may be calculated as:
+Where a suitable nonzero measured reference exists, the percentage error can be calculated as:
 
 $$
-e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
+e_{x,%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100%
 $$
 
-The team will report differences in flow rate, temperature response, and relevant transient behavior. Measured electrical-power savings will be evaluated using matched baseline and controlled runs, including variability and a 95% confidence interval when supported by the experimental data.
+The team will compare predicted and measured flow rates, inlet and outlet temperatures, and relevant transient responses. Differences may result from heat losses, sensor uncertainty, actual pump characteristics, hydraulic resistance, or simplified assumptions within the simulation model. These differences will be documented and used to refine the model and improve the controller where appropriate. The final evaluation will rely on the physical bench measurements rather than simulation predictions alone.
 
-The final evaluation will determine whether the controller can achieve the preliminary target of at least 10% pump electrical-input-power reduction while maintaining approved flow, temperature, stability, and safety requirements.
 
 ### Engineering Verification Summary
 
-The mathematical models will support the initial design, but experimental measurements will determine whether the proposed controller meets its requirements.
+The mathematical models, signal interfaces, simulation, and physical bench will work together to support the development and evaluation of the controller.
 
-| Engineering Principle | Design Application | Verification Method |
+| Engineering Principle or Interface | Design Application | Verification Method |
 |---|---|---|
-| Pump affinity laws | Estimate changes in flow, head, and mechanical power with pump speed. | Compare predictions with manufacturer curves and bench measurements. |
-| Electrical power | Evaluate pump and drive input power reduction. | Measure real electrical input power during matched trials. |
-| Heat transfer equation | Estimate temperature rise across the bench heat source. | Compare calculated and measured inlet/outlet temperature differences. |
-| Reservoir energy balance | Evaluate temperature drift and thermal operating conditions. | Record reservoir and loop temperature behavior during testing. |
-| Feedback control | Calculate pump speed commands from measured conditions. | Review STM32 command traces, response time, and stability. |
-| Dymola simulation | Select initial controller settings and test conditions. | Compare simulation predictions with physical bench data. |
-| Statistical analysis | Evaluate repeatability and uncertainty of electrical savings. | Analyze paired trials, variation, and confidence intervals. |
+| Pump affinity laws | Predict the effects of speed changes on flow, head, and mechanical power | Compare predictions with manufacturer curves and bench measurements |
+| Electrical input power | Evaluate actual pump and drive electrical savings | Measure real input power during paired trials |
+| Flow sensor signal | Convert sensor output into circulation flow rate | Compare with reference flow measurements |
+| RTD and SPI temperature measurement | Acquire inlet and outlet temperatures | Calibrate against a reference temperature instrument |
+| Heating-demand signal | Represent operating demand for the feedforward controller | Apply known input values and verify conversion |
+| Pump-control output | Command variable speed operation | Verify the interface and observe pump response |
+| Heat-transfer model | Predict temperature rise across the heat source | Compare calculated and measured temperature differences |
+| Reservoir energy balance | Evaluate thermal drift and repeatability | Record reservoir and loop temperature behavior |
+| Feedback control | Adjust pump operation using temperature and flow information | Evaluate command traces, stability, and response time |
+| Dymola simulation | Select preliminary control settings and experimental conditions | Compare simulated predictions with physical bench data |
+| Statistical analysis | Evaluate repeatability and uncertainty | Analyze paired trials, standard deviation, and confidence intervals |
+| Safety and operating limits | Maintain acceptable thermal, hydraulic, and electrical operation | Conduct approved inspections and verification tests |
 
-The final design will distinguish theoretical predictions, manufacturer specifications, preliminary targets, and experimental results. This approach will allow the team to evaluate the proposed control strategy without assuming that ideal pump relationships or simulation predictions will automatically be achieved on the physical bench.
+The engineering calculations establish the theoretical basis for the design, while the signal interfaces explain how the controller will interact with the physical equipment. The required bench test will provide the experimental measurements needed to determine whether the controller achieves the preliminary target of at least 10% electrical input-power reduction while maintaining acceptable water flow, temperature stability, response time, and safety. The final results will distinguish theoretical predictions, manufacturer specifications, preliminary engineering targets, simulation outputs, and measured experimental performance.
+This approach will provide Lochinvar with documented evidence of the proposed controller's capabilities and limitations and establish a foundation for potential future testing on commercial equipment.
 
 ## Comparative Analysis of Potential Solutions
 
@@ -814,8 +1041,6 @@ The fifth solution is the one selected by our team, as it is the most comprehens
 The sixth and final potential solution our team proposed is simulation based, using a computer model of the boiler system. It would represent the relationships between pump speed and flow, as well as heat transfer, boiler firing rate, and outlet-water temperature. Different solutions could then be considered before being implemented physically.  This solution could help identify opportunities to reduce pump energy consumption while maintaining acceptable temperature performance. However, the accuracy of the simulation depends on how closely the model represents the actual system. 
 
 Several factors influence the selection of the final design, including the energy savings, the ability to maintain the desired outlet temperature, responsiveness to changing water demand, implementation difficulty, and reliability during operation. Combining these inputs could therefore provide a more complete representation of the system's operating conditions, although it also increases development and testing requirements. Based on these requirements, solution five is our selected and preferred solution. This design offers the strongest overall potential to balance energy efficiency and temperature regulation because it incorporates information about both system demand and actual thermal performance. Although this solution is more complex than the alternatives, its additional inputs provide a more comprehensive basis for controlling pump operation under changing conditions. Finally, the selected design must be validated through physical testing to determine whether it actually reduces pump energy consumption while maintaining acceptable outlet-temperature performance and stable operation.
-
-
 
 ## High-Level Solution
 
