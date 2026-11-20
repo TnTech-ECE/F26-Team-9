@@ -976,7 +976,7 @@ $$
 Where supported by the data and statistical assumptions, a 95% confidence interval for the mean savings will be calculated as:
 
 $$
-CI_{95\%}=\overline{S}\pm t_{0.975,n-1}\frac{s}{\sqrt{n}}
+CI_{95\%} = \overline{S} \pm t_{0.975,n-1} \frac{s}{\sqrt{n}}
 $$
 
 These calculations will help determine whether the observed electrical savings are consistent across repeated trials. The results will be reported together with temperature stability, flow measurements, and applicable operating limits. A reduction in electrical power will not count as successful if it is achieved by violating the approved safety or performance requirements.
@@ -996,7 +996,7 @@ $$
 Where a suitable nonzero measured reference exists, the percentage error can be calculated as:
 
 $$
-e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
+e_{x,\%} = \frac{\left|x_{\text{simulated}} - x_{\text{measured}}\right|}{\left|x_{\text{measured}}\right|} \times 100\%
 $$
 
 The team will compare predicted and measured flow rates, inlet and outlet temperatures, and relevant transient responses. Differences may result from heat losses, sensor uncertainty, actual pump characteristics, hydraulic resistance, or simplified assumptions within the simulation model. These differences will be documented and used to refine the model and improve the controller where appropriate. The final evaluation will rely on the physical bench measurements rather than simulation predictions alone.
