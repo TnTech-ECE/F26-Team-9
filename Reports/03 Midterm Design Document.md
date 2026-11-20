@@ -1924,8 +1924,8 @@ The revised design contains five subsystems. Each team member has a primary subs
 |---|---|---|
 | 1. Sensor and Data Acquisition | Skyler Raines | Select and integrate flow and temperature sensors, condition measurements, verify sensor interfaces, and provide reliable inputs to the controller. |
 | 2. Microcontroller and Control Logic | Group effort; **lead: Jocelyn Smith** | Develop and document the controller, fault responses, command limits, and control algorithm. Integrate contributions from all four members. |
-| 3. Pump, Motor Control, and Hydraulic System | Danielle Wolford | Develop the pump interface, circulation-loop and hydraulic model, and minimum-flow protection for the bench setup. |
-| 4. Monitoring, Performance Evaluation, and Bench Testing | Kendall Arnold | Plan and carry out the approved physical bench tests, coordinate repeated trials, and evaluate whether performance targets are met. |
+| 3. Pump, Motor Control, and Hydraulic System | Danielle Wolford | Develop the pump interface, circulation loop design, and hydraulic model, and establish minimum flow protection requirements for the bench setup.|
+| 4. Monitoring, Performance Evaluation, and Bench Testing | Kendall Arnold | Plan and coordinate the construction of the physical test bench, organize and conduct repeated testing trials, monitor system performance, and evaluate whether performance targets are met. |
 | 5. Data Logging and Simulation | Jocelyn Smith | Develop the simulation, establish preliminary test conditions, record and store experimental data, compare model predictions with bench measurements, and report model error. |
 
 
