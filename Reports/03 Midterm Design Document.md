@@ -1871,7 +1871,7 @@ For future commercial development, the team recommends evaluating component serv
 
 ### Budget
 
-# 1. Sensor and Data Acquisition Subsystem
+**1. Sensor and Data Acquisition Subsystem**
 **Primary Owner: Skyler Raines**
 
 | Item | Price ($) |
@@ -1886,7 +1886,7 @@ For future commercial development, the team recommends evaluating component serv
 
 This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
 
-# 2. Microcontroller and Control Logic Subsystem
+**2. Microcontroller and Control Logic Subsystem**
 **Primary Owner: Group Effort; Lead: Jocelyn Smith**
 
 | Item | Price ($) |
@@ -1897,7 +1897,7 @@ This subsystem includes the sensors and supporting hardware needed to collect op
 
 This subsystem includes the microcontroller and basic electrical connections required to implement the pump control strategy. The microcontroller will process operating measurements from the Sensor and Data Acquisition Subsystem and execute the control logic used to determine the appropriate pump speed. Wiring and connectors will provide the necessary electrical connections between the microcontroller, sensors, and control hardware.
 
-# 3. Pump, Motor Control, and Hydraulic System
+**3. Pump, Motor Control, and Hydraulic System**
 **Primary Owner: Danielle Wolford**
 
 | Item | Price ($) |
@@ -1907,7 +1907,7 @@ This subsystem includes the microcontroller and basic electrical connections req
 
 This subsystem focuses on the pump interface, circulation-loop design, hydraulic modeling, and minimum-flow protection for the bench setup. The pump will provide water circulation through the system and will be interfaced with the control hardware to support variable-speed operation. Hydraulic requirements and minimum-flow limitations will be established to help ensure proper pump operation. The associated piping and hydraulic components will be coordinated with the Monitoring, Performance Evaluation, and Bench Testing Subsystem.
 
-# 4. Monitoring, Performance Evaluation, and Bench Testing
+**4. Monitoring, Performance Evaluation, and Bench Testing**
 **Primary Owner: Kendall Arnold**
 
 | Item | Price ($) |
@@ -1925,7 +1925,7 @@ This subsystem focuses on the pump interface, circulation-loop design, hydraulic
 
 This subsystem is responsible for planning and coordinating the construction of the physical test bench, organizing repeated testing trials, and evaluating whether performance targets are met. The reservoir, copper piping, fittings, valves, and platform will support construction of the water circulation setup. The circulation heater will provide a means of heating the water during testing, while the PZEM-004T power monitor will measure electrical consumption. Testing measurements will be used to compare pump operation at different speeds and evaluate energy consumption and water heating performance.
 
-# 5. Data Logging and Simulation Subsystem
+**5. Data Logging and Simulation Subsystem**
 **Primary Owner: Jocelyn Smith**
 
 | Item | Price ($) |
@@ -1937,7 +1937,7 @@ This subsystem is responsible for planning and coordinating the construction of 
 
 This subsystem focuses on simulating system operation and recording measurements collected during testing. Dymola will be used to model and evaluate the proposed control strategy under different operating conditions. The microSD card module and memory card will provide local data storage for measurements such as flow rate, temperature, pump speed, and electrical power consumption. The recorded data will support analysis and comparison of simulation results and physical bench testing.
 
-### Budget Summary
+**Budget Summary**
 
 | Subsystem | Estimated Cost ($) |
 |---|---:|
