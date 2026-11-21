@@ -1058,15 +1058,11 @@ Testing at Lochinvar's laboratory may be considered near the end of Capstone 2 i
 
 ### Hardware Block Diagram
 
-<p align="center">
 ![Hardware Block Diagram](images/Hardware-BlockDiagram.png)
-</p>
 
 ### Operational Flow Chart
 
-<p align="center">
 ![Operational Flowchart](images/Operational-Flowchart.png)
-</p>
 
 ## Atomic Subsystem Specifications
 
@@ -1109,9 +1105,9 @@ A representative heating demand signal, potentially using 0–10 V, will be cond
 During operation, the subsystem will continuously acquire and condition sensor signals for processing by the microcontroller. The measurements will be converted into engineering units such as GPM, °F, and heating-demand percentage. Invalid readings or communication failures will be identified and reported to the Microcontroller and Control Logic Subsystem for the approved fault response. Valid measurements will support pump control, system monitoring, and experimental data logging.
   
 **Functional Flowchart:**
-<p align="center">
+
 ![Subsystem 1 - Sensor and Data Acquisition Flowchart](images/Subsystem1-Flowchart.png)
-</p>
+
 
 **Specifications**
 
@@ -1220,9 +1216,9 @@ If the controller detects insufficient circulation, invalid sensor information, 
 
 
 **Functional Flowchart:**
-<p align="center">
+
 ![Subsystem 2 - Microcontroller and Control Logic Flowchart](images/Subsystem2-Flowchart.png)
-</p>
+
 
 **Specifications:**
 
@@ -1283,9 +1279,9 @@ Before testing, the hydraulic and electrical connections will be inspected to ve
 The collected operating measurements will support performance evaluation and experimental data logging. After testing, the circulation pump and heating equipment will be shut down according to the manufacturer's procedures.
 
 **Functional Flowchart:**
-<p align="center">
+
 ![Subsystem 3 - Pump Motor Control and Hydraulic System Flowchart](images/Subsystem3-Flowchart.png)
-</p>
+
 
 **Specifications:**
 
@@ -1392,13 +1388,12 @@ Collected measurements and physical test results will be transmitted to Subsyste
 
 **Functional Flowchart:**
 
-<p align="center">
-![Subsystem 4 - Monitoring and Bench Testing Flowchart](images/Subsystem4-Flowchart.png)
-</p>
 
-<p align="center">
+![Subsystem 4 - Monitoring and Bench Testing Flowchart](images/Subsystem4-Flowchart.png)
+
+
 ![Physical Bench Test Schematic](images/BenchTest-Schematic.png)
-</p>
+
 
 **Specifications:**
 
@@ -1555,9 +1550,9 @@ $$
 The team will compare simulation and physical bench results for selected flow rate, temperature, and response time measurements. Differences will be documented and used to evaluate model assumptions and improve subsequent predictions. The analysis will also report trial to trial variability and a 95% confidence interval for electrical power savings when supported by the collected data and statistical assumptions.
 
 **Functional Flowchart:**
-<p align="center">
+
 ![Subsystem 5 - Data Logging and Simulation Flowchart](images/Subsystem5-Flowchart.png)
-</p>
+
 
 **Specifications:**
 
