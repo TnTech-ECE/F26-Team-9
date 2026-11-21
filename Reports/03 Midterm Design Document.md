@@ -1547,7 +1547,7 @@ $$
 Percentage error will be calculated where the measured reference value is nonzero and the comparison is meaningful:
 
 $$
-e_{x,\%}=\frac{|x_{\text{simulated}}-x_{\text{measured}}|}{|x_{\text{measured}}|}\times100\%
+e_{\text{percent}} = \frac{\left|x_{\text{simulated}} - x_{\text{measured}}\right|}{\left|x_{\text{measured}}\right|} \times 100
 $$
 
 The team will compare simulation and physical bench results for selected flow rate, temperature, and response time measurements. Differences will be documented and used to evaluate model assumptions and improve subsequent predictions. The analysis will also report trial to trial variability and a 95% confidence interval for electrical power savings when supported by the collected data and statistical assumptions.
