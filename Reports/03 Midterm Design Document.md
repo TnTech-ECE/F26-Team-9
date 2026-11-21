@@ -1058,14 +1058,15 @@ Testing at Lochinvar's laboratory may be considered near the end of Capstone 2 i
 
 ### Hardware Block Diagram
 
-
+<p align="center">
 ![Hardware Block Diagram](images/Hardware-BlockDiagram.png)
-
+</p>
 
 ### Operational Flow Chart
 
-
+<p align="center">
 ![Operational Flowchart](images/Operational-Flowchart.png)
+</p>
 
 ## Atomic Subsystem Specifications
 
@@ -1109,7 +1110,7 @@ During operation, the subsystem will continuously acquire and condition sensor s
   
 **Functional Flowchart:**
 <p align="center">
-<img width="534" height="178" alt="image" src="https://github.com/user-attachments/assets/c16677ed-42c8-48d4-8e17-1cb589b570aa" />
+![Subsystem 1 - Sensor and Data Acquisition Flowchart](images/Subsystem1-Flowchart.png)
 </p>
 
 **Specifications**
@@ -1220,7 +1221,7 @@ If the controller detects insufficient circulation, invalid sensor information, 
 
 **Functional Flowchart:**
 <p align="center">
-<img width="981" height="93" alt="image" src="https://github.com/user-attachments/assets/70949a81-fe63-4c40-ade3-aa1d8565058e" />
+![Subsystem 2 - Microcontroller and Control Logic Flowchart](images/Subsystem2-Flowchart.png)
 </p>
 
 **Specifications:**
@@ -1283,7 +1284,7 @@ The collected operating measurements will support performance evaluation and exp
 
 **Functional Flowchart:**
 <p align="center">
-<img width="825" height="242" alt="image" src="https://github.com/user-attachments/assets/97c8f6ae-c530-4c08-8fbd-bd51574dd9e2" />
+![Subsystem 3 - Pump Motor Control and Hydraulic System Flowchart](images/Subsystem3-Flowchart.png)
 </p>
 
 **Specifications:**
@@ -1390,11 +1391,14 @@ The results from constant-speed and variable-speed operation will be compared to
 Collected measurements and physical test results will be transmitted to Subsystem 5 for data logging, comparison with simulation results, and further analysis. Any performance issues identified during testing will be communicated to the appropriate subsystems for potential design adjustments.
 
 **Functional Flowchart:**
-<img width="1314" height="510" alt="image" src="https://github.com/user-attachments/assets/28966266-766a-4621-9a8d-618993ed77ae" />
 
+<p align="center">
+![Subsystem 4 - Monitoring and Bench Testing Flowchart](images/Subsystem4-Flowchart.png)
+</p>
 
-<img width="1316" height="990" alt="image" src="https://github.com/user-attachments/assets/3c9903be-fe6e-49a5-bd7d-fa4f52222671" />
-
+<p align="center">
+![Physical Bench Test Schematic](images/BenchTest-Schematic.png)
+</p>
 
 **Specifications:**
 
@@ -1552,7 +1556,7 @@ The team will compare simulation and physical bench results for selected flow ra
 
 **Functional Flowchart:**
 <p align="center">
-<img width="942" height="203" alt="image" src="https://github.com/user-attachments/assets/6a49cbd7-0922-45fe-a327-cdd5e8c62fc1" />
+![Subsystem 5 - Data Logging and Simulation Flowchart](images/Subsystem5-Flowchart.png)
 </p>
 
 **Specifications:**
