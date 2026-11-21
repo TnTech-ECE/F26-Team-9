@@ -1,1 +1,1 @@
-## Project Diagrams and Figures:
+## Project Diagrams and Figures
