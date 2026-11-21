@@ -1058,16 +1058,14 @@ Testing at Lochinvar's laboratory may be considered near the end of Capstone 2 i
 
 ### Hardware Block Diagram
 
-<p align="center">
-<img width="334" height="442" alt="image" src="https://github.com/user-attachments/assets/d265e0a7-57a0-460e-8f19-bc10e724f190" />
-</p>
+
+![Hardware Block Diagram](images/Hardware-BlockDiagram.png)
+
 
 ### Operational Flow Chart
 
 
-<p align="center">
-<img width="564" height="457" alt="image" src="https://github.com/user-attachments/assets/aeeeb999-b5ee-458f-a5ab-29ecb7f522bd" />
-</p>
+![Operational Flowchart](images/Operational-Flowchart.png)
 
 ## Atomic Subsystem Specifications
 
