@@ -1055,35 +1055,112 @@ Testing at Lochinvar's laboratory will be considered near the end of Capstone 2 
 
 **Overview:**
 
-The Sensor and Data Acquisition Subsystem will provide real time measurements of the water flow rate, inlet and outlet water temperatures, and heating demand within the water circulation loop. The subsystem will use the proposed KEYENCE FD-Q50C flow sensor to measure water flow and two PT100 RTD temperature sensors to monitor inlet and outlet water temperatures. A representative heating-demand signal, potentially using a 0–10 V analog input, will also be included to provide information about the current heating requirements of the system.
+### 1) Sensor and Data Acquisition Subsystem
 
-The flow sensor will provide an electrical output that corresponds to the measured water flow rate. Depending on the verified configuration of the selected KEYENCE sensor, this output may be a digital pulse frequency signal or an analog signal. The PT100 temperature sensors will change resistance according to the measured water temperature. These resistance measurements will be converted into digital information using MAX31865 interface modules, which will communicate with the STM32 microcontroller through SPI communication. The proposed 0–10 V heating demand input will be conditioned and isolated as required by the approved interface design to ensure compatibility with the microcontroller's supported analog input range.
+**Overview:**
 
-During operation, the subsystem will continuously acquire measurements from the sensors and provide the signals required by the Microcontroller and Control Logic Subsystem. The microcontroller will process these measurements to determine the current operating conditions and calculate the appropriate pump speed command. The subsystem will also support the detection of sensor failures, invalid measurements, and communication errors. These conditions will be reported to the Microcontroller and Control Logic Subsystem so that the appropriate fault response can be initiated.
+The Sensor and Data Acquisition Subsystem will collect the measurements needed to monitor the water circulation system. These measurements include water flow rate, inlet and outlet water temperatures, and heating demand. The proposed KEYENCE FD-Q50C flow sensor will measure the amount of water moving through the system, while two PT100 RTD temperature sensors will measure the water temperature before and after the heating section. A representative heating-demand signal, potentially using a 0–10 V analog input, will also be used to represent different heating conditions during testing.
 
-The final sensor configurations, electrical connections, signal conditioning requirements, and microcontroller interfaces will be verified and documented during Detailed Design. The initial implementation will focus on the approved physical bench-testing system, while communication with actual Lochinvar boiler equipment may be evaluated during future testing if the required interfaces and approvals are available.
+The flow sensor will send an electrical signal based on the amount of water flowing through the system. Depending on the selected configuration, this could be a digital pulse-frequency signal or an analog signal. The PT100 sensors work by changing resistance as the water temperature changes. These resistance measurements will be read by MAX31865 interface modules and sent to the STM32 microcontroller using SPI communication. The heating-demand signal will also need to be conditioned before being connected to the STM32 to ensure that the voltage stays within the microcontroller's supported input range.
+
+During operation, the subsystem will continuously collect these measurements and provide them to the Microcontroller and Control Logic Subsystem. The microcontroller will use this information to determine how the circulation pump should operate based on the current water flow, temperature, and heating demand.
+
+The subsystem will also help identify problems such as invalid sensor readings, disconnected sensors, or communication failures. If an issue is detected, the information will be sent to the Microcontroller and Control Logic Subsystem so the proper response can be taken. The final sensor connections and signal configurations will be confirmed before physical bench testing.
+
+The subsystem will first be tested using the physical bench setup developed for the project. This setup will include a water circulation loop, variable-speed pump, heat source, and the selected flow and temperature sensors. A representative heating-demand signal will be used to simulate different operating conditions without requiring a direct connection to the Lochinvar boiler. The collected measurements will be used to evaluate sensor performance and support the development of the pump control algorithm. If time and equipment availability allow, the subsystem may also be evaluated using actual Lochinvar equipment near the end of Capstone 2.
+
+**Functional Description:**
+
+1. **Flow Rate Measurement:** Use the KEYENCE FD-Q50C flow sensor to measure the amount of water circulating through the system.
+
+2. **Temperature Measurement:** Use two PT100 RTD sensors to measure the inlet and outlet water temperatures.
+
+3. **Heating Demand Measurement:** Receive a representative heating-demand signal, potentially using a 0–10 V analog input, to represent different heating conditions.
+
+4. **Signal Conditioning:** Adjust sensor signals when needed to make sure they are compatible with the STM32 microcontroller.
+
+5. **Data Acquisition:** Collect sensor measurements at the selected sampling interval and provide the information to Subsystem 2.
+
+6. **Measurement Validation:** Check for invalid measurements, disconnected sensors, and communication problems.
+
+7. **Data Communication:** Send the collected measurements and sensor status information to Subsystem 2 for processing and pump control.
 
 **Inputs:**
 
-* Water flow measurements from the KEYENCE FD-Q50C flow sensor installed on the circulation loop.
-* Inlet water temperature measurements from a PT100 RTD temperature sensor.
-* Outlet water temperature measurements from a second PT100 RTD temperature sensor.
-* A representative heating demand signal, potentially using a conditioned 0–10 V analog input.
-* Sensor calibration information and operating limits established from manufacturer specifications and bench testing requirements.
+- Water flow measurements from the KEYENCE FD-Q50C flow sensor.
+- Inlet water temperature from a PT100 RTD sensor.
+- Outlet water temperature from a second PT100 RTD sensor.
+- Representative heating-demand signal, potentially using a 0–10 V analog input.
+- Sensor calibration information and operating limits based on the selected equipment.
 
 **Outputs:**
 
-* Water flow measurement signals transmitted to the Microcontroller and Control Logic Subsystem through the verified flow sensor interface.
-* Inlet and outlet temperature measurements transmitted through MAX31865 modules using SPI communication.
-* Conditioned heating demand information transmitted to the microcontroller through an analog input.
-* Sensor status and fault information used by the Microcontroller and Control Logic Subsystem to identify invalid measurements or sensor failures.
-* Measurement information made available through the microcontroller to the Monitoring, Performance Evaluation, and Bench Testing Subsystem and the Data Logging and Simulation Subsystem.
+- Water flow measurements provided to Subsystem 2 for conversion into GPM.
+- Inlet and outlet temperature measurements sent through the MAX31865 modules using SPI communication.
+- Conditioned heating-demand signal provided to the STM32 analog input.
+- Sensor status and fault information used to identify measurement or communication problems.
+- Measurement information made available through Subsystem 2 for monitoring, performance evaluation, and data logging.
+
+**Interfaces Between Subsystems:**
+
+| Connection | Direction | Signal Type | Purpose |
+|---|---|---|---|
+| Subsystem 3: KEYENCE FD-Q50C Flow Sensor | Input | Digital pulse or analog signal (TBD) | Measure water flow rate |
+| Subsystem 3: PT100 Inlet Temperature Sensor | Input | Resistance-based analog signal | Measure inlet water temperature |
+| Subsystem 3: PT100 Outlet Temperature Sensor | Input | Resistance-based analog signal | Measure outlet water temperature |
+| MAX31865 Interface Modules | Input/Output | Resistance measurement and SPI digital communication | Convert temperature sensor measurements into digital data |
+| Heating Demand Source | Input | Proposed 0–10 V analog signal | Represent the current heating demand |
+| Subsystem 2: Flow Measurement | Output | Digital pulse or conditioned analog signal (TBD) | Send flow measurements to the STM32 |
+| Subsystem 2: Temperature Measurements | Output | SPI digital communication | Send inlet and outlet temperature data |
+| Subsystem 2: Heating Demand | Output | Conditioned analog voltage | Provide heating-demand information to the STM32 |
+| Subsystem 2: Sensor Status | Output | Digital status information | Report sensor errors or invalid measurements |
+| Subsystems 4 and 5: Measurement Data | Output through Subsystem 2 | Digital measurement data | Support monitoring, testing, and data logging |
+
+The final output configuration of the KEYENCE FD-Q50C flow sensor will need to be confirmed before the connections are completed. If the sensor uses a digital pulse output, the STM32 can measure the pulse frequency to determine the water flow rate. If an analog output is used, the signal will need to be conditioned before being connected to the STM32 ADC.
+
+The PT100 sensors will connect to the MAX31865 modules, which will send the temperature readings to the STM32 through SPI communication. The proposed 0–10 V heating-demand signal will also require voltage conditioning because it cannot be connected directly to the STM32 analog input.
+
+The final signal voltages, wiring connections, and STM32 pin assignments will be determined during Detailed Design once the selected components have been verified.
 
 **Interfaces and Procedure:**
 
-The subsystem will collect water flow, inlet temperature, and outlet temperature measurements from sensors installed on the circulation loop. The KEYENCE FD-Q50C flow sensor will provide an electrical signal corresponding to the measured flow rate. The two PT100 RTD sensors will connect to MAX31865 modules, which will transmit digital temperature measurements to the STM32 microcontroller through SPI communication.
+The subsystem will collect water flow and temperature measurements from sensors installed throughout the circulation loop. The KEYENCE FD-Q50C flow sensor will measure the amount of water moving through the system, while two PT100 RTD sensors will measure the temperatures entering and leaving the heated section.
 
-A representative heating demand signal, potentially using 0–10 V, will be conditioned to a voltage compatible with the microcontroller's analog input. During bench testing, this signal may be simulated rather than obtained directly from a Lochinvar boiler. The exact flow sensor configuration and electrical interfaces will be confirmed during Detailed Design. During operation, the subsystem will continuously acquire and condition sensor signals for processing by the microcontroller. The measurements will be converted into engineering units such as GPM, °F, and heating demand percentage. Invalid readings or communication failures will be identified and reported to the Microcontroller and Control Logic Subsystem for the approved fault response. Valid measurements will support pump control, system monitoring, and experimental data logging.
+The flow sensor will provide either a digital or analog signal depending on its selected configuration. If a pulse-frequency output is used, the STM32 will determine the water flow rate using:
+
+$$
+Q=K_f f_p
+$$
+
+where \(Q\) is the water flow rate in GPM, \(K_f\) is the conversion coefficient for the selected sensor configuration, and \(f_p\) is the measured pulse frequency. If an analog output is selected, the signal will be conditioned and converted using the appropriate sensor scaling relationship.
+
+The PT100 sensors will connect to MAX31865 modules, which will send digital temperature measurements to the STM32 through SPI communication. The inlet and outlet temperatures will be used to calculate the temperature difference across the heating section:
+
+$$
+\Delta T=T_{\text{out}}-T_{\text{in}}
+$$
+
+where \(T_{\text{out}}\) is the outlet water temperature and \(T_{\text{in}}\) is the inlet water temperature. This calculation will help the team observe how changes in water flow affect the temperature rise during bench testing.
+
+A representative heating-demand signal may also be used during bench testing to simulate different heating requirements without connecting directly to the Lochinvar boiler. If the proposed 0–10 V analog input is used, heating demand will be calculated using:
+
+$$
+D=\frac{V_{\text{demand}}}{10}\times100\%
+$$
+
+where \(D\) is the heating-demand percentage and \(V_{\text{demand}}\) is the original input voltage. The signal will be conditioned before reaching the STM32 to ensure that it remains within the supported ADC input range.
+
+For analog measurements, the STM32 can determine the voltage at its ADC input using:
+
+$$
+V_{\text{ADC}}=\frac{N_{\text{ADC}}}{2^n-1}V_{\text{REF}}
+$$
+
+where \(N_{\text{ADC}}\) is the ADC reading, \(n\) is the selected resolution, and \(V_{\text{REF}}\) is the reference voltage. The original sensor voltage will then be determined using the verified signal-conditioning relationship.
+
+During operation, the subsystem will continuously collect measurements and provide them to Subsystem 2. The microcontroller will convert the readings into GPM, °F, and heating-demand percentage before using them to determine the appropriate pump-speed command.
+
+The subsystem will also check for invalid measurements, sensor failures, and communication errors. If a problem occurs, the fault information will be sent to the Microcontroller and Control Logic Subsystem so the appropriate response can be taken. The collected measurements will also support monitoring, performance evaluation, and data logging during physical bench testing.
   
 **Functional Flowchart:**
 
@@ -1092,18 +1169,17 @@ A representative heating demand signal, potentially using 0–10 V, will be cond
 
 **Specifications**
 
-1) This subsystem shall read data from the temperature sensor.
-
-2)	This subsystem shall read data from the flow meter.
-   
-3)	This subsystem shall update all sensor measurements at a defined sampling interval established during Detailed Design.
-   
-4)	This subsystem shall send a fault error if there is any out-of-bounds data or if there is a broken connection.
-   
-5)	This subsystem shall send data to the microcontroller.
-
-
-
+1) The subsystem shall measure water flow using the selected KEYENCE flow sensor.
+2) The subsystem shall measure inlet and outlet water temperatures using two PT100 RTD sensors.
+3) The subsystem shall send temperature measurements through the MAX31865 modules using SPI communication.  
+4) The subsystem shall accept a representative heating-demand signal through a compatible input.
+5) The subsystem shall condition sensor signals to remain within the STM32 input voltage limits.
+6) The subsystem shall provide measurements to Subsystem 2 for conversion into GPM, °F, and heating-demand percentage.
+7) The subsystem shall identify invalid readings, disconnected sensors, and communication failures.
+8) The subsystem shall provide updated measurements at the selected sampling interval to support data logging at least once per second.
+9) The subsystem shall support flow measurement accuracy testing with a preliminary target of ±5% of the reference reading.
+10) The subsystem shall provide measurement information for monitoring, performance evaluation, and data logging through Subsystem 2.
+11) The subsystem shall use verified sensor connections and electrical interfaces before physical bench testing.
 
 ### 2) Microcontroller and Control Logic Subsystem
 
