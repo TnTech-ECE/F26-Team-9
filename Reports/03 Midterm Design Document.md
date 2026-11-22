@@ -28,7 +28,6 @@ This proposal will provide background information on the Regent water heater and
 The primary customer for this project is Lochinvar's engineering team, which is responsible for designing, testing, and developing commercial water heating systems, including the Regent Commercial Instantaneous Water Heater. Commercial hot water demand changes throughout the day, creating a need to determine whether circulation pump energy consumption can be reduced during periods of lower demand without compromising minimum circulation flow, outlet water temperature, or overall heating performance. The project will evaluate whether a reduction of at least 10% in pump electrical input power can be achieved under comparable operating conditions while maintaining Lochinvar's required flow and temperature limits.
 
 ### Project Stakeholders and Their Needs
---- 
 
 The controller must meet the needs of the sponsor without creating additional risks for people who use, maintain, or test hot-water equipment. Lochinvar needs credible engineering results that show whether the control strategy can reduce pump power while maintaining acceptable thermal and hydraulic performance. The capstone team needs equipment, documentation, technical support, and enough time to construct and test the bench loop. Tennessee Tech faculty and laboratory personnel need a setup that can be reviewed and operated safely.
 
@@ -51,8 +50,8 @@ These needs shape the project's main requirements. Pump electrical savings will 
 
 ### Background
 
-Hot water systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other units. These systems must be capable of responding to frequent changes in hot water demands while maintaining the required water temperature and flow.
-Some systems use Instantaneous water heating which is the process of using a tankless water heater that will heat up the water only when you need it[1]. The process starts with cold water entering the unit to be heated by a heating element then delivered at the desired temperature of the customer[1].
+Hot water systems provide heated water for applications such as showers, baths, laundry, kitchen sinks, and other units. These systems must be capable of responding to frequent changes in hot water demand while maintaining the required water temperature and flow.
+Some systems use instantaneous water heating, which is the process of using a tankless water heater that will heat up the water only when you need it[1]. The process starts with cold water entering the unit to be heated by a heating element then delivered at the desired temperature of the customer[1].
 
 The Regent Commercial Tankless Water Heater is the target system being investigated in this project. The Regent is designed as a tankless water heater that heats water as it passes through the system rather than storing hot water in a tank[2]. Cold water, referred to as the inlet water, enters the system and flows through the heat exchanger. This is where thermal energy is transferred from the heating system to the water[2],[3]. The heated water, referred to as the outlet water, then exits the unit at the required temperature. If additional heating is needed, water can be recirculated through the heat exchanger to increase its temperature before being delivered to the system[2].
 
@@ -62,7 +61,7 @@ $$
 Q_h = c \ m_V \ \Delta T 
 $$
 
-where Q_h represents the rate of heat transferred to the water, m_V represents the mass flow rate, c is the specific heat capacity of water(constant), and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes[4]. This relationship will be used as a foundation for modeling the thermal response of the system.
+where Q_h represents the rate of heat transferred to the water, m_V represents the mass flow rate, c is the specific heat capacity of water (a constant), and ∆T is the temperature change (Tout-Tin). Tout and Tin represent the outlet and inlet water temperatures. This relationship demonstrates the connection between water flow and temperature change within the system. As the circulation flow rate changes, the amount of temperature increase required to transfer a given amount of thermal energy also changes[4]. This relationship will be used as a foundation for modeling the thermal response of the system.
 
 Flow rate describes the amount of water moving through the system over a given period also expressed as volumetric flow rate[4],
 
@@ -86,8 +85,8 @@ $$
 m_V = \rho Q_V
 $$
 
-Where ρ is the density of water.These relationships allow changes in the volumetric flow rate of water to be related to the mass flow rate used in the heat transfer equation.
-The demand for hot water is never stagnant, it is constantly changing. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
+Where ρ is the density of water. These relationships allow changes in the volumetric flow rate of water to be related to the mass flow rate used in the heat transfer equation.
+The demand for hot water is never stagnant; it is constantly changing. An increase in demand results in an increase in flow and requires the system to respond while maintaining the desired temperature. A flow sensor can detect changes in demand, allowing a variable speed pump to adjust its operation accordingly. This provides the foundation for matching pump operation to system demand rather than continuously operating at maximum capacity.
 
 For centrifugal pumps, the relationship between pump speed and energy consumption can be described using the pump affinity laws[18]. These laws state that volumetric flow rate is proportional to pump speed, pump head is proportional to the square of pump speed, and pump power is proportional to the cube of pump speed. These relationships can be expressed as:
 
@@ -213,7 +212,7 @@ A more advanced approach involves using variable speed pumps and electronic moto
 
 One example of an existing variable speed circulation pump is the Grundfos MAGNA3. This pump includes several control modes, such as constant pressure, proportional pressure, AUTOADAPT, and FLOWADAPT. Proportional pressure control adjusts pump performance based on changes in system demand, while AUTOADAPT automatically adjusts the pump's operating characteristics. FLOWADAPT combines automatic adjustment with a flow limiting function [11]. These features demonstrate how modern circulation pumps can respond to changing operating conditions without requiring continuous manual adjustments. Although the MAGNA3 is not the pump currently proposed for the team's bench testing system, its control methods provide useful examples of how variable speed operation can improve circulation efficiency.
 
-Another existing solution is the Armstrong Design Envelope pump system. This technology combines variable speed operation with integrated controls and sensor less methods for estimating system conditions. Rather than relying entirely on external sensors, certain Design Envelope pumps use information from the pump and motor to estimate operating requirements and adjust performance. The Armstrong Design Envelope 4300 is an example of this approach [12]. These systems demonstrate how pump controls can be integrated into larger heating and cooling applications. However, the proposed capstone project will investigate an external microcontroller-based control strategy that uses measured flow rate, water temperature, and a representative heating-demand input.
+Another existing solution is the Armstrong Design Envelope pump system. This technology combines variable speed operation with integrated controls and sensorless methods for estimating system conditions. Rather than relying entirely on external sensors, certain Design Envelope pumps use information from the pump and motor to estimate operating requirements and adjust performance. The Armstrong Design Envelope 4300 is an example of this approach [12]. These systems demonstrate how pump controls can be integrated into larger heating and cooling applications. However, the proposed capstone project will investigate an external microcontroller-based control strategy that uses measured flow rate, water temperature, and a representative heating-demand input.
 
 Temperature based feedback control is another approach that can be used in water circulation systems. In this method, a temperature sensor measures the water temperature and compares it with a desired setpoint. The controller then adjusts an output based on the difference between the measured and desired temperatures. Proportional integral derivative (PID) control is one method used to reduce steady state error and improve system response [8]. For this project, temperature feedback is important because reducing pump speed can change the amount of heat transferred to the circulating water. However, temperature feedback alone may not provide enough information to determine whether the pump is maintaining the required circulation flow. Therefore, the team has selected a control strategy that combines multiple operating measurements rather than depending on only one variable.
 
@@ -256,7 +255,7 @@ $$
 {P_{\text{base}}} \times 100
 $$
 
-where $P_{\text{base}}$ represents the electrical power consumed during original pump procedure and $(P_{\text{controlled}})$ represents the electrical power consumed while using the proposed variable speed controller.
+where $P_{\text{base}}$ represents the electrical power consumed during the original pump procedure and $(P_{\text{controlled}})$ represents the electrical power consumed while using the proposed variable speed controller.
 
 The team will also compare results from different operating conditions to determine how changes in pump speed affect flow rate, temperature stability, and electrical power consumption. Research from the U.S. Department of Energy explains that variable speed pumping can reduce energy consumption when pump output is adjusted to match system requirements [10]. However, the actual savings associated with the proposed control strategy will be determined through bench testing.
 
@@ -296,10 +295,10 @@ The current estimated cost of the project is **$191.62**, based on the items wit
 
 ### Personnel
 
-* Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB, VHDL, Circuit Analysis, Control System Analysis, LT Spice
-* Danielle Wolford: C/C++, Assembly, Circuit Analysis, PLC Coding, HMI Formatting, Control System Analysis, LT Spice, KiCad
-* Kendall Arnold: C/C++, Assembly, AUTOCAD, Controls Systems, Circuit Analysis, LT Spice, KiCad, Technical Documentation
-* Skyler Raines: C/C++, Assembly, Circuit Analysis, AUTOCAD, Revit, PLC, Ladder Logic, Control Systems, Troubleshooting
+* Jocelyn Smith: C/C++, Assembly, Python, TypeScript, SQL, MATLAB, VHDL, Circuit Analysis, Control System Analysis, LTSpice
+* Danielle Wolford: C/C++, Assembly, Circuit Analysis, PLC Coding, HMI Formatting, Control System Analysis, LTSpice, KiCad
+* Kendall Arnold: C/C++, Assembly, AutoCAD, Control Systems, Circuit Analysis, LTSpice, KiCad, Technical Documentation
+* Skyler Raines: C/C++, Assembly, Circuit Analysis, AutoCAD, Revit, PLC, Ladder Logic, Control Systems, Troubleshooting
 
 The capstone team consists of Jocelyn Smith, Danielle Wolford, Kendall Arnold, and Skyler Raines. The project includes programming, control systems, circuit analysis, hardware integration, simulation, and experimental testing. Each team member will contribute to the overall design, with primary responsibilities assigned to the individual subsystems.
 
@@ -329,21 +328,21 @@ The main value of the project is a tested control strategy, a documented bench t
 
 ## Broader Implications, Ethics, and Responsibility as Engineers
 
-The development of this variable pump project has implications from environmental, societal, ethical, and scientifical domains. From the environmental perspective, the controller should be designed to maximize both water conservation and energy efficiency compared to the current fixed circulation pump. Building a controller that allows optimizing energy performances could reduce the facility's overall carbon footprint. 
+The development of this variable pump project has implications from environmental, societal, ethical, and scientific domains. From the environmental perspective, the controller should be designed to maximize both water conservation and energy efficiency compared to the current fixed circulation pump. Building a controller that optimizes energy performance could reduce the facility's overall carbon footprint. 
 
 From a societal standpoint, the variable circulation pump controller must feature an intuitive user interface to help control the pump for different facilities. The system is required continuously to meet fluctuating peak demands while maintaining strict parameters for temperature stability. If the pump parameters fail to satisfy these demands, it may result in financial losses as well as public health and safety risks.  
 
-Ethical responsibilities are integrated into the design and implication of the project. As engineers, we are committed to ensuring the accuracy and integrity of our methodology and data. This commitment would include rigorous validation of measurements, documentation, equipment calibration, and strict attention to detail. With the collaboration with Lochinvar, the team would require strict accountability for our deliverables while adhering to all the established standards, copyrights, and property rights. Upholding these standards allows the team to securely utilize data that Lochinvar has provided and implement that data into a product that will remain internal to the company. 
+Ethical responsibilities are integrated into the design and implementation of the project. As engineers, we are committed to ensuring the accuracy and integrity of our methodology and data. This commitment would include rigorous validation of measurements, documentation, equipment calibration, and strict attention to detail. With the collaboration with Lochinvar, the team would require strict accountability for our deliverables while adhering to all the established standards, copyrights, and property rights. Upholding these standards allows the team to securely utilize data that Lochinvar has provided and implement that data into a product that will remain internal to the company. 
 
-For scientifical aspects, the variable circulation pump needs to ensure that there is an accurate stability control loop. The accuracy could be supported from field data that is given from testing locations of Lochinvar. The data that is given from Lochinvar will provide precise physical measurements to map and configure the controller’s logic. Without these accurate data bases, any cross-referencing and validation from any simulation prediction could become unfeasible. Standardizing this data could improve simulations which would allow any anomalies to be cut out. 
+For scientific aspects, the variable circulation pump needs to ensure that there is an accurate stability control loop. The accuracy could be supported from field data that is given from testing locations of Lochinvar. The data that is given from Lochinvar will provide precise physical measurements to map and configure the controller’s logic. Without these accurate databases, any cross-referencing and validation from any simulation prediction could become unfeasible. Standardizing this data could improve simulations which would allow any anomalies to be cut out. 
 
-In conclusion, as engineers, upholding public safety remains our primary directive and core professional responsibilities throughout this project. The development of this variable circulation controller will need to maintain absolute precision in the thermal stability under high fluctuating loads in a commercial business. Achieving these standards will require each member of the team to execute their contributions with technical diligence and professional integrity.  Members of the team must be mindful that this design may be used in future implementations that Lochinvar develops. We must remain aware of our ethical obligations to the public and deliver a safe, high performing product that will have a positive public impact and will eliminate corporate liabilities for Lochinvar.
+In conclusion, as engineers, upholding public safety remains our primary directive and one of our core professional responsibilities throughout this project. The development of this variable circulation controller will need to maintain absolute precision in the thermal stability under high fluctuating loads in a commercial business. Achieving these standards will require each member of the team to execute their contributions with technical diligence and professional integrity.  Members of the team must be mindful that this design may be used in future implementations that Lochinvar develops. We must remain aware of our ethical obligations to the public and deliver a safe, high performing product that will have a positive public impact and will eliminate corporate liabilities for Lochinvar.
 
 ## Statement of Contributions
 
 * Kendall Arnold - Introduction, Background, Budget
 * Skyler Raines- Timeline, Broader Implications, Ethics and Responsibility as Engineers
-* Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personel, Specific Implications
+* Jocelyn Smith - Formulating the Problem, Specifications and Constraints, Personnel, Specific Implications
 * Danielle Wolford - Survey of Existing Solutions, Measures of Success
 
 
@@ -379,7 +378,7 @@ The objective of this project is to develop and evaluate a control strategy that
 
 The objective of this project is to design, implement, and evaluate a variable speed circulation pump controller that can reduce unnecessary electrical power consumption while maintaining safe water flow and stable temperature performance. The Lochinvar Regent Commercial Instantaneous Water Heater remains the intended future application, but the controller will be developed and evaluated first using a dedicated physical bench testing system.
 
-The bench setup will include a variable speed pump, a small water circulation loop, a heat source, flow and temperature sensors, and the team's actual microcontroller-based controller. It will provide a controlled environment for changing flow and heating demand conditions, recording system responses, and evaluating the effect of pump speed adjustments. The physical bench test is required and will provide the primary experimental evidence for the project.
+The bench setup will include a variable speed pump, a small water circulation loop, a heat source, flow and temperature sensors, and the team's actual microcontroller-based controller. It will provide a controlled environment for changing flow and heating demand conditions, record system responses, and evaluate the effect of pump speed adjustments. The physical bench test is required and will provide the primary experimental evidence for the project.
 
 A simulation model will be developed before testing to represent the expected relationships between pump operation, water flow, heat transfer, and outlet temperature. The simulation will help establish preliminary controller settings and choose bench test conditions. After measurements have been collected, the simulation will be run under matching conditions and compared with the physical response. The team will report the differences and use the results to improve the model and controller.
 
@@ -398,13 +397,13 @@ The design shall meet the following requirements:
 11. Safety: The bench setup shall be reviewed with the faculty supervisor before energizing. Approved testing shall verify temperature limits, minimum flow, electrical isolation, and fault responses.
 12. Future application: Testing on actual Lochinvar equipment may be pursued near the end of Capstone 2 if access and approval permit, but is not required to complete the project.
 
-In summary, The project will be judged primarily by the quality of the bench implementation, repeatability of the measurements, safe operation, and evidence that the controller meets the defined performance targets. The team will clearly distinguish results measured on the bench from any predictions about future use in the Regent.
+In summary, the project will be judged primarily by the quality of the bench implementation, repeatability of the measurements, safe operation, and evidence that the controller meets the defined performance targets. The team will clearly distinguish results measured on the bench from any predictions about future use in the Regent.
 
 ## Engineering Principles, Mathematical Models, and Verification Tools (C1)
 
 The proposed Variable Speed Circulation Pump Controller will be developed using engineering principles involving fluid mechanics, heat transfer, electrical power, signal processing, and feedback control. These principles will be used to determine how changes in pump speed affect water circulation, outlet water temperature, and electrical energy consumption.
 
-The design will use an STM32L476RG microcontroller to process sensor measurements and determine the appropriate pump-speed command. The controller will receive information about water flow, inlet and outlet temperatures, and a representative heating demand input. These signals will be converted into engineering units and used by the control algorithm to adjust pump operation while maintaining the established temperature and minimum-flow requirements.
+The design will use an STM32L476RG microcontroller to process sensor measurements and determine the appropriate pump speed command. The controller will receive information about water flow, inlet and outlet temperatures, and representative heating demand input. These signals will be converted into engineering units and used by the control algorithm to adjust pump operation while maintaining the established temperature and minimum-flow requirements.
 
 Dymola simulation will be used before physical testing to predict system behavior, select preliminary controller settings, and establish suitable operating conditions. A required physical bench test will then use the actual microcontroller, variable speed pump, heat source, and sensors to evaluate the control strategy.
 
@@ -980,11 +979,11 @@ Several potential solutions were considered for this project. Each solution uses
 
 The first potential solution involves adjusting pump speed based on the boiler's firing rate. This approach uses the boiler's existing 0–10 V signal, which represents its firing rate from 0% to 100%, to determine the appropriate pump speed. This solution does not require an additional sensor, and it could increase energy efficiency; however, firing rate alone may not accurately represent the system's circulation requirements because water demand and inlet water temperature can vary independently of boiler output.
 
-The second solution that was considered is based on controlling pump speed according to water flowrate. This approach adjusts circulation based on actual hot water demand, allowing the pump to increase or decrease its speed as water usage changes. This solution also increased energy efficiency, but flow rate alone does not account for changes in inlet water temperature or boiler firing rate, which may affect the amount of heat required to maintain the desired outlet temperature. 
+The second solution that was considered is based on controlling pump speed according to water flow rate. This approach adjusts circulation based on actual hot water demand, allowing the pump to increase or decrease its speed as water usage changes. This solution could also increase energy efficiency, but flow rate alone does not account for changes in inlet water temperature or boiler firing rate, which may affect the amount of heat required to maintain the desired outlet temperature. 
 
-The third potential solution uses a temperature based feedback controller to regulate pump speed. This sensor will continuously measure the outlet water temperature, which is then compared to the desired temperature. Then, the controller adjusts pump speed based on the difference between the measured and desired temperatures. This solution offers the advantage of directly monitoring temperature performance rather than relying solely on indirect indicators of system demand; however, the relationship between pump speed and outlet temperature must be determined experimentally, and the controller must be tuned carefully to prevent unstable operation or interference with the boiler's existing temperature-control system.
+The third potential solution uses a temperature-based feedback controller to regulate pump speed. This sensor will continuously measure the outlet water temperature, which is then compared to the desired temperature. Then, the controller adjusts pump speed based on the difference between the measured and desired temperatures. This solution offers the advantage of directly monitoring temperature performance rather than relying solely on indirect indicators of system demand; however, the relationship between pump speed and outlet temperature must be determined experimentally, and the controller must be tuned carefully to prevent unstable operation or interference with the boiler's existing temperature-control system.
 
-The fourth solution is state based and divides the system operation into multiple states, such as startup, normal operation, increased demand, temperature recovery, and fault protection. Each state would have a corresponding pump speed strategy based on the system's current operating conditions. This solution allows organization, and multiple operating conditions can be handled separately. This solution also can be less effective if the states are too broad. This can depend on selected pump speeds for each condition, transition conditions, and operating thresholds. 
+The fourth solution is state based and divides the system operation into multiple states, such as startup, normal operation, increased demand, temperature recovery, and fault protection. Each state would have a corresponding pump speed strategy based on the system's current operating conditions. This solution allows organization, and multiple operating conditions can be handled separately. This solution can also be less effective if the states are too broad. This can depend on selected pump speeds for each condition, transition conditions, and operating thresholds. 
 
 The fifth solution is the one selected by our team, as it is the most comprehensive solution. This solution combines water flow rate, boiler firing rate, and outlet temperature feedback. The flow rate and firing rate provide current conditions and will be used to determine the initial pump-speed command. The temperature feedback will monitor performance, and the system will make adjustments to keep the temperature at the desired point. By combining demand-based control with temperature feedback, this solution could respond to changes in hot water usage while maintaining the required temperature performance. It also has the potential to reduce unnecessary pump operation more effectively than a strategy relying on a single input. However, this approach requires more extensive programming, sensor integration, experimental testing, and controller tuning.
 
@@ -1115,7 +1114,7 @@ During operation, the subsystem will continuously acquire and condition sensor s
 
 2)	This subsystem shall read data from the flow meter.
    
-3)	This subsystem shall update all data every how many seconds we choose.
+3)	This subsystem shall update all sensor measurements at a defined sampling interval established during Detailed Design.
    
 4)	This subsystem shall send a fault error if there is any out-of-bounds data or if there is a broken connection.
    
@@ -1167,7 +1166,7 @@ The subsystem will also detect invalid measurements, communication failures, and
 
 **Outputs:**
 
-* Pump speed command to Subsystem 3 through the verified manufacturer supported control interface.
+* Pump speed command to Subsystem 3 through the verified manufacturer-supported control interface.
 * Controller operating state, command value, and measurement information to Subsystem 5.
 * Fault codes and diagnostic status for monitoring and recording.
 * Approved heater shutdown or inhibit request, if the final bench includes a suitable authorized interface.
@@ -1180,7 +1179,7 @@ The subsystem will also detect invalid measurements, communication failures, and
 | Subsystem 1: PT100 temperature channels | Input | SPI digital communication from two MAX31865 modules | Receive inlet and outlet temperature measurements |
 | Subsystem 1: Heating demand input | Input | Conditioned analog voltage to STM32 ADC; proposed external range 0–10 V | Receive representative demand information |
 | Subsystem 3: Pump control | Output | Manufacturer-supported PWM, analog, or other verified control interface; TBD | Command pump operating level |
-| Subsystem 3: Pump feedback | Input, if available | Manufacturer supported status or feedback signal; TBD | Monitor pump operating status |
+| Subsystem 3: Pump feedback | Input, if available | Manufacturer-supported status or feedback signal; TBD | Monitor pump operating status |
 | Subsystem 4: Bench operating parameters | Input | Configured values and approved test settings | Establish test setpoint, limits, and operating condition |
 | Subsystem 5: Data logging | Output | USB serial/UART digital communication | Transmit measurements, commands, states, and faults |
 | Low voltage power system | Input | Regulated supply compatible with STM32 and interface hardware | Supply controller and low voltage circuitry |
@@ -1844,7 +1843,7 @@ For future commercial development, the team recommends evaluating component serv
 | PZEM-004T V3.0 AC Power Monitor | $25.00 |
 | **Subtotal** | **$91.62** |
 
-This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures, while the PZEM-004T power monitor will measure electrical consumption.. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
+This subsystem includes the sensors and supporting hardware needed to collect operating measurements from the circulation system. The flow sensor measures water flow rate, while the PT100 temperature probes measure inlet and outlet temperatures, while the PZEM-004T power monitor will measure electrical consumption. The MAX31865 modules interface the temperature probes with the microcontroller. Sensor mounts and additional measurement ports support proper sensor installation and data collection.
 
 **2. Microcontroller and Control Logic Subsystem**
 
@@ -1916,7 +1915,7 @@ This subsystem focuses on simulating system operation and recording measurements
 - Components provided by Lochinvar and Dr. Elfouly are listed as free.
 - The DC power supply cost is still undetermined pending confirmation of available Tennessee Tech resources.
 - The ZEROSTART circulation heater cost is preliminary and should be confirmed for compatibility as we are still looking at other methods to solve this problem. 
-- The budget may change as the physical bench design and component requirements are finalized. Updates will be in the Detail design or Capstone 2
+- The budget may change as the physical bench design and component requirements are finalized. Updates will be in the Detailed Design or Capstone 2
 
 ### Division of Labor
 
@@ -1941,7 +1940,7 @@ The revised design contains five subsystems. Each team member has a primary subs
 	* Responsible team member and rationale: Danielle was assigned this subsystem because her experience assembling electrical panels and troubleshooting electrical hardware provides a foundation for integrating the pump's motor control components. Her background in Electronics and Computer Engineering Technology will help her work with electrical connections between the pump, motor control hardware, and microcontroller. Her troubleshooting skills will also be valuable for diagnosing wiring problems, addressing hardware malfunctions, and helping ensure the pump control system operates reliably during testing.
   
 * Subsystem 4 — Kendall Arnold. Kendall will lead the physical bench test plan and performance evaluation, including repeatable operating conditions, matched baseline and controlled trials, temperature and power measurements, and safety verification evidence.
-	* Responsible team member and rationale: Kendall was assigned this subsystem because of her background in applied physics and experience conducting experimental projects involving data collection, analysis, and comparison of results. She is also experiences with C/C++, assembly, and currently in Control Systems. These skills will be valuable when evaluating system performance under different operating conditions and determining whether the proposed control strategy reduces electrical energy consumption without compromising the performance of the heater.
+	* Responsible team member and rationale: Kendall was assigned this subsystem because of her background in applied physics and experience conducting experimental projects involving data collection, analysis, and comparison of results. She is also experienced with C/C++, assembly, and currently in Control Systems. These skills will be valuable when evaluating system performance under different operating conditions and determining whether the proposed control strategy reduces electrical energy consumption without compromising the performance of the heater.
 
 * Subsystem 5 — Jocelyn Smith. Jocelyn will lead simulation development, data recording and storage design, model to bench comparison, and reporting of model error. This subsystem will provide datasets to Kendall for performance evaluation rather than taking over operation of the bench experiment.
 	* Responsible team member and rationale: Jocelyn was assigned this subsystem because of her experience with MATLAB, Python, and control system analysis. These skills will help her organize experimental data, develop simulations, and analyze how changes in pump speed affect the water heating system. Because this subsystem works closely with the Microcontroller and Control Logic subsystem, assigning both to the same team member will also help maintain consistency between the controller design and performance analysis.
